@@ -9,3 +9,7 @@ body{
 .fixed{
     position: fixed;
 }
+
+.pagination li.active {
+    background-color: #448AFF !important;
+}
