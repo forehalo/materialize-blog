@@ -1,0 +1,11 @@
+body{
+    background: #f2f2f2;
+}
+
+.collapsible-body{
+    background: #FFFFFF;
+}
+
+.fixed{
+    position: fixed;
+}

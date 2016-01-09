@@ -1,0 +1,52 @@
+var oldActive = $(".collapsible-header.active");
+
+$(function () {
+    $("body").click(function (e) {
+
+        var active = $(".collapsible-header.active");
+
+        if (oldActive.attr("id") != active.attr("id")) {
+            if (oldActive.length > 0) {
+                oldActive.children(".intro").removeClass("slideup").slideDown();
+            }
+            oldActive = active;
+        }
+
+        var activeLi = active.parent();
+        var activeLiPosition = activeLi.position();
+
+        // when an article is active, slide up it's introduction.
+
+        if (active.length > 0) {
+            var articleOpened = true;
+            var intro = active.children(".intro");
+
+            // on click at the range out of active article, remove active.
+            if (e.pageY < activeLiPosition.top ||
+                e.pageY > activeLiPosition.top + activeLi.height() ||
+                e.pageX < activeLiPosition.left ||
+                e.pageX > activeLiPosition.left + activeLi.width()) {
+
+                active.removeClass("active").parent().removeClass("active").children('.collapsible-body').stop(true, false).slideUp(
+                    {
+                        duration: 350,
+                        easing: "easeOutQuart",
+                        queue: false,
+                        complete: function () {
+                            $(this).css('height', '');
+                        }
+                    });
+                intro.removeClass("slideup").slideDown();
+                //console.log(2);
+                articleOpened = false;
+            }
+
+            if (articleOpened) {
+                if (!intro.hasClass("slideup")){
+                    intro.addClass("slideup");
+                    intro.slideUp();
+                }
+            }
+        }
+    });
+});
