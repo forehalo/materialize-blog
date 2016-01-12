@@ -1,5 +1,5 @@
 body{
-    background: #f2f2f2;
+    background: url("../image/bg.jpg") #DFDFDF;
 }
 
 .collapsible-body{
@@ -10,6 +10,30 @@ body{
     position: fixed;
 }
 
+ul.nav-items{
+    padding-left: 20%;
+}
+
 .pagination li.active {
     background-color: #448AFF !important;
+}
+
+@media only screen and (min-width: 993px) {
+    nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
+        height: 45px;
+        line-height: 45px;
+    }
+    .navbar-fixed {
+        height: 45px;
+    }
+}
+
+@media only screen and (max-width: 601px) {
+    nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
+        height: 64px;
+        line-height: 64px;
+    }
+    .navbar-fixed {
+        height: 64px;
+    }
 }

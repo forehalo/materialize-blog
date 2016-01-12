@@ -7,7 +7,7 @@
                    class="button-collapse circle waves-effect btn-icon btn-flat"><i
                             class="material-icons">menu</i></a>
                 <a href="#" class="brand-logo">// Forehalo</a>
-                <ul class="right hide-on-med-and-down">
+                <ul class="hide-on-med-and-down nav-items">
                     <li><a href="/" class="waves-effect waves-block"><i
                                     class="material-icons left">list</i>Posts</a>
                     </li>
@@ -33,17 +33,17 @@
                     </li>
                     <li><a href="#" class="waves-effect waves-block">About<i
                                     class="material-icons left">perm_identity</i></a></li>
-                    <li>
-                        <div class="nav-wrapper">
-                            <form>
-                                <div class="input-field">
-                                    <input id="search" type="search" required>
-                                    <label for="search"><i class="material-icons">search</i></label>
-                                    <i class="material-icons">close</i>
-                                </div>
-                            </form>
-                        </div>
-                    </li>
+                    {{--<li>--}}
+                        {{--<div class="nav-wrapper">--}}
+                            {{--<form>--}}
+                                {{--<div class="input-field">--}}
+                                    {{--<input id="search" type="search" required>--}}
+                                    {{--<label for="search"><i class="material-icons">search</i></label>--}}
+                                    {{--<i class="material-icons">close</i>--}}
+                                {{--</div>--}}
+                            {{--</form>--}}
+                        {{--</div>--}}
+                    {{--</li>--}}
                 </ul>
                 <ul id="nav-mobile" class="side-nav blue accent-3">
                     <li><a href="#" class="waves-effect waves-teal white-text">Posts<i class="material-icons left">list</i></a></li>
