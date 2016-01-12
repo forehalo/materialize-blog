@@ -50,3 +50,28 @@ $(function () {
         }
     });
 });
+
+
+$(function(){
+    runPreview = function() {
+        var replyContent = $("#reply_content");
+        var oldContent = replyContent.val();
+        console.log(oldContent);
+
+        if (oldContent) {
+            marked(oldContent, function (err, content) {
+                $('#preview-box').html(content);
+            });
+        }
+    };
+
+    $("#reply_content").on("keyup", function(){
+        runPreview();
+    });
+
+    $("#reply_content").focus(function(event){
+        $("#preview-box").css("display", 'block');
+    });
+
+
+});
