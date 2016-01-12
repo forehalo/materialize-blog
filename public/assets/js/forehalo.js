@@ -7,7 +7,7 @@ $(function () {
 
         if (oldActive.attr("id") != active.attr("id")) {
             if (oldActive.length > 0) {
-                oldActive.children(".intro").removeClass("slideup").slideDown();
+                oldActive.children(".intro").removeClass("slideup").stop(true, false).slideDown();
             }
             oldActive = active;
         }
@@ -36,7 +36,7 @@ $(function () {
                             $(this).css('height', '');
                         }
                     });
-                intro.removeClass("slideup").slideDown();
+                intro.removeClass("slideup").stop(true, false).slideDown();
                 //console.log(2);
                 articleOpened = false;
             }
@@ -44,7 +44,7 @@ $(function () {
             if (articleOpened) {
                 if (!intro.hasClass("slideup")){
                     intro.addClass("slideup");
-                    intro.slideUp();
+                    intro.stop(true, false).slideUp();
                 }
             }
         }
