@@ -18,7 +18,7 @@ ul.nav-items{
     background-color: #448AFF !important;
 }
 
-@media only screen and (min-width: 993px) {
+@media only screen {
     nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
         height: 45px;
         line-height: 45px;
@@ -28,12 +28,16 @@ ul.nav-items{
     }
 }
 
-@media only screen and (max-width: 601px) {
-    nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
+@media only screen and (max-width: 993px) {
+    nav #nav-mobile li, nav #nav-mobile a, nav #nav-mobile i{
         height: 64px;
         line-height: 64px;
     }
-    .navbar-fixed {
-        height: 64px;
+
+    nav .btn-floating{
+        height: 45px;
+        width: 45px;
     }
+
+
 }

@@ -4,7 +4,7 @@
             <div class="nav-wrapper">
                 {{--mobile device memu--}}
                 <a href="#" data-activates="nav-mobile"
-                   class="button-collapse circle waves-effect btn-icon btn-flat"><i
+                   class="button-collapse waves-effect btn-flat btn-floating"><i
                             class="material-icons">menu</i></a>
                 <a href="#" class="brand-logo">// Forehalo</a>
                 <ul class="hide-on-med-and-down nav-items">
