@@ -15,6 +15,10 @@ Route::get('/', function(){
     return view('front.index');
 });
 
+Route::get('/404', function(){
+   return view('errors.404');
+});
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
