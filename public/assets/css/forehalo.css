@@ -75,3 +75,8 @@ ul.nav-items{
     margin: 3px;
     font-family: "Microsoft YaHei UI Light", "Roboto", sans-serif;
 }
+
+.collapsible-header h4{
+    margin: 0;
+    padding-top: 4px;
+}

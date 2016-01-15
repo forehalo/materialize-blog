@@ -37,7 +37,7 @@
             </div>
         </li>
         <li>
-            <div class="collapsible-header" id="2"><i class="material-icons">place</i>foreach 循环中注意事项<p class="intro">
+            <div class="collapsible-header" id="2"><i class="material-icons">place</i><h4>foreach 循环中注意事项</h4><p class="intro">
                     Laravel本身给我们提供了许多强大的Artisan命令，但这些都是基于框架的一些操作，有时我们也需要自己定制一些命令。接下来就介绍一下如何添加自己的命令，以及使用队列来执行命令。</p>
             </div>
             <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
