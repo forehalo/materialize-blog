@@ -19,6 +19,10 @@ Route::get('/404', function(){
    return view('errors.404');
 });
 
+Route::get('back', function(){
+    return view('back.index');
+});
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
