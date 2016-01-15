@@ -33,17 +33,9 @@
                     </li>
                     <li><a href="#" class="waves-effect waves-block">About<i
                                     class="material-icons left">perm_identity</i></a></li>
-                    {{--<li>--}}
-                        {{--<div class="nav-wrapper">--}}
-                            {{--<form>--}}
-                                {{--<div class="input-field">--}}
-                                    {{--<input id="search" type="search" required>--}}
-                                    {{--<label for="search"><i class="material-icons">search</i></label>--}}
-                                    {{--<i class="material-icons">close</i>--}}
-                                {{--</div>--}}
-                            {{--</form>--}}
-                        {{--</div>--}}
-                    {{--</li>--}}
+                    <li>
+                        <a class=""><i class="material-icons">search</i></a>
+                    </li>
                 </ul>
                 <ul id="nav-mobile" class="side-nav blue accent-3">
                     <li><a href="#" class="waves-effect waves-teal white-text">Posts<i class="material-icons left">list</i></a></li>

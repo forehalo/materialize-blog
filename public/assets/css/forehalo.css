@@ -1,5 +1,17 @@
-body{
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
     background: url("../image/bg.jpg") #DFDFDF;
+
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+main div.container{
+    width: 90%;
 }
 
 .collapsible-body{
@@ -38,6 +50,28 @@ ul.nav-items{
         height: 45px;
         width: 45px;
     }
+}
+
+@media screen,projection{
+    .card .card-action {
+        padding: 15px;
+    }
+    
+    .card-action a{
+        padding: 0 1rem;
+    }
+    .card-action a i{
+        margin-right: 5px;
+    }
+}
 
 
+.top-tags a{
+    padding: 0 0.5rem;
+    margin: 3px 2px;
+}
+
+.friend-links a{
+    margin: 3px;
+    font-family: "Microsoft YaHei UI Light", "Roboto", sans-serif;
 }
