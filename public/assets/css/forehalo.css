@@ -3,7 +3,6 @@ body {
     min-height: 100vh;
     flex-direction: column;
     background: url("../image/bg.jpg") #DFDFDF;
-
 }
 
 main {
@@ -25,10 +24,6 @@ main div.container {
 
 .collapsible-body {
     background: #FFFFFF;
-}
-
-.fixed {
-    position: fixed;
 }
 
 ul.nav-items {

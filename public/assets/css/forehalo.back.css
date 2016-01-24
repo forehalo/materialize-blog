@@ -1,0 +1,21 @@
+body{
+
+}
+
+nav {
+    background-color: #FFFFFF;
+}
+
+.brand-logo {
+    font-weight: bold;
+}
+
+.side-nav {
+
+}
+
+@media only screen and (min-width: 993px){
+    .brand-logo {
+        margin-left: 20%;
+    }
+}
