@@ -10,19 +10,28 @@ main {
     flex: 1 0 auto;
 }
 
-main div.container{
+main div.container {
     width: 90%;
 }
 
-.collapsible-body{
+.collapsible-header {
+    line-height: 2rem;
+}
+
+.intro {
+    margin: 5px 0;
+    line-height: 2rem;
+}
+
+.collapsible-body {
     background: #FFFFFF;
 }
 
-.fixed{
+.fixed {
     position: fixed;
 }
 
-ul.nav-items{
+ul.nav-items {
     padding-left: 20%;
 }
 
@@ -35,48 +44,67 @@ ul.nav-items{
         height: 45px;
         line-height: 45px;
     }
+
     .navbar-fixed {
         height: 45px;
     }
 }
 
 @media only screen and (max-width: 993px) {
-    nav #nav-mobile li, nav #nav-mobile a, nav #nav-mobile i{
+    nav #nav-mobile li, nav #nav-mobile a, nav #nav-mobile i {
         height: 64px;
         line-height: 64px;
     }
 
-    nav .btn-floating{
+    nav .btn-floating {
         height: 45px;
         width: 45px;
     }
 }
 
-@media screen,projection{
+@media screen, projection {
     .card .card-action {
         padding: 15px;
     }
-    
-    .card-action a{
+
+    .card-action a {
         padding: 0 1rem;
     }
-    .card-action a i{
+
+    .card-action a i {
         margin-right: 5px;
     }
 }
 
-
-.top-tags a{
+.top-tags a {
     padding: 0 0.5rem;
     margin: 3px 2px;
 }
 
-.friend-links a{
+.friend-links a {
     margin: 3px;
     font-family: "Microsoft YaHei UI Light", "Roboto", sans-serif;
 }
 
-.collapsible-header h4{
+.collapsible-header h5 {
     margin: 0;
-    padding-top: 4px;
+    padding: 9px;
+}
+
+.collapsible-header > .label {
+    margin-left: 10px;
+    color: #9e9e9e;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.5rem;
+    padding: 2px;
+}
+.collapsible-header > .label > .material-icons {
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+    float: none;
+    display: inline;
+    margin: 0 1px 0 10px;
+    vertical-align: middle;
 }
