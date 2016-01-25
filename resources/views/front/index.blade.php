@@ -19,9 +19,9 @@
                 </p>
                 <div class="row">
                     <div class="col m12 l12">
-                        <a href="#" class="btn waves-effect">Email</a>
-                        <a href="#" class="btn waves-effect">Gi</a>
-                        <a href="#" class="btn waves-effect">Email</a>
+                        <div class="chip">php</div>
+                        <div class="chip">github</div>
+                        <div class="chip">email</div>
                     </div>
                 </div>
             </div>
