@@ -17,14 +17,10 @@
     @include('back.navbar')
 </header>
 <main>
-    <div class="container">
-        <div class="row">
-            <div class="col s12 m9 l19">
-                @yield('main')
-            </div>
-            <div class="col hide-on-small-only m3 l3">
-                @include('back.side')
-            </div>
+    <div class="row">
+        @include('back.side')
+        <div class="col s12 m12 l10 right">
+            @yield('main')
         </div>
     </div>
 </main>
