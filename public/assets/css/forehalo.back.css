@@ -2,8 +2,12 @@ body{
 
 }
 
+.container {
+    width: 95%;
+}
+
 nav {
-    background-color: #FFFFFF;
+    background-color: #333;
 }
 
 .brand-logo {
@@ -11,11 +15,46 @@ nav {
 }
 
 .side-nav {
+    background-color: #333 ;
+}
 
+@media screen, projection {
+    .side-nav.fixed a {
+        color: #777;
+    }
+
+    .side-nav.fixed i {
+        line-height: inherit;
+        width: inherit;
+    }
+
+    .side-nav.fixed .collapsible-body {
+        background-color: #333;
+    }
+
+    .side-nav.fixed a.active {
+        color: #444;
+        background-color: #ddd;
+    }
 }
 
 @media only screen and (min-width: 993px){
     .brand-logo {
         margin-left: 20%;
     }
+}
+
+.dashboard, .dashboard a{
+    font-size: 15px;
+    color: #FFF;
+}
+
+.dashboard .number {
+    font-size: 30px;
+    text-align: right;
+    line-height: 30px;
+}
+.card-action{
+    padding: 3px 3px 0 3px;
+    height: 24px;
 }
