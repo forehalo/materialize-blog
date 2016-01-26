@@ -1,7 +1,3 @@
-body{
-
-}
-
 .container {
     width: 95%;
 }
@@ -39,6 +35,10 @@ nav {
 }
 
 @media only screen and (min-width: 993px){
+    main {
+        padding-left: 240px;
+    }
+
     .brand-logo {
         margin-left: 20%;
     }
@@ -57,4 +57,8 @@ nav {
 .card-action{
     padding: 3px 3px 0 3px;
     height: 24px;
+}
+
+td {
+    width: auto;
 }

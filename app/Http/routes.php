@@ -23,6 +23,10 @@ Route::get('back', function(){
     return view('back.index');
 });
 
+Route::get('blog', function(){
+   return view('back.blog.index');
+});
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
