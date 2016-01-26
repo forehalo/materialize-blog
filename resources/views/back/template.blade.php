@@ -15,13 +15,11 @@
 <body>
 <header>
     @include('back.navbar')
+    @include('back.side')
 </header>
 <main>
-    <div class="row">
-        @include('back.side')
-        <div class="col s12 m12 l10 right">
-            @yield('main')
-        </div>
+    <div class="col s12 m12 l10">
+        @yield('main')
     </div>
 </main>
 
