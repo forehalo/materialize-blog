@@ -99,7 +99,7 @@ class PostTableSeeder extends Seeder
         $faker = Faker::create();
         Post::create([
             'title' => $faker->sentence(),
-            'intro' => $faker->paragraph(),
+            'summary' => $faker->paragraph(),
             'category_id' => 1,
             'body' => $faker->text(),
             'origin' => '',
@@ -110,7 +110,7 @@ class PostTableSeeder extends Seeder
         ]);
         Post::create([
             'title' => $faker->sentence,
-            'intro' => $faker->paragraph,
+            'summary' => $faker->paragraph,
             'category_id' => 2,
             'body' => $faker->text(),
             'origin' => '',
@@ -121,7 +121,7 @@ class PostTableSeeder extends Seeder
         ]);
         Post::create([
             'title' => $faker->sentence,
-            'intro' => $faker->paragraph,
+            'summary' => $faker->paragraph,
             'category_id' => 3,
             'body' => $faker->text(),
             'origin' => '',
@@ -132,7 +132,7 @@ class PostTableSeeder extends Seeder
         ]);
         Post::create([
             'title' => $faker->sentence,
-            'intro' => $faker->paragraph,
+            'summary' => $faker->paragraph,
             'category_id' => 4,
             'body' => $faker->text(),
             'origin' => '',
