@@ -52,10 +52,11 @@ $(function () {
     });
 
     $(document).on('click', '.collapsible-header', function () {
-        var id = '#' + $(this).attr('id');
+        var pageY = $('#' + $(this).attr('id')).attr('pageY');
+        var pxToTop = pageY < 200 ? 0 : pageY - 100;
         $('html, body').animate({
-            scrollTop: $(id).offset().top - 100
-        }, 500);
+            scrollTop: pxToTop
+        }, 100);
     });
 });
 

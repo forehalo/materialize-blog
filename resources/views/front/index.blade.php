@@ -10,7 +10,7 @@
     <ul class="collapsible popout" data-collapsible="accordion" id="article">
         @foreach($posts as $post)
             <li>
-                <div class="collapsible-header no-seen" id="post-{!! $post->id !!}">
+                <div class="collapsible-header no-seen" id="post-{!! $post->id !!}" pageY="">
                     <h5 id="title">{!! $post->title !!}</h5>
                     <div class="label">published at {!! $post->created_at !!}
                         <i class="material-icons">visibility</i>{!! $post->view_count !!}
@@ -33,6 +33,11 @@
 
 @section('script')
     <script>
+        $(function(){
+            $('.collapsible-header').each(function(){
+                $(this).attr('pageY', $(this).offset().top);
+            });
+        });
         $(document).on('click', '.no-seen', function () {
             var id = $(this).attr('id');
             var header = $('#' + id);
