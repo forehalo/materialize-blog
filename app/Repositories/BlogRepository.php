@@ -35,8 +35,7 @@ class BlogRepository
         $posts = $this->model->select('id', 'title', 'summary', 'comment_count', 'view_count', 'favorite_count', 'created_at')
                             ->wherePublished(true)
                             ->orderBy('created_at', 'desc');
-//        return $posts->paginate($n);
-        return $posts->paginate(2);
+        return $posts->paginate($n);
     }
 
     public function body($id)
