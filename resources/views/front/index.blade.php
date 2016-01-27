@@ -25,9 +25,6 @@
                         </div>
                     </div>
                 </div>
-                {{--<div class="collapsible-body markdown-body">--}}
-                {{--</div>--}}
-
             </li>
         @endforeach
     </ul>
@@ -48,8 +45,7 @@
                 header.removeClass('no-seen').addClass('seen');
                 $('#progressDiv').remove();
                 parentLi.append('<div class="collapsible-body markdown-body">' + data.body + '</div>')
-                        .children('.collapsible-body').slideDown(300);
-                console.log(data.body);
+                        .children('.collapsible-body').slideDown(500);
             }).fail(function () {
                 Materialize.toast('Fetch article body failed!', 3000);
             });
