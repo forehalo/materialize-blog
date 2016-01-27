@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function(){
-    return view('front.index');
-});
+Route::get('/', 'BlogController@frontIndex');
 
 Route::get('/404', function(){
    return view('errors.404');
@@ -23,9 +21,7 @@ Route::get('back', function(){
     return view('back.index');
 });
 
-Route::get('blog', function(){
-   return view('back.blog.index');
-});
+Route::resource('blog', 'BlogController');
 
 /*
 |--------------------------------------------------------------------------
