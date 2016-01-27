@@ -1,3 +1,5 @@
+@inject('links', 'App\Models\Link')
+@inject('tags', 'App\Models\Tag')
 <div class="row">
     <div class="col m12 l12 hide-on-small-and-down">
 
@@ -6,15 +8,15 @@
         <div class="card">
             <div class="card-image">
                 {!! html::image('assets/image/sample-1.jpg') !!}
-                <span class="card-title">刘义 Forehalo</span>
+                <span class="card-title">{!! config('blog.card_title') !!}</span>
             </div>
             <div class="card-content">
-                <p>假装是业余 PHP 玩家，其实是进阶中的 UWP 开发者</p>
+                <p>{!! config('blog.person') !!}</p>
             </div>
             <div class="card-action">
-                <a href="#" class="btn btn-flat waves-effect">Email</a>
-                <a href="#" class="btn btn-flat waves-effect">Github</a>
-                <a href="#" class="btn btn-flat waves-effect">Weibo</a>
+                <a href="mailto:{!! config('blog.email') !!}" class="btn btn-flat waves-effect">Email</a>
+                <a href="{!! config('blog.github') !!}" class="btn btn-flat waves-effect" target="_blank">Github</a>
+                <a href="{!! config('blog.weibo') !!}" class="btn btn-flat waves-effect" target="_blank">Weibo</a>
             </div>
         </div>
         <div class="divider"></div>
@@ -22,12 +24,12 @@
         <h5>Tags</h5>
         <div class="row top-tags">
             <div class="col m12 l12">
-                <a href="#" class="btn waves-effect">Email</a>
-                <a href="#" class="btn waves-effect">Gi</a>
-                <a href="#" class="btn waves-effect">Email</a>
-                <a href="#" class="btn waves-effect">Gith</a>
-                <a href="#" class="btn waves-effect">Email</a>
-                <a href="#" class="btn waves-effect">Git</a>
+                @foreach($tag::select('id', 'name', 'hot')
+                                ->take(10)
+                                ->orderBy('hot', 'desc')
+                                ->get() as $item)
+                    <a href="#" class="btn waves-effect">{!! $item->name !!}</a>
+                @endforeach
             </div>
         </div>
         <div class="divider"></div>
@@ -35,11 +37,12 @@
 
         <h5>Friend Links</h5>
         <div class="friend-links">
-        <ul>
-            <li><a href="#" class="btn btn-flat">Link A<i class="material-icons left black-text">face</i></a></li>
-            <li><a href="#" class="btn btn-flat">Link B<i class="material-icons left black-text">face</i></a></li>
-            <li><a href="#" class="btn btn-flat">Link C<i class="material-icons left black-text">face</i></a></li>
-        </ul>
+            <ul>
+                @foreach($links::all() as $item)
+                    <li><a href="{!! $item->link !!}" class="btn btn-flat">{!! $item->name !!}<i
+                                    class="material-icons left black-text">face</i></a></li>
+                @endforeach
+            </ul>
         </div>
     </div>
 </div>
