@@ -40,10 +40,10 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    'email'     => 'example@forehalo.me',
+    'email'     => 'forehalo@gmail.com',
 
-    'github'    => 'github.com/forehalo',
+    'github'    => 'https://github.com/forehalo',
 
-    'weibo'     => '',
+    'weibo'     => 'http://weibo.com/liuyiAaron',
 
 ];
