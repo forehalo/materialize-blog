@@ -17,12 +17,12 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->string('intro');
             $table->integer('category_id')->unsigned();
-            $table->Text('body');
-            $table->string('origin');
+            $table->text('body');
+            $table->text('origin');
             $table->integer('comment_count')->default(0);
             $table->integer('view_count')->default(0);
             $table->integer('favorite_count')->default(0);
-            $table->softDeletes();
+            $table->boolean('published');
             $table->timestamps();
 
 
