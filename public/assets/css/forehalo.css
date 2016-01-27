@@ -104,3 +104,10 @@ ul.nav-items {
     margin: 0 1px 0 10px;
     vertical-align: middle;
 }
+
+.markdown-body {
+    padding: 20px;
+}
+.markdown-body p {
+    padding: 0;
+}
