@@ -44,23 +44,23 @@ class CategoryTableSeeder extends Seeder
     {
         Category::create([
             'name' => 'Cate 0',
-            'hot' => 0
+            'hot' => 1
         ]);
         Category::create([
             'name' => 'Cate 1',
-            'hot' => 0
+            'hot' => 2
         ]);
         Category::create([
             'name' => 'Cate 2',
-            'hot' => 0
+            'hot' => 3
         ]);
         Category::create([
             'name' => 'Cate 3',
-            'hot' => 0
+            'hot' => 4
         ]);
         Category::create([
             'name' => 'Cate 4',
-            'hot' => 0
+            'hot' => 5
         ]);
     }
 }
@@ -71,23 +71,23 @@ class TagTableSeeder extends Seeder
     {
         Tag::create([
             'name' => 'Tag 0',
-            'hot' => 0
+            'hot' => 15
         ]);
         Tag::create([
             'name' => 'Tag 1',
-            'hot' => 0
+            'hot' => 63
         ]);
         Tag::create([
             'name' => 'Tag 2',
-            'hot' => 0
+            'hot' => 23
         ]);
         Tag::create([
             'name' => 'Tag 3',
-            'hot' => 0
+            'hot' => 36
         ]);
         Tag::create([
             'name' => 'Tag 4',
-            'hot' => 0
+            'hot' => 73
         ]);
     }
 }
