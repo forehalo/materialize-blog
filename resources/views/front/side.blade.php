@@ -36,11 +36,11 @@
 
 
         <h5>Friend Links</h5>
-        <div class="friend-links">
+        <div class="friend-links col m12 l12">
             <ul>
                 @foreach($links::all() as $item)
-                    <li><a href="{!! $item->link !!}" class="btn btn-flat">{!! $item->name !!}<i
-                                    class="material-icons left black-text">face</i></a></li>
+                    <li><a href="{!! $item->link !!}" class="btn btn-flat truncate"><i
+                                    class="material-icons left black-text">face</i>{!! $item->name !!}</a></li>
                 @endforeach
             </ul>
         </div>

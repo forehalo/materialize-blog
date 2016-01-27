@@ -77,9 +77,14 @@ ul.nav-items {
 }
 
 .friend-links a {
+    padding: 0;
     margin: 3px;
     font-family: "Microsoft YaHei UI Light", "Roboto", sans-serif;
     font-size: 10px;
+}
+.friend-links i {
+    margin: 1px;
+
 }
 
 .collapsible-header h5 {
