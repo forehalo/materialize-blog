@@ -42,25 +42,26 @@ class CategoryTableSeeder extends Seeder
 {
     public function run()
     {
+
         Category::create([
             'name' => 'Cate 0',
-            'hot' => 1
+            'hot' => rand(0, 300)
         ]);
         Category::create([
             'name' => 'Cate 1',
-            'hot' => 2
+            'hot' => rand(0, 300)
         ]);
         Category::create([
             'name' => 'Cate 2',
-            'hot' => 3
+            'hot' => rand(0, 300)
         ]);
         Category::create([
             'name' => 'Cate 3',
-            'hot' => 4
+            'hot' => rand(0, 300)
         ]);
         Category::create([
             'name' => 'Cate 4',
-            'hot' => 5
+            'hot' => rand(0, 300)
         ]);
     }
 }
@@ -69,26 +70,12 @@ class TagTableSeeder extends Seeder
 {
     public function run()
     {
-        Tag::create([
-            'name' => 'Tag 0',
-            'hot' => 15
-        ]);
-        Tag::create([
-            'name' => 'Tag 1',
-            'hot' => 63
-        ]);
-        Tag::create([
-            'name' => 'Tag 2',
-            'hot' => 23
-        ]);
-        Tag::create([
-            'name' => 'Tag 3',
-            'hot' => 36
-        ]);
-        Tag::create([
-            'name' => 'Tag 4',
-            'hot' => 73
-        ]);
+        for ($i = 1; $i <= 50; $i++) {
+            Tag::create([
+                'name' => 'Tag' . $i,
+                'hot' => rand(0, 300)
+            ]);
+        }
     }
 }
 
@@ -97,50 +84,20 @@ class PostTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
-        Post::create([
-            'title' => $faker->sentence(),
-            'summary' => $faker->paragraph(),
-            'category_id' => 1,
-            'body' => $faker->text(),
-            'origin' => '',
-            'comment_count' => 1,
-            'view_count' => 10,
-            'favorite_count' => 5,
-            'published' => 1,
-        ]);
-        Post::create([
-            'title' => $faker->sentence,
-            'summary' => $faker->paragraph,
-            'category_id' => 2,
-            'body' => $faker->text(),
-            'origin' => '',
-            'comment_count' => 2,
-            'view_count' => 11,
-            'favorite_count' => 6,
-            'published' => 1,
-        ]);
-        Post::create([
-            'title' => $faker->sentence,
-            'summary' => $faker->paragraph,
-            'category_id' => 3,
-            'body' => $faker->text(),
-            'origin' => '',
-            'comment_count' => 2,
-            'view_count' => 12,
-            'favorite_count' => 4,
-            'published' => 1,
-        ]);
-        Post::create([
-            'title' => $faker->sentence,
-            'summary' => $faker->paragraph,
-            'category_id' => 4,
-            'body' => $faker->text(),
-            'origin' => '',
-            'comment_count' => 1,
-            'view_count' => 16,
-            'favorite_count' => 5,
-            'published' => 0,
-        ]);
+        $cates = Category::lists('id')->toArray();
+        for ($i = 1; $i <= 50; $i++) {
+            Post::create([
+                'title' => $faker->sentence(),
+                'summary' => $faker->paragraph(),
+                'category_id' => $faker->randomElement($cates),
+                'body' => $faker->text(10000),
+                'origin' => '',
+                'comment_count' => rand(0, 10),
+                'view_count' => rand(0, 200),
+                'favorite_count' => rand(0, 100),
+                'published' => rand(0, 1),
+            ]);
+        }
     }
 }
 
@@ -148,50 +105,22 @@ class PostTagTableSeeder extends Seeder
 {
     public function run()
     {
-        PostTag::create([
-            'post_id' => 1,
-            'tag_id' => 1
-        ]);
-        PostTag::create([
-            'post_id' => 1,
-            'tag_id' => 2
-        ]);
-        PostTag::create([
-            'post_id' => 1,
-            'tag_id' => 3
-        ]);
-        PostTag::create([
-            'post_id' => 2,
-            'tag_id' => 1
-        ]);
-        PostTag::create([
-            'post_id' => 2,
-            'tag_id' => 3
-        ]);
-        PostTag::create([
-            'post_id' => 2,
-            'tag_id' => 4
-        ]);
-        PostTag::create([
-            'post_id' => 3,
-            'tag_id' => 1
-        ]);
-        PostTag::create([
-            'post_id' => 3,
-            'tag_id' => 5
-        ]);
-        PostTag::create([
-            'post_id' => 4,
-            'tag_id' => 1
-        ]);
-        PostTag::create([
-            'post_id' => 4,
-            'tag_id' => 3
-        ]);
-        PostTag::create([
-            'post_id' => 4,
-            'tag_id' => 5
-        ]);
+        $faker = Faker::create();
+        $tags = Tag::lists('id')->toArray();
+        for ($i = 1; $i <= 50; $i++) {
+            PostTag::create([
+                'post_id' => $i,
+                'tag_id' => $faker->randomElement($tags)
+            ]);
+            PostTag::create([
+                'post_id' => $i,
+                'tag_id' => $faker->randomElement($tags)
+            ]);
+            PostTag::create([
+                'post_id' => $i,
+                'tag_id' => $faker->randomElement($tags)
+            ]);
+        }
     }
 }
 
