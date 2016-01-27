@@ -12,7 +12,7 @@
 <div id="modal1" class="modal">
     <div class="container center-align">
     <div class="modal-content">
-        {!! Html::image('assets/image/logo-trans.png') !!}
+        {!! Html::image('assets/image/logo-trans.png', null, ['class' => 'responsive-img', 'width' => '400']) !!}
         <h4> 404 </h4>
         <p>The page you are looking for has gone somewhere.</p>
     </div>
