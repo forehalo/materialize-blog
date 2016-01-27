@@ -1,4 +1,5 @@
 var oldActive = $(".collapsible-header.active");
+var processDiv = '<div class="preloader-wrapper small active" id="progressDiv" style="left: 50%"> <div class="spinner-layer spinner-blue"> <div class="circle-clipper left"> <div class="circle"></div> </div><div class="gap-patch"> <div class="circle"></div> </div><div class="circle-clipper right"> <div class="circle"></div> </div> </div> <div class="spinner-layer spinner-red"> <div class="circle-clipper left"> <div class="circle"></div> </div><div class="gap-patch"> <div class="circle"></div> </div><div class="circle-clipper right"> <div class="circle"></div> </div> </div> <div class="spinner-layer spinner-yellow"> <div class="circle-clipper left"> <div class="circle"></div> </div><div class="gap-patch"> <div class="circle"></div> </div><div class="circle-clipper right"> <div class="circle"></div> </div> </div> <div class="spinner-layer spinner-green"> <div class="circle-clipper left"> <div class="circle"></div> </div><div class="gap-patch"> <div class="circle"></div> </div><div class="circle-clipper right"> <div class="circle"></div> </div> </div> </div>';
 
 $(function () {
     $("body").click(function (e) {
@@ -42,7 +43,7 @@ $(function () {
             }
 
             if (articleOpened) {
-                if (!summary.hasClass("slideup")){
+                if (!summary.hasClass("slideup")) {
                     summary.addClass("slideup");
                     summary.stop(true, false).slideUp();
                 }
@@ -52,8 +53,8 @@ $(function () {
 });
 
 
-$(function(){
-    runPreview = function() {
+$(function () {
+    runPreview = function () {
         var replyContent = $("#reply_content");
         var oldContent = replyContent.val();
         console.log(oldContent);
@@ -65,11 +66,11 @@ $(function(){
         }
     };
 
-    $("#reply_content").on("keyup", function(){
+    $("#reply_content").on("keyup", function () {
         runPreview();
     });
 
-    $("#reply_content").focus(function(event){
+    $("#reply_content").focus(function (event) {
         $("#preview-box").css("display", 'block');
     });
 

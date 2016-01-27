@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'BlogController@frontIndex');
+Route::get('/body/{post_id}', 'BlogController@body');
 
 Route::get('/404', function(){
    return view('errors.404');

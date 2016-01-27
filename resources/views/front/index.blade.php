@@ -1,79 +1,58 @@
 @extends('front.template')
 @section('title')
-    <title>Forehalo 的博客</title>
+    <title>{!! config('blog.title') !!}</title>
 @stop
 
 @section('main')
 
-
-    <h5>共 3 篇</h5>
+    <h5>共 {!! $posts->total() !!} 篇</h5>
     <div class="divider"></div>
     <ul class="collapsible popout" data-collapsible="accordion" id="article">
-        <li>
-            <div class="collapsible-header" id="1">
-                <h5 id="title">laravel5 配合 Queues 使用 Artisan Commands
-                </h5>
-                <div class="label">published at 2016-01-24  <i class="material-icons">visibility</i>10<i class="material-icons">comment</i>10</div>
-                <p class="intro">
-                    Laravel本身给我们提供了许多强大的Artisan命令，但这些都是基于框架的一些操作，有时我们也需要自己定制一些命令。接下来就介绍一下如何添加自己的命令，以及使用队列来执行命令。
-                </p>
-                <div class="row">
-                    <div class="col m12 l12">
-                        <div class="chip">php</div>
-                        <div class="chip">github</div>
-                        <div class="chip">email</div>
+        @foreach($posts as $post)
+            <li>
+                <div class="collapsible-header no-seen" id="post-{!! $post->id !!}">
+                    <h5 id="title">{!! $post->title !!}</h5>
+                    <div class="label">published at {!! $post->created_at !!}
+                        <i class="material-icons">visibility</i>{!! $post->view_count !!}
+                        <i class="material-icons">comment</i>{!! $post->comment_count !!}
+                    </div>
+                    <p class="summary">{!! $post->summary !!}</p>
+                    <div class="row">
+                        <div class="col s12 m12 l12">
+                            @foreach($post->tags as $tag)
+                                <div class="chip">{!! $tag->name !!}</div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
-            </div>
+                {{--<div class="collapsible-body markdown-body">--}}
+                {{--</div>--}}
 
-            <div class="collapsible-body markdown-body">
-                <p>Laravel本身给我们提供了许多强大的Artisan 命令，但这些都是基于框架的一些操作，有时我们也需要自己定制一些命令。接下来就介绍一下如何添加自己的命令，以及使用队列来执行命令。</p>
-                <pre class=" language-php"><code class=" language-php"> <span class="token string">'enable'</span> <span
-                                class="token operator">=</span><span class="token operator">&gt;</span> <span
-                                class="token punctuation">[</span>
-       <span class="token comment" spellcheck="true"> //被使用概率为2/3
-</span> <span class="token string">'Luosimao'</span> <span class="token operator">=</span><span class="token operator">&gt;</span><span
-                                class="token string">'20'</span><span class="token punctuation">,</span>
-
-       <span class="token comment" spellcheck="true"> //被使用概率为1/3，且为备用代理器
-</span> <span class="token string">'YunPian'</span> <span class="token operator">=</span><span class="token operator">&gt;</span><span
-                                class="token string">'10 backup'</span><span class="token punctuation">,</span>
-
-       <span class="token comment" spellcheck="true"> //仅为备用代理器
-</span> <span class="token string">'YunTongXun'</span> <span class="token operator">=</span><span
-                                class="token operator">&gt;</span> <span class="token string">'0 backup'</span><span
-                                class="token punctuation">,</span>
-                        <span class="token punctuation">]</span><span class="token punctuation">;</span></code></pre>
-            </div>
-        </li>
-        <li>
-            <div class="collapsible-header" id="2"><i class="material-icons">place</i><h5>foreach 循环中注意事项</h5>
-                <p class="intro">
-                    Laravel本身给我们提供了许多强大的Artisan命令，但这些都是基于框架的一些操作，有时我们也需要自己定制一些命令。接下来就介绍一下如何添加自己的命令，以及使用队列来执行命令。</p>
-            </div>
-            <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-        </li>
-        <li>
-            <div class="collapsible-header" id="3"><i class="material-icons">whatshot</i> <h5>Excel-Worker 一个 PHP 操作
-                    excel 包</h5>
-                <p class="intro">
-                    Laravel本身给我们提供了许多强大的Artisan命令，但这些都是基于框架的一些操作，有时我们也需要自己定制一些命令。接下来就介绍一下如何添加自己的命令，以及使用队列来执行命令。</p>
-            </div>
-            <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-        </li>
+            </li>
+        @endforeach
     </ul>
-    <ul class="pagination">
-        <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-        <li class="active"><a href="#!">1</a></li>
-        <li class="waves-effect"><a href="#!">2</a></li>
-        <li class="waves-effect"><a href="#!">3</a></li>
-        <li class="waves-effect"><a href="#!">4</a></li>
-        <li class="waves-effect"><a href="#!">5</a></li>
-        <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-    </ul>
+    {!! $posts->links() !!}
 @stop
 
 @section('script')
     <script>
+        $(document).on('click', '.no-seen', function () {
+            var id = $(this).attr('id');
+            var header = $('#' + id);
+            var parentLi = header.parent();
+            parentLi.append(processDiv);
+            $.ajax({
+                url: '{!! url('/body') !!}' + '/' + id,
+                type: 'get'
+            }).done(function (data) {
+                header.removeClass('no-seen').addClass('seen');
+                $('#progressDiv').remove();
+                parentLi.append('<div class="collapsible-body markdown-body">' + data.body + '</div>')
+                        .children('.collapsible-body').slideDown(300);
+                console.log(data.body);
+            }).fail(function () {
+                Materialize.toast('Fetch article body failed!', 3000);
+            });
+        });
     </script>
 @stop
