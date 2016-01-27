@@ -17,7 +17,7 @@ main div.container {
     line-height: 2rem;
 }
 
-.intro {
+.summary {
     margin: 5px 0;
     line-height: 2rem;
 }
@@ -79,6 +79,7 @@ ul.nav-items {
 .friend-links a {
     margin: 3px;
     font-family: "Microsoft YaHei UI Light", "Roboto", sans-serif;
+    font-size: 10px;
 }
 
 .collapsible-header h5 {

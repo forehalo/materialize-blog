@@ -7,7 +7,7 @@ $(function () {
 
         if (oldActive.attr("id") != active.attr("id")) {
             if (oldActive.length > 0) {
-                oldActive.children(".intro").removeClass("slideup").stop(true, false).slideDown();
+                oldActive.children(".summary").removeClass("slideup").stop(true, false).slideDown();
             }
             oldActive = active;
         }
@@ -15,11 +15,11 @@ $(function () {
         var activeLi = active.parent();
         var activeLiPosition = activeLi.position();
 
-        // when an article is active, slide up it's introduction.
+        // when an article is active, slide up it's summary.
 
         if (active.length > 0) {
             var articleOpened = true;
-            var intro = active.children(".intro");
+            var summary = active.children(".summary");
 
             // on click at the range out of active article, remove active.
             if (e.pageY < activeLiPosition.top ||
@@ -36,15 +36,15 @@ $(function () {
                             $(this).css('height', '');
                         }
                     });
-                intro.removeClass("slideup").stop(true, false).slideDown();
+                summary.removeClass("slideup").stop(true, false).slideDown();
                 //console.log(2);
                 articleOpened = false;
             }
 
             if (articleOpened) {
-                if (!intro.hasClass("slideup")){
-                    intro.addClass("slideup");
-                    intro.stop(true, false).slideUp();
+                if (!summary.hasClass("slideup")){
+                    summary.addClass("slideup");
+                    summary.stop(true, false).slideUp();
                 }
             }
         }
