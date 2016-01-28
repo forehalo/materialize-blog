@@ -24,7 +24,7 @@
         <h5>Tags</h5>
         <div class="row top-tags">
             <div class="col m12 l12">
-                @foreach($tag::select('id', 'name', 'hot')
+                @foreach($tags::select('id', 'name', 'hot')
                                 ->take(10)
                                 ->orderBy('hot', 'desc')
                                 ->get() as $item)
