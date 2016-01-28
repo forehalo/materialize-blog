@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 /**
- * Class BlogRepository.php
- * @package
+ * Class BlogController.php
+ * @package     App\Http\Controllers
  * @version     1.0.0
  * @copyright   Copyright (c) 2015-2016 forehalo <http://www.forehalo.top>
  * @author      forehalo <forehalo@gmail.com>
  * @license     http://www.gnu.org/licenses/lgpl.html   LGPL
  */
 
-use App\Repositories\BlogRepository;
+use App\Repositories\PostRepository;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -20,7 +20,7 @@ class BlogController extends Controller
 {
     protected $blog;
 
-    public function __construct(BlogRepository $blog)
+    public function __construct(PostRepository $blog)
     {
         $this->blog = $blog;
     }

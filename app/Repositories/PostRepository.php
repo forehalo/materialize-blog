@@ -10,7 +10,7 @@ use App\Models\Post;
  * @author      forehalo <forehalo@gmail.com>
  * @license     http://www.gnu.org/licenses/lgpl.html   LGPL
  */
-class BlogRepository
+class PostRepository
 {
     protected $model;
 
