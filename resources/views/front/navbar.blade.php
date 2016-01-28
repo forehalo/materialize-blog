@@ -17,7 +17,7 @@
                                     class="material-icons right">arrow_drop_down</i></a>
                         <ul id="cate_drop_top" class="dropdown-content">
                             @foreach($cates::orderBy('hot', 'desc')->get() as $cate)
-                                <li><a href="{!! url('/cate/' . $cate->name) !!}">{!! $cate->name !!}</a></li>
+                                <li><a href="{!! url('/categories/' . $cate->name) !!}">{!! $cate->name !!}</a></li>
                             @endforeach
                         </ul>
                     </li>
@@ -26,9 +26,9 @@
                         <ul id="archive_drop" class="dropdown-content">
                             <li><a href="#" class="black-text disabled">Group By</a></li>
                             <li class="divider"></li>
-                            <li><a href="{!! url('archive/cates') !!}">Categories</a></li>
-                            <li><a href="{!! url('archive/time') !!}">Time</a></li>
-                            <li><a href="{!! url('archive/tags') !!}">Tags</a></li>
+                            <li><a href="{!! url('categories') !!}">Categories</a></li>
+                            <li><a href="{!! url('time') !!}">Time</a></li>
+                            <li><a href="{!! url('tags') !!}">Tags</a></li>
                         </ul>
                     </li>
                     <li><a href="{!! url('about') !!}" class="waves-effect waves-block">About<i
