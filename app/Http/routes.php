@@ -10,9 +10,17 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
+// Blog
 Route::get('/', 'BlogController@frontIndex');
+
 Route::get('/body/{post_id}', 'BlogController@body');
+Route::resource('blog', 'BlogController');
+
+//Archive
+Route::get('categories', 'ArchiveController@groupByCategory');
+Route::get('time', 'ArchiveController@groupByTime');
+Route::get('tags', 'ArchiveController@groupByTag');
+
 
 Route::get('/404', function(){
    return view('errors.404');
@@ -22,7 +30,6 @@ Route::get('back', function(){
     return view('back.index');
 });
 
-Route::resource('blog', 'BlogController');
 
 /*
 |--------------------------------------------------------------------------
