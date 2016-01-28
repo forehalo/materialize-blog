@@ -44,23 +44,23 @@ class CategoryTableSeeder extends Seeder
     {
 
         Category::create([
-            'name' => 'Cate 0',
+            'name' => 'Cate0',
             'hot' => rand(0, 300)
         ]);
         Category::create([
-            'name' => 'Cate 1',
+            'name' => 'Cate1',
             'hot' => rand(0, 300)
         ]);
         Category::create([
-            'name' => 'Cate 2',
+            'name' => 'Cate2',
             'hot' => rand(0, 300)
         ]);
         Category::create([
-            'name' => 'Cate 3',
+            'name' => 'Cate3',
             'hot' => rand(0, 300)
         ]);
         Category::create([
-            'name' => 'Cate 4',
+            'name' => 'Cate4',
             'hot' => rand(0, 300)
         ]);
     }
