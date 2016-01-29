@@ -28,7 +28,7 @@
                             <li class="divider"></li>
                             <li><a href="{!! url('categories') !!}" class="green-text">Categories</a></li>
                             <li><a href="{!! url('tags') !!}" class="pink-text">Tags</a></li>
-                            <li><a href="{!! url('time') !!}" class="orange-text">Time</a></li>
+                            <li><a href="{!! url('date') !!}" class="orange-text">Date</a></li>
                         </ul>
                     </li>
                     <li><a href="{!! url('about') !!}" class="waves-effect waves-block">About<i

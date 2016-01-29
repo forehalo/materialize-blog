@@ -18,7 +18,7 @@ Route::resource('blog', 'BlogController');
 
 //Archive
 Route::get('categories', 'ArchiveController@groupByCategory');
-Route::get('time', 'ArchiveController@groupByTime');
+Route::get('date', 'ArchiveController@groupByDate');
 Route::get('tags', 'ArchiveController@groupByTag');
 
 

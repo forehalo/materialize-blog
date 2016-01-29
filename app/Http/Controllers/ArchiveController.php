@@ -56,9 +56,9 @@ class ArchiveController extends Controller
         return view('front.archive.category', compact('categories'));
     }
 
-    public function groupByTime()
+    public function groupByDate()
     {
-
+        return view('front.archive.date');
     }
 
     /**
