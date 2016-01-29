@@ -47,4 +47,9 @@ class PostRepository
     {
         return $this->model->find($id);
     }
+
+    public function all()
+    {
+        return $this->model->all(['title', 'slug', 'created_at']);
+    }
 }

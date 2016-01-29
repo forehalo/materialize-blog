@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 /**
  * Class ArchiveController.php
  * @package     App\Http\Controllers
@@ -10,6 +11,7 @@ namespace App\Http\Controllers;
  * @license     http://www.gnu.org/licenses/lgpl.html   LGPL
  */
 use App\Repositories\CategoryRepository;
+use App\Repositories\PostRepository;
 use App\Repositories\TagRepository;
 use Illuminate\Http\Request;
 
@@ -33,15 +35,24 @@ class ArchiveController extends Controller
     protected $tag;
 
     /**
+     * PostRepository object.
+     *
+     * @var PostRepository $post
+     */
+    protected $post;
+
+    /**
      * ArchiveController constructor.
      *
      * @param CategoryRepository $category
      * @param TagRepository $tag
+     * @param PostRepository $post
      */
-    public function __construct(CategoryRepository $category, TagRepository $tag)
+    public function __construct(CategoryRepository $category, TagRepository $tag, PostRepository $post)
     {
         $this->category = $category;
         $this->tag = $tag;
+        $this->post = $post;
     }
 
     /**
@@ -58,7 +69,25 @@ class ArchiveController extends Controller
 
     public function groupByDate()
     {
-        return view('front.archive.date');
+        $posts = $this->post->all();
+        $group = [];
+
+        foreach ($posts as $post) {
+            $date = date_parse($post->created_at);
+            $mYear = $date['year'];
+            $mMonth = $date['month'];
+
+            // Month or Year not exists current.
+            if(!array_key_exists($mYear, $group)){
+                $group[$mYear] = [];
+            }
+            if(!array_key_exists($mMonth, $group[$mYear])){
+                $group[$mYear][$mMonth] = [];
+            }
+            array_push($group[$mYear][$mMonth], $post);
+        }
+
+        return view('front.archive.date', compact('group'));
     }
 
     /**
