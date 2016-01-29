@@ -11,10 +11,12 @@
         <div class="col s12">
             <ul class="tabs">
                 @foreach($categories as $category)
-                    <li class="tab"><a href="{!! '#'.$category->name !!}">{!! $category->name !!}</a></li>
+                    <li class="tab"><a href="{!! '#'.$category->name !!}" class="green-text">{!! $category->name !!}</a></li>
                 @endforeach
             </ul>
         </div>
+    </div>
+    <div class="row">
         @foreach($categories as $category)
             <div id="{!! $category->name !!}" class="col s12">
                 <ul class="collection with-header ">
@@ -29,4 +31,5 @@
             </div>
         @endforeach
     </div>
+
 @stop
