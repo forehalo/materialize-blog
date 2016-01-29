@@ -21,6 +21,7 @@
         </div>
         <div class="divider"></div>
 
+        @if(!Request::is('tags'))
         <h5>Tags</h5>
         <div class="row top-tags">
             <div class="col m12 l12">
@@ -33,7 +34,7 @@
             </div>
         </div>
         <div class="divider"></div>
-
+        @endif
 
         <h5>Friend Links</h5>
         <div class="friend-links col m12 l12">
