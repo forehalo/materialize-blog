@@ -33,11 +33,6 @@
 
 @section('script')
     <script>
-        $(function(){
-            $('.collapsible-header').each(function(){
-                $(this).attr('pageY', $(this).offset().top);
-            });
-        });
         $(document).on('click', '.no-seen', function () {
             var id = $(this).attr('id');
             var header = $('#' + id);

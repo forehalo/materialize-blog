@@ -16,13 +16,12 @@ $(function () {
         var activeLi = active.parent();
         var activeLiPosition = activeLi.position();
 
-        // when an article is active, slide up it's summary.
-
+        // When an article is active, slide up it's summary.
         if (active.length > 0) {
             var articleOpened = true;
             var summary = active.children(".summary");
 
-            // on click at the range out of active article, remove active.
+            // Once click at the range out of active article, remove active.
             if (e.pageY < activeLiPosition.top ||
                 e.pageY > activeLiPosition.top + activeLi.height() ||
                 e.pageX < activeLiPosition.left ||
@@ -38,7 +37,6 @@ $(function () {
                         }
                     });
                 summary.removeClass("slideup").stop(true, false).slideDown();
-                //console.log(2);
                 articleOpened = false;
             }
 
@@ -51,6 +49,12 @@ $(function () {
         }
     });
 
+    // Add pageY attribute on collapsible header used to scroll up at the correct position
+    $('.collapsible-header').each(function () {
+        $(this).attr('pageY', $(this).offset().top);
+    });
+
+    // Scroll up
     $(document).on('click', '.collapsible-header', function () {
         var pageY = $('#' + $(this).attr('id')).attr('pageY');
         var pxToTop = pageY < 200 ? 0 : pageY - 100;
