@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
  * @license     http://www.gnu.org/licenses/lgpl.html   LGPL
  */
 use App\Repositories\CategoryRepository;
+use App\Repositories\TagRepository;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -17,13 +18,37 @@ use App\Http\Controllers\Controller;
 
 class ArchiveController extends Controller
 {
+    /**
+     * CategoryRepository object.
+     *
+     * @var CategoryRepository $category
+     */
     protected $category;
 
-    public function __construct(CategoryRepository $category)
+    /**
+     * TagRepository object.
+     *
+     * @var TagRepository $tag
+     */
+    protected $tag;
+
+    /**
+     * ArchiveController constructor.
+     *
+     * @param CategoryRepository $category
+     * @param TagRepository $tag
+     */
+    public function __construct(CategoryRepository $category, TagRepository $tag)
     {
         $this->category = $category;
+        $this->tag = $tag;
     }
 
+    /**
+     * Get all categories used to group posts.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function groupByCategory()
     {
         $categories = $this->category->all();
@@ -36,8 +61,15 @@ class ArchiveController extends Controller
 
     }
 
+    /**
+     * Get all Tags used to group posts.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function groupByTag()
     {
+        $tags = $this->tag->all();
 
+        return view('front.archive.tag', compact('tags'));
     }
 }

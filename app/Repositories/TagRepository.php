@@ -1,7 +1,9 @@
 <?php namespace App\Repositories;
+use App\Models\Tag;
+
 /**
  * Class TagRepository.php
- * @package
+ * @package     App\Repositories
  * @version     1.0.0
  * @copyright   Copyright (c) 2015-2016 forehalo <http://www.forehalo.top>
  * @author      forehalo <forehalo@gmail.com>
@@ -9,5 +11,30 @@
  */
 class TagRepository
 {
+    /**
+     * Tag Model object.
+     *
+     * @var Tag $model
+     */
+    protected $model;
 
+    /**
+     * TagRepository constructor.
+     *
+     * @param Tag $tag
+     */
+    public function __construct(Tag $tag)
+    {
+        $this->model = $tag;
+    }
+
+    /**
+     * Get all tags
+     *
+     * @return mixed
+     */
+    public function all()
+    {
+        return $this->model->orderBy('hot', 'desc')->get();
+    }
 }

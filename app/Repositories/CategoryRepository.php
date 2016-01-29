@@ -12,13 +12,28 @@ use App\Models\Category;
 class CategoryRepository
 {
 
+    /**
+     * Category Model object.
+     *
+     * @var Category $model
+     */
     protected $model;
 
+    /**
+     * CategoryRepository constructor.
+     *
+     * @param Category $category
+     */
     public function __construct(Category $category)
     {
         $this->model = $category;
     }
 
+    /**
+     * Get all Categories.
+     *
+     * @return mixed
+     */
     public function all()
     {
         return $this->model->orderBy('hot', 'desc')->get();

@@ -18,8 +18,18 @@ use App\Http\Controllers\Controller;
 
 class BlogController extends Controller
 {
+    /**
+     * BlogRepository object.
+     *
+     * @var PostRepository $blog
+     */
     protected $blog;
 
+    /**
+     * BlogController constructor.
+     *
+     * @param PostRepository $blog
+     */
     public function __construct(PostRepository $blog)
     {
         $this->blog = $blog;
@@ -38,6 +48,13 @@ class BlogController extends Controller
         return view('front.index', compact('posts', 'links'));
     }
 
+    /**
+     * Get post body through ajax or redirect to 404.
+     *
+     * @param Request $request
+     * @param string $id  format: post-{id}
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
+     */
     public function body(Request $request, $id)
     {
         if($request->ajax()){
