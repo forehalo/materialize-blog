@@ -14,7 +14,7 @@
 </head>
 <body>
 <header>
-    @include('front.navbar')
+    @include('front.components.navbar')
 </header>
 <main>
     <div class="container">
@@ -23,13 +23,13 @@
                 @yield('main')
             </div>
             <div class="col hide-on-small-only m3 l3">
-                @include('front.side')
+                @include('front.components.side')
             </div>
         </div>
     </div>
 </main>
 
-@include('front.footer')
+@include('front.components.footer')
 
 {!! Html::script('assets/js/jquery-2.1.4.min.js') !!}
 {!! Html::script('assets/js/materialize.min.js') !!}
