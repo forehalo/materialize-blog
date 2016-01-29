@@ -62,6 +62,20 @@ $(function () {
             scrollTop: pxToTop
         }, 100);
     });
+
+    // tag-chip lick event
+    $(document).on('click', '.tag-chip', function(){
+        var active = $('.post-list.active');
+        var clickedTag = $(this);
+        if(active.length > 0){
+            active.removeClass('active').fadeOut(400, function(){
+                $('#' + clickedTag.html()).addClass('active').fadeIn();
+            });
+        }else{
+            $('#' + clickedTag.html()).addClass('active').fadeIn();
+        }
+
+    });
 });
 
 

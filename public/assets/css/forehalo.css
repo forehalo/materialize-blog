@@ -35,13 +35,23 @@ ul.nav-items {
 }
 
 @media only screen {
-    nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
+    nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i, ul.dropdown-content li{
         height: 45px;
         line-height: 45px;
+        min-height: 45px;
     }
 
     .navbar-fixed {
         height: 45px;
+    }
+
+    ul.dropdown-content a {
+        line-height: 21px;
+        padding: 12px 16px;
+    }
+
+    ul.select-dropdown li {
+        min-height: 50px;
     }
 }
 
@@ -115,4 +125,8 @@ ul.nav-items {
 }
 .markdown-body p {
     padding: 0;
+}
+
+.tag-chip {
+    margin: 5px;
 }

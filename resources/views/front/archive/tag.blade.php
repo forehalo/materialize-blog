@@ -1,0 +1,79 @@
+@extends('front.template')
+@section('title')
+    <title>Tags</title>
+@stop
+
+@section('main')
+    <h5 class="center page-title"><strong>Tags</strong></h5>
+    <div class="divider"></div>
+    <div class="input-field right">
+        <select id="tag-order">
+            <option value="" disabled selected>Select Order</option>
+            <option value="1">Hot</option>
+            <option value="2">Post Count</option>
+            <option value="3">Date</option>
+        </select>
+    </div>
+    <div class="row">
+        <div class="col s12 tag-list">
+            @foreach($tags as $tag)
+                <div class="chip blue tag-chip" hot="{!! $tag->hot !!}" count="{!! $tag->posts()->count() !!}"
+                     date="{!! $tag->created_at !!}">{!! $tag->name !!}</div>
+            @endforeach
+        </div>
+    </div>
+    <div class="row">
+        @foreach($tags as $tag)
+            <div id="{!! $tag->name !!}" class="col s12 post-list" style="display: none">
+                <ul class="collection with-header ">
+                    <li class="collection-header"><h5>{!! $tag->name !!}</h5></li>
+                    @foreach($tag->posts as $post)
+                        <a href="{!! url('/lists/' . $post->slug) !!}" class="collection-item blue-text">
+                            {!! $post->title !!}
+                            <i class="material-icons right">send</i>
+                        </a>
+                    @endforeach
+                </ul>
+            </div>
+        @endforeach
+    </div>
+@stop
+
+@section('script')
+    <script>
+        // Hot desc
+        var byHot = function (a, b) {
+            return parseInt($(a).attr('hot')) > parseInt($(b).attr('hot')) ? -1 : 1;
+        };
+        // Count desc
+        var byCount = function (a, b) {
+            return parseInt($(a).attr('count')) > parseInt($(b).attr('count')) ? -1 : 1;
+        };
+        // Date desc
+        var byDate = function (a, b) {
+            return $(a).attr('date') > $(b).attr('date') ? -1 : 1;
+        };
+
+        var sortBySelect = function (rule) {
+            var sortElements = $('div.tag-chip').sort(rule);
+            $('.tag-list').fadeOut(400, function () {
+                $(this).empty().append(sortElements).fadeIn();
+            });
+        };
+
+        $('#tag-order').on('change', function () {
+            switch ($('option:selected').val()) {
+                case '1':
+                    sortBySelect(byHot);
+                    break;
+                case '2':
+                    sortBySelect(byCount);
+                    break;
+                case '3':
+                    sortBySelect(byDate);
+                    break;
+            }
+
+        });
+    </script>
+@stop
