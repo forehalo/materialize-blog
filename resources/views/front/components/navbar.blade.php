@@ -1,13 +1,13 @@
 @inject('cates', 'App\Models\Category')
 <div class="navbar-fixed">
-    <nav class="blue accent-2">
+    <nav>
         <div class="container">
             <div class="nav-wrapper">
                 {{--mobile device memu--}}
                 <a href="#" data-activates="nav-mobile"
                    class="button-collapse waves-effect btn-flat btn-floating"><i
                             class="material-icons">menu</i></a>
-                <a href="#" class="brand-logo">// Forehalo</a>
+                <a href="/" class="brand-logo">// Forehalo</a>
                 <ul class="hide-on-med-and-down nav-items">
                     <li><a href="/" class="waves-effect waves-block"><i
                                     class="material-icons left">list</i>Posts</a>
@@ -26,9 +26,9 @@
                         <ul id="archive_drop" class="dropdown-content">
                             <li><a href="#" class="black-text disabled">Group By</a></li>
                             <li class="divider"></li>
-                            <li><a href="{!! url('categories') !!}">Categories</a></li>
-                            <li><a href="{!! url('time') !!}">Time</a></li>
-                            <li><a href="{!! url('tags') !!}">Tags</a></li>
+                            <li><a href="{!! url('categories') !!}" class="green-text">Categories</a></li>
+                            <li><a href="{!! url('tags') !!}" class="pink-text">Tags</a></li>
+                            <li><a href="{!! url('time') !!}" class="orange-text">Time</a></li>
                         </ul>
                     </li>
                     <li><a href="{!! url('about') !!}" class="waves-effect waves-block">About<i

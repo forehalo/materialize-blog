@@ -20,7 +20,7 @@
         @foreach($categories as $category)
             <div id="{!! $category->name !!}" class="col s12">
                 <ul class="collection with-header ">
-                    <li class="collection-header"><h5>{!! $category->name !!}</h5></li>
+                    <li class="collection-header green lighten-5"><h5>{!! $category->name !!}</h5></li>
                     @foreach($category->posts as $post)
                         <a href="{!! url('/lists/' . $post->slug) !!}" class="collection-item">
                             {!! $post->title !!}
@@ -31,5 +31,10 @@
             </div>
         @endforeach
     </div>
+@stop
 
+@section('script')
+    <script>
+        $('nav').addClass('green lighten-1');
+    </script>
 @stop

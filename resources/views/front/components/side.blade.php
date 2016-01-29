@@ -23,8 +23,8 @@
 
         @if(!Request::is('tags'))
         <h5>Tags</h5>
-        <div class="row top-tags">
-            <div class="col m12 l12">
+        <div class="row">
+            <div class="col m12 l12 top-tags">
                 @foreach($tags::select('id', 'name', 'hot')
                                 ->take(10)
                                 ->orderBy('hot', 'desc')

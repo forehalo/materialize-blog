@@ -53,6 +53,10 @@ ul.nav-items {
     ul.select-dropdown li {
         min-height: 50px;
     }
+
+    .dropdown-content li>span {
+        color: hotpink;
+    }
 }
 
 @media only screen and (max-width: 993px) {
@@ -87,7 +91,7 @@ ul.nav-items {
 }
 
 .friend-links a {
-    padding: 0;
+    padding: 0 5px;
     margin: 3px;
     font-family: "Microsoft YaHei UI Light", "Roboto", sans-serif;
     font-size: 10px;

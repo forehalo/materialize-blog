@@ -33,6 +33,9 @@
 
 @section('script')
     <script>
+        $('nav').addClass('blue lighten-1');
+        $('.top-tags > a').addClass('blue');
+
         $(document).on('click', '.no-seen', function () {
             var id = $(this).attr('id');
             var header = $('#' + id);
