@@ -17,21 +17,13 @@
         </div>
         @foreach($categories as $category)
             <div id="{!! $category->name !!}" class="col s12">
-                <ul class="collapsible" data-collapsible="accordion" id="article">
+                <ul class="collection with-header ">
+                    <li class="collection-header"><h5>{!! $category->name !!}</h5></li>
                     @foreach($category->posts as $post)
-                        <li>
-                        <div class="collapsible-header" id="post-{!! $post->id !!}" PageY="">
-                            <h5 id="title">{!! $post->title !!}</h5>
-                            <div class="label">published at {!! $post->created_at !!}
-                                <i class="material-icons">visibility</i>{!! $post->view_count !!}
-                                <i class="material-icons">comment</i>{!! $post->comment_count !!}
-                            </div>
-                            <p class="summary">{!! $post->summary !!}</p>
-                        </div>
-                        <div class="collapsible-body markdown-body">
-                            {!! $post->body !!}
-                        </div>
-                        </li>
+                        <a href="{!! url('/lists/' . $post->slug) !!}" class="collection-item">
+                            {!! $post->title !!}
+                            <i class="material-icons right">send</i>
+                        </a>
                     @endforeach
                 </ul>
             </div>

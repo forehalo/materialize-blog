@@ -21,6 +21,6 @@ class CategoryRepository
 
     public function all()
     {
-        return $this->model->orderBy('hot')->get();
+        return $this->model->orderBy('hot', 'desc')->get();
     }
 }
