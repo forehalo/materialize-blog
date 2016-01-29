@@ -96,6 +96,7 @@ class PostTableSeeder extends Seeder
                 'view_count' => rand(0, 200),
                 'favorite_count' => rand(0, 100),
                 'published' => rand(0, 1),
+                'slug' => 'post-' . $i,
             ]);
         }
     }
