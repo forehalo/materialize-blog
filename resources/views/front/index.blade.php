@@ -33,7 +33,8 @@
 
 @section('script')
     <script>
-        $('nav').addClass('blue lighten-1');
+        $('nav').addClass('blue');
+        $('.side-nav').addClass('blue');
         $('.top-tags > a').addClass('blue');
 
         $(document).on('click', '.no-seen', function () {
