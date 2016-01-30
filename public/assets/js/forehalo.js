@@ -2,39 +2,6 @@ var oldActive = $(".collapsible-header.active");
 var processDiv = '<div class="white"><div class="preloader-wrapper small active" id="progressDiv" style="left: 45%"> <div class="spinner-layer spinner-blue"> <div class="circle-clipper left"> <div class="circle"></div> </div><div class="gap-patch"> <div class="circle"></div> </div><div class="circle-clipper right"> <div class="circle"></div> </div> </div> <div class="spinner-layer spinner-red"> <div class="circle-clipper left"> <div class="circle"></div> </div><div class="gap-patch"> <div class="circle"></div> </div><div class="circle-clipper right"> <div class="circle"></div> </div> </div> <div class="spinner-layer spinner-yellow"> <div class="circle-clipper left"> <div class="circle"></div> </div><div class="gap-patch"> <div class="circle"></div> </div><div class="circle-clipper right"> <div class="circle"></div> </div> </div> <div class="spinner-layer spinner-green"> <div class="circle-clipper left"> <div class="circle"></div> </div><div class="gap-patch"> <div class="circle"></div> </div><div class="circle-clipper right"> <div class="circle"></div> </div> </div> </div></div>';
 
 $(function () {
-    var showPostList = function (listParent) {
-        var time = 0;
-        $(listParent).find('a').velocity(
-            {translateX: "-100px"},
-            {duration: 0});
-        $(listParent).find('a').each(function () {
-            $(this).velocity(
-                {opacity: "1", translateX: "0"},
-                {duration: 800, delay: time, easing: [60, 10]});
-            time += 120;
-        });
-    };
-
-    var hidePostList = function(listParent) {
-        $(listParent).find('a').css('opacity', 0);
-    };
-
-
-    var clickToShow = function(old, target){
-
-        if (old.length > 0) {
-            if (target.css('display') == 'block') {
-                old.removeClass('active').stop(true, false).fadeOut(400, hidePostList(target.find('ul')));
-            } else {
-                old.removeClass('active').stop(true, false).fadeOut(400, function () {
-                    hidePostList(target.find('ul'));
-                    target.addClass('active').fadeIn(0, showPostList(target.find('ul')));
-                });
-            }
-        } else {
-            target.addClass('active').fadeIn(0, showPostList(target.find('ul')));
-        }
-    };
 
     $(document).click(function (e) {
 
@@ -97,8 +64,23 @@ $(function () {
         }, 100);
     });
 
+    // Show post list function.
+    var clickToShow = function(old, target){
 
-    // tag-chip click event
+        if (old.length > 0) {
+            if (target.css('display') == 'block') {
+                old.removeClass('active').fadeOut(200);
+            } else {
+                old.removeClass('active').fadeOut(200, function () {
+                    target.addClass('active').fadeIn(1000);
+                });
+            }
+        } else {
+            target.addClass('active').fadeIn(1000);
+        }
+    };
+
+    // tag-chip click event.
     $(document).on('click', '.tag-chip', function () {
         var old = $('.post-list.active');
         var clickedTag = $(this);
@@ -109,7 +91,7 @@ $(function () {
 
 
 
-    // date-month click event
+    // date-month click event.
     $(document).on('click', '.date-month', function () {
         var old = $('.post-list.active');
         var clickedMonth = $(this);

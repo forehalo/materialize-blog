@@ -43,6 +43,5 @@
         $('nav').addClass('orange');
         $('.side-nav').addClass('orange');
         $('.top-tags > a').addClass('orange');
-        $('.post-list > ul > a').css('opacity', 0);
     </script>
 @stop
