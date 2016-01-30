@@ -42,6 +42,7 @@
 @section('script')
     <script>
         $('nav').addClass('pink');
+        $('.side-nav').addClass('pink');
 
         // Hot desc
         var byHot = function (a, b) {

@@ -18,7 +18,7 @@
     </div>
     <div class="row">
         @foreach($categories as $category)
-            <div id="{!! $category->name !!}" class="col s12">
+            <div id="{!! $category->name !!}" class="col s12 post-list">
                 <ul class="collection with-header ">
                     <li class="collection-header green lighten-5"><h5>{!! $category->name !!}</h5></li>
                     @foreach($category->posts as $post)
@@ -36,5 +36,7 @@
 @section('script')
     <script>
         $('nav').addClass('green lighten-1');
+        $('.side-nav').addClass('green lighten-1');
+
     </script>
 @stop
