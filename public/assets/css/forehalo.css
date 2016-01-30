@@ -134,3 +134,24 @@ ul.nav-items {
 .tag-chip {
     margin: 5px;
 }
+
+.date-group h4 {
+    margin: 10px 0;
+}
+.date-group blockquote {
+    border-left: 5px solid #ff6d00 ;
+    padding-left: 18px;
+}
+
+.date-group blockquote > p {
+    margin: 10px 5px;
+    color: #ff7043 ;
+}
+
+.date-group blockquote > p.num {
+    font-size: 30px;
+}
+
+.date-group blockquote > p.en {
+    font-size: 18px;
+}

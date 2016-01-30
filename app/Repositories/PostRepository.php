@@ -50,6 +50,6 @@ class PostRepository
 
     public function all()
     {
-        return $this->model->all(['title', 'slug', 'created_at']);
+        return $this->model->orderBy('created_at', 'desc')->get(['title', 'slug', 'created_at']);
     }
 }
