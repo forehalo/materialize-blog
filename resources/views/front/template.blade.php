@@ -2,7 +2,7 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    {!! Html::style('assets/css/material-icon.css') !!}
     {!! Html::style('assets/css/materialize.min.css', ['media' => 'screen,projection']) !!}
     {!! Html::style('assets/css/forehalo.css') !!}
     {!! Html::style('assets/css/markdown.min.css') !!}
