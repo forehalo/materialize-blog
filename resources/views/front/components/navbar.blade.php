@@ -38,7 +38,7 @@
                     </li>
                 </ul>
 
-                <ul id="nav-mobile" class="side-nav fixed">
+                <ul id="nav-mobile" class="side-nav">
                     <li class="bold"><a href="/" class="waves-effect waves-teal white-text">Posts<i
                                     class="material-icons left">list</i></a></li>
                     <li class="no-padding">

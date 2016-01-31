@@ -11,7 +11,7 @@
             <h4 class="date-year">{!! $yearKey !!}</h4>
             <div class="row">
                 @foreach($year as $monthKey => $month)
-                    <a class="col l3 m4 s4 date-month" target-list="{!! $yearKey . '-' . $monthKey !!}">
+                    <a href="javascript:void(0)" class="col l3 m4 s4 date-month" target-list="{!! $yearKey . '-' . $monthKey !!}">
                         <blockquote>
                             <p class="num">{!! $monthKey !!}</p>
                             <p class="en">{!! intToMonth($monthKey) !!}</p>

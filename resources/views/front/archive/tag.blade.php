@@ -17,7 +17,7 @@
     <div class="row">
         <div class="col s12 tag-list">
             @foreach($tags as $tag)
-                <a class="chip tag-chip pink accent-1" hot="{!! $tag->hot !!}" count="{!! $tag->posts()->count() !!}"
+                <a href="javascript:void(0)" class="chip tag-chip pink accent-1" hot="{!! $tag->hot !!}" count="{!! $tag->posts()->count() !!}"
                      date="{!! $tag->created_at !!}">{!! $tag->name !!}</a>
             @endforeach
         </div>
