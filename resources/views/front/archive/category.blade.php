@@ -2,7 +2,7 @@
 @section('title')
     <title>Categories</title>
 @stop
-{!! dd(Session::get('haha')) !!}
+
 @section('main')
     <h5 class="center"><strong>Categories</strong></h5>
     <div class="divider"></div>
@@ -13,8 +13,7 @@
                 @foreach($categories as $category)
                     <li class="tab">
                         <a href="{!! '#'.$category->name !!}"
-{{--                           class="green-text @if(isset($default) && $default->id == $category -> id) active @endif">--}}
-        class="green-text">
+                           class="green-text @if(session('default') && session('default')->id == $category->id) active @endif">
                             {!! $category->name !!}
                         </a>
                     </li>
