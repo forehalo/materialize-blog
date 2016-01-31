@@ -17,7 +17,7 @@
                                     class="material-icons right">arrow_drop_down</i></a>
                         <ul id="cate_drop_top" class="dropdown-content">
                             @foreach($cates::orderBy('hot', 'desc')->get() as $cate)
-                                <li><a href="{!! url('/categories/' . $cate->name) !!}">{!! $cate->name !!}</a></li>
+                                <li><a href="{!! url('/categories/' . $cate->id) !!}">{!! $cate->name !!}</a></li>
                             @endforeach
                         </ul>
                     </li>
@@ -44,7 +44,7 @@
                                     class="material-icons right">arrow_drop_down</i></a>
                         <ul id="cate_drop_side" class="dropdown-content">
                             @foreach($cates::orderBy('hot', 'desc')->get() as $cate)
-                                <li><a href="{!! url('/categories/' . $cate->name) !!}">{!! $cate->name !!}</a></li>
+                                <li><a href="{!! url('/categories/' . $cate->id) !!}">{!! $cate->name !!}</a></li>
                             @endforeach
                         </ul>
                     </li>

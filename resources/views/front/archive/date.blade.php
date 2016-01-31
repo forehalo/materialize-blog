@@ -24,7 +24,7 @@
                         <ul class="collection with-header">
                             <li class="collection-header orange lighten-5"><h5>{!! intToMonth($monthKey) !!}</h5></li>
                             @foreach($month as $post)
-                                <a href="{!! url('/lists/' . $post->slug) !!}" class="collection-item orange-text">
+                                <a href="{!! url('/posts/' . $post->slug) !!}" class="collection-item orange-text">
                                     {!! $post->title !!}
                                     <i class="material-icons right">send</i>
                                 </a>
