@@ -112,8 +112,7 @@ ul.nav-items {
 }
 
 .friend-links i {
-    margin: 1px;
-
+    margin: 0 5px;
 }
 
 .collapsible-header h5 {
@@ -172,4 +171,8 @@ ul.nav-items {
 
 .date-group blockquote > p.en {
     font-size: 18px;
+}
+
+.post-list .row{
+    margin: 0;
 }
