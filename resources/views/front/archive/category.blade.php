@@ -24,15 +24,7 @@
     <div class="row">
         @foreach($categories as $category)
             <div id="{!! $category->name !!}" class="col s12 post-list">
-                <ul class="collection with-header ">
-                    <li class="collection-header green lighten-5"><h5>{!! $category->name !!}</h5></li>
-                    @foreach($category->posts as $post)
-                        <a href="{!! url('/posts/' . $post->slug) !!}" class="collection-item">
-                            {!! $post->title !!}
-                            <i class="material-icons right">send</i>
-                        </a>
-                    @endforeach
-                </ul>
+                @include('front.archive.postList', ['title' => $category->name, 'posts' => $category->posts])
             </div>
         @endforeach
     </div>

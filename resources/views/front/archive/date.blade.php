@@ -21,15 +21,7 @@
                 @endforeach
                 @foreach($year as $monthKey => $month)
                     <div class="col s12 post-list" id="{!! $yearKey . '-' . $monthKey !!}" style="display: none">
-                        <ul class="collection with-header">
-                            <li class="collection-header orange lighten-5"><h5>{!! intToMonth($monthKey) !!}</h5></li>
-                            @foreach($month as $post)
-                                <a href="{!! url('/posts/' . $post->slug) !!}" class="collection-item orange-text">
-                                    {!! $post->title !!}
-                                    <i class="material-icons right">send</i>
-                                </a>
-                            @endforeach
-                        </ul>
+                        @include('front.archive.postList', ['title' => intToMonth($monthKey), 'posts' => $month])
                     </div>
                 @endforeach
             </div>
