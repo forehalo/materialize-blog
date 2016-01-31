@@ -67,6 +67,18 @@ class ArchiveController extends Controller
         return view('front.archive.category', compact('categories'));
     }
 
+    public function showCategory($id)
+    {
+        $category = $this->category->getById($id);
+
+        return redirect('/categories')->with('default', $category);
+    }
+
+    /**
+     * Get all posts grouped by create date.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function groupByDate()
     {
         $posts = $this->post->all();

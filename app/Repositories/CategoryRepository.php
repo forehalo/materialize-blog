@@ -38,4 +38,14 @@ class CategoryRepository
     {
         return $this->model->orderBy('hot', 'desc')->get();
     }
+
+    /**
+     * Get by category id.
+     *
+     * @param $id
+     */
+    public function getById($id)
+    {
+        return $this->model->find($id);
+    }
 }

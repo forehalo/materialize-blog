@@ -12,17 +12,20 @@
 */
 // Blog
 Route::get('/', 'BlogController@frontIndex');
+Route::get('posts', 'BlogController@normalIndex');
+Route::resource('posts', 'BlogController');
+//Route::get('posts/{slug}', 'BlogController@show');
 
-Route::get('/body/{post_id}', 'BlogController@body');
-Route::resource('blog', 'BlogController');
+Route::get('body/{id}', 'BlogController@body');
 
 //Archive
 Route::get('categories', 'ArchiveController@groupByCategory');
+Route::get('categories/{id}', 'ArchiveController@showCategory');
 Route::get('date', 'ArchiveController@groupByDate');
 Route::get('tags', 'ArchiveController@groupByTag');
 
 
-Route::get('/404', function(){
+Route::get('404', function(){
    return view('errors.404');
 });
 
