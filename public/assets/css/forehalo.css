@@ -35,7 +35,7 @@ ul.nav-items {
 }
 
 @media only screen {
-    nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i, ul.dropdown-content li{
+    nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i, ul.dropdown-content li {
         height: 45px;
         line-height: 45px;
         min-height: 45px;
@@ -54,20 +54,34 @@ ul.nav-items {
         min-height: 50px;
     }
 
-    .dropdown-content li>span {
+    .dropdown-content li > span {
         color: hotpink;
     }
 }
 
 @media only screen and (max-width: 993px) {
-    nav #nav-mobile li, nav #nav-mobile a, nav #nav-mobile i {
+    nav #nav-mobile a, nav #nav-mobile i {
         height: 64px;
         line-height: 64px;
+        min-height: 64px;
+    }
+
+    nav #nav-mobile li, #nav-mobile .collapsible-according {
+        height: auto;
+        background-color: inherit;
     }
 
     nav .btn-floating {
         height: 45px;
         width: 45px;
+    }
+
+    nav #nav-mobile .no-padding ul {
+
+    }
+
+    .bold > a {
+        font-weight: bold;
     }
 }
 
@@ -96,6 +110,7 @@ ul.nav-items {
     font-family: "Microsoft YaHei UI Light", "Roboto", sans-serif;
     font-size: 10px;
 }
+
 .friend-links i {
     margin: 1px;
 
@@ -115,6 +130,7 @@ ul.nav-items {
     line-height: 1.5rem;
     padding: 2px;
 }
+
 .collapsible-header > .label > .material-icons {
     font-size: 1.5rem;
     line-height: 1.5rem;
@@ -127,6 +143,7 @@ ul.nav-items {
 .markdown-body {
     padding: 20px;
 }
+
 .markdown-body p {
     padding: 0;
 }
@@ -138,14 +155,15 @@ ul.nav-items {
 .date-group h4 {
     margin: 10px 0;
 }
+
 .date-group blockquote {
-    border-left: 5px solid #ff6d00 ;
+    border-left: 5px solid #ff6d00;
     padding-left: 18px;
 }
 
 .date-group blockquote > p {
     margin: 10px 5px;
-    color: #ff7043 ;
+    color: #ff7043;
 }
 
 .date-group blockquote > p.num {

@@ -42,5 +42,7 @@
     <script>
         $('nav').addClass('green lighten-1');
         $('.side-nav').addClass('green lighten-1');
+        $('.collapsible-according').addClass('green lighten-1');
+
     </script>
 @stop

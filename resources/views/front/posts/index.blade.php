@@ -34,8 +34,9 @@
 @section('script')
     <script>
         $('nav').addClass('blue');
-        $('.side-nav').addClass('blue');
         $('.top-tags > a').addClass('blue');
+        $('.side-nav').addClass('blue');
+        $('.collapsible-according').addClass('blue');
 
         $(document).on('click', '.no-seen', function () {
             var id = $(this).attr('id');

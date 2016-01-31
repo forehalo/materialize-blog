@@ -17,8 +17,8 @@
     <div class="row">
         <div class="col s12 tag-list">
             @foreach($tags as $tag)
-                <div class="chip tag-chip pink accent-1" hot="{!! $tag->hot !!}" count="{!! $tag->posts()->count() !!}"
-                     date="{!! $tag->created_at !!}">{!! $tag->name !!}</div>
+                <a class="chip tag-chip pink accent-1" hot="{!! $tag->hot !!}" count="{!! $tag->posts()->count() !!}"
+                     date="{!! $tag->created_at !!}">{!! $tag->name !!}</a>
             @endforeach
         </div>
     </div>
@@ -43,6 +43,7 @@
     <script>
         $('nav').addClass('pink');
         $('.side-nav').addClass('pink');
+        $('.collapsible-according').addClass('pink');
 
         // Hot desc
         var byHot = function (a, b) {

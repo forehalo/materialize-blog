@@ -11,12 +11,12 @@
             <h4 class="date-year">{!! $yearKey !!}</h4>
             <div class="row">
                 @foreach($year as $monthKey => $month)
-                    <div class="col l3 m4 s4 date-month" target-list="{!! $yearKey . '-' . $monthKey !!}">
+                    <a class="col l3 m4 s4 date-month" target-list="{!! $yearKey . '-' . $monthKey !!}">
                         <blockquote>
                             <p class="num">{!! $monthKey !!}</p>
                             <p class="en">{!! intToMonth($monthKey) !!}</p>
                         </blockquote>
-                    </div>
+                    </a>
 
                 @endforeach
                 @foreach($year as $monthKey => $month)
@@ -43,5 +43,6 @@
         $('nav').addClass('orange');
         $('.side-nav').addClass('orange');
         $('.top-tags > a').addClass('orange');
+        $('.collapsible-according').addClass('orange');
     </script>
 @stop
