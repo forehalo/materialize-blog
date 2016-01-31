@@ -36,17 +36,40 @@ class BlogController extends Controller
     }
 
     /**
-     * Display posts list order by created_id
+     * Display posts list order by created_at
+     * This controller return posts shown in collapsible view.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function frontIndex()
     {
-        $posts = $this->blog->indexFront(config('blog.pagination'));
+        return view('front.posts.index', $this->index());
+    }
+
+    /**
+     * Unlike 'frontIndex', this action used to show normal list of posts
+     * and post clicked will be shown in a single page.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function normalIndex()
+    {
+        return view('front.posts.normalIndex', $this->index());
+    }
+
+    /**
+     * Get all posts and make pagination.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $posts = $this->blog->all(config('blog.pagination'));
         $links = $posts->links();
 
-        return view('front.index', compact('posts', 'links'));
+        return compact('posts', 'links');
     }
+
 
     /**
      * Get post body through ajax or redirect to 404.
@@ -58,19 +81,10 @@ class BlogController extends Controller
     public function body(Request $request, $id)
     {
         if($request->ajax()){
+            return response()->json(['body' => $this->blog->body($id)]);
         }else{
             return view('errors.404');
         }
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
     }
 
     /**
@@ -97,12 +111,14 @@ class BlogController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  string $slug post url slug
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $post = $this->blog->getByColumn($slug, 'slug');
+
+        return view('front.posts.post', compact('post'));
     }
 
     /**

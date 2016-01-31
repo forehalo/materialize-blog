@@ -25,31 +25,43 @@ class PostRepository
     }
 
     /**
-     * Get posts collection for font index.
+     * Get all posts.
      *
      * @param int $n pagination
      * @return mixed
      */
-    public function indexFront($n = 5)
+    public function all($n = null)
     {
-        $posts = $this->model->select('id', 'title', 'summary', 'comment_count', 'view_count', 'favorite_count', 'created_at')
-                            ->wherePublished(true)
-                            ->orderBy('created_at', 'desc');
-        return $posts->paginate($n);
+        $posts = $this->model
+                    ->select('id', 'title', 'summary', 'comment_count', 'view_count', 'favorite_count', 'created_at')
+                    ->wherePublished(true)
+                    ->orderBy('created_at', 'desc');
+
+        return $n ? $posts->paginate($n) : $posts->get();
     }
 
+    /**
+     * Get post body.
+     *
+     * @param $id
+     * @return mixed
+     */
     public function body($id)
     {
-        return $this->getById($id)->body;
+        return $this->getByColumn($id)->body;
     }
 
-    private function getById($id)
+    /**
+     * Get post by given column.
+     *
+     * @param string $value column value.
+     * @param string $column column name, default={id}
+     * @return
+     */
+    public function getByColumn($value, $column = 'id')
     {
-        return $this->model->find($id);
+        return $this->model->where($column, $value)->first();
     }
 
-    public function all()
-    {
-        return $this->model->orderBy('created_at', 'desc')->get(['title', 'slug', 'created_at']);
-    }
+
 }
