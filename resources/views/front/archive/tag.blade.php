@@ -72,10 +72,10 @@
 
         });
 
-//        $('.tag-chip').click(function(){
-//            $('html, body').animate({
-//                scrollTop: $('.post-list').parent().offset().top - 100
-//            }, 100);
-//        });
+        $('.tag-chip').click(function(){
+            $('html, body').animate({
+                scrollTop: $('.post-list').parent().offset().top - 100
+            }, 100);
+        });
     </script>
 @stop
