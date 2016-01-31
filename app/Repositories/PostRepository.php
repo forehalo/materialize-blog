@@ -33,7 +33,7 @@ class PostRepository
     public function all($n = null)
     {
         $posts = $this->model
-                    ->select('id', 'title', 'summary', 'comment_count', 'view_count', 'favorite_count', 'created_at')
+                    ->select('id', 'title', 'summary', 'comment_count', 'view_count', 'favorite_count', 'created_at', 'slug')
                     ->wherePublished(true)
                     ->orderBy('created_at', 'desc');
 
