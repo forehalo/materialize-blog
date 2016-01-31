@@ -19,12 +19,12 @@
                     </a>
 
                 @endforeach
-                @foreach($year as $monthKey => $month)
-                    <div class="col s12 post-list" id="{!! $yearKey . '-' . $monthKey !!}" style="display: none">
-                        @include('front.archive.postList', ['title' => intToMonth($monthKey), 'posts' => $month])
-                    </div>
-                @endforeach
             </div>
+            @foreach($year as $monthKey => $month)
+                <div class="col s12 post-list" id="{!! $yearKey . '-' . $monthKey !!}" style="display: none">
+                    @include('front.archive.postList', ['title' => intToMonth($monthKey), 'posts' => $month])
+                </div>
+            @endforeach
         @endforeach
     </div>
 
@@ -36,5 +36,11 @@
         $('.side-nav').addClass('orange');
         $('.top-tags > a').addClass('orange');
         $('.collapsible-according').addClass('orange');
+
+        $('.date-month').click(function(){
+            $('html, body').animate({
+                scrollTop: $('.post-list').parent().offset().top - 100
+            }, 100);
+        });
     </script>
 @stop

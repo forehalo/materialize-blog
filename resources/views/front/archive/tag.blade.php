@@ -51,7 +51,7 @@
         };
 
         var sortBySelect = function (rule) {
-            var sortElements = $('div.tag-chip').sort(rule);
+            var sortElements = $('a.tag-chip').sort(rule);
             $('.tag-list').fadeOut(400, function () {
                 $(this).empty().append(sortElements).fadeIn();
             });
@@ -71,5 +71,11 @@
             }
 
         });
+
+//        $('.tag-chip').click(function(){
+//            $('html, body').animate({
+//                scrollTop: $('.post-list').parent().offset().top - 100
+//            }, 100);
+//        });
     </script>
 @stop
