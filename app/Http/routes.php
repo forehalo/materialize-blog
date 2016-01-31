@@ -10,29 +10,6 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-// Blog
-Route::get('/', 'BlogController@frontIndex');
-Route::get('posts', 'BlogController@normalIndex');
-Route::resource('posts', 'BlogController');
-//Route::get('posts/{slug}', 'BlogController@show');
-
-Route::get('body/{id}', 'BlogController@body');
-
-//Archive
-Route::get('categories', 'ArchiveController@groupByCategory');
-Route::get('categories/{id}', 'ArchiveController@showCategory');
-Route::get('date', 'ArchiveController@groupByDate');
-Route::get('tags', 'ArchiveController@groupByTag');
-
-
-Route::get('404', function(){
-   return view('errors.404');
-});
-
-Route::get('back', function(){
-    return view('back.index');
-});
-
 
 /*
 |--------------------------------------------------------------------------
@@ -46,5 +23,26 @@ Route::get('back', function(){
 */
 
 Route::group(['middleware' => ['web']], function () {
-    //
+
+    // Blog
+    Route::get('/', 'BlogController@frontIndex');
+    Route::get('posts', 'BlogController@normalIndex');
+    Route::resource('posts', 'BlogController');
+
+    Route::get('body/{id}', 'BlogController@body');
+
+    //Archive
+    Route::get('categories', 'ArchiveController@groupByCategory');
+    Route::get('categories/{id}', 'ArchiveController@showCategory');
+    Route::get('date', 'ArchiveController@groupByDate');
+    Route::get('tags', 'ArchiveController@groupByTag');
+
+
+    Route::get('404', function () {
+        return view('errors.404');
+    });
+
+    Route::get('back', function () {
+        return view('back.index');
+    });
 });
