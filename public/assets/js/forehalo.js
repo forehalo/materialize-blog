@@ -1,5 +1,19 @@
 var oldActive = $(".collapsible-header.active");
+
 var processDiv = '<div class="white"><div class="preloader-wrapper small active" id="progressDiv" style="left: 45%"> <div class="spinner-layer spinner-blue"> <div class="circle-clipper left"> <div class="circle"></div> </div><div class="gap-patch"> <div class="circle"></div> </div><div class="circle-clipper right"> <div class="circle"></div> </div> </div> <div class="spinner-layer spinner-red"> <div class="circle-clipper left"> <div class="circle"></div> </div><div class="gap-patch"> <div class="circle"></div> </div><div class="circle-clipper right"> <div class="circle"></div> </div> </div> <div class="spinner-layer spinner-yellow"> <div class="circle-clipper left"> <div class="circle"></div> </div><div class="gap-patch"> <div class="circle"></div> </div><div class="circle-clipper right"> <div class="circle"></div> </div> </div> <div class="spinner-layer spinner-green"> <div class="circle-clipper left"> <div class="circle"></div> </div><div class="gap-patch"> <div class="circle"></div> </div><div class="circle-clipper right"> <div class="circle"></div> </div> </div> </div></div>';
+
+var hideActiveHeader = function (header) {
+    $(header).removeClass("active").parent().removeClass("active").children('.collapsible-body').stop(true, false).slideUp(
+        {
+            duration: 350,
+            easing: "easeOutQuart",
+            queue: false,
+            complete: function () {
+                $(this).css('height', '');
+            }
+        });
+    $(header).children('.summary').removeClass("slideup").stop(true, false).slideDown();
+};
 
 $(function () {
 
@@ -28,16 +42,8 @@ $(function () {
                 e.pageX < activeLiPosition.left ||
                 e.pageX > activeLiPosition.left + activeLi.width()) {
 
-                active.removeClass("active").parent().removeClass("active").children('.collapsible-body').stop(true, false).slideUp(
-                    {
-                        duration: 350,
-                        easing: "easeOutQuart",
-                        queue: false,
-                        complete: function () {
-                            $(this).css('height', '');
-                        }
-                    });
-                summary.removeClass("slideup").stop(true, false).slideDown();
+                hideActiveHeader(active);
+
                 articleOpened = false;
             }
 
@@ -65,7 +71,7 @@ $(function () {
     });
 
     // Show post list function.
-    var clickToShow = function(old, target){
+    var clickToShow = function (old, target) {
 
         if (old.length > 0) {
             if (target.css('display') == 'block') {
@@ -88,7 +94,6 @@ $(function () {
 
         clickToShow(old, target);
     });
-
 
 
     // date-month click event.

@@ -12,7 +12,7 @@
             <li>
                 <div class="collapsible-header no-seen" id="post-{!! $post->id !!}" pageY="">
                     <h5 id="title">{!! $post->title !!}</h5>
-                    <div class="label">published at {!! $post->created_at !!}
+                    <div class="label">published at {!! substr($post->created_at, 0, 10) !!}
                         <i class="material-icons">visibility</i>{!! $post->view_count !!}
                         <i class="material-icons">comment</i>{!! $post->comment_count !!}
                     </div>
@@ -40,19 +40,23 @@
         $(document).on('click', '.no-seen', function () {
             var id = $(this).attr('id');
             var header = $('#' + id);
-            var parentLi = header.parent();
-            parentLi.append(processDiv);
-            $.ajax({
-                url: '{!! url('/body') !!}' + '/' + id,
-                type: 'get'
-            }).done(function (data) {
-                header.removeClass('no-seen').addClass('seen');
-                $('#progressDiv').remove();
-                parentLi.append('<div class="collapsible-body markdown-body">' + data.body + '</div>')
-                        .children('.collapsible-body').slideDown(500);
-            }).fail(function () {
-                Materialize.toast('Fetch article body failed!', 3000);
-            });
+            var parentLi = $(header).parent();
+            $(parentLi).append($(processDiv));
+                $.ajax({
+                    url: '{!! url('/body') !!}' + '/' + id.substr(5),
+                    type: 'get'
+                }).done(function (data) {
+                    header.removeClass('no-seen').addClass('seen');
+                    $('#progressDiv').remove();
+                    parentLi.append('<div class="collapsible-body markdown-body">' + data.body + '</div>')
+                            .children('.collapsible-body').slideDown(500);
+                }).fail(function () {
+                    Materialize.toast('Fetch article body failed!', 3000);
+                    $('#progressDiv').remove();
+                    hideActiveHeader(header);
+                });
+
+
         });
     </script>
 @stop

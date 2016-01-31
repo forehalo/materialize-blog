@@ -58,7 +58,6 @@ class BlogController extends Controller
     public function body(Request $request, $id)
     {
         if($request->ajax()){
-            return response()->json(['body' => $this->blog->body(substr($id, 5))]);
         }else{
             return view('errors.404');
         }
