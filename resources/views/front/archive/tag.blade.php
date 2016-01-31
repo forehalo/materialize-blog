@@ -25,7 +25,7 @@
     <div class="row">
         @foreach($tags as $tag)
             <div id="{!! $tag->name !!}" class="col s12 post-list" style="display: none">
-                @include('front.archive.postList', ['title' => $tag->name, 'posts' => $tag->posts])
+                @include('front.archive.postList', ['title' => $tag->name, 'posts' => $tag->posts, 'color' => 'pink'])
             </div>
         @endforeach
     </div>

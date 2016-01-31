@@ -22,7 +22,7 @@
             </div>
             @foreach($year as $monthKey => $month)
                 <div class="col s12 post-list" id="{!! $yearKey . '-' . $monthKey !!}" style="display: none">
-                    @include('front.archive.postList', ['title' => intToMonth($monthKey), 'posts' => $month])
+                    @include('front.archive.postList', ['title' => intToMonth($monthKey), 'posts' => $month, 'color' => 'orange'])
                 </div>
             @endforeach
         @endforeach
