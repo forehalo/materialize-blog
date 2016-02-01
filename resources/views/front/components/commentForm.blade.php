@@ -19,6 +19,6 @@
     <label for="content"><i class="material-icons">comment</i>content</label>
 </div>
 <div class="input-field col s12">
-    <button class="btn waves-effect" type="submit">submit <i class="material-icons right">send</i></button>
+    <button class="btn waves-effect blue" type="submit">submit <i class="material-icons right">send</i></button>
 </div>
 {!! Form::close() !!}

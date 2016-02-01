@@ -202,3 +202,7 @@ ul.nav-items {
 .inline {
     display: inline;
 }
+
+.comment-title i {
+    top: 6px;
+}
