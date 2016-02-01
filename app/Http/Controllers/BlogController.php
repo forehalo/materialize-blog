@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 /**
  * Class BlogController.php
  * @package     App\Http\Controllers
@@ -10,6 +11,7 @@ namespace App\Http\Controllers;
  * @license     http://www.gnu.org/licenses/lgpl.html   LGPL
  */
 
+use App\Repositories\CommentRepository;
 use App\Repositories\PostRepository;
 use Illuminate\Http\Request;
 
@@ -26,13 +28,22 @@ class BlogController extends Controller
     protected $blog;
 
     /**
+     * CommentRepository object.
+     *
+     * @var CommentRepository $comment
+     */
+    protected $comment;
+
+    /**
      * BlogController constructor.
      *
      * @param PostRepository $blog
+     * @param CommentRepository $comment
      */
-    public function __construct(PostRepository $blog)
+    public function __construct(PostRepository $blog, CommentRepository $comment)
     {
         $this->blog = $blog;
+        $this->comment = $comment;
     }
 
     /**
@@ -75,13 +86,38 @@ class BlogController extends Controller
      * Get post body through ajax or redirect to 404.
      *
      * @param Request $request
-     * @param string $id  format: post-{id}
+     * @param string $id format: post-{id}
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
      */
     public function body(Request $request, $id)
     {
-        if($request->ajax()){
+        if ($request->ajax()) {
             return response()->json(['body' => $this->blog->body($id)]);
+        } else {
+            return view('errors.404');
+        }
+    }
+
+    /**
+     * Get comments belong to post gotten by {id}
+     *
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function comments(Request $request, $id)
+    {
+        $post = $this->blog->getByColumn($id);
+        $comments = $post->comments;
+
+        foreach ($comments as $comment) {
+            if($comment->parent_id != 0) {
+                $comment->parentName = $this->comment->getById($comment->parent_id)->name;
+            }
+        }
+
+        if($request->ajax()){
+            return response()->json($comments);
         }else{
             return view('errors.404');
         }
@@ -100,7 +136,7 @@ class BlogController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -124,7 +160,7 @@ class BlogController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -135,8 +171,8 @@ class BlogController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -147,7 +183,7 @@ class BlogController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
