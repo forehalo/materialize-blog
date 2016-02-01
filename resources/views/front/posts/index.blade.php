@@ -42,7 +42,7 @@
             var id = $(this).attr('id');
             var header = $('#' + id);
             var parentLi = $(header).parent();
-            $(parentLi).append($(processDiv));
+            $(parentLi).append($(progressDiv));
 
             $.ajax({
                 url: '{!! url('/body') !!}' + '/' + id.substr(5),
