@@ -43,19 +43,20 @@
             var header = $('#' + id);
             var parentLi = $(header).parent();
             $(parentLi).append($(processDiv));
-                $.ajax({
-                    url: '{!! url('/body') !!}' + '/' + id.substr(5),
-                    type: 'get'
-                }).done(function (data) {
-                    header.removeClass('no-seen').addClass('seen');
-                    $('#progressDiv').remove();
-                    parentLi.append('<div class="collapsible-body markdown-body">' + data.body + '</div>')
-                            .children('.collapsible-body').slideDown(500);
-                }).fail(function () {
-                    Materialize.toast('Fetch article body failed!', 3000);
-                    $('#progressDiv').remove();
-                    hideActiveHeader(header);
-                });
+
+            $.ajax({
+                url: '{!! url('/body') !!}' + '/' + id.substr(5),
+                type: 'get'
+            }).done(function (data) {
+                header.removeClass('no-seen').addClass('seen');
+                $('#progressDiv').remove();
+                parentLi.append('<div class="collapsible-body markdown-body">' + data.body + '</div>')
+                        .children('.collapsible-body').slideDown(500);
+            }).fail(function () {
+                Materialize.toast('Fetch article body failed!', 3000);
+                $('#progressDiv').remove();
+                hideActiveHeader(header);
+            });
 
 
         });
