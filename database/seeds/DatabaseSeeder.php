@@ -133,7 +133,7 @@ class CommentTableSeeder extends Seeder
         Comment::create([
             'post_id' => 1,
             'parent_id' => 0,
-            'name' => $faker->name,
+            'name' => 'username',
             'email' => $faker->email,
             'blog' => $faker->url,
             'content' => $faker->paragraph
@@ -147,8 +147,9 @@ class CommentTableSeeder extends Seeder
             'content' => $faker->paragraph
         ]);
         Comment::create([
-            'post_id' => 2,
-            'parent_id' => 2,
+            'post_id' => 1,
+            'parent_id' => 1,
+            'parent_name' => 'username',
             'name' => $faker->name,
             'email' => $faker->email,
             'blog' => $faker->url,
