@@ -28,7 +28,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/', 'BlogController@frontIndex');
     Route::get('posts', 'BlogController@normalIndex');
     Route::get('posts/{id}/comments', 'BlogController@comments');
-    Route::resource('posts', 'BlogController');
+    Route::resource('posts', 'BlogController', [
+        'except' => ['index']
+    ]);
 
     Route::get('body/{id}', 'BlogController@body');
 
@@ -37,6 +39,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('categories/{id}', 'ArchiveController@showCategory');
     Route::get('date', 'ArchiveController@groupByDate');
     Route::get('tags', 'ArchiveController@groupByTag');
+    Route::get('tags/{id}', 'ArchiveController@showTag');
 
     // Comment
     Route::resource('comments', 'CommentController', [

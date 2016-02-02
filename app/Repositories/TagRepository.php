@@ -37,4 +37,15 @@ class TagRepository
     {
         return $this->model->orderBy('hot', 'desc')->get();
     }
+
+    /**
+     * Get tag by id.
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function getById($id)
+    {
+        return $this->model->find($id);
+    }
 }

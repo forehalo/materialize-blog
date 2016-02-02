@@ -113,4 +113,11 @@ class ArchiveController extends Controller
 
         return view('front.archive.tag', compact('tags'));
     }
+
+    public function showTag($id)
+    {
+        $tag = $this->tag->getById($id);
+
+        return redirect('/tags')->with('default', $tag);
+    }
 }
