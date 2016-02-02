@@ -25,6 +25,11 @@
                         </div>
                     </div>
                 </div>
+                <div class="collapsible-body">
+                    <div class="row comment-form">
+                        @include('front.components.commentForm', ['id' => $post->id, 'slug' => $post->slug, 'viewButton' => true])
+                    </div>
+                </div>
             </li>
         @endforeach
     </ul>
@@ -41,8 +46,8 @@
         $(document).on('click', '.no-seen', function () {
             var id = $(this).attr('id');
             var header = $('#' + id);
-            var parentLi = $(header).parent();
-            $(parentLi).append($(progressDiv));
+            var body = header.next();
+            $(progressDiv).appendTo(header);
 
             $.ajax({
                 url: '{!! url('/body') !!}' + '/' + id.substr(5),
@@ -50,15 +55,13 @@
             }).done(function (data) {
                 header.removeClass('no-seen').addClass('seen');
                 $('#progressDiv').remove();
-                parentLi.append('<div class="collapsible-body markdown-body">' + data.body + '</div>')
-                        .children('.collapsible-body').slideDown(500);
+                body.prepend('<div class="article-content markdown-body">' + data.body + '</div>');
+
             }).fail(function () {
                 Materialize.toast('Fetch article body failed!', 3000);
                 $('#progressDiv').remove();
                 hideActiveHeader(header);
             });
-
-
         });
     </script>
 @stop
