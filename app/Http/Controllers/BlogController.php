@@ -108,13 +108,7 @@ class BlogController extends Controller
     public function comments(Request $request, $id)
     {
         $post = $this->blog->getByColumn($id);
-        $comments = $post->comments;
-
-        foreach ($comments as $comment) {
-            if($comment->parent_id != 0) {
-                $comment->parentName = $this->comment->getById($comment->parent_id)->name;
-            }
-        }
+        $comments = $post->comments()->orderBy('created_at', 'desc')->get();
 
         if($request->ajax()){
             return response()->json($comments);
