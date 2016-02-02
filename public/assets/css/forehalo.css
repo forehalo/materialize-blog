@@ -117,7 +117,7 @@ ul.nav-items {
 
 .collapsible-header h5 {
     margin: 0;
-    padding: 9px;
+    padding: 9px 0;
 }
 
 .label {
@@ -205,4 +205,8 @@ ul.nav-items {
 
 .comment-title i {
     top: 6px;
+}
+
+.collapsible-body .comment-form, .collapsible-body .comment-form h5 {
+    padding: 0 15px;
 }
