@@ -3,6 +3,7 @@
 
 {!! Form::open(['url' => url('comments'), 'class' => 'col s12', 'id' => 'comment-form']) !!}
 {!! Form::hidden('post_id', $id) !!}
+{!! Form::hidden('slug', $slug) !!}
 {!! Form::hidden('parent', 0) !!}
 <div class="input-field col s12 l4">
     {!! Form::text('name', old('name'), ['id' => 'name', 'class' => $errors->comment->first('name') ? 'validate invalid' : 'validate' ]) !!}
