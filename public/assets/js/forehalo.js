@@ -2,6 +2,7 @@ var oldActive = $(".collapsible-header.active");
 
 var progressDiv = '<div class="white" id="progressDiv"><div class="preloader-wrapper small active" style="left: 45%"> <div class="spinner-layer spinner-blue"> <div class="circle-clipper left"> <div class="circle"></div> </div><div class="gap-patch"> <div class="circle"></div> </div><div class="circle-clipper right"> <div class="circle"></div> </div> </div> <div class="spinner-layer spinner-red"> <div class="circle-clipper left"> <div class="circle"></div> </div><div class="gap-patch"> <div class="circle"></div> </div><div class="circle-clipper right"> <div class="circle"></div> </div> </div> <div class="spinner-layer spinner-yellow"> <div class="circle-clipper left"> <div class="circle"></div> </div><div class="gap-patch"> <div class="circle"></div> </div><div class="circle-clipper right"> <div class="circle"></div> </div> </div> <div class="spinner-layer spinner-green"> <div class="circle-clipper left"> <div class="circle"></div> </div><div class="gap-patch"> <div class="circle"></div> </div><div class="circle-clipper right"> <div class="circle"></div> </div> </div> </div></div>';
 
+// inactive collapsible-header.
 var hideActiveHeader = function (header) {
     $(header).removeClass("active").parent().removeClass("active").children('.collapsible-body').stop(true, false).slideUp(
         {
@@ -13,6 +14,55 @@ var hideActiveHeader = function (header) {
             }
         });
     $(header).children('.summary').removeClass("slideup").stop(true, false).slideDown();
+};
+
+/**
+ * Get function string used as parameter of new Function(xxx).
+ *
+ * You may see this fucking code. I can't help it.
+ * function must be like
+ *
+ * function() {
+ *     xxx...
+ * }
+ */
+var funcToString = function (func) {
+    var funcString = func.toString().substr(15);
+    return funcString.substr(0, funcString.length - 1)
+};
+
+// Fetch post comments
+var fetchComments = function () {
+    $(".comment-list").append(progressDiv);
+    $.ajax({url: "http://localhost.blog/posts/1/comments", type: "get"}).done(function (data) {
+        $("#progressDiv").remove();
+        for (var i = 0; i < data.length; ++i) {
+            var comment = data[i];
+            var string = '<div id="comment-' + comment.id + '"><a href="' + comment.blog + '" class="comment-title"><i class="material-icons">person</i>' + comment.name + '</a><span> | ' + comment.created_at + ' : </span><a href="javascript:void(0)" class="reply-btn"><i class="material-icons" style="top: 6px;">reply</i></a> <div class="row"> <div class="markdown-body">';
+            if (comment.parent_id !== 0) {
+                string += 'reply <a href="javascript:void(0)" class="reply" pre-comment="' + comment.parent_id + '">@' + comment.parent_name + '</a> :<br/>'
+            }
+            string += (comment.content + '</div> </div> <div class="divider"></div> </div></div>');
+            $(".comment-list").append(string);
+        }
+        $(".reply").on("click", function () {
+            var pre_comment = $("#comment-" + $(this).attr("pre-comment"));
+            var pxToTop = pre_comment.offset().top;
+            $("html, body").animate({scrollTop: pxToTop - 100}, 100);
+            pre_comment.css("background", "#DDD");
+            pre_comment.animate({background: "#FFF"}, 2000, function () {
+                pre_comment.css("background", "#FFF")
+            });
+        });
+        $(".reply-btn").on("click", function () {
+            var hidden = $("input[name=\"parent\"]");
+            hidden.attr("value", $(this).parent().attr("id").substr(8));
+            $("html, body").animate({scrollTop: hidden.parent().offset().top - 100}, 100);
+        });
+    }).fail(function () {
+        $("#progressDiv").remove();
+        Materialize.toast("Fetch Comments Failed", 3000);
+    });
 };
 
 $(function () {
@@ -130,36 +180,3 @@ $(function () {
 
 
 });
-
-//$(function () {
-//    $(".comment-list").append(progressDiv);
-//    $.ajax({url: "http://localhost.blog/posts/1/comments", type: "get"}).done(function (data) {
-//        $("#progressDiv").remove();
-//        for (var i = 0; i < data.length; ++i) {
-//            var comment = data[i];
-//            var string = '<div id="comment-' + comment.id + '"><a href="' + comment.blog + '" class="comment-title"><i class="material-icons">person</i>' + comment.name + '</a><span> | ' + comment.created_at + ' : </span><a href="javascript:void(0)" class="reply-btn"><i class="material-icons" style="top: 6px;">reply</i></a> <div class="row"> <div class="markdown-body">';
-//            if (comment.parent_id !== 0) {
-//                string += 'reply <a href="javascript:void(0)" class="reply" pre-comment="' + comment.parent_id + '">@' + comment.parent_name + '</a> :<br/>'
-//            }
-//            string += (comment.content + '</div> </div> <div class="divider"></div> </div></div>');
-//            $(".comment-list").append(string);
-//        }
-//        $(".reply").on("click", function () {
-//            var pre_comment = $("#comment-" + $(this).attr("pre-comment"));
-//            var pxToTop = pre_comment.offset().top;
-//            $("html, body").animate({scrollTop: pxToTop - 100}, 100);
-//            pre_comment.css("background", "#DDD");
-//            pre_comment.animate({background: "#FFF"}, 2000, function () {
-//                pre_comment.css("background", "#FFF")
-//            });
-//        });
-//        $(".reply-btn").on("click", function () {
-//            var hidden = $("input[name=\"parent\"]");
-//            hidden.attr("value", $(this).parent().attr("id").substr(8));
-//            $("html, body").animate({scrollTop: hidden.parent().offset().top - 100}, 100);
-//        });
-//    }).fail(function () {
-//        $("#progressDiv").remove();
-//        Materialize.toast("Fetch Comments Failed", 3000);
-//    });
-//});

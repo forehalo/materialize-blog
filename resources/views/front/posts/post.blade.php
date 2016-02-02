@@ -59,11 +59,10 @@
             {
                 selector: '.comment-list',
                 offset: 0,
-                callback: '$(".comment-list").append(progressDiv);$.ajax({url: "{!! url("/posts/" . $post->id . "/comments") !!}", type: "get"}).done(function (data) {$("#progressDiv").remove();for (var i = 0; i < data.length; ++i) {var comment = data[i];var string = \'<div id="comment-\' + comment.id +\'"><a href="\' + comment.blog + \'" class="comment-title"><i class="material-icons">person</i>\' + comment.name + \'</a><span> | \' + comment.created_at + \' : </span><a href="javascript:void(0)" class="reply-btn"><i class="material-icons" style="top: 6px;">reply</i></a> <div class="row"> <div class="markdown-body">\';if(comment.parent_id !== 0){string += \'reply <a href="javascript:void(0)" class="reply" pre-comment="\' + comment.parent_id + \'">@\' + comment.parent_name + \'</a> :<br/>\'}string += (comment.content + \'</div> </div> <div class="divider"></div> </div></div>\');$(".comment-list").append(string);}         $(".reply").on("click", function () {var pre_comment = $("#comment-" + $(this).attr("pre-comment"));var pxToTop = pre_comment.offset().top;$("html, body").animate({scrollTop: pxToTop - 100}, 100);pre_comment.css("background", "#DDD");pre_comment.animate({background: "#FFF"}, 2000, function () {pre_comment.css("background", "#FFF")});}); $(".reply-btn").on("click", function(){var hidden = $(\'input[name="parent"]\');hidden.attr("value", $(this).parent().attr("id").substr(8));$("html, body").animate({scrollTop: hidden.parent().offset().top - 100}, 100);});}).fail(function () {$("#progressDiv").remove();Materialize.toast("Fetch Comments Failed", 3000);});'
+                callback: funcToString(fetchComments)
             }
         ];
         Materialize.scrollFire(options);
-
 
         @if(session('errors'))
             Materialize.toast('{!! 'Something goes wrong' !!}', 2000);
