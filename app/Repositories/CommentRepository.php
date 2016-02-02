@@ -1,4 +1,5 @@
 <?php namespace App\Repositories;
+
 use App\Models\Comment;
 
 /**
@@ -35,5 +36,23 @@ class CommentRepository
     public function getById($id)
     {
         return $this->model->find($id);
+    }
+
+    public function store($input)
+    {
+        $comment = new $this->model;
+
+        $comment->post_id = $input['post_id'];
+        $comment->parent_id = $input['parent'];
+        // Get parent comment name.
+        if ($input['parent'] != 0) {
+            $comment->parent_name = $this->getById($input['parent'])->name;
+        }
+        $comment->name = $input['name'];
+        $comment->email = $input['email'];
+        $comment->blog = $input['blog'];
+        $comment->content = $input['content'];
+
+        $comment->save();
     }
 }

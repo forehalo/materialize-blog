@@ -38,6 +38,11 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('date', 'ArchiveController@groupByDate');
     Route::get('tags', 'ArchiveController@groupByTag');
 
+    // Comment
+    Route::resource('comments', 'CommentController', [
+        'except' => ['create', 'show']
+    ]);
+
 
     Route::get('404', function () {
         return view('errors.404');

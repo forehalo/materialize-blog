@@ -63,6 +63,15 @@
             }
         ];
         Materialize.scrollFire(options);
+
+
+        @if(session('errors'))
+            Materialize.toast('{!! 'Something goes wrong' !!}', 2000);
+        @endif
+
+        @if(session('ok'))
+            Materialize.toast('{!! session('ok') !!}', 3000);
+        @endif
     </script>
 @stop
 

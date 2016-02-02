@@ -2,13 +2,34 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CommentRequest;
+use App\Repositories\CommentRepository;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class CommentController extends Controller
 {
+
+    /**
+     * CommentRepository object.
+     *
+     * @var CommentRepository $comment
+     */
+    protected $comment;
+
+    /**
+     * CommentController constructor.
+     *
+     * @param CommentRepository $comment
+     */
+    public function __construct(CommentRepository $comment)
+    {
+        $this->comment = $comment;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -20,35 +41,33 @@ class CommentController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Store a newly created comment in storage.
      *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
-    }
+        $input = $request->all();
+        $validator = Validator::make($input, [
+            'post_id' => 'required|numeric',
+            'parent' => 'required|numeric',
+            'name' => 'required|alpha_num|max:30',
+            'email' => 'required|email|max:100',
+            'blog' => 'required|url|max:100',
+            'content' => 'required'
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        if($validator->fails()){
+            return back()
+                    ->withErrors($validator, 'comment')
+                    ->withInput($input);
+        }
+
+
+        $this->comment->store($input);
+
+        return redirect()->back()->with('ok', 'comment successfully.');
     }
 
     /**
