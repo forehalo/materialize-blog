@@ -37,14 +37,14 @@
                         </div>
                     </div>
                     <div class="row">
-                        @include('front.components.commentForm', ['id' => $post->id])
+                        @include('front.components.commentForm', ['id' => $post->id, 'slug' => $post->slug, 'viewButton' => false])
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="card z-depth-3">
-            <div class="card-content comment-list">
+            <div class="card-content comment-list" id="comments">
             </div>
         </div>
     </div>

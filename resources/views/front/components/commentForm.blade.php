@@ -20,7 +20,12 @@
     {!! Form::textarea('content', old('content'), ['id' => 'content', 'class' => 'materialize-textarea']) !!}
     <label for="content"><i class="material-icons">comment</i>content</label>
 </div>
-<div class="input-field col s12">
+<div class="input-field col s12 m5 l6">
     <button class="btn waves-effect blue" type="submit">submit <i class="material-icons right">send</i></button>
+</div>
+<div class="input-field col s12 m7 l6">
+    @if($viewButton == true)
+        <a href="{!! url('posts/' . $slug . '#comments') !!}" class="btn waves-effect green">View Comments <i class="material-icons right">cloud</i></a>
+    @endif
 </div>
 {!! Form::close() !!}
