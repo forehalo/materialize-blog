@@ -51,15 +51,16 @@ class CommentController extends Controller
         $input = $request->all();
         $validator = Validator::make($input, [
             'post_id' => 'required|numeric',
+            'slug' => 'required|max:100|exists:posts,slug,id,' . $input['post_id'],
             'parent' => 'required|numeric',
-            'name' => 'required|alpha_num|max:30',
+            'name' => 'required|max:30',
             'email' => 'required|email|max:100',
             'blog' => 'required|url|max:100',
             'content' => 'required'
         ]);
 
         if($validator->fails()){
-            return back()
+            return redirect('/posts/' . $input['slug'])
                     ->withErrors($validator, 'comment')
                     ->withInput($input);
         }
@@ -67,7 +68,7 @@ class CommentController extends Controller
 
         $this->comment->store($input);
 
-        return redirect()->back()->with('ok', 'comment successfully.');
+        return redirect('/posts/' . $input['slug'] . '#comments')->with('ok', 'comment successfully.');
     }
 
     /**
