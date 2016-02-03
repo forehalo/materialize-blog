@@ -15,7 +15,7 @@ return [
     | Basic Information
     |--------------------------------------------------------------------------
     */
-    'name' => 'forehalo',
+    'name' => 'Forehalo',
 
     'card_title'=> '刘义 Forehalo',
 
