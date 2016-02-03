@@ -25,11 +25,11 @@
         <h5>Tags</h5>
         <div class="row">
             <div class="col m12 l12 top-tags">
-                @foreach($tags::select('id', 'name', 'hot')
+                @foreach($tags::select('id', 'name')
                                 ->take(10)
                                 ->orderBy('hot', 'desc')
-                                ->get() as $item)
-                    <a href="#" class="btn waves-effect">{!! $item->name !!}</a>
+                                ->get() as $tag)
+                    <a href="{!! url('/tags/'. $tag->id) !!}" class="btn waves-effect">{!! $tag->name !!}</a>
                 @endforeach
             </div>
         </div>
@@ -39,9 +39,9 @@
         <h5>Friend Links</h5>
         <div class="friend-links col m12 l12">
             <ul>
-                @foreach($links::all() as $item)
-                    <li><a href="{!! $item->link !!}" class="btn btn-flat truncate"><i
-                                    class="material-icons left black-text">face</i>{!! $item->name !!}</a></li>
+                @foreach($links::all() as $link)
+                    <li><a href="{!! $link->link !!}" class="btn btn-flat truncate"><i
+                                    class="material-icons left black-text">face</i>{!! $link->name !!}</a></li>
                 @endforeach
             </ul>
         </div>
