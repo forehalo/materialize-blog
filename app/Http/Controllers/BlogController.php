@@ -117,6 +117,17 @@ class BlogController extends Controller
         }
     }
 
+    public function favorite(Request $request, $id)
+    {
+        $this->blog->doFavorite($id);
+
+        if($request->ajax()){
+            return response()->json();
+        }else{
+            return view('errors.404');
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      *

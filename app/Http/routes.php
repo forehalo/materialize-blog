@@ -31,7 +31,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::resource('posts', 'BlogController', [
         'except' => ['index']
     ]);
-
+    Route::put('posts/{id}/favorite', 'BlogController@favorite');
     Route::get('body/{id}', 'BlogController@body');
 
     //Archive

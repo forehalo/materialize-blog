@@ -1,8 +1,13 @@
+/**
+ * global functions and variables.
+ ===============================================================================
+ */
+// The previous active collapsible-header.
 var oldActive = $(".collapsible-header.active");
-
+// Circle progress.
 var progressDiv = '<div class="white" id="progressDiv"><div class="preloader-wrapper small active" style="left: 45%"> <div class="spinner-layer spinner-blue"> <div class="circle-clipper left"> <div class="circle"></div> </div><div class="gap-patch"> <div class="circle"></div> </div><div class="circle-clipper right"> <div class="circle"></div> </div> </div> <div class="spinner-layer spinner-red"> <div class="circle-clipper left"> <div class="circle"></div> </div><div class="gap-patch"> <div class="circle"></div> </div><div class="circle-clipper right"> <div class="circle"></div> </div> </div> <div class="spinner-layer spinner-yellow"> <div class="circle-clipper left"> <div class="circle"></div> </div><div class="gap-patch"> <div class="circle"></div> </div><div class="circle-clipper right"> <div class="circle"></div> </div> </div> <div class="spinner-layer spinner-green"> <div class="circle-clipper left"> <div class="circle"></div> </div><div class="gap-patch"> <div class="circle"></div> </div><div class="circle-clipper right"> <div class="circle"></div> </div> </div> </div></div>';
 
-// inactive collapsible-header.
+// make collapsible-header inactive.
 var hideActiveHeader = function (header) {
     $(header).removeClass("active").parent().removeClass("active").children('.collapsible-body').stop(true, false).slideUp(
         {
@@ -30,6 +35,9 @@ var funcToString = function (func) {
     var funcString = func.toString().substr(15);
     return funcString.substr(0, funcString.length - 1)
 };
+/**
+ ===============================================================================
+ */
 
 $(function () {
 
@@ -120,7 +128,26 @@ $(function () {
 
         clickToShow(old, target);
     });
-});
+
+    // favorite post.
+    $(document).on('click', '.favorite-btn', function () {
+        var btn = $(this);
+        var id = $(this).attr('id').substr(9);
+        var token = $('input[name="_token"]:first').attr('value');
+        var favoriteCount = parseInt(btn.children('span').html()) + 1;
+        $.ajax({
+            url: '/posts/' + id + '/favorite',
+            type: 'put',
+            data: '_token=' + token
+        }).done(function () {
+            btn.hide().parent().append('<a href="javascript:void(0)"><i class="material-icons">favorite</i><span>' + favoriteCount +'</span></a>');
+            Materialize.toast('Thanks for your encouragement!', 3000);
+        }).fail(function(){
+            Materialize.toast('Cannot access now!', 3000);
+        });
+    });
+})
+;
 
 
 $(function () {

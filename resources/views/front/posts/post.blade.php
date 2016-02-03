@@ -15,8 +15,8 @@
                         </div>
                         <div class="col s12 l4">
                             <i class="material-icons">visibility</i>{!! $post->view_count !!}
-                            <i class="material-icons">comment</i>{!! $post->comment_count !!}
-                            <i class="material-icons">favorite</i>{!! $post->favorite_count !!}
+                            <a href="#comments" class="grey-text"><i class="material-icons">comment</i>{!! $post->comment_count !!}</a>
+                            <a href="javascript:void(0)" class="grey-text favorite-btn" id="favorite-{!! $post->id !!}"><i class="material-icons">favorite_border</i><span>{!! $post->favorite_count !!}</span></a>
                         </div>
                     </div>
                 </div>

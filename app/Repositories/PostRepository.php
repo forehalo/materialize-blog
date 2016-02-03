@@ -63,5 +63,14 @@ class PostRepository
         return $this->model->where($column, $value)->first();
     }
 
+    public function doFavorite($id)
+    {
+        $post = $this->getByColumn($id);
+
+        $post->favorite_count++;
+
+        $post->save();
+    }
+
 
 }

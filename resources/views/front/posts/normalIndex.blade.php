@@ -13,6 +13,7 @@
                 <div class="label">published at {!! substr($post->created_at, 0, 10) !!}
                     <i class="material-icons">visibility</i>{!! $post->view_count !!}
                     <i class="material-icons">comment</i>{!! $post->comment_count !!}
+                    <i class="material-icons">favorite_border</i>{!! $post->favorite_count !!}
                 </div>
                 <p class="summary">{!! $post->summary !!}</p>
                 <div class="row">
