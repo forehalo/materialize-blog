@@ -144,7 +144,8 @@ ul.nav-items {
 }
 
 .markdown-body p {
-    padding: 0;
+    padding: 5px 0;
+    margin: 6px 0;
 }
 
 .card .card-action a:not(.btn):not(.btn-large):not(.btn-floating) {
