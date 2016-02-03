@@ -19,7 +19,7 @@ return [
 
     'card_title'=> '刘义 Forehalo',
 
-    'person' => '假装是业余 PHP 玩家，其实是进阶中的 UWP 开发者',
+    'notice' => '假装是业余 PHP 玩家，其实是进阶中的 UWP 开发者',
 
     'description' => '基于 Laravel 5 开发的博客系统。 作者 #Forehalo#',
 

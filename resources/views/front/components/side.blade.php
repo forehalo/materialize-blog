@@ -11,7 +11,7 @@
                 <span class="card-title">{!! config('blog.card_title') !!}</span>
             </div>
             <div class="card-content">
-                <p>{!! config('blog.person') !!}</p>
+                <p>{!! config('blog.notice') !!}</p>
             </div>
             <div class="card-action">
                 <a href="mailto:{!! config('blog.email') !!}" class="btn btn-flat waves-effect">Email</a>
