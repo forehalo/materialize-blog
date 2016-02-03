@@ -21,7 +21,6 @@
                     </div>
                 </div>
                 <div class="article-content markdown-body">{!! $post->body !!}</div>
-                <div class="divider"></div>
                 <div class="card-action">
                     <div class="row">
                         <div class="col s12 l6">
@@ -34,6 +33,9 @@
                             @foreach($post->tags as $tag)
                                 <a href="{!! url('/tags/' . $tag->id ) !!}" class="chip tag-chip">{!! $tag->name !!}</a>
                             @endforeach
+                        </div>
+                        <div class="col s12 post-right">
+                            @include('front.components.postRight', ['id' => $post->id, 'slug' => $post->slug])
                         </div>
                     </div>
                     <div class="row">

@@ -26,6 +26,10 @@
                     </div>
                 </div>
                 <div class="collapsible-body">
+                    <div class="divider"></div>
+                    <div class="row post-right">
+                        @include('front.components.postRight', ['id' => $post->id, 'slug' => $post->slug])
+                    </div>
                     <div class="row comment-form">
                         @include('front.components.commentForm', ['id' => $post->id, 'slug' => $post->slug, 'viewButton' => true])
                     </div>

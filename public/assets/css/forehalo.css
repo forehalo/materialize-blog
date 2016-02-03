@@ -211,3 +211,15 @@ ul.nav-items {
 .collapsible-body .comment-form, .collapsible-body .comment-form h5 {
     padding: 0 15px;
 }
+
+.card .card-action .post-right a:not(.btn):not(.btn-large):not(.btn-floating){
+    color: #039be5;
+    text-transform: none;
+    transition: color .3s ease;
+    padding: 0;
+}
+
+.row.post-right {
+    margin: 0px;
+    padding: 20px;
+}
