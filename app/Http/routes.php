@@ -47,11 +47,22 @@ Route::group(['middleware' => ['web']], function () {
     ]);
 
 
-    Route::get('404', function () {
-        return view('errors.404');
+    // Authentication
+    Route::group(['middleware' => 'guest'], function () {
+        Route::get('login', 'Auth\AuthController@loginView');
+        Route::post('login', 'Auth\AuthController@login');
+
     });
 
-    Route::get('back', function () {
-        return view('back.index');
+    // Dashboard
+    Route::group(['middleware' => 'auth'], function () {
+        Route::get('dashboard', function () {
+            return view('back.index');
+        });
+    });
+
+    
+    Route::get('404', function () {
+        return view('errors.404');
     });
 });
