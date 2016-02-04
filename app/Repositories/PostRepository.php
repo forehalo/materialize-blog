@@ -60,7 +60,11 @@ class PostRepository
      */
     public function getByColumn($value, $column = 'id')
     {
-        return $this->model->where($column, $value)->first();
+        $post = $this->model->where($column, $value)->first();
+
+        $post->view_count++;
+        $post->update();
+        return $post;
     }
 
     public function doFavorite($id)
