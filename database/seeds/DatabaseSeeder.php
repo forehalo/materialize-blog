@@ -30,7 +30,7 @@ class AdminTableSeeder extends Seeder
         Admin::create([
             'name' => 'admin',
             'email' => 'admin@example.com',
-            'authentication' => bcrypt('admin'),
+            'password' => bcrypt('admin'),
             'desc' => '说一句话来介绍一下自己吧',
             'status' => 0,
             'remember_token' => str_random(10)
