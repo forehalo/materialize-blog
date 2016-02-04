@@ -2,7 +2,7 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    {!! Html::style('assets/css/material-icon.css') !!}
     {!! Html::style('assets/css/materialize.min.css', ['media' => 'screen,projection']) !!}
     {!! Html::style('assets/css/forehalo.back.css') !!}
     {!! Html::style('assets/css/markdown.min.css') !!}
@@ -14,8 +14,8 @@
 </head>
 <body>
 <header>
-    @include('back.navbar')
-    @include('back.side')
+    @include('back.components.navbar')
+    @include('back.components.side')
 </header>
 <main>
     <div class="col s12 m12 l10">
@@ -23,7 +23,7 @@
     </div>
 </main>
 
-@include('back.footer')
+@include('back.components.footer')
 
 {!! Html::script('assets/js/jquery-2.1.4.min.js') !!}
 {!! Html::script('assets/js/materialize.min.js') !!}
