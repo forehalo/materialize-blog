@@ -49,9 +49,8 @@ Route::group(['middleware' => ['web']], function () {
 
     // Authentication
     Route::group(['middleware' => 'guest'], function () {
-        Route::get('login', 'Auth\AuthController@loginView');
-        Route::post('login', 'Auth\AuthController@login');
-
+        Route::get('login', 'Auth\AuthController@getLogin');
+        Route::post('login', 'Auth\AuthController@postLogin');
     });
 
     // Dashboard
@@ -59,9 +58,10 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('dashboard', function () {
             return view('back.index');
         });
+        Route::get('logout', 'Auth\AuthController@getLogout');
     });
 
-    
+
     Route::get('404', function () {
         return view('errors.404');
     });

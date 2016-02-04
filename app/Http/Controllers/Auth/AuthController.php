@@ -16,14 +16,16 @@ class AuthController extends Controller
 
     protected $redirectTo = '/dashboard';
 
+    protected $redirectAfterLogout = '/login';
+
     protected $guard = 'admin';
 
-    public function loginView()
+    public function getLogin()
     {
         return view('auth.login');
     }
 
-    public function login(LoginRequest $request, Guard $auth)
+    public function postLogin(LoginRequest $request, Guard $auth)
     {
         $input = $request->all();
         $logAccess = filter_var($input['log'], FILTER_VALIDATE_EMAIL) ? 'email' : 'name';
@@ -66,8 +68,5 @@ class AuthController extends Controller
         $request->session()->put('user_id', $user->id);
 
         return response()->json(['return' => false, 'value' => 'Login failed, One more try.']);
-
-
     }
-
 }

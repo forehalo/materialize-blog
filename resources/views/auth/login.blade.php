@@ -107,7 +107,7 @@
             }).done(function (data) {
                 $('.preloader-wrapper').removeClass('active');
                 if (data.return) {
-                    window.location(data.value);
+                    location.assign(data.value);
                 }
             }).fail(function () {
                 $('.preloader-wrapper').removeClass('active');
