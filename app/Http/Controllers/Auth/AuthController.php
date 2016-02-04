@@ -49,7 +49,7 @@ class AuthController extends Controller
 
         $user = $auth->getLastAttempted();
 
-        if (!$user->status) {
+        if ($user) {
             if ($throttle) {
                 $this->clearLoginAttempts($request);
             }
