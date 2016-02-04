@@ -67,6 +67,12 @@ class ArchiveController extends Controller
         return view('front.archive.category', compact('categories'));
     }
 
+    /**
+     * Redirect to categories with default category.
+     *
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function showCategory($id)
     {
         $category = $this->category->getById($id);
@@ -114,6 +120,12 @@ class ArchiveController extends Controller
         return view('front.archive.tag', compact('tags'));
     }
 
+    /**
+     * Redirect to tags with default tag.
+     *
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function showTag($id)
     {
         $tag = $this->tag->getById($id);
