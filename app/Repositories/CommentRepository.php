@@ -1,6 +1,7 @@
 <?php namespace App\Repositories;
 
 use App\Models\Comment;
+use App\Models\Post;
 
 /**
  * Class CommentRepository
@@ -18,13 +19,19 @@ class CommentRepository
     protected $model;
 
     /**
+     * @var Post model
+     */
+    protected $post;
+
+    /**
      * CommentRepository constructor.
      *
      * @param Comment $comment
      */
-    public function __construct(Comment $comment)
+    public function __construct(Comment $comment, Post $post)
     {
         $this->model = $comment;
+        $this->post = $post;
     }
 
     /**
@@ -38,6 +45,10 @@ class CommentRepository
         return $this->model->find($id);
     }
 
+    /**
+     * Store a new comment.
+     * @param $input
+     */
     public function store($input)
     {
         $comment = new $this->model;
@@ -54,5 +65,10 @@ class CommentRepository
         $comment->content = $input['content'];
 
         $comment->save();
+
+        // add on comment_count
+        $post = $this->post->find($input['post_id']);
+        $post->comment_count++;
+        $post->save();
     }
 }
