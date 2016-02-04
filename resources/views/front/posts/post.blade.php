@@ -73,13 +73,16 @@
                 } else {
                     for (var i = 0; i < data.length; ++i) {
                         var comment = data[i];
-                        var string = '<div id="comment-' + comment.id + '"><a href="' + comment.blog + '" class="comment-title"><i class="material-icons">person</i>' + comment.name + '</a><span> | ' + comment.created_at + ' : </span><a href="javascript:void(0)" class="reply-btn"><i class="material-icons" style="top: 6px;">reply</i></a> <div class="row"> <div class="markdown-body">';
+                        var string = '<div id="comment-' + comment.id + '"><a href="' + comment.blog + '" class="comment-title"><i class="material-icons">person</i>' + comment.name + '</a><span> | ' + comment.created_at + ' : </span><a href="javascript:void(0)" class="reply-btn tooltipped" data-position="right" data-delay="50" data-tooltip="reply"><i class="material-icons" style="top: 6px;">reply</i></a> <div class="row"> <div class="markdown-body">';
                         if (comment.parent_id !== 0) {
-                            string += 'reply <a href="javascript:void(0)" class="reply" pre-comment="' + comment.parent_id + '">@' + comment.parent_name + '</a> :<br/>'
+                            string += 'reply <a href="javascript:void(0)" class="reply " pre-comment="' + comment.parent_id + '">@' + comment.parent_name + '</a> :<br/>'
                         }
                         string += (comment.content + '</div> </div> <div class="divider"></div> </div></div>');
                         commentList.append(string);
                     }
+                    // init tooltip
+                    $('.tooltipped').tooltip({delay: 50});
+
                     $(".reply").on("click", function () {
                         var pre_comment = $("#comment-" + $(this).attr("pre-comment"));
                         var pxToTop = pre_comment.offset().top;
