@@ -28,7 +28,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/', 'BlogController@frontIndex');
     Route::get('posts', 'BlogController@normalIndex');
     Route::get('posts/{id}/comments', 'BlogController@comments');
-    Route::resource('posts', 'BlogController');
+    Route::resource('posts', 'BlogController', [
+        'except' => 'index'
+    ]);
     Route::put('posts/{id}/favorite', 'BlogController@favorite');
     Route::get('posts/{id}/body', 'BlogController@body');
 
