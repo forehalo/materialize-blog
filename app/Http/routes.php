@@ -28,9 +28,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/', 'BlogController@frontIndex');
     Route::get('posts', 'BlogController@normalIndex');
     Route::get('posts/{id}/comments', 'BlogController@comments');
-    Route::resource('posts', 'BlogController', [
-        'except' => ['index']
-    ]);
+    Route::resource('posts', 'BlogController');
     Route::put('posts/{id}/favorite', 'BlogController@favorite');
     Route::get('posts/{id}/body', 'BlogController@body');
 
@@ -55,9 +53,7 @@ Route::group(['middleware' => ['web']], function () {
 
     // Dashboard
     Route::group(['middleware' => 'auth'], function () {
-        Route::get('dashboard', function () {
-            return view('back.index');
-        });
+        Route::get('dashboard', 'AdminController@index');
         Route::get('logout', 'Auth\AuthController@getLogout');
     });
 
