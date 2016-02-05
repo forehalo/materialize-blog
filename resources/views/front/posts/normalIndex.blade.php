@@ -26,7 +26,7 @@
             </div>
         @endforeach
     </div>
-    {!! $posts->links() !!}
+    {!! $links !!}
 @stop
 
 @section('script')

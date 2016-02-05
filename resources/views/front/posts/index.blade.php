@@ -38,7 +38,7 @@
             </li>
         @endforeach
     </ul>
-    {!! $posts->links() !!}
+    {!! $links !!}
 @stop
 
 @section('script')
