@@ -13,7 +13,7 @@
                     <div class="card-content">
                         <i class="material-icons medium">create</i>
                         <div class="right">
-                            <div class="number">2</div>
+                            <div class="number">{!! $postsCount !!}</div>
                             <div>Total Posts</div>
                         </div>
                     </div>
@@ -31,7 +31,7 @@
                     <div class="card-content">
                         <i class="material-icons medium">comment</i>
                         <div class="right">
-                            <div class="number">2</div>
+                            <div class="number">{!! $commentsCount !!}</div>
                             <div>New Comments</div>
                         </div>
                     </div>
