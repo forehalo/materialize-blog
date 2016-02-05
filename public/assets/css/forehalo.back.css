@@ -62,3 +62,16 @@ nav {
 td {
     width: auto;
 }
+
+.bold > a {
+    font-weight: bold;
+}
+
+.no-padding {
+    padding: 0;
+}
+
+#nav-mobile .collapsible-according {
+    height: auto;
+    background-color: inherit;
+}
