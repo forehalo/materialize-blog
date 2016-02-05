@@ -55,7 +55,7 @@
             $(progressDiv).appendTo(header);
 
             $.ajax({
-                url: '{!! url('/body') !!}' + '/' + id.substr(5),
+                url: '{!! url('/posts') !!}' + '/' + id.substr(5) + '/body',
                 type: 'get'
             }).done(function (data) {
                 header.removeClass('no-seen').addClass('seen');

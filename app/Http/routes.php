@@ -32,7 +32,7 @@ Route::group(['middleware' => ['web']], function () {
         'except' => ['index']
     ]);
     Route::put('posts/{id}/favorite', 'BlogController@favorite');
-    Route::get('body/{id}', 'BlogController@body');
+    Route::get('posts/{id}/body', 'BlogController@body');
 
     //Archive
     Route::get('categories', 'ArchiveController@groupByCategory');
