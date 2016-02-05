@@ -25,7 +25,7 @@
     <div class="row">
         @foreach($tags as $tag)
             <div id="{!! $tag->name !!}" class="col s12 post-list" @if(!session('default') || session('default')->id != $tag->id)style="display: none"@endif>
-                @include('front.archive.postList', ['title' => $tag->name, 'posts' => $tag->posts, 'color' => 'pink'])
+                @include('front.archive.postList', ['title' => $tag->name, 'posts' => $tag->posts()->wherePublished(true)->get(), 'color' => 'pink'])
             </div>
         @endforeach
     </div>

@@ -28,14 +28,18 @@ class PostRepository
      * Get all posts.
      *
      * @param int $n pagination
+     * @param bool $published whether fetch unpublished posts.
      * @return mixed
      */
-    public function all($n = null)
+    public function all($n = null, $published = true)
     {
         $posts = $this->model
-                    ->select('id', 'title', 'summary', 'comment_count', 'view_count', 'favorite_count', 'created_at', 'slug')
-                    ->wherePublished(true)
+                    ->select('id', 'title', 'summary', 'comment_count', 'view_count', 'favorite_count', 'created_at', 'slug', 'published')
                     ->orderBy('created_at', 'desc');
+
+        if ($published) {
+            $posts = $posts->wherePublished(true);
+        }
 
         return $n ? $posts->paginate($n) : $posts->get();
     }
