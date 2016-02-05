@@ -44,6 +44,8 @@ class BlogController extends Controller
     {
         $this->blog = $blog;
         $this->comment = $comment;
+
+        $this->middleware('auth', ['only' => ['create', 'store', 'update', 'edit', 'destroy']]);
     }
 
     /**
