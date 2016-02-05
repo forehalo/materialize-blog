@@ -18,7 +18,7 @@
                         </div>
                     </div>
                     <div class="divider"></div>
-                    <a href="{!! url('blog') !!}">
+                    <a href="{!! url('admin/posts') !!}">
                         <div class="card-action">
                             <div class="left">View</div>
                             <i class="material-icons right">arrow forward</i>
@@ -36,7 +36,7 @@
                         </div>
                     </div>
                     <div class="divider"></div>
-                    <a href="#">
+                    <a href="{!! url('comments') !!}">
                         <div class="card-action">
                             <div class="left">View</div>
                             <i class="material-icons right">arrow forward</i>
@@ -54,7 +54,7 @@
                         </div>
                     </div>
                     <div class="divider"></div>
-                    <a href="#">
+                    <a href="{!! url('messages') !!}">
                         <div class="card-action">
                             <div class="left">View</div>
                             <i class="material-icons right">arrow forward</i>
