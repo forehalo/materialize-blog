@@ -40,3 +40,11 @@ if (!function_exists('classActiveSegment')) {
         return '';
     }
 }
+
+if (!function_exists('publishedCheckbox')) {
+    function publishedCheckbox($post) {
+        return $post->published ?
+            "<input type='checkbox' id='chk{$post->id}' checked/><label for='chk{$post->id}'>YES</label>" :
+            "<input type='checkbox' id='chk{$post->id}'/><label for='chk{$post->id}'>NO</label>";
+    }
+}

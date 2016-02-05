@@ -1,6 +1,11 @@
 @extends('back.template')
 @section('title')
     <title>Posts</title>
+    <style>
+        .pagination li.active {
+            background-color: #448AFF !important;
+        }
+    </style>
 @stop
 
 @section('main')
@@ -16,35 +21,32 @@
                     <th>Title</th>
                     <th>Date</th>
                     <th>Published</th>
+                    <th>Operation</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>laravel5 配合 Queues 使用 Artisan Commands</td>
-                    <td>2016-01-26</td>
-                    <td><input type="checkbox" id="chk1"/><label for="chk1">NO</label></td>
-                    <td><a href="#" class="btn">See</a></td>
-                    <td><a href="#" class="btn btn-primary">Edit</a></td>
-                    <td><a href="#" class="btn btn-danger">Destroy</a></td>
-                </tr>
-                <tr>
-                    <td>foreach 循环中注意事项</td>
-                    <td>2016-01-27</td>
-                    <td><input type="checkbox" id="chk2" checked/><label for="chk2">YES</label></td>
-                    <td><a href="#" class="btn">See</a></td>
-                    <td><a href="#" class="btn btn-primary">Edit</a></td>
-                    <td><a href="#" class="btn btn-danger">Destroy</a></td>
-                </tr>
-                <tr>
-                    <td>Excel-Worker 一个 PHP 操作 excel 包</td>
-                    <td>2016-01-26</td>
-                    <td><input type="checkbox" id="chk3" checked/><label for="chk3">YES</label></td>
-                    <td><a href="#" class="btn">See</a></td>
-                    <td><a href="#" class="btn btn-primary">Edit</a></td>
-                    <td><a href="#" class="btn btn-danger">Destroy</a></td>
-                </tr>
+                @foreach($posts as $post)
+                    <tr>
+                        <td>{!! $post->title !!}</td>
+                        <td>{!! substr($post->created_at, 0, 10) !!}</td>
+                        <td>{!! publishedCheckbox($post) !!}</td>
+                        <td><a href="{!! url('/posts/' . $post->slug) !!}" class="btn btn-success">See</a></td>
+                        <td><a href="{!! url('/posts/' . $post->id . '/edit') !!}" class="btn btn-warning">Edit</a></td>
+                        <td>
+                            {!! Form::open(['method' => 'delete', 'url' => '/posts/' . $post->id]) !!}
+                            <button type="submit" class="btn btn-danger">Destroy</button>
+                            {!! Form::close() !!}
+                        </td>
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>
+        {!! $links !!}
     </div>
 @stop
+
+@section('script')
+    <script>
+    </script>
+    @stop

@@ -71,6 +71,19 @@ class BlogController extends Controller
     }
 
     /**
+     * For back-end posts index.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function backIndex()
+    {
+        $posts = $this->blog->all(10, false);
+        $links = $posts->links();
+
+        return view('back.blog.index', compact('posts', 'links'));
+    }
+
+    /**
      * Get all posts and make pagination.
      *
      * @return \Illuminate\Http\Response

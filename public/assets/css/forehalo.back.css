@@ -75,3 +75,15 @@ td {
     height: auto;
     background-color: inherit;
 }
+
+.btn-success {
+    background-color: #2196F3 !important;
+}
+
+.btn-warning {
+    background-color: #f0ad4e !important;
+}
+
+.btn-danger {
+    background-color: #d43f3a !important;
+}

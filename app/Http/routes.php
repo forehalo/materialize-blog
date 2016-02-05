@@ -56,6 +56,7 @@ Route::group(['middleware' => ['web']], function () {
     // Dashboard
     Route::group(['middleware' => 'auth'], function () {
         Route::get('dashboard', 'AdminController@index');
+        Route::get('admin/posts', 'BlogController@backIndex');
         Route::get('logout', 'Auth\AuthController@getLogout');
     });
 
