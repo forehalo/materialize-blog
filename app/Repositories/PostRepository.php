@@ -78,7 +78,7 @@ class PostRepository
      */
     public function doFavorite($id)
     {
-        $post = $this->getByColumn($id);
+        $post = $this->model->find($id);
 
         $post->favorite_count++;
 
@@ -93,11 +93,26 @@ class PostRepository
      */
     public function updatePublish($input, $id)
     {
-        $post = $this->getByColumn($id);
+        $post = $this->model->find($id);
 
         $post->published = $input['published'] == 'true';
 
         $post->update();
+    }
+
+
+    /**
+     * Destroy a post.
+     *
+     * @param $id
+     */
+    public function destroy($id)
+    {
+        $post = $this->model->find($id);
+
+        $post->tags()->detach();
+
+        $post->delete();
     }
 
 

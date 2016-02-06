@@ -208,7 +208,9 @@ class BlogController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->blog->destroy($id);
+
+        return redirect('admin/posts')->with('ok', 'Delete post successfully.');
     }
 
     /**
