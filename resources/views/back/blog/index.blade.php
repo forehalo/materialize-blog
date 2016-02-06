@@ -48,32 +48,36 @@
 
 @section('script')
     <script>
-        $(function(){
-           $(document).on('change', ':checkbox', function(){
-               var id = $(this).attr('id').substr(3);
-               var self = $(this);
-               var label = self.parent().children('label');
-               var token = $('input[name="_token"]').val();
+        $(function () {
+            $(document).on('change', ':checkbox', function () {
+                var id = $(this).attr('id').substr(3);
+                var self = $(this);
+                var label = self.parent().children('label');
+                var token = $('input[name="_token"]').val();
 
-               self.hide();
-               label.hide();
-               self.parent().append('<i class="material-icons mi-refresh">refresh</i>');
+                self.hide();
+                label.hide();
+                self.parent().append('<i class="material-icons mi-refresh">refresh</i>');
 
-               $.ajax({
-                   url: '/posts/' + id + '/publish',
-                   type: 'put',
-                   data: '_token=' + token + '&published=' + this.checked
-               }).done(function(){
-                   $('.mi-refresh').remove();
-                   self.show();
-                   label.html(label.html() == 'NO' ? 'YES' : 'NO').show();
-               }).fail(function(){
-                   $('.mi-refresh').remove();
-                   self.show().prop('checked', self.is(':checked') ? null : 'checked');
-                   label.show();
-                   Materialize.toast('Toggle failed', 3000);
-               });
-           });
+                $.ajax({
+                    url: '/posts/' + id + '/publish',
+                    type: 'put',
+                    data: '_token=' + token + '&published=' + this.checked
+                }).done(function () {
+                    $('.mi-refresh').remove();
+                    self.show();
+                    label.html(label.html() == 'NO' ? 'YES' : 'NO').show();
+                }).fail(function () {
+                    $('.mi-refresh').remove();
+                    self.show().prop('checked', self.is(':checked') ? null : 'checked');
+                    label.show();
+                    Materialize.toast('Toggle failed', 3000);
+                });
+            });
         });
+
+        @if(session('ok'))
+            Materialize.toast('{!! session('ok') !!}', 3000);
+        @endif
     </script>
-    @stop
+@stop
