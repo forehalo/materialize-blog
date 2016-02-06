@@ -82,7 +82,7 @@ class PostRepository
 
         $post->favorite_count++;
 
-        $post->save();
+        $post->update();
     }
 
     /**
@@ -97,7 +97,7 @@ class PostRepository
 
         $post->published = $input['published'] == 'true';
 
-        $post->save();
+        $post->update();
     }
 
 
