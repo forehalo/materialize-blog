@@ -71,11 +71,31 @@ class PostRepository
         return $post;
     }
 
+    /**
+     * Update favorite count
+     *
+     * @param $id
+     */
     public function doFavorite($id)
     {
         $post = $this->getByColumn($id);
 
         $post->favorite_count++;
+
+        $post->save();
+    }
+
+    /**
+     * Update post published status
+     *
+     * @param $input
+     * @param $id
+     */
+    public function updatePublish($input, $id)
+    {
+        $post = $this->getByColumn($id);
+
+        $post->published = $input['published'] == 'true';
 
         $post->save();
     }

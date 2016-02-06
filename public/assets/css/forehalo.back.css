@@ -87,3 +87,7 @@ td {
 .btn-danger {
     background-color: #d43f3a !important;
 }
+
+.mi-refresh {
+   animation: container-rotate 1568ms linear infinite;
+}

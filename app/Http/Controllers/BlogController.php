@@ -210,4 +210,18 @@ class BlogController extends Controller
     {
         //
     }
+
+    /**
+     * Toggle post published status.
+     *
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function publish(Request $request, $id)
+    {
+        $this->blog->updatePublish($request->all(), $id);
+
+        return response()->json();
+    }
 }
