@@ -21,6 +21,8 @@ class CreateCommentsTable extends Migration
             $table->string('email');
             $table->string('blog');
             $table->text('content');
+            $table->boolean('seen')->default(0);
+            $table->boolean('published')->default(1);
             $table->timestamps();
 
             $table->foreign('post_id')

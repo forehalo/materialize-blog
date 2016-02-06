@@ -136,7 +136,9 @@ class CommentTableSeeder extends Seeder
             'name' => 'username',
             'email' => $faker->email,
             'blog' => $faker->url,
-            'content' => $faker->paragraph
+            'content' => $faker->paragraph,
+            'seen' => 1,
+            'published' => 0
         ]);
         Comment::create([
             'post_id' => 2,
@@ -144,7 +146,9 @@ class CommentTableSeeder extends Seeder
             'name' => $faker->name,
             'email' => $faker->email,
             'blog' => $faker->url,
-            'content' => $faker->paragraph
+            'content' => $faker->paragraph,
+            'seen' => '0',
+            'published' => 1
         ]);
         Comment::create([
             'post_id' => 1,
@@ -153,7 +157,9 @@ class CommentTableSeeder extends Seeder
             'name' => $faker->name,
             'email' => $faker->email,
             'blog' => $faker->url,
-            'content' => $faker->paragraph
+            'content' => $faker->paragraph,
+            'seen' => '0',
+            'published' => 1
         ]);
         Comment::create([
             'post_id' => 3,
@@ -161,7 +167,9 @@ class CommentTableSeeder extends Seeder
             'name' => $faker->name,
             'email' => $faker->email,
             'blog' => $faker->url,
-            'content' => $faker->paragraph
+            'content' => $faker->paragraph,
+            'seen' => '0',
+            'published' => 1
         ]);
         Comment::create([
             'post_id' => 3,
@@ -169,7 +177,9 @@ class CommentTableSeeder extends Seeder
             'name' => $faker->name,
             'email' => $faker->email,
             'blog' => $faker->url,
-            'content' => $faker->paragraph
+            'content' => $faker->paragraph,
+            'seen' => '0',
+            'published' => 1
         ]);
         Comment::create([
             'post_id' => 4,
@@ -177,7 +187,9 @@ class CommentTableSeeder extends Seeder
             'name' => $faker->name,
             'email' => $faker->email,
             'blog' => $faker->url,
-            'content' => $faker->paragraph
+            'content' => $faker->paragraph,
+            'seen' => '0',
+            'published' => 1
         ]);
     }
 }
