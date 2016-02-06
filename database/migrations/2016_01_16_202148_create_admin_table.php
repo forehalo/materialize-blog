@@ -20,7 +20,7 @@ class CreateAdminTable extends Migration
             $table->string('desc');
             $table->boolean('status');
             $table->rememberToken();
-            $table->timestamps();
+            $table->nullableTimestamps();
         });
     }
 
