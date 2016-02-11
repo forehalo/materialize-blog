@@ -23,6 +23,8 @@ return [
 
     'description' => '基于 Laravel 5 开发的博客系统。 作者 #Forehalo#',
 
+    'url' => 'localhost.blog',
+
     /*
     |--------------------------------------------------------------------------
     | Pagination
