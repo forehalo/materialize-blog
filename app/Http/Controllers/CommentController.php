@@ -60,7 +60,7 @@ class CommentController extends Controller
         ]);
 
         if($validator->fails()){
-            return redirect('/posts/' . $input['slug'])
+            return redirect('/posts/' . $input['slug'] . '#comment-form')
                     ->withErrors($validator, 'comment')
                     ->withInput($input);
         }
