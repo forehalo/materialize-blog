@@ -10,7 +10,7 @@
 
 @section('main')
     <div class="container">
-        <h4 class="page-header">Post<a class="btn-floating btn-large waves-effect waves-light blue right"><i
+        <h4 class="page-header">Post<a href="{!! url('posts/create') !!}" class="btn-floating btn-large waves-effect waves-light blue right"><i
                         class="material-icons">mode_edit</i></a></h4>
         <div class="divider"></div>
 

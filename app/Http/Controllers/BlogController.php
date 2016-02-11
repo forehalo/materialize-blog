@@ -11,6 +11,8 @@ namespace App\Http\Controllers;
  * @license     http://www.gnu.org/licenses/lgpl.html   LGPL
  */
 
+use App\Http\Requests\PostRequest;
+use App\Models\Post;
 use App\Repositories\CommentRepository;
 use App\Repositories\PostRepository;
 use Illuminate\Http\Request;
@@ -150,18 +152,20 @@ class BlogController extends Controller
      */
     public function create()
     {
-        //
+        return view('back.blog.create', compact('post'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param PostRequest|Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-        //
+        $this->blog->store($request->all());
+
+        return redirect('admin/posts')->with('ok', 'Create post successfully');
     }
 
     /**

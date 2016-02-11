@@ -1,6 +1,9 @@
 <?php namespace App\Repositories;
 
+use App\Models\Category;
 use App\Models\Post;
+use App\Models\Tag;
+use Parsedown;
 
 /**
  * Class BlogRepository.php
@@ -12,16 +15,32 @@ use App\Models\Post;
  */
 class PostRepository
 {
+    /**
+     * Post Model
+     */
     protected $model;
 
+    /**
+     * Category Model
+     */
+    protected $category;
+
+    /**
+     * Tag Model
+     */
+    protected $tag;
 
     /**
      * BlogRepository constructor.
      * @param Post $post
+     * @param Category $category
+     * @param Tag $tag
      */
-    public function __construct(Post $post)
+    public function __construct(Post $post, Category $category, Tag $tag)
     {
         $this->model = $post;
+        $this->category = $category;
+        $this->tag = $tag;
     }
 
     /**
@@ -34,8 +53,8 @@ class PostRepository
     public function all($n = null, $published = true)
     {
         $posts = $this->model
-                    ->select('id', 'title', 'summary', 'comment_count', 'view_count', 'favorite_count', 'created_at', 'slug', 'published')
-                    ->orderBy('created_at', 'desc');
+            ->select('id', 'title', 'summary', 'comment_count', 'view_count', 'favorite_count', 'created_at', 'slug', 'published')
+            ->orderBy('created_at', 'desc');
 
         if ($published) {
             $posts = $posts->wherePublished(true);
@@ -104,6 +123,7 @@ class PostRepository
     /**
      * Destroy a post.
      *
+     *
      * @param $id
      */
     public function destroy($id)
@@ -113,6 +133,55 @@ class PostRepository
         $post->tags()->detach();
 
         $post->delete();
+    }
+
+    public function store($inputs)
+    {
+        $post = new $this->model();
+
+        $post->title = $inputs['title'];
+        $post->slug = $inputs['slug'];
+        $post->summary = $inputs['summary'];
+        $post->origin = $inputs['origin'];
+        $post->body = $this->parseOrigin($inputs['origin']);
+        $post->published = isset($inputs['publish']);
+
+        $category = $this->category->whereName($inputs['category'])->first();
+
+        if ($category == null) {
+            $category = new $this->category();
+            $category->name = $inputs['category'];
+            $category->save();
+        }
+        $post->category_id = $category->id;
+        $post->save();
+
+        $tags_id = [];
+        $tags = explode(',', $inputs['tags']);
+
+        foreach ($tags as $tag) {
+            $tag_ref = $this->tag->whereName($tag)->first();
+            if (is_null($tag_ref)) {
+                $tag_ref = new $this->tag();
+                $tag_ref->name = $tag;
+                $tag_ref->save();
+            }
+            array_push($tags_id, $tag_ref->id);
+        }
+
+        $post->tags()->sync($tags_id);
+
+    }
+
+    public function parseOrigin($origin)
+    {
+        $parse = new Parsedown();
+        return $parse->text($origin);
+    }
+
+    public function parseCategory()
+    {
+
     }
 
 
