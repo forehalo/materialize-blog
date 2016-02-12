@@ -91,3 +91,9 @@ td {
 .mi-refresh {
    animation: container-rotate 1568ms linear infinite;
 }
+
+.btn-floating.fixed {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+}
