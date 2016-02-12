@@ -61,7 +61,7 @@
                 header.removeClass('no-seen').addClass('seen');
                 $('#progressDiv').remove();
                 body.prepend('<div class="article-content markdown-body">' + data.body + '</div>');
-
+                Prism.highlightAll();
             }).fail(function () {
                 Materialize.toast('Fetch article body failed!', 3000);
                 $('#progressDiv').remove();
