@@ -12,8 +12,18 @@ class Admin extends Model implements AuthenticatableContract, CanResetPasswordCo
 {
     use Authenticatable, CanResetPassword;
 
+    /**
+     * Table name
+     *
+     * @var string
+     */
     protected $table = 'admin';
 
+    /**
+     * Hidden attributes when select
+     *
+     * @var array
+     */
     protected $hidden = ['password', 'remember_token'];
 
 }

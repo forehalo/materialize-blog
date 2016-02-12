@@ -14,22 +14,52 @@ class AuthController extends Controller
 {
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
+    /**
+     * Redirect after login.
+     *
+     * @var string
+     */
     protected $redirectTo = '/dashboard';
 
+    /**
+     * Redirect after logout.
+     *
+     * @var string
+     */
     protected $redirectAfterLogout = '/login';
 
+    /**
+     * Guard table name.
+     *
+     * @var string
+     */
     protected $guard = 'admin';
 
+    /**
+     * Get login view.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getLogin()
     {
         return view('auth.login');
     }
 
+    /**
+     * Login action.
+     *
+     * @param LoginRequest $request
+     * @param Guard $auth
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function postLogin(LoginRequest $request, Guard $auth)
     {
         $input = $request->all();
+
+        // Filter login with email or name.
         $logAccess = filter_var($input['log'], FILTER_VALIDATE_EMAIL) ? 'email' : 'name';
 
+        // Throttle
         $throttle = in_array(ThrottlesLogins::class, class_uses_recursive(get_class($this)));
 
         if ($throttle && $this->hasTooManyLoginAttempts($request)) {
@@ -46,7 +76,7 @@ class AuthController extends Controller
                 $this->incrementLoginAttempts($request);
             }
 
-            return response()->json(['return' => false, 'value' => 'Login failed, One more try1.']);
+            return response()->json(['return' => false, 'value' => 'Login failed, One more try.']);
         }
 
         $user = $auth->getLastAttempted();

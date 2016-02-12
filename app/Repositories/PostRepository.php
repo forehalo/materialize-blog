@@ -123,7 +123,6 @@ class PostRepository
     /**
      * Destroy a post.
      *
-     *
      * @param $id
      */
     public function destroy($id)
@@ -135,6 +134,11 @@ class PostRepository
         $post->delete();
     }
 
+    /**
+     * Store new post in database.
+     *
+     * @param $inputs
+     */
     public function store($inputs)
     {
         $post = new $this->model();
@@ -142,6 +146,12 @@ class PostRepository
         $this->savePost($post, $inputs);
     }
 
+    /**
+     * Update a post.
+     *
+     * @param $inputs
+     * @param $id post id
+     */
     public function update($inputs, $id)
     {
         $post = $this->getByColumn($id);
@@ -149,12 +159,24 @@ class PostRepository
         $this->savePost($post, $inputs);
     }
 
+    /**
+     * Parse Markdown.
+     *
+     * @param $origin
+     * @return string HTML content
+     */
     public function parseOrigin($origin)
     {
         $parse = new Parsedown();
         return $parse->text($origin);
     }
 
+    /**
+     * Get or create new category and return category id.
+     *
+     * @param $name category name
+     * @return mixed category id
+     */
     public function parseCategory($name)
     {
 
@@ -169,6 +191,12 @@ class PostRepository
         return $category->id;
     }
 
+    /**
+     * Synchronize post tags relation.
+     *
+     * @param $post
+     * @param string $tags
+     */
     private function syncTags($post, $tags)
     {
 
@@ -188,6 +216,12 @@ class PostRepository
         $post->tags()->sync($tags_id);
     }
 
+    /**
+     * Store post information in database.
+     *
+     * @param $post
+     * @param $inputs
+     */
     private function savePost($post, $inputs)
     {
         $post->title = $inputs['title'];
