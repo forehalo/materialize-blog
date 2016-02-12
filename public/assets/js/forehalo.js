@@ -41,8 +41,6 @@ var funcToString = function (func) {
 
 $(function () {
 
-    Prism.highlightAll();
-
     $(document).click(function (e) {
 
         var active = $(".collapsible-header.active");

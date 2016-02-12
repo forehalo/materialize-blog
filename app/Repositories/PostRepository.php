@@ -139,25 +139,41 @@ class PostRepository
     {
         $post = new $this->model();
 
-        $post->title = $inputs['title'];
-        $post->slug = $inputs['slug'];
-        $post->summary = $inputs['summary'];
-        $post->origin = $inputs['origin'];
-        $post->body = $this->parseOrigin($inputs['origin']);
-        $post->published = isset($inputs['publish']);
+        $this->savePost($post, $inputs);
+    }
 
-        $category = $this->category->whereName($inputs['category'])->first();
+    public function update($inputs, $id)
+    {
+        $post = $this->getByColumn($id);
 
-        if ($category == null) {
+        $this->savePost($post, $inputs);
+    }
+
+    public function parseOrigin($origin)
+    {
+        $parse = new Parsedown();
+        return $parse->text($origin);
+    }
+
+    public function parseCategory($name)
+    {
+
+        $category = $this->category->whereName($name)->first();
+
+        if (is_null($category)) {
             $category = new $this->category();
-            $category->name = $inputs['category'];
+            $category->name = $name;
             $category->save();
         }
-        $post->category_id = $category->id;
-        $post->save();
+
+        return $category->id;
+    }
+
+    private function syncTags($post, $tags)
+    {
 
         $tags_id = [];
-        $tags = explode(',', $inputs['tags']);
+        $tags = explode(',', $tags);
 
         foreach ($tags as $tag) {
             $tag_ref = $this->tag->whereName($tag)->first();
@@ -170,18 +186,21 @@ class PostRepository
         }
 
         $post->tags()->sync($tags_id);
-
     }
 
-    public function parseOrigin($origin)
+    private function savePost($post, $inputs)
     {
-        $parse = new Parsedown();
-        return $parse->text($origin);
-    }
+        $post->title = $inputs['title'];
+        $post->slug = $inputs['slug'];
+        $post->summary = $inputs['summary'];
+        $post->origin = $inputs['origin'];
+        $post->body = $this->parseOrigin($inputs['origin']);
+        $post->published = isset($inputs['publish']);
+        $post->category_id = $this->parseCategory($inputs['category']);
 
-    public function parseCategory()
-    {
+        $post->save();
 
+        $this->syncTags($post, $inputs['tags']);
     }
 
 

@@ -127,9 +127,9 @@ class BlogController extends Controller
         $post = $this->blog->getByColumn($id);
         $comments = $post->comments()->orderBy('created_at', 'desc')->get();
 
-        if($request->ajax()){
+        if ($request->ajax()) {
             return response()->json($comments);
-        }else{
+        } else {
             return view('errors.404');
         }
     }
@@ -138,9 +138,9 @@ class BlogController extends Controller
     {
         $this->blog->doFavorite($id);
 
-        if($request->ajax()){
+        if ($request->ajax()) {
             return response()->json();
-        }else{
+        } else {
             return view('errors.404');
         }
     }
@@ -189,7 +189,16 @@ class BlogController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = $this->blog->getByColumn($id);
+        $post->category = $post->category->name;
+        $tags = [];
+
+        foreach ($post->tags as $tag) {
+            array_push($tags, $tag->name);
+        }
+        $post->tags = implode(',', $tags);
+
+        return view('back.blog.edit', compact('post'));
     }
 
     /**
@@ -201,7 +210,9 @@ class BlogController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->blog->update($request->all(), $id);
+
+        return redirect('admin/posts')->with('ok', 'Update post successfully');
     }
 
     /**
