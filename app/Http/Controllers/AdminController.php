@@ -11,7 +11,12 @@ use App\Http\Controllers\Controller;
 
 class AdminController extends Controller
 {
-    
+
+    /**
+     * Dashboard index.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         $postsCount = Post::count();
