@@ -18,7 +18,7 @@
                         </div>
                     </div>
                     <div class="divider"></div>
-                    <a href="{!! url('admin/posts') !!}">
+                    <a href="{!! url('posts/admin') !!}">
                         <div class="card-action">
                             <div class="left">View</div>
                             <i class="material-icons right">arrow forward</i>

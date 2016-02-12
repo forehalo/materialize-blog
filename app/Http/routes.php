@@ -23,10 +23,26 @@
 */
 
 Route::group(['middleware' => ['web']], function () {
+    // Index
+    Route::get('/', 'BlogController@frontIndex');
+    // Normal Index
+    Route::get('posts', 'BlogController@normalIndex');
+
+    // Authentication
+    Route::group(['middleware' => 'guest'], function () {
+        Route::get('login', 'Auth\AuthController@getLogin');
+        Route::post('login', 'Auth\AuthController@postLogin');
+    });
+
+    // Dashboard
+    Route::group(['middleware' => 'auth'], function () {
+        Route::get('dashboard', 'AdminController@index');
+        Route::get('posts/admin', 'BlogController@backIndex');
+        Route::put('posts/{id}/publish', 'BlogController@publish');
+        Route::get('logout', 'Auth\AuthController@getLogout');
+    });
 
     // Blog
-    Route::get('/', 'BlogController@frontIndex');
-    Route::get('posts', 'BlogController@normalIndex');
     Route::get('posts/{id}/comments', 'BlogController@comments');
     Route::resource('posts', 'BlogController', [
         'except' => 'index'
@@ -47,22 +63,12 @@ Route::group(['middleware' => ['web']], function () {
     ]);
 
 
-    // Authentication
-    Route::group(['middleware' => 'guest'], function () {
-        Route::get('login', 'Auth\AuthController@getLogin');
-        Route::post('login', 'Auth\AuthController@postLogin');
-    });
-
-    // Dashboard
-    Route::group(['middleware' => 'auth'], function () {
-        Route::get('dashboard', 'AdminController@index');
-        Route::get('admin/posts', 'BlogController@backIndex');
-        Route::put('posts/{id}/publish', 'BlogController@publish');
-        Route::get('logout', 'Auth\AuthController@getLogout');
-    });
-
 
     Route::get('404', function () {
         return view('errors.404');
+    });
+
+    Route::get('foo', function(){
+        return preg_match("|^(posts/)([\d]+)(/edit)$|", 'posts/56/edit');
     });
 });
