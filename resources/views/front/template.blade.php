@@ -33,6 +33,7 @@
 
 {!! Html::script('assets/js/jquery-2.1.4.min.js') !!}
 {!! Html::script('assets/js/materialize.min.js') !!}
+{!! Html::script('assets/js/prism.js') !!}
 {!! Html::script('assets/js/init.js') !!}
 {!! Html::script('assets/js/marked.min.js') !!}
 {!! Html::script('assets/js/forehalo.js') !!}
