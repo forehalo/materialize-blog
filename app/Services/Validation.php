@@ -8,6 +8,6 @@ class Validation extends Validator
 {
     public function validateTags($attribute, $value, $parameters)
     {
-        return preg_match("/^[A-Za-z0-9-éèàù]{1,50}?(,[A-Za-z0-9-éèàù]{1,50})*$/", $value);
+        return preg_match("/^[^\s]{1,50}?(,[^\s]{1,50})*$/u", $value);
     }
 }
