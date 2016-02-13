@@ -28,6 +28,8 @@ class CommentController extends Controller
     public function __construct(CommentRepository $comment)
     {
         $this->comment = $comment;
+
+        $this->middleware('auth', ['only' => ['index', 'destroy']]);
     }
 
     /**
@@ -37,7 +39,9 @@ class CommentController extends Controller
      */
     public function index()
     {
-        //
+        $comments = $this->comment->all(10);
+        $links = $comments->links();
+        return view('back.comments.index', compact('comments', 'links'));
     }
 
     /**
@@ -69,29 +73,6 @@ class CommentController extends Controller
         $this->comment->store($input);
 
         return redirect('/posts/' . $input['slug'] . '#comments')->with('ok', 'comment successfully.');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
     }
 
     /**

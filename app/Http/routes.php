@@ -59,7 +59,7 @@ Route::group(['middleware' => ['web']], function () {
 
     // Comment
     Route::resource('comments', 'CommentController', [
-        'except' => ['create', 'show']
+        'except' => ['create', 'show', 'edit','update']
     ]);
 
 

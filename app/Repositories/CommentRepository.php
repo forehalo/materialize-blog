@@ -71,4 +71,15 @@ class CommentRepository
         $post->comment_count++;
         $post->save();
     }
+
+    /**
+     * Get all comments.
+     *
+     * @param $n
+     * @return mixed
+     */
+    public function all($n)
+    {
+        return $this->model->orderBy('created_at', 'desc')->paginate($n);
+    }
 }
