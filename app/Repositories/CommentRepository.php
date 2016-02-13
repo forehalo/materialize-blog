@@ -82,4 +82,18 @@ class CommentRepository
     {
         return $this->model->orderBy('created_at', 'desc')->paginate($n);
     }
+
+    /**
+     * Toggle comment column status.
+     *
+     * @param $id
+     * @param $column
+     * @param $value
+     */
+    public function toggleStatus($id, $column, $value)
+    {
+        $comment = $this->model->find($id);
+        $comment->{$column} = $value == 'true';
+        $comment->update();
+    }
 }

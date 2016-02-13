@@ -39,6 +39,8 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('dashboard', 'AdminController@index');
         Route::get('posts/admin', 'BlogController@backIndex');
         Route::put('posts/{id}/publish', 'BlogController@publish');
+        Route::put('comments/{id}/valid', 'CommentController@valid');
+        Route::put('comments/{id}/seen', 'CommentController@seen');
         Route::get('logout', 'Auth\AuthController@getLogout');
     });
 

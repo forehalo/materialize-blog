@@ -85,4 +85,32 @@ class CommentController extends Controller
     {
         //
     }
+
+    /**
+     * Toggle comment valid status.
+     *
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function valid(Request $request, $id)
+    {
+        $this->comment->toggleStatus($id, 'valid', $request->input('valid'));
+
+        return response()->json();
+    }
+
+    /**
+     * Toggle comment seen status.
+     *
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function seen(Request $request, $id)
+    {
+        $this->comment->toggleStatus($id, 'seen', $request->input('seen'));
+
+        return response()->json();
+    }
 }

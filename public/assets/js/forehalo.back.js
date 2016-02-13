@@ -2,6 +2,7 @@ $(function(){
     $(".button-collapse").sideNav();
 
     $(':checkbox').on('change', function () {
+        var part = $('meta[name="page"]').attr('content');
         var id = $(this).attr('value');
         var name = $(this).attr('name');
         var self = $(this);
@@ -13,7 +14,7 @@ $(function(){
         self.parent().append('<i class="material-icons mi-refresh">refresh</i>');
 
         $.ajax({
-            url: '/posts/' + id + '/' + name,
+            url: '/' + part + '/' + id + '/' + name,
             type: 'put',
             data: '_token=' + token + '&' + name + '=' + this.checked
         }).done(function () {
