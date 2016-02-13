@@ -114,7 +114,7 @@ class PostRepository
     {
         $post = $this->model->find($id);
 
-        $post->published = $input['published'] == 'true';
+        $post->published = $input['publish'] == 'true';
 
         $post->update();
     }
