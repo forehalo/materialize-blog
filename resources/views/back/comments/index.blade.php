@@ -29,8 +29,8 @@
                                     <td>{!! $comment->name !!}</td>
                                     <td>{!! substr($comment->created_at, 0, 10) !!}</td>
                                     <td>{!! $comment->post->title !!}</td>
-                                    <td>{!! checkbox($comment->valid, ['name' => 'valid', 'value' => $comment->id, 'class' => 'filled-in']) !!}</td>
-                                    <td>{!! checkbox($comment->seen, ['name' => 'seen', 'value' => $comment->id, 'class' => 'filled-in']) !!}</td>
+                                    <td>{!! checkbox($comment->valid, ['name' => 'valid', 'value' => $comment->id, 'class' => 'filled-in put-chk']) !!}</td>
+                                    <td>{!! checkbox($comment->seen, ['name' => 'seen', 'value' => $comment->id, 'class' => 'filled-in put-chk']) !!}</td>
                                     <td>
                                         {!! Form::open(['method' => 'delete', 'url' => '/comments/' . $comment->id]) !!}
                                         <button type="submit" class="btn btn-danger">Destroy</button>

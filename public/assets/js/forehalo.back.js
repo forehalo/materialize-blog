@@ -1,7 +1,7 @@
 $(function(){
     $(".button-collapse").sideNav();
 
-    $(':checkbox').on('change', function () {
+    $(':checkbox.put-chk').on('change', function () {
         var part = $('meta[name="page"]').attr('content');
         var id = $(this).attr('value');
         var name = $(this).attr('name');

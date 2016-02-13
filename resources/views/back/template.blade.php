@@ -30,6 +30,7 @@
 {!! Html::script('assets/js/materialize.min.js') !!}
 {!! Html::script('assets/js/init.js') !!}
 {!! Html::script('assets/js/marked.min.js') !!}
+{!! Html::script('assets/js/prism.js') !!}
 {!! Html::script('assets/js/forehalo.back.js') !!}
 @yield('script')
 </body>

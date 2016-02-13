@@ -31,6 +31,9 @@
                             </a>
                         </label>
                     </div>
+                    <div id="preview-modal" class="modal">
+                        <div class="modal-content markdown-body"></div>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12 m12 l3">
@@ -51,7 +54,6 @@
                 </div>
             {!! Form::close() !!}
         </div>
-
     </div>
 @stop
 
@@ -62,6 +64,16 @@
         $(function () {
             $(document).on('keyup', '#slug', function () {
                 $('label[for="slug"]').html(baseUrl + $(this).val());
+            });
+
+            $('.btn-preview').on('click', function(){
+                var content = marked($('#content').val());
+                var body = $('.markdown-body');
+
+                body.children().remove();
+                body.append(content);
+                Prism.highlightAll();
+                $('#preview-modal').openModal();
             });
         });
     </script>

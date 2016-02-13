@@ -28,7 +28,7 @@
                     <tr>
                         <td>{!! $post->title !!}</td>
                         <td>{!! substr($post->created_at, 0, 10) !!}</td>
-                        <td>{!! checkbox($post->published, ['name' => 'publish', 'value' => $post->id, 'class' => 'filled-in']) !!}</td>
+                        <td>{!! checkbox($post->published, ['name' => 'publish', 'value' => $post->id, 'class' => 'filled-in put-chk']) !!}</td>
                         <td><a href="{!! url('/posts/' . $post->slug) !!}" class="btn btn-success">See</a></td>
                         <td><a href="{!! url('/posts/' . $post->id . '/edit') !!}" class="btn btn-warning">Edit</a></td>
                         <td>
