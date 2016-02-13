@@ -19,7 +19,7 @@
                 <tr>
                     <th>Title</th>
                     <th>Date</th>
-                    <th>Published</th>
+                    <th>Publish</th>
                     <th>Operation</th>
                 </tr>
                 </thead>
@@ -28,7 +28,7 @@
                     <tr>
                         <td>{!! $post->title !!}</td>
                         <td>{!! substr($post->created_at, 0, 10) !!}</td>
-                        <td>{!! publishedCheckbox($post) !!}</td>
+                        <td>{!! checkbox($post->published, ['name' => 'publish', 'value' => $post->id, 'class' => 'filled-in']) !!}</td>
                         <td><a href="{!! url('/posts/' . $post->slug) !!}" class="btn btn-success">See</a></td>
                         <td><a href="{!! url('/posts/' . $post->id . '/edit') !!}" class="btn btn-warning">Edit</a></td>
                         <td>
@@ -47,34 +47,6 @@
 
 @section('script')
     <script>
-        $(function () {
-            $(document).on('change', ':checkbox', function () {
-                var id = $(this).attr('id').substr(3);
-                var self = $(this);
-                var label = self.parent().children('label');
-                var token = $('input[name="_token"]').val();
-
-                self.hide();
-                label.hide();
-                self.parent().append('<i class="material-icons mi-refresh">refresh</i>');
-
-                $.ajax({
-                    url: '/posts/' + id + '/publish',
-                    type: 'put',
-                    data: '_token=' + token + '&published=' + this.checked
-                }).done(function () {
-                    $('.mi-refresh').remove();
-                    self.show();
-                    label.html(label.html() == 'NO' ? 'YES' : 'NO').show();
-                }).fail(function () {
-                    $('.mi-refresh').remove();
-                    self.show().prop('checked', self.is(':checked') ? null : 'checked');
-                    label.show();
-                    Materialize.toast('Toggle failed', 3000);
-                });
-            });
-        });
-
         @if(session('ok'))
             Materialize.toast('{!! session('ok') !!}', 3000);
         @endif
