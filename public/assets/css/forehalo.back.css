@@ -54,7 +54,7 @@ nav {
     text-align: right;
     line-height: 30px;
 }
-.card-action{
+.dashboard .card-action{
     padding: 3px 3px 0 3px;
     height: 24px;
 }
