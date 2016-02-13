@@ -22,7 +22,7 @@ class CreateCommentsTable extends Migration
             $table->string('blog');
             $table->text('content');
             $table->boolean('seen')->default(0);
-            $table->boolean('published')->default(1);
+            $table->boolean('valid')->default(1);
             $table->nullableTimestamps();
 
             $table->foreign('post_id')
