@@ -125,7 +125,7 @@ class BlogController extends Controller
     public function comments(Request $request, $id)
     {
         $post = $this->blog->getByColumn($id);
-        $comments = $post->comments()->orderBy('created_at', 'desc')->get();
+        $comments = $post->comments()->whereValid(1)->orderBy('created_at', 'desc')->get();
 
         if ($request->ajax()) {
             return response()->json($comments);
