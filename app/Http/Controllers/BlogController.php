@@ -225,7 +225,7 @@ class BlogController extends Controller
     {
         $this->blog->destroy($id);
 
-        return redirect('admin/posts')->with('ok', 'Delete post successfully.');
+        return back()->with('ok', 'Delete post successfully.');
     }
 
     /**
