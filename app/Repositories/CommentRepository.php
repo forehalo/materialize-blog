@@ -96,4 +96,11 @@ class CommentRepository
         $comment->{$column} = $value == 'true';
         $comment->update();
     }
+
+    public function destroy($id)
+    {
+        $comment = $this->getById($id);
+
+        $comment->delete();
+    }
 }

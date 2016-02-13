@@ -48,3 +48,10 @@
         </div>
     </div>
 @stop
+@section('script')
+    <script>
+        @if(session('ok'))
+            Materialize.toast('{!! session('ok') !!}', 3000);
+        @endif
+    </script>
+@stop

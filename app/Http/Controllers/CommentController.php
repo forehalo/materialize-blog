@@ -83,7 +83,9 @@ class CommentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->comment->destroy($id);
+
+        return back()->with('ok', 'Delete comment successfully');
     }
 
     /**
