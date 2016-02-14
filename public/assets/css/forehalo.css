@@ -232,11 +232,13 @@ ul.nav-items {
     float: left;
     display: inline-block;
     vertical-align: middle;
-    width: 160px;
+    width: 50%;
 }
 
 .captcha-img {
     box-sizing: inherit;
     height: 3rem;
+    width: 50%;
+    max-width: 160px;
     line-height: 3rem;
 }

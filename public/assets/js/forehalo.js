@@ -147,7 +147,7 @@ $(function () {
         });
     });
 
-    $('.captcha-img > img').on('click', function () {
+    $('.captcha-img').on('click', function () {
         $(this).attr("src", '/captcha?' + Math.random());
     });
 });

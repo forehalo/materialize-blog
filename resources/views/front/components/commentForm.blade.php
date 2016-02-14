@@ -18,7 +18,7 @@
         {!! Form::text('captcha', '', ['class' => 'captcha validate', 'id' => 'captcha' . $id]) !!}
         <label for="captcha{!! $id !!}"><i class="material-icons">security</i>captcha</label>
     </div>
-    <div  class="captcha-img"><img src="{!! url('/captcha') !!}" alt=""/></div>
+    <img src="{!! url('/captcha') !!}" alt="" class="captcha-img"/>
 </div>
 <div class="input-field col s12 m5 l6">
     <button class="btn waves-effect blue" type="submit">submit <i class="material-icons right">send</i></button>
