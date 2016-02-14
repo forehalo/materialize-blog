@@ -7,14 +7,8 @@
         <div class="card-panel">
             @yield('form-header')
                 <div class="row">
-                    <div class="input-field col s10">
-                        {!! Form::text('title', old('title'),['id' => 'title', 'class' => 'validate']) !!}
-                        <label for="title">Title</label>
-                    </div>
-                    <div class="input-field col s10">
-                        {!! Form::text('slug', old('slug'), ['id' => 'slug', 'class' => 'validate']) !!}
-                        <label for="slug">link: http://{!! config('blog.url') !!}/posts/</label>
-                    </div>
+                    {!! formText('s10', 'title', 'title', $errors, 'Title') !!}
+                    {!! formText('s10', 'slug', 'slug', $errors, 'link: http://' . config('blog.url') . '/posts/') !!}
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
@@ -36,14 +30,8 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-field col s12 m12 l3">
-                        {!! Form::text('category', old('category'),['id' => 'category', 'class' => 'validate']) !!}
-                        <label for="category">Category</label>
-                    </div>
-                    <div class="input-field col s12 m12 l9">
-                        {!! Form::text('tags', old('tags'), ['id' => 'tags', 'class' => 'validate']) !!}
-                        <label for="tags">Tags, separated by commas(no space)</label>
-                    </div>
+                    {!! formText('s12 l3', 'category', 'category', $errors, 'Category') !!}
+                    {!! formText('s12 l9', 'tags', 'tags', $errors, 'Tags, separated by commas(no space)') !!}
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
