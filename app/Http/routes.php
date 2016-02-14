@@ -64,6 +64,9 @@ Route::group(['middleware' => ['web']], function () {
         'except' => ['create', 'show', 'edit','update']
     ]);
 
+    // Captcha
+    Route::get('captcha', 'Controller@captcha');
+
 
 
     Route::get('404', function () {
@@ -71,6 +74,6 @@ Route::group(['middleware' => ['web']], function () {
     });
 
     Route::get('foo', function(){
-        return preg_match("|^(posts/)([\d]+)(/edit)$|", 'posts/56/edit');
+        
     });
 });

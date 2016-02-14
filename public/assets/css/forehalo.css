@@ -223,3 +223,20 @@ ul.nav-items {
     margin: 0px;
     padding: 20px;
 }
+
+.captcha-field {
+    position: relative;
+}
+
+.captcha-input {
+    float: left;
+    display: inline-block;
+    vertical-align: middle;
+    width: 160px;
+}
+
+.captcha-img {
+    box-sizing: inherit;
+    height: 3rem;
+    line-height: 3rem;
+}
