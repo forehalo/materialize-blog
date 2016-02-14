@@ -52,33 +52,34 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->all();
-        $validator = Validator::make($input, [
+        $inputs = $request->all();
+        $validator = Validator::make($inputs, [
             'post_id' => 'required|numeric',
-            'slug' => 'required|max:100|exists:posts,slug,id,' . $input['post_id'],
+            'slug' => 'required|max:100|exists:posts,slug,id,' . $inputs['post_id'],
             'parent' => 'required|numeric',
             'name' => 'required|max:30',
             'email' => 'required|email|max:100',
             'blog' => 'required|url|max:100',
-            'content' => 'required'
+            'content' => 'required',
+            'captcha' => 'required|min:4|max:4'
         ]);
 
-        if($validator->fails()){
-            return redirect('/posts/' . $input['slug'] . '#comment-form')
-                    ->withErrors($validator, 'comment')
-                    ->withInput($input);
+        if ($validator->fails() || $inputs['captcha'] !== session('captcha')) {
+            return redirect('/posts/' . $inputs['slug'] . '#comment-form')
+                ->withErrors($validator, 'comment')
+                ->withInput($inputs);
         }
 
 
-        $this->comment->store($input);
+        $this->comment->store($inputs);
 
-        return redirect('/posts/' . $input['slug'] . '#comments')->with('ok', 'comment successfully.');
+        return redirect('/posts/' . $inputs['slug'] . '#comments')->with('ok', 'comment successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

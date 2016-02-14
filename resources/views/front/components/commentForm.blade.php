@@ -21,12 +21,20 @@
     {!! Form::textarea('content', old('content'), ['id' => 'content' . $id, 'class' => 'materialize-textarea']) !!}
     <label for="content{!! $id !!}"><i class="material-icons">comment</i>content</label>
 </div>
+<div class="input-field captcha-field col s12">
+    <div class="captcha-input">
+        {!! Form::text('captcha', '', ['class' => 'captcha', 'id' => 'captcha' . $id]) !!}
+        <label for="captcha{!! $id !!}"><i class="material-icons">web</i>captcha</label>
+    </div>
+    <div  class="captcha-img"><img src="{!! url('/captcha') !!}" alt=""/></div>
+</div>
 <div class="input-field col s12 m5 l6">
     <button class="btn waves-effect blue" type="submit">submit <i class="material-icons right">send</i></button>
 </div>
 <div class="input-field col s12 m7 l6">
     @if($viewButton == true)
-        <a href="{!! url('posts/' . $slug . '#comments') !!}" class="btn waves-effect green">View Comments <i class="material-icons right">cloud</i></a>
+        <a href="{!! url('posts/' . $slug . '#comments') !!}" class="btn waves-effect green">View Comments <i
+                    class="material-icons right">cloud</i></a>
     @endif
 </div>
 {!! Form::close() !!}
