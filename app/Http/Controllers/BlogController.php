@@ -165,7 +165,7 @@ class BlogController extends Controller
     {
         $this->blog->store($request->all());
 
-        return redirect('admin/posts')->with('ok', 'Create post successfully');
+        return redirect('posts/admin')->with('ok', 'Create post successfully');
     }
 
     /**
@@ -212,7 +212,7 @@ class BlogController extends Controller
     {
         $this->blog->update($request->all(), $id);
 
-        return redirect('admin/posts')->with('ok', 'Update post successfully');
+        return redirect('posts/admin')->with('ok', 'Update post successfully');
     }
 
     /**
