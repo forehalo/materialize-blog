@@ -13,7 +13,7 @@
         <h4 class="page-header">Post</h4>
         <div class="divider"></div>
 
-        <div class="col l12">
+        <div class="card-panel">
             <table class="bordered striped">
                 <thead>
                 <tr>

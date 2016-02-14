@@ -4,7 +4,7 @@
     <div class="container">
         <h4 class="page-header">Create New Post</h4>
         <div class="divider"></div>
-        <div class="row">
+        <div class="card-panel">
             @yield('form-header')
                 <div class="row">
                     <div class="input-field col s10">
