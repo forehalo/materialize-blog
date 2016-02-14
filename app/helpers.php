@@ -85,3 +85,12 @@ if (!function_exists('formText')) {
         );
     }
 }
+
+if (!function_exists('destroy')) {
+    function destroy($message) {
+        return sprintf(
+            '<button type="submit" class="btn btn-danger" onclick="return confirm(\'%s\')">Destroy</button>',
+            $message
+        );
+    }
+}

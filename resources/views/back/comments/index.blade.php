@@ -33,7 +33,7 @@
                                     <td>{!! checkbox($comment->seen, ['name' => 'seen', 'value' => $comment->id, 'class' => 'filled-in put-chk']) !!}</td>
                                     <td>
                                         {!! Form::open(['method' => 'delete', 'url' => '/comments/' . $comment->id]) !!}
-                                        <button type="submit" class="btn btn-danger">Destroy</button>
+                                        {!! destroy('Really destroy this comment?') !!}
                                         {!! Form::close() !!}
                                     </td>
                                 </tr>

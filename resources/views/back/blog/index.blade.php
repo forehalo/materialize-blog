@@ -33,7 +33,7 @@
                         <td><a href="{!! url('/posts/' . $post->id . '/edit') !!}" class="btn btn-warning">Edit</a></td>
                         <td>
                             {!! Form::open(['method' => 'delete', 'url' => '/posts/' . $post->id]) !!}
-                            <button type="submit" class="btn btn-danger">Destroy</button>
+                            {!! destroy('Really destroy this post?') !!}
                             {!! Form::close() !!}
                         </td>
                     </tr>
