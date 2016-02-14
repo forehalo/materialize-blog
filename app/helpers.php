@@ -46,11 +46,12 @@ if (!function_exists('checkbox')) {
     function checkbox($checked, array $attributes = [])
     {
         $id = $attributes['name'] . $attributes['value'];
-        return sprintf('<input type="checkbox" %s %s %s/><label for="' .$id  . '"></label>',
-                        'id="' . $id . '"',
-                        domAttrGenerator($attributes),
-                        $checked ? 'checked' : ''
-                      );
+        return sprintf(
+            '<input type="checkbox" %s %s %s/><label for="' . $id . '"></label>',
+            'id="' . $id . '"',
+            domAttrGenerator($attributes),
+            $checked ? 'checked' : ''
+        );
     }
 }
 
@@ -63,5 +64,24 @@ if (!function_exists('domAttrGenerator')) {
             $attr .= $key . '="' . $value . '" ';
         }
         return $attr;
+    }
+}
+
+if (!function_exists('formText')) {
+    function formText($col, $name, $id, $errors, $label = '', $icon = '', $memory = true)
+    {
+        return sprintf('
+            <div class="input-field col %s">
+                <input type="text" name="%s" id="%s" class="validate %s" value="%s"/>
+                <label for="%s">%s</label>
+            </div>',
+            $col,
+            $name,
+            $id,
+            $errors->first($name) ? 'invalid' : '',
+            $memory ? old($name) : '',
+            $id,
+            $label ? '<i class="material-icons">' . $icon . '</i>' . $label : ''
+        );
     }
 }

@@ -5,26 +5,18 @@
 {!! Form::hidden('post_id', $id) !!}
 {!! Form::hidden('slug', $slug) !!}
 {!! Form::hidden('parent', 0) !!}
-<div class="input-field col s12 l4">
-    {!! Form::text('name', old('name'), ['id' => 'name' . $id, 'class' => $errors->comment->first('name') ? 'validate invalid' : 'validate' ]) !!}
-    <label for="name{!! $id !!}"><i class="material-icons">perm_identity</i> Name</label>
-</div>
-<div class="input-field col s12 l4">
-    {!! Form::email('email', old('email'), ['id' => 'email' . $id, 'class' => $errors->comment->first('email') ? 'validate invalid' : 'validate' ]) !!}
-    <label for="email{!! $id !!}"><i class="material-icons">email</i> Email(invisible)</label>
-</div>
-<div class="input-field col s12 l4">
-    {!! Form::url('blog', old('blog'), ['id' => 'blog' . $id, 'class' => $errors->comment->first('blog') ? 'validate invalid' : 'validate' ]) !!}
-    <label for="blog{!! $id !!}"><i class="material-icons">web</i> Website(http://...)</label>
-</div>
+
+{!! formText('s12 l4', 'name', 'name' . $id, $errors, 'Name', 'person') !!}
+{!! formText('s12 l4', 'email', 'email' . $id, $errors, 'Email(invisible)', 'email') !!}
+{!! formText('s12 l4', 'blog', 'blog' . $id, $errors, 'Website(http://...)', 'web') !!}
 <div class="input-field col s12">
     {!! Form::textarea('content', old('content'), ['id' => 'content' . $id, 'class' => 'materialize-textarea']) !!}
-    <label for="content{!! $id !!}"><i class="material-icons">comment</i>content</label>
+    <label for="content{!! $id !!}"><i class="material-icons">comment</i>content (markdown)</label>
 </div>
 <div class="input-field captcha-field col s12">
     <div class="captcha-input">
-        {!! Form::text('captcha', '', ['class' => 'captcha', 'id' => 'captcha' . $id]) !!}
-        <label for="captcha{!! $id !!}"><i class="material-icons">web</i>captcha</label>
+        {!! Form::text('captcha', '', ['class' => 'captcha validate', 'id' => 'captcha' . $id]) !!}
+        <label for="captcha{!! $id !!}"><i class="material-icons">security</i>captcha</label>
     </div>
     <div  class="captcha-img"><img src="{!! url('/captcha') !!}" alt=""/></div>
 </div>

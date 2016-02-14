@@ -140,10 +140,14 @@ $(function () {
             type: 'put',
             data: '_token=' + token
         }).done(function () {
-            btn.hide().parent().append('<a href="javascript:void(0)"><i class="material-icons">favorite</i><span>' + favoriteCount +'</span></a>');
+            btn.hide().parent().append('<a href="javascript:void(0)"><i class="material-icons">favorite</i><span>' + favoriteCount + '</span></a>');
             Materialize.toast('Thanks for your encouragement!', 3000);
-        }).fail(function(){
+        }).fail(function () {
             Materialize.toast('Cannot access now!', 3000);
         });
+    });
+
+    $('.captcha-img > img').on('click', function () {
+        $(this).attr("src", '/captcha?' + Math.random());
     });
 });

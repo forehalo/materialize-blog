@@ -66,7 +66,7 @@ class CommentController extends Controller
 
         if ($validator->fails() || $inputs['captcha'] !== session('captcha')) {
             return redirect('/posts/' . $inputs['slug'] . '#comment-form')
-                ->withErrors($validator, 'comment')
+                ->withErrors($validator)
                 ->withInput($inputs);
         }
 
