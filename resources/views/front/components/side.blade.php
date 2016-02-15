@@ -7,7 +7,7 @@
         <div class="divider"></div>
         <div class="card">
             <div class="card-image">
-                {!! html::image('assets/image/sample-1.jpg') !!}
+                {!! Html::image('assets/image/sample-1.jpg') !!}
                 <span class="card-title">{!! config('blog.card_title') !!}</span>
             </div>
             <div class="card-content">
