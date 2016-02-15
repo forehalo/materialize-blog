@@ -92,7 +92,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $posts = $this->blog->all(config('blog.pagination'));
+        $posts = $this->blog->all(setting('pagination'));
         $links = $posts->links();
 
         return compact('posts', 'links');

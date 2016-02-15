@@ -1,6 +1,6 @@
 @extends('front.template')
 @section('title')
-    <title>{!! config('blog.title') !!}</title>
+    <title>{!! setting('title') !!}</title>
 @stop
 
 @section('main')

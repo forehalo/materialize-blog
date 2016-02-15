@@ -68,7 +68,7 @@ if (!function_exists('domAttrGenerator')) {
 }
 
 if (!function_exists('formText')) {
-    function formText($col, $name, $id, $errors, $label = '', $icon = '', $memory = true)
+    function formText($col, $name, $id, $errors, $label = '', $icon = '', $memory = true, $value = '')
     {
         return sprintf('
             <div class="input-field col %s">
@@ -79,7 +79,7 @@ if (!function_exists('formText')) {
             $name,
             $id,
             $errors->first($name) ? 'invalid' : '',
-            $memory ? old($name) : '',
+            $memory ? (old($name) ? old($name) : $value) : $value,
             $id,
             $label ? '<i class="material-icons">' . $icon . '</i>' . $label : ''
         );
@@ -87,10 +87,26 @@ if (!function_exists('formText')) {
 }
 
 if (!function_exists('destroy')) {
-    function destroy($message) {
+    function destroy($message)
+    {
         return sprintf(
             '<button type="submit" class="btn btn-danger" onclick="return confirm(\'%s\')">Destroy</button>',
             $message
         );
+    }
+}
+
+if (!function_exists('setting')) {
+    function setting($key = null, $value = null)
+    {
+        if(is_null($key)) {
+            return app('setting');
+        }
+
+        if(is_array($key)) {
+            return app('setting')->set($key);
+        }
+
+        return app('setting')->get($key, $value);
     }
 }

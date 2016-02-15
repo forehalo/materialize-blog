@@ -8,7 +8,7 @@
             @yield('form-header')
                 <div class="row">
                     {!! formText('s10', 'title', 'title', $errors, 'Title') !!}
-                    {!! formText('s10', 'slug', 'slug', $errors, 'link: http://' . config('blog.url') . '/posts/') !!}
+                    {!! formText('s10', 'slug', 'slug', $errors, 'link: http://' . setting('url') . '/posts/') !!}
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
@@ -47,7 +47,7 @@
 
 @section('script')
     <script>
-        var baseUrl = 'link: http://{!! config('blog.url') !!}/posts/';
+        var baseUrl = 'link: http://{!! setting('url') !!}/posts/';
 
         $(function () {
             $(document).on('keyup', '#slug', function () {
