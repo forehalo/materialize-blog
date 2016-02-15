@@ -12,7 +12,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Basic Information
+    | Profile
     |--------------------------------------------------------------------------
     */
     'name' => 'Forehalo',
@@ -49,8 +49,8 @@ return [
 
     'email'     => 'forehalo@gmail.com',
 
-    'github'    => 'https://github.com/forehalo',
+    'github'    => 'github.com/forehalo',
 
-    'weibo'     => 'http://weibo.com/liuyiAaron',
+    'weibo'     => 'weibo.com/liuyiAaron',
 
 ];

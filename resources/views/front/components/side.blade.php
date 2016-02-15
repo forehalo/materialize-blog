@@ -15,8 +15,8 @@
             </div>
             <div class="card-action">
                 <a href="mailto:{!! config('blog.email') !!}" class="btn btn-flat waves-effect">Email</a>
-                <a href="{!! config('blog.github') !!}" class="btn btn-flat waves-effect" target="_blank">Github</a>
-                <a href="{!! config('blog.weibo') !!}" class="btn btn-flat waves-effect" target="_blank">Weibo</a>
+                <a href="{!! 'http://' . config('blog.github') !!}" class="btn btn-flat waves-effect" target="_blank">Github</a>
+                <a href="{!! 'http://' . config('blog.weibo') !!}" class="btn btn-flat waves-effect" target="_blank">Weibo</a>
             </div>
         </div>
         <div class="divider"></div>
