@@ -37,10 +37,14 @@ Route::group(['middleware' => ['web']], function () {
     // Dashboard
     Route::group(['middleware' => 'auth'], function () {
         Route::get('dashboard', 'AdminController@index');
+        // Posts admin
         Route::get('posts/admin', 'BlogController@backIndex');
         Route::put('posts/{id}/publish', 'BlogController@publish');
+        // Comments admin
         Route::put('comments/{id}/valid', 'CommentController@valid');
         Route::put('comments/{id}/seen', 'CommentController@seen');
+        // Settings admin
+        Route::get('settings', 'AdminController@setting');
         Route::get('logout', 'Auth\AuthController@getLogout');
     });
 

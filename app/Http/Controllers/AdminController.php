@@ -23,4 +23,14 @@ class AdminController extends Controller
         $commentsCount = Comment::whereSeen(0)->count();
         return view('back.index', compact('postsCount', 'commentsCount'));
     }
+
+    /**
+     * Setting page.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function setting()
+    {
+        return view('back.settings.setting');
+    }
 }
