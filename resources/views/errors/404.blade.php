@@ -4,6 +4,11 @@
 <head>
     {!! Html::style('assets/css/materialize.min.css', ['media' => 'screen,projection']) !!}
     {!! Html::favicon('assets/image/favicon.ico') !!}
+    <style>
+        body {
+            background: url({!! url('assets/image/bg.jpg') !!}) #DFDFDF;
+        }
+    </style>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <title>404</title>
 </head>

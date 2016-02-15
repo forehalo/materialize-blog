@@ -1,3 +1,7 @@
+body {
+    background: url("../image/bg.jpg") #DFDFDF;
+}
+
 .container {
     width: 95%;
 }
