@@ -1,11 +1,11 @@
 @extends('back.template')
 @section('title')
-    <title>个人博客后台管理</title>
+    <title>Dashboard</title>
 @stop
 
 @section('main')
     <div class="container">
-        <h4>Dashboard</h4>
+        <h4>Items</h4>
         <div class="divider"></div>
         <div class="row white-text dashboard">
             <div class="col s12 m6 l4">

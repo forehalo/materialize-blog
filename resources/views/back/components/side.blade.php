@@ -19,6 +19,6 @@
     <li class="bold {!! classActivePath('settings') !!}"><a href="{!! url('/settings') !!}" class="waves-effect">Settings<i class="material-icons left">settings</i></a></li>
 </ul>
 @if(!(Request::is('posts/create') || Request::is('posts/*/edit')))
-<a href="{!! url('posts/create') !!}" class="btn-floating btn-large waves-effect waves-light blue fixed"><i
+<a href="{!! url('posts/create') !!}" class="btn-floating btn-large waves-effect waves-light blue fixed tooltipped" data-position="left" data-delay="50" data-tooltip="Create"><i
             class="material-icons">mode_edit</i></a>
     @endif
