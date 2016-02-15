@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PostTagTableSeeder::class);
         $this->call(CommentTableSeeder::class);
         $this->call(LinkTableSeeder::class);
+        $this->call(SettingTableSeeder::class);
     }
 }
 
@@ -232,5 +233,57 @@ class LinkTableSeeder extends Seeder
             'name' => $faker->name,
             'link' => $faker->url
         ]);
+    }
+}
+
+class SettingTableSeeder extends Seeder
+{
+    public function run()
+    {
+        DB::table('settings')->create([
+            'key' => 'title',
+            'value' => 'My Blog'
+        ]);
+        DB::table('settings')->create([
+            'key' => 'name',
+            'value' => 'My Name'
+        ]);
+        DB::table('settings')->create([
+            'key' => 'card_title',
+            'value' => 'Card Title'
+        ]);
+        DB::table('settings')->create([
+            'key' => 'notice',
+            'value' => 'Simple description of me'
+        ]);
+        DB::table('settings')->create([
+            'key' => 'description',
+            'value' => 'Blog Description'
+        ]);
+        DB::table('settings')->create([
+            'key' => 'url',
+            'value' => 'localhost'
+        ]);
+        DB::table('settings')->create([
+            'key' => 'pagination',
+            'value' => '5'
+        ]);
+        DB::table('settings')->create([
+            'key' => 'hot_tags_count',
+            'value' => '10'
+        ]);
+        DB::table('settings')->create([
+            'key' => 'email',
+            'value' => 'mail@example.com'
+        ]);
+        DB::table('settings')->create([
+            'key' => 'github',
+            'value' => 'github.com/forehalo'
+        ]);
+        DB::table('settings')->create([
+            'key' => 'weibo',
+            'value' => 'weibo.com/liuyiAaron'
+        ]);
+
     }
 }
