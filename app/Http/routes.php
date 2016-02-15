@@ -45,6 +45,10 @@ Route::group(['middleware' => ['web']], function () {
         Route::put('comments/{id}/seen', 'CommentController@seen');
         // Settings admin
         Route::get('settings', 'AdminController@setting');
+        Route::post('settings/profile', 'AdminController@profile');
+        Route::post('settings/view', 'AdminController@view');
+        Route::post('settings/link', 'AdminController@link');
+
         Route::get('logout', 'Auth\AuthController@getLogout');
     });
 
