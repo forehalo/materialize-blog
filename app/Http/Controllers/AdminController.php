@@ -59,6 +59,6 @@ class AdminController extends Controller
     public function profile(ProfileRequest $request)
     {
         $this->admin->updateProfile($request->all());
-        return back();
+        return back()->with('ok', 'Change settings successfully');
     }
 }
