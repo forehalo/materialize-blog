@@ -9,7 +9,8 @@
         "laravel/framework": "5.2.*",
         "predis/predis": "~1.0",
         "laravelcollective/html": "^5.2",
-        "erusev/parsedown": "^1.6"
+        "erusev/parsedown": "^1.6",
+        "roumen/sitemap": "^2.6"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
