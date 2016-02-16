@@ -7,7 +7,7 @@
         <h4>Settings</h4>
         <div class="divider"></div>
         <div class="row">
-            <div class="col s12 m12 l6">
+            <div class="col s12 l6">
                 <ul class="tabs">
                     <li class="tab">
                         <a href="#profile" class="active">profile</a>
@@ -21,9 +21,11 @@
                 </ul>
             </div>
         </div>
+        <div class="row">
         @include('back.settings.profile')
         @include('back.settings.view')
         @include('back.settings.link')
+        </div>
     </div>
 @stop
 @section('script')
