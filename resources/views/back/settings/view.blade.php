@@ -15,7 +15,7 @@
             <span class="card-title">Visibility</span>
             <div class="row">
                 {!! formText('s12', 'hot_tags_count', 'tags', $errors, 'Hot tags count shown', '', true, $config['hot_tags_count']) !!}
-                {!! Form::submit('update view', ['class' => 'btn wave-effect']) !!}
+                {!! Form::button('update view', ['type' => 'submit', 'class' => 'btn waves-effect']) !!}
             </div>
         </div>
     </div>

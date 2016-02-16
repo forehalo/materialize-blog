@@ -24,7 +24,7 @@
             <div class="row">
                 {!! formText('s12', 'description', 'description', $errors, 'site description', 'description', true, $config['description']) !!}
                 {!! formText('s12', 'url', 'url', $errors, 'url', 'web', true, $config['url']) !!}
-                {!! Form::submit('update profile', ['class' => 'btn wave-effect']) !!}
+                {!! Form::button('update profile', ['type' => 'submit', 'class' => 'btn waves-effect']) !!}
             </div>
         </div>
     </div>
