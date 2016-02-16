@@ -6,6 +6,8 @@ use App\Http\Requests\Request;
 
 class ProfileRequest extends Request
 {
+    protected $redirect = '/settings#profile';
+
     /**
      * Determine if the user is authorized to make this request.
      *

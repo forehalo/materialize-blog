@@ -6,6 +6,8 @@ use App\Http\Requests\Request;
 
 class ViewRequest extends Request
 {
+    protected $redirect = '/settings#view';
+
     /**
      * Determine if the user is authorized to make this request.
      *

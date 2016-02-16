@@ -6,6 +6,8 @@ use App\Http\Requests\Request;
 
 class LinkRequest extends Request
 {
+    protected $redirect = '/settings#link';
+
     /**
      * Determine if the user is authorized to make this request.
      *

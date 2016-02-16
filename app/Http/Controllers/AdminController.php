@@ -55,26 +55,41 @@ class AdminController extends Controller
     }
 
     /**
+     * Update profile.
+     *
      * @param ProfileRequest $request
      * @return $this
      */
     public function profile(ProfileRequest $request)
     {
         $this->admin->update($request->all());
-        return back()->with('ok', 'Update profile settings successfully');
+        return redirect('/settings#profile')->with('ok', 'Update profile settings successfully');
     }
 
+    /**
+     * Update view settings.
+     *
+     * @param ViewRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function view(ViewRequest $request)
     {
         $this->admin->update($request->all());
 
-        return back()->with('ok', 'Update view settings successfully');
+        return redirect('/settings#view')->with('ok', 'Update view settings successfully');
     }
 
+    /**
+     * Update link settings.
+     *
+     * @param LinkRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function link(LinkRequest $request)
     {
         $this->admin->update($request->all());
 
-        return back()->with('ok', 'Update link settings successfully');
+        return redirect('/settings#link')->with('ok', 'Update link settings successfully');
+    }
     }
 }
