@@ -52,8 +52,8 @@ class Setting
             return $this->items;
         }
 
-        return key_exists($key, $this->changed) ? $this->changed[$key] : (
-        key_exists($key, $this->items) ? $this->items[$key] : $default
+        return array_key_exists($key, $this->changed) ? $this->changed[$key] : (
+        array_key_exists($key, $this->items) ? $this->items[$key] : $default
         );
     }
 
@@ -80,14 +80,14 @@ class Setting
             return;
         }
 
-        if(is_array($key)) {
+        if (is_array($key)) {
             foreach ($key as $k => $v) {
                 self::set($k, $v);
             }
-        }
-
-        if (key_exists($key, $this->changed)) {
-            $this->changed[$key] = $value;
+        } else {
+            if (array_key_exists($key, $this->items) && $this->items[$key] !== $value) {
+                $this->changed[$key] = $value;
+            }
         }
     }
 
