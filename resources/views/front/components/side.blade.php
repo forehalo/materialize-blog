@@ -26,7 +26,7 @@
         <div class="row">
             <div class="col m12 l12 top-tags">
                 @foreach($tags::select('id', 'name')
-                                ->take(10)
+                                ->take(setting('hot_tags_count'))
                                 ->orderBy('hot', 'desc')
                                 ->get() as $tag)
                     <a href="{!! url('/tags/'. $tag->id) !!}" class="btn waves-effect">{!! $tag->name !!}</a>

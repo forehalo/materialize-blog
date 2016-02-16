@@ -79,7 +79,7 @@ class BlogController extends Controller
      */
     public function backIndex()
     {
-        $posts = $this->blog->all(10, false);
+        $posts = $this->blog->all(setting('post_per_page_admin'), false);
         $links = $posts->links();
 
         return view('back.blog.index', compact('posts', 'links'));
@@ -92,7 +92,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $posts = $this->blog->all(setting('pagination'));
+        $posts = $this->blog->all(setting('post_per_page'));
         $links = $posts->links();
 
         return compact('posts', 'links');
