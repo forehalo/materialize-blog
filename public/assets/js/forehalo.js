@@ -150,4 +150,22 @@ $(function () {
     $('.captcha-img').on('click', function () {
         $(this).attr("src", '/captcha?' + Math.random());
     });
+
+    $('#search-btn').on('click', function () {
+        var nav = $('nav > .container');
+        var form = $('.search-form');
+        nav.children().fadeOut(0, function(){
+            form.show(function () {
+                form.find('input#search').focus();
+            })
+        });
+
+    });
+
+    $('#search').blur(function () {
+        var nav = $('nav > .container');
+        var form = $('.search-form');
+        form.hide();
+        nav.children().fadeIn();
+    });
 });

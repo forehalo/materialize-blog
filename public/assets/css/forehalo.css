@@ -10,7 +10,7 @@ main {
 }
 
 main div.container {
-    width: 90%;
+    width: 95%;
 }
 
 .collapsible-header {
@@ -241,4 +241,10 @@ ul.nav-items {
     width: 50%;
     max-width: 160px;
     line-height: 3rem;
+}
+
+#search-btn {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
 }

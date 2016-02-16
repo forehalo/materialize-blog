@@ -47,3 +47,7 @@
         </div>
     </div>
 </div>
+
+<a href="javascript:void(0)" class="btn btn-danger btn-floating fixed btn-large waves-effect red" id="search-btn">
+    <i class="material-icons">search</i>
+</a>

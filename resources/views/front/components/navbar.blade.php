@@ -33,9 +33,6 @@
                     </li>
                     <li><a href="{!! url('about') !!}" class="waves-effect waves-block">About<i
                                     class="material-icons left">perm_identity</i></a></li>
-                    <li>
-                        <a class=""><i class="material-icons">search</i></a>
-                    </li>
                 </ul>
 
                 <ul id="nav-mobile" class="side-nav">
@@ -78,14 +75,23 @@
                     <li>
                         {!! Form::open(['method' => 'get', 'url' => '/search']) !!}
                         <div class="input-field">
-                            <input name="key" id="search" type="search" required>
-                            <label for="search"><i class="material-icons">search</i></label>
+                            <input name="key" id="search-mobile" type="search" required>
+                            <label for="search-mobile"><i class="material-icons">search</i></label>
                             <i class="material-icons">close</i>
                         </div>
                         {!! Form::close() !!}
                     </li>
                 </ul>
             </div>
+        </div>
+        <div>
+            {!! Form::open(['method' => 'get', 'url' => '/search', 'style' => 'display: none;', 'class' => 'search-form']) !!}
+            <div class="input-field">
+                <input name="key" id="search" type="search" required>
+                <label for="search"><i class="material-icons">search</i></label>
+                <i class="material-icons" style="line-height: 45px">close</i>
+            </div>
+            {!! Form::close() !!}
         </div>
     </nav>
 </div>
