@@ -101,3 +101,9 @@ td {
     right: 20px;
     bottom: 20px;
 }
+
+.input-field label i.material-icons {
+    line-height: 22px;
+    position: relative;
+    top: 0.5rem;
+}

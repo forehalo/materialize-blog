@@ -21,12 +21,15 @@
                 </ul>
             </div>
         </div>
-        {{--<div class="card-panel">--}}
-            {{--<div class="row">--}}
-                @include('back.settings.profile')
-                @include('back.settings.view')
-                @include('back.settings.link')
-            {{--</div>--}}
-        {{--</div>--}}
+        @include('back.settings.profile')
+        @include('back.settings.view')
+        @include('back.settings.link')
     </div>
+@stop
+@section('script')
+    <script>
+        @if(session('ok'))
+            Materialize.toast('{!! session('ok') !!}', 3000);
+        @endif
+    </script>
 @stop
