@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SettingRequests\LinkRequest;
 use App\Http\Requests\SettingRequests\ProfileRequest;
 use App\Http\Requests\SettingRequests\ViewRequest;
 use App\Models\Post;
@@ -69,5 +70,11 @@ class AdminController extends Controller
 
         return back()->with('ok', 'Update view settings successfully');
     }
+
+    public function link(LinkRequest $request)
+    {
+        $this->admin->update($request->all());
+
+        return back()->with('ok', 'Update link settings successfully');
     }
 }
