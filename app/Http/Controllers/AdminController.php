@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfileRequest;
+use App\Http\Requests\SettingRequests\ProfileRequest;
+use App\Http\Requests\SettingRequests\ViewRequest;
 use App\Models\Post;
 use App\Models\Comment;
 use App\Repositories\AdminRepository;
@@ -58,7 +59,15 @@ class AdminController extends Controller
      */
     public function profile(ProfileRequest $request)
     {
-        $this->admin->updateProfile($request->all());
-        return back()->with('ok', 'Change settings successfully');
+        $this->admin->update($request->all());
+        return back()->with('ok', 'Update profile settings successfully');
+    }
+
+    public function view(ViewRequest $request)
+    {
+        $this->admin->update($request->all());
+
+        return back()->with('ok', 'Update view settings successfully');
+    }
     }
 }

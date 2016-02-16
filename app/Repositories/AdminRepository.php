@@ -21,10 +21,10 @@ class AdminRepository
         return $this->items;
     }
 
-    public function updateProfile($inputs)
+    public function update($inputs)
     {
         foreach ($inputs as $key => $value) {
-            setting()->set([$key => $value]);
+            setting()->set($key, $value);
         }
 
         setting()->update();
