@@ -27,6 +27,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/', 'BlogController@frontIndex');
     // Normal Index
     Route::get('posts', 'BlogController@normalIndex');
+    // Search
+    Route::get('search', 'BlogController@search');
 
     // Authentication
     Route::group(['middleware' => 'guest'], function () {

@@ -76,11 +76,13 @@
                     <li class="bold"><a href="{!! url('about') !!}" class="waves-effect waves-teal white-text">About <i
                                     class="material-icons left">perm_identity</i></a></li>
                     <li>
+                        {!! Form::open(['method' => 'get', 'url' => '/search']) !!}
                         <div class="input-field">
-                            <input id="search" type="search" required>
+                            <input name="key" id="search" type="search" required>
                             <label for="search"><i class="material-icons">search</i></label>
                             <i class="material-icons">close</i>
                         </div>
+                        {!! Form::close() !!}
                     </li>
                 </ul>
             </div>

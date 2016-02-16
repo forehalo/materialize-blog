@@ -241,4 +241,23 @@ class BlogController extends Controller
 
         return response()->json();
     }
+
+    /**
+     * Search in all posts.
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
+     */
+    public function search(Request $request)
+    {
+        $key = $request->query('key');
+        if (is_null($key)) {
+            return redirect('/');
+        }
+
+        $posts = $this->blog->search($key, setting('post_per_page'));
+        $links = $posts->links();
+
+        return view('front.posts.normalIndex', compact('posts', 'links'));
+    }
 }

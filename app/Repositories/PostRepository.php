@@ -237,5 +237,20 @@ class PostRepository
         $this->syncTags($post, $inputs['tags']);
     }
 
+    /**
+     * Search in all published posts.
+     *
+     * @param $key
+     * @param int $pagination
+     * @return mixed
+     */
+    public function search($key, $pagination = 10)
+    {
+        return $this->model->where('title', 'like', "%{$key}%")
+                    ->orWhere('body', 'like', "%{$key}%")
+                    ->wherePublished(true)
+                    ->paginate($pagination);
+    }
+
 
 }
