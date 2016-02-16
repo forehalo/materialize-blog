@@ -91,5 +91,21 @@ class AdminController extends Controller
 
         return redirect('/settings#link')->with('ok', 'Update link settings successfully');
     }
+
+    /**
+     * Update friend links.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     */
+    public function friend(Request $request)
+    {
+        $this->admin->updateFriend($request->all());
+
+        if($request->ajax()){
+            return response()->json();
+        }else{
+            return redirect('/settings#link')->with('ok', 'Add friend link successfully');
+        }
     }
 }

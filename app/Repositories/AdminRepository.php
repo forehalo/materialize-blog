@@ -1,4 +1,7 @@
 <?php namespace App\Repositories;
+
+use App\Models\Link;
+
 /**
  * Class AdminRepository.php
  * @package     App\Repositories
@@ -47,5 +50,24 @@ class AdminRepository
         }
 
         setting()->update();
+    }
+
+    /**
+     * Update friend link, new when don't exists.
+     *
+     * @param $inputs
+     */
+    public function updateFriend($inputs)
+    {
+        if (isset($inputs['id'])) {
+            $friend = Link::find($inputs['id']);
+        } else {
+            $friend = new Link();
+        }
+
+        $friend->name = $inputs['name'];
+        $friend->link = $inputs['link'];
+
+        $friend->save();
     }
 }
