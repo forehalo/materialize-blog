@@ -265,8 +265,16 @@ class SettingTableSeeder extends Seeder
             'value' => 'localhost'
         ]);
         DB::table('settings')->create([
-            'key' => 'pagination',
+            'key' => 'post_per_page',
             'value' => '5'
+        ]);
+        DB::table('settings')->create([
+            'key' => 'post_per_page_admin',
+            'value' => '5'
+        ]);
+        DB::table('settings')->create([
+            'key' => 'comment_per_page_admin',
+            'value' => '10'
         ]);
         DB::table('settings')->create([
             'key' => 'hot_tags_count',
