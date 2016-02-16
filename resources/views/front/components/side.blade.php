@@ -40,7 +40,7 @@
         <div class="friend-links col m12 l12">
             <ul>
                 @foreach($links::all() as $link)
-                    <li><a href="{!! $link->link !!}" class="btn btn-flat truncate"><i
+                    <li><a href="http://{!! $link->link !!}" class="btn btn-flat truncate"><i
                                     class="material-icons left black-text">face</i>{!! $link->name !!}</a></li>
                 @endforeach
             </ul>
