@@ -15,7 +15,7 @@
         </ul>
     </li>
     <li class="bold {!! classActivePath('comments') !!}"><a href="{!! url('/comments') !!}" class="waves-effect">Comments<i class="material-icons left">comment</i></a></li>
-    <li class="bold {!! classActivePath('messages') !!}"><a href="{!! url('/messages') !!}" class="waves-effect">Messages<i class="material-icons left">mail</i></a></li>
+{{--    <li class="bold {!! classActivePath('messages') !!}"><a href="{!! url('/messages') !!}" class="waves-effect">Messages<i class="material-icons left">mail</i></a></li>--}}
     <li class="bold {!! classActivePath('settings') !!}"><a href="{!! url('/settings') !!}" class="waves-effect">Settings<i class="material-icons left">settings</i></a></li>
 </ul>
 @if(!(Request::is('posts/create') || Request::is('posts/*/edit')))

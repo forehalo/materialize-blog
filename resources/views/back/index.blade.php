@@ -44,24 +44,24 @@
                     </a>
                 </div>
             </div>
-            <div class="col s12 m6 l4">
-                <div class="card-panel pink">
-                    <div class="card-content">
-                        <i class="material-icons medium">email</i>
-                        <div class="right">
-                            <div class="number">2</div>
-                            <div>New Messages</div>
-                        </div>
-                    </div>
-                    <div class="divider"></div>
-                    <a href="{!! url('messages') !!}">
-                        <div class="card-action">
-                            <div class="left">View</div>
-                            <i class="material-icons right">arrow forward</i>
-                        </div>
-                    </a>
-                </div>
-            </div>
+            {{--<div class="col s12 m6 l4">--}}
+                {{--<div class="card-panel pink">--}}
+                    {{--<div class="card-content">--}}
+                        {{--<i class="material-icons medium">email</i>--}}
+                        {{--<div class="right">--}}
+                            {{--<div class="number">2</div>--}}
+                            {{--<div>New Messages</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<div class="divider"></div>--}}
+                    {{--<a href="{!! url('messages') !!}">--}}
+                        {{--<div class="card-action">--}}
+                            {{--<div class="left">View</div>--}}
+                            {{--<i class="material-icons right">arrow forward</i>--}}
+                        {{--</div>--}}
+                    {{--</a>--}}
+                {{--</div>--}}
+            {{--</div>--}}
         </div>
     </div>
 @stop
