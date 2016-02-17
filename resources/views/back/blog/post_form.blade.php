@@ -7,8 +7,8 @@
         <div class="card-panel">
             @yield('form-header')
                 <div class="row">
-                    {!! formText('s10', 'title', 'title', $errors, 'Title') !!}
-                    {!! formText('s10', 'slug', 'slug', $errors, 'link: http://' . setting('url') . '/posts/') !!}
+                    {!! formText('s10', 'title', 'title', $errors, 'Title','', true, $post->title) !!}
+                    {!! formText('s10', 'slug', 'slug', $errors, 'link: http://' . setting('url') . '/posts/', '', true, $post->slug) !!}
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
@@ -30,8 +30,8 @@
                     </div>
                 </div>
                 <div class="row">
-                    {!! formText('s12 l3', 'category', 'category', $errors, 'Category') !!}
-                    {!! formText('s12 l9', 'tags', 'tags', $errors, 'Tags, separated by commas(no space)') !!}
+                    {!! formText('s12 l3', 'category', 'category', $errors, 'Category', '', true, $post->category) !!}
+                    {!! formText('s12 l9', 'tags', 'tags', $errors, 'Tags, separated by commas(no space)', '', true, $post->tags) !!}
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
