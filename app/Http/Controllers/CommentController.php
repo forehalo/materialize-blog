@@ -60,7 +60,7 @@ class CommentController extends Controller
             'name' => 'required|max:30',
             'email' => 'required|email|max:100',
             'blog' => 'required|url|max:100',
-            'content' => 'required',
+            'origin' => 'required',
             'captcha' => 'required|min:4|max:4'
         ]);
 

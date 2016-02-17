@@ -10,8 +10,8 @@
 {!! formText('s12 l4', 'email', 'email' . $id, $errors, 'Email(invisible)', 'email') !!}
 {!! formText('s12 l4', 'blog', 'blog' . $id, $errors, 'Website(http://...)', 'web') !!}
 <div class="input-field col s12">
-    {!! Form::textarea('content', old('content'), ['id' => 'content' . $id, 'class' => 'materialize-textarea']) !!}
-    <label for="content{!! $id !!}"><i class="material-icons">comment</i>content (markdown)</label>
+    {!! Form::textarea('origin', old('origin'), ['id' => 'origin' . $id, 'class' => 'materialize-textarea']) !!}
+    <label for="origin{!! $id !!}"><i class="material-icons">comment</i>content (markdown)</label>
 </div>
 <div class="input-field captcha-field col s12">
     <div class="captcha-input">

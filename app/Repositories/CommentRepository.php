@@ -2,6 +2,7 @@
 
 use App\Models\Comment;
 use App\Models\Post;
+use Parsedown;
 
 /**
  * Class CommentRepository
@@ -27,6 +28,7 @@ class CommentRepository
      * CommentRepository constructor.
      *
      * @param Comment $comment
+     * @param Post $post
      */
     public function __construct(Comment $comment, Post $post)
     {
@@ -52,6 +54,7 @@ class CommentRepository
     public function store($input)
     {
         $comment = new $this->model;
+        $parse = new Parsedown();
 
         $comment->post_id = $input['post_id'];
         $comment->parent_id = $input['parent'];
@@ -62,7 +65,8 @@ class CommentRepository
         $comment->name = $input['name'];
         $comment->email = $input['email'];
         $comment->blog = $input['blog'];
-        $comment->content = $input['content'];
+        $comment->origin = $input['origin'];
+        $comment->content = $parse->parse($input['origin']);
 
         $comment->save();
 

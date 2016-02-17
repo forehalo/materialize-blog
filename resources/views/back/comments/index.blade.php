@@ -35,7 +35,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="6">{!! $comment->content !!}</td>
+                        <td colspan="6" class="markdown-body">{!! $comment->content !!}</td>
                     </tr>
                 @endforeach
                 </tbody>
