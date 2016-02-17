@@ -240,55 +240,55 @@ class SettingTableSeeder extends Seeder
 {
     public function run()
     {
-        DB::table('settings')->create([
+        DB::table('settings')->insert([
             'key' => 'title',
             'value' => 'My Blog'
         ]);
-        DB::table('settings')->create([
+        DB::table('settings')->insert([
             'key' => 'name',
             'value' => 'My Name'
         ]);
-        DB::table('settings')->create([
+        DB::table('settings')->insert([
             'key' => 'card_title',
             'value' => 'Card Title'
         ]);
-        DB::table('settings')->create([
+        DB::table('settings')->insert([
             'key' => 'notice',
             'value' => 'Simple description of me'
         ]);
-        DB::table('settings')->create([
+        DB::table('settings')->insert([
             'key' => 'description',
             'value' => 'Blog Description'
         ]);
-        DB::table('settings')->create([
+        DB::table('settings')->insert([
             'key' => 'url',
             'value' => 'localhost'
         ]);
-        DB::table('settings')->create([
+        DB::table('settings')->insert([
             'key' => 'post_per_page',
             'value' => '5'
         ]);
-        DB::table('settings')->create([
+        DB::table('settings')->insert([
             'key' => 'post_per_page_admin',
             'value' => '5'
         ]);
-        DB::table('settings')->create([
+        DB::table('settings')->insert([
             'key' => 'comment_per_page_admin',
             'value' => '10'
         ]);
-        DB::table('settings')->create([
+        DB::table('settings')->insert([
             'key' => 'hot_tags_count',
             'value' => '10'
         ]);
-        DB::table('settings')->create([
+        DB::table('settings')->insert([
             'key' => 'email',
             'value' => 'mail@example.com'
         ]);
-        DB::table('settings')->create([
+        DB::table('settings')->insert([
             'key' => 'github',
             'value' => 'github.com/forehalo'
         ]);
-        DB::table('settings')->create([
+        DB::table('settings')->insert([
             'key' => 'weibo',
             'value' => 'weibo.com/liuyiAaron'
         ]);
