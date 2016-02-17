@@ -77,6 +77,8 @@ Route::group(['middleware' => ['web']], function () {
 
     // Captcha
     Route::get('captcha', 'Controller@captcha');
+    // Sitemap
+    Route::get('sitemap', 'Controller@sitemap');
 
 
 
