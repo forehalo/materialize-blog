@@ -77,7 +77,7 @@
                         if (comment.parent_id !== 0) {
                             string += 'reply <a href="javascript:void(0)" class="reply " pre-comment="' + comment.parent_id + '">@' + comment.parent_name + '</a> :<br/>'
                         }
-                        string += (comment.content + '</div> </div> <div class="divider"></div> </div></div>');
+                        string += (marked(comment.content) + '</div> </div> <div class="divider"></div> </div></div>');
                         commentList.append(string);
                     }
                     // init tooltip
@@ -92,11 +92,14 @@
                             pre_comment.css("background", "#FFF")
                         });
                     });
+                    
                     $(".reply-btn").on("click", function () {
                         var hidden = $("input[name=\"parent\"]");
                         hidden.attr("value", $(this).parent().attr("id").substr(8));
                         $("html, body").animate({scrollTop: hidden.parent().offset().top - 100}, 100);
                     });
+
+                    Prism.highlightAll($('.comment-list > .markdown-body').html());
                 }
             }).fail(function () {
                 $("#progressDiv").remove();
