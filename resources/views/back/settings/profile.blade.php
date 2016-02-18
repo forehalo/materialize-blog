@@ -13,7 +13,7 @@
         <div class="card-content">
             <span class="card-title">Information card</span>
             <div class="row">
-                {!! formText('s12 l8', 'card-title', 'card-title', $errors, 'card title', '', true, $config['card_title']) !!}
+                {!! formText('s12 l8', 'card_title', 'card-title', $errors, 'card title', '', true, $config['card_title']) !!}
                 {!! formText('s12 l8', 'notice', 'notice', $errors, 'card notice', '', true, $config['notice']) !!}
             </div>
         </div>

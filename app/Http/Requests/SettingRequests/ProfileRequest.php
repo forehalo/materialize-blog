@@ -28,7 +28,7 @@ class ProfileRequest extends Request
         return [
             'title' => 'required|max:255',
             'name' => 'required|max:255',
-            'card-title' => 'required|max:255',
+            'card_title' => 'required|max:255',
             'notice' => 'required|max:255',
             'url' => 'required',
         ];
