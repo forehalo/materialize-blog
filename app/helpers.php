@@ -68,14 +68,15 @@ if (!function_exists('domAttrGenerator')) {
 }
 
 if (!function_exists('formText')) {
-    function formText($col, $name, $id, $errors, $label = '', $icon = '', $memory = true, $value = '')
+    function formText($col, $name, $id, $errors, $label = '', $icon = '', $memory = true, $value = '', $type = 'text')
     {
         return sprintf('
             <div class="input-field col %s">
-                <input type="text" name="%s" id="%s" class="validate %s" value="%s"/>
+                <input type="%s" name="%s" id="%s" class="validate %s" value="%s"/>
                 <label for="%s">%s</label>
             </div>',
             $col,
+            $type,
             $name,
             $id,
             $errors->first($name) ? 'invalid' : '',
