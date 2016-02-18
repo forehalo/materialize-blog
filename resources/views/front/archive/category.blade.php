@@ -24,7 +24,7 @@
     <div class="row">
         @foreach($categories as $category)
             <div id="{!! $category->name !!}" class="col s12 post-list">
-                @include('front.archive.postList', ['title' => $category->name, 'posts' => $category->posts()->wherePublished(true)->get(), 'color' => 'green'])
+                @include('front.archive.postList', ['title' => $category->name, 'posts' => $category->posts()->wherePublished(true)->orderBy('created_at', 'desc')->get(), 'color' => 'green'])
             </div>
         @endforeach
     </div>
