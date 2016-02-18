@@ -40,7 +40,7 @@
 </head>
 <body class="blue">
 <div class="login-form col s12 z-depth-4 card-panel">
-    <form>
+    <form id="login-form">
         <div class="row">
             <div class="input-field col s12 center">
                 <h5 class="center login-form-text">Dashboard</h5>
@@ -68,7 +68,7 @@
         </div>
         <div class="row">
             <div class="input-field col s12">
-                <a href="javascript:void(0)" class="btn waves-effect waves-light col s12" id="login-btn">Login
+                <button type="submit" class="btn waves-effect waves-light col s12">Login
                     <div class="preloader-wrapper right">
                         <div class="spinner-layer spinner-red-only">
                             <div class="circle-clipper left">
@@ -82,7 +82,7 @@
                             </div>
                         </div>
                     </div>
-                </a>
+                </button>
             </div>
         </div>
     </form>
@@ -92,7 +92,7 @@
 {!! Html::script('assets/js/materialize.min.js') !!}
 <script>
     $(function () {
-        $('#login-btn').on('click', function () {
+        $('#login-form').on('submit', function () {
             $('.preloader-wrapper').addClass('active');
 
             var token = $('meta[name="csrf-token"]').attr('content');
@@ -115,6 +115,8 @@
                 $('.preloader-wrapper').removeClass('active');
                 Materialize.toast('Login failed, One more try.', 3000);
             });
+
+            return false;
         });
     });
 </script>
