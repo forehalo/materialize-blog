@@ -23,7 +23,7 @@ Demo at [Forehalo' blog](http://forehalo.me).
 
 ### Install
 
-Clone this repository to your computer, or download zip file at [here](https://github.com/forehalo/newblog/archive/master.zip).
+Clone this repository to your computer, or download zip file at [here](https://github.com/forehalo/materialize-blog/archive/v1.0.0.zip).
 
     $git clone https://github.com/forehalo/materialize-blog.git blog
 
