@@ -28,7 +28,7 @@ class Controller extends BaseController
             $posts = Post::select('slug', 'view_count','updated_at')->orderBy('created_at', 'desc')->get();
 
             foreach ($posts as $post) {
-                $sitemap->add($baseUrl . '/' . $post->slug, $post->updated_at, $post->view_count / 100);
+                $sitemap->add($baseUrl . '/' . $post->slug, $post->updated_at);
             }
         }
         
