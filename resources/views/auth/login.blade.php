@@ -108,6 +108,8 @@
                 $('.preloader-wrapper').removeClass('active');
                 if (data.return) {
                     location.assign(data.value);
+                } else {
+                    Materialize.toast(data.value, 3000);
                 }
             }).fail(function () {
                 $('.preloader-wrapper').removeClass('active');
