@@ -18,6 +18,9 @@
                     <li class="tab">
                         <a href="#link">Link</a>
                     </li>
+                    <li class="tab">
+                        <a href="#auth">auth</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -25,6 +28,7 @@
             @include('back.settings.profile')
             @include('back.settings.view')
             @include('back.settings.link')
+            @include('back.settings.auth')
         </div>
     </div>
 @stop

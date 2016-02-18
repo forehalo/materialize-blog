@@ -1,5 +1,6 @@
 <?php namespace App\Repositories;
 
+use App\Models\Admin;
 use App\Models\Link;
 
 /**
@@ -21,11 +22,18 @@ class AdminRepository
     protected $items;
 
     /**
-     * AdminRepository constructor.
+     * Admin Model
      */
-    public function __construct()
+    protected $model;
+
+    /**
+     * AdminRepository constructor.
+     * @param Admin $admin
+     */
+    public function __construct(Admin $admin)
     {
         $this->items = setting()->all();
+        $this->model = $admin;
     }
 
     /**
@@ -69,5 +77,27 @@ class AdminRepository
         $friend->link = $inputs['link'];
 
         $friend->save();
+    }
+
+    public function authReset($inputs, $auth)
+    {
+        $admin = $this->model->first();
+
+        $admin->name = $inputs['name'];
+        $admin->email = $inputs['email'];
+
+        if (!is_null($inputs['password'])) {
+            $admin->password = bcrypt($inputs['password']);
+
+            $auth->login($admin, true);
+
+            session([
+                'user_name' => $inputs['name'],
+                'user_email' => $inputs['email']
+            ]);
+
+        }
+
+        $admin->update();
     }
 }

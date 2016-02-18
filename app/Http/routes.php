@@ -51,6 +51,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::post('settings/view', 'AdminController@view');
         Route::post('settings/link', 'AdminController@link');
         Route::post('settings/friend', 'AdminController@friend');
+        Route::post('settings/auth', 'AdminController@auth');
 
         Route::get('logout', 'Auth\AuthController@getLogout');
     });

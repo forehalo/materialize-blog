@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SettingRequests\AuthRequest;
 use App\Http\Requests\SettingRequests\LinkRequest;
 use App\Http\Requests\SettingRequests\ProfileRequest;
 use App\Http\Requests\SettingRequests\ViewRequest;
 use App\Models\Post;
 use App\Models\Comment;
 use App\Repositories\AdminRepository;
+use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -102,10 +104,18 @@ class AdminController extends Controller
     {
         $this->admin->updateFriend($request->all());
 
-        if($request->ajax()){
+        if ($request->ajax()) {
             return response()->json();
-        }else{
+        } else {
             return redirect('/settings#link')->with('ok', 'Add friend link successfully');
         }
+    }
+
+    public function auth(AuthRequest $request, Guard $auth)
+    {
+        $this->admin->authReset($request->all(), $auth);
+
+        return redirect('/dashboard')->with('ok', 'Change Auth successfully');
+
     }
 }

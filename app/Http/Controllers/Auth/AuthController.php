@@ -88,15 +88,11 @@ class AuthController extends Controller
 
             $auth->login($user, $input['remember']);
 
-            if ($request->session()->has('user_id')) {
-                $request->session()->forget('user_id');
-            }
+            session()->put('user_name', $user->name);
+            session()->put('user_email', $user->email);
 
             return response()->json(['return' => true, 'value' => url('/dashboard')]);
         }
-
-        $request->session()->put('user_id', $user->id);
-
         return response()->json(['return' => false, 'value' => 'Login failed, One more try.']);
     }
 }
