@@ -22,8 +22,9 @@
         <div class="card-content">
             <span class="card-title">Site</span>
             <div class="row">
-                {!! formText('s12 l8', 'description', 'description', $errors, 'site description', 'description', true, $config['description']) !!}
-                {!! formText('s12 l8', 'url', 'url', $errors, 'url', 'web', true, $config['url']) !!}
+                {!! formText('s12 l8', 'description', 'description', $errors, 'Site description', 'description', true, $config['description']) !!}
+                {!! formText('s12 l8', 'keywords', 'keywords', $errors, 'Keywords', 'vpn_key', true, $config['keywords']) !!}
+                {!! formText('s12 l8', 'url', 'url', $errors, 'URL', 'web', true, $config['url']) !!}
             </div>
             {!! Form::button('update profile', ['type' => 'submit', 'class' => 'btn waves-effect']) !!}
         </div>

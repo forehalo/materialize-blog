@@ -259,6 +259,10 @@ class SettingTableSeeder extends Seeder
             'value' => 'Blog Description'
         ]);
         DB::table('settings')->insert([
+            'key' => 'keywords',
+            'value' => 'keywords'
+        ]);
+        DB::table('settings')->insert([
             'key' => 'url',
             'value' => 'localhost'
         ]);
