@@ -42,8 +42,9 @@ var funcToString = function (func) {
 
 $(function() {
     $('.button-collapse').sideNav();
-
     $('select').material_select();
+    $('.markdown-body').find('img').addClass('materialboxed');
+    $('.materialboxed').materialbox();
 });
 
 /**
