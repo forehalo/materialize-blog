@@ -38,8 +38,9 @@
         $('.collapsible-according').addClass('orange');
 
         $('.date-month').click(function(){
+            var target = $(this).attr('target-list');
             $('html, body').animate({
-                scrollTop: $('.post-list').parent().offset().top - 100
+                scrollTop: $('#' + target).parent().offset().top + 100
             }, 100);
         });
     </script>
