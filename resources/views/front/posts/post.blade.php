@@ -1,6 +1,6 @@
 @extends('front.template')
 @section('title')
-    <title>{!! $post->title !!}</title>
+    <title>{!! $post->title . ' - ' . setting('title') !!}</title>
 @stop
 
 @section('main')
