@@ -34,4 +34,9 @@ class Controller extends BaseController
         
         return $sitemap->render();
     }
+
+    public function about()
+    {
+        return view('front.pages.about');
+    }
 }

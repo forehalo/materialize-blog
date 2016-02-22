@@ -80,6 +80,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('captcha', 'Controller@captcha');
     // Sitemap
     Route::get('sitemap', 'Controller@sitemap');
+    Route::get('about', 'Controller@about');
 
 
 
