@@ -24,7 +24,7 @@
     <div class="row">
         @foreach($categories as $category)
             <div id="{!! $category->name !!}" class="col s12 post-list">
-                @include('front.archive.postList', ['title' => $category->name, 'posts' => $category->posts()->wherePublished(true)->get(), 'color' => 'green'])
+                @include('front.archive.postList', ['title' => $category->name, 'posts' => $category->posts()->wherePublished(true)->orderBy('created_at', 'desc')->get(), 'color' => 'green'])
             </div>
         @endforeach
     </div>
@@ -34,6 +34,7 @@
     <script>
         $('nav').addClass('green lighten-1');
         $('.side-nav').addClass('green lighten-1');
+        $('.top-tags > a').addClass('green lighten-1');
         $('.collapsible-according').addClass('green lighten-1');
 
     </script>

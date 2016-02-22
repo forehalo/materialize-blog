@@ -153,6 +153,7 @@ class BlogController extends Controller
     public function create()
     {
         $post = new Post();
+        $post->tags = '';
         return view('back.blog.create', compact('post'));
     }
 

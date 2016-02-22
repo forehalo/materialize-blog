@@ -29,7 +29,7 @@
                                 ->take(setting('hot_tags_count'))
                                 ->orderBy('hot', 'desc')
                                 ->get() as $tag)
-                    <a href="{!! url('/tags/'. $tag->id) !!}" class="btn waves-effect">{!! $tag->name !!}</a>
+                    <a href="{!! url('/tags/'. $tag->id) !!}" class="chip">{!! $tag->name !!}</a>
                 @endforeach
             </div>
         </div>
