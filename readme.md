@@ -1,6 +1,6 @@
 ## Materialize Blog
 
-A new blog manage system disigned according to Google [Material Design Psec](https://www.google.com/design/spec/material-design/introduction.html).
+A new blog manage system disigned according to Google [Material Design Spec](https://www.google.com/design/spec/material-design/introduction.html).
 
 Backend based on [Laravel 5.2](https://laravel.com), a web application framework with expressive, elegant syntax.
 
