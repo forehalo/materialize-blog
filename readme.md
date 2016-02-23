@@ -41,6 +41,8 @@ Next step, run
 
 to migrate the tables. You'd better not miss the `--seed` option, because it will generate some faker in tables, which include the default `username` and `password` to log in dashboard.
 
+###Login
+
 login dashboard at `/login`, default name `admin` or email `admin@example.com` , passowrd `admin`
 
 ### License
