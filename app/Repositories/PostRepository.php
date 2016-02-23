@@ -85,9 +85,13 @@ class PostRepository
     {
         $post = $this->model->where($column, $value)->first();
 
-        $post->view_count++;
-        $post->update();
-        return $post;
+        if (!is_null($post)) {
+            $post->view_count++;
+            $post->update();
+            return $post;
+        } else {
+            return null;
+        }
     }
 
     /**
