@@ -100,14 +100,35 @@ if (!function_exists('destroy')) {
 if (!function_exists('setting')) {
     function setting($key = null, $value = null)
     {
-        if(is_null($key)) {
+        if (is_null($key)) {
             return app('setting');
         }
 
-        if(is_array($key)) {
+        if (is_array($key)) {
             return app('setting')->set($key);
         }
 
         return app('setting')->get($key, $value);
+    }
+}
+
+if (!function_exists('parseArticle')) {
+    function parseArticle($filepath)
+    {
+        $inputs = [];
+
+        $content = File::get($filepath);
+
+        $parsed = explode("---\r\n", $content);
+
+        $attrStr = $parsed[0];
+        $inputs['origin'] = $parsed[1];
+
+        foreach (preg_split("/\r\n/", $attrStr, -1, true) as $item) {
+            $attr = explode(': ', $item);
+            $inputs[$attr[0]] = isset($attr[1]) ? $attr[1] : '';
+        }
+
+        return $inputs;
     }
 }

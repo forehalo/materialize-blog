@@ -14,6 +14,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         Commands\Inspire::class,
+        Commands\Posts\PostAll::class,
+        Commands\Posts\PostOne::class,
     ];
 
     /**
