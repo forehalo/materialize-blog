@@ -47,6 +47,9 @@ login dashboard at `/login`, default name `admin` or email `admin@example.com` ,
 
 ### License
 
-F**k it the way you like license.
+![](http://i.imgur.com/8ZtPnc7.png)
+
+http://www.gnu.org/licenses/lgpl.txt
+
 
 ## CREATE NICE ARTICLES.
