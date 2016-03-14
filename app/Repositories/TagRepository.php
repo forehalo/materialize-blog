@@ -46,6 +46,12 @@ class TagRepository
      */
     public function getById($id)
     {
-        return $this->model->find($id);
+        $tag = $this->model->find($id);
+
+        if(!is_null($tag)){
+            $tag->hot++;
+            $tag->update();
+        }
+        return $tag;
     }
 }

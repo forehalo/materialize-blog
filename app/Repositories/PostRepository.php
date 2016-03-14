@@ -87,6 +87,14 @@ class PostRepository
 
         if (!is_null($post)) {
             $post->view_count++;
+
+            $tags = $post->tags;
+
+            foreach($tags as $tag){
+                $tag->hot++;
+                $tag->update();
+            }
+
             $post->update();
             return $post;
         } else {
