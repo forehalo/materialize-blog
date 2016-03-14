@@ -85,17 +85,22 @@ class PostRepository
     {
         $post = $this->model->where($column, $value)->first();
 
+        // Update post view count, tags hot, category hot
         if (!is_null($post)) {
             $post->view_count++;
+            $post->update();
 
+            // tags
             $tags = $post->tags;
-
             foreach($tags as $tag){
                 $tag->hot++;
                 $tag->update();
             }
 
-            $post->update();
+            $category = $post->category;
+            $category->hot++;
+            $category->update();
+
             return $post;
         } else {
             return null;

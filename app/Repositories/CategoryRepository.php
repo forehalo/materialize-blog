@@ -46,6 +46,13 @@ class CategoryRepository
      */
     public function getById($id)
     {
-        return $this->model->find($id);
+        $category = $this->model->find($id);
+
+        if(!is_null($category)){
+            $category->hot++;
+            $category->update();
+        }
+
+        return $category;
     }
 }
