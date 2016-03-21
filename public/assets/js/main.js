@@ -98,7 +98,7 @@ $(function () {
     });
 
     // Scroll up
-    $(document).on('click', '.collapsible-header', function () {
+    $(document).on('click', '.collapsible-header:not('.no-scroll')', function () {
         var pageY = $('#' + $(this).attr('id')).attr('pageY');
         var pxToTop = pageY < 200 ? 0 : pageY - 100;
         $('html, body').animate({

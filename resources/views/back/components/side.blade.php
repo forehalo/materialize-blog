@@ -1,9 +1,11 @@
 <ul class="side-nav fixed z-depth-4" id="nav-mobile" style="width: 240px">
-    <li class="bold {!! classActivePath('dashboard') !!}"><a href="{!! url('/dashboard') !!}">Dashboard<i class="material-icons left">dashboard</i></a></li>
+    <li class="bold {!! classActivePath('dashboard') !!}">
+        <a href="{!! url('/dashboard') !!}">Dashboard<i class="material-icons left">dashboard</i></a>
+    </li>
     <li class="no-padding {!! classActiveSegment(1, 'posts') !!}">
         <ul class="collapsible collapsible-accordion">
             <li class="bold">
-                <a class="collapsible-header">Posts <i class="material-icons left">create</i><i
+                <a class="collapsible-header no-scroll">Posts <i class="material-icons left">create</i><i
                             class="material-icons right">&#xE315;</i></a>
                 <div class="collapsible-body">
                     <ul>
