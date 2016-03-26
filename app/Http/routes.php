@@ -42,6 +42,8 @@ Route::group(['middleware' => ['web']], function () {
         // Posts admin
         Route::get('posts/admin', 'BlogController@backIndex');
         Route::put('posts/{id}/publish', 'BlogController@publish');
+        Route::get('posts/file', 'BlogController@getUpload');
+        Route::post('posts/upload', 'BlogController@upload');
         // Comments admin
         Route::put('comments/{id}/valid', 'CommentController@valid');
         Route::put('comments/{id}/seen', 'CommentController@seen');

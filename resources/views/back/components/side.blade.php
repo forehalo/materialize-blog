@@ -11,6 +11,7 @@
                     <ul>
                         <li><a href="{!! url('posts/admin') !!}">All</a></li>
                         <li><a href="{!! url('posts/create') !!}">New</a></li>
+                        <li><a href="{!! url('posts/file') !!}">Parse From File</a></li>
                     </ul>
                 </div>
             </li>
