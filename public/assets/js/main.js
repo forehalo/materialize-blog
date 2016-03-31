@@ -53,7 +53,7 @@ $(function() {
 
 $(function () {
 
-    $(document).click(function (e) {
+    $(document).on('click', 'div', function (e) {
 
         var active = $(".collapsible-header.active");
 
@@ -98,7 +98,7 @@ $(function () {
     });
 
     // Scroll up
-    $(document).on('click', '.collapsible-header:not(".no-scroll")', function () {
+    $('.collapsible-header:not(".no-scroll")').on('click', function () {
         var pageY = $('#' + $(this).attr('id')).attr('pageY');
         var pxToTop = pageY < 200 ? 0 : pageY - 100;
         $('html, body').animate({
@@ -123,7 +123,7 @@ $(function () {
     };
 
     // tag-chip click event.
-    $(document).on('click', '.tag-chip', function () {
+    $('.tag-chip').on('click' , function () {
         var old = $('.post-list.active');
         var clickedTag = $(this);
         var target = $('#' + clickedTag.html());
@@ -133,7 +133,7 @@ $(function () {
 
 
     // date-month click event.
-    $(document).on('click', '.date-month', function () {
+    $('.date-month').on('click', function () {
         var old = $('.post-list.active');
         var clickedMonth = $(this);
         var target = $('#' + clickedMonth.attr('target-list'));
@@ -142,7 +142,7 @@ $(function () {
     });
 
     // favorite post.
-    $(document).on('click', '.favorite-btn', function () {
+    $('.favorite-btn').on('click', function () {
         var btn = $(this);
         var id = $(this).attr('id').substr(9);
         var token = $('input[name="_token"]:first').attr('value');
