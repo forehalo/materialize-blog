@@ -13,6 +13,8 @@ class Post extends Model
      */
     protected $table = 'posts';
 
+    protected $fillable = ['title', 'slug', 'summary', 'origin', 'category', 'tags'];
+
     /**
      * Many to many relation.
      *
