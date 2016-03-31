@@ -1,6 +1,6 @@
 @extends('back.blog.post_form')
 @section('title')
-    <title>New Post</title>
+    <title>Edit Post</title>
 @stop
 
 @section('form-header')

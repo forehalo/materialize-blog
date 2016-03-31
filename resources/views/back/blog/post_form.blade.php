@@ -12,13 +12,13 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        {!! Form::textarea('summary', old('summary'), ['id' => 'summary', 'class' => 'materialize-textarea']) !!}
+                        {!! Form::textarea('summary', old('summary') ? old('summary') : $post->summary, ['id' => 'summary', 'class' => 'materialize-textarea']) !!}
                         <label for="summary">Summary</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        {!! Form::textarea('origin', old('origin'),['id' => 'content', 'class' => 'materialize-textarea', 'placeholder' => 'markdown syntax']) !!}
+                        {!! Form::textarea('origin', old('origin') ? old('origin') : $post->origin,['id' => 'content', 'class' => 'materialize-textarea', 'placeholder' => 'markdown syntax']) !!}
                         <label for="content">Content
                             <a href="javascript:void(0)" class="btn btn-floating btn-success tooltipped btn-preview" data-position="right" data-delay="0" data-tooltip="preview" style="width: 20px;height: 20px">
                                 <i class="material-icons right" style="line-height: 20px;font-size: 15px">visibility</i>
@@ -36,7 +36,7 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <button type="submit" class="btn waves-effect btn-success">Post <i class="material-icons right">send</i></button>
-                        <input type="checkbox" id="publish" name="publish" class="filled-in"/>
+                        <input type="checkbox" id="publish" name="publish" class="filled-in" {!! $post->published ? 'checked' : '' !!}/>
                         <label for="publish">Publish</label>
                     </div>
                 </div>

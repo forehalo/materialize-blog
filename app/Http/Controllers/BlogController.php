@@ -19,6 +19,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Artisan;
 
 class BlogController extends Controller
 {
@@ -261,5 +262,41 @@ class BlogController extends Controller
         $links = $posts->links();
 
         return view('front.posts.normalIndex', compact('posts', 'links'));
+    }
+
+
+    /**
+     * Get upload page
+     */
+    public function getUpload()
+    {
+        return view('back.blog.upload');
+    }
+
+    /**
+     * Upload File with Markdown Form.
+     * @param Request $request
+     */
+    public function upload(Request $request)
+    {
+        $file = $request->file('upload-file');
+        $filename = $file->getClientOriginalName();
+        $filepath = storage_path('app/posts') . '/' . $filename;
+        $file->move(storage_path('app/posts'), $filename);
+        $parsed = parseArticle($filepath);
+
+        $post = $this->blog->getByColumn($parsed['slug'], 'slug');
+
+        if (is_null($post)) {
+            $post = new Post($parsed);
+            $post->published = isset($parsed['publish']);
+            return view('back.blog.create', compact('post'));
+        } else {
+            foreach ($parsed as $key => $value) {
+                $post->{$key} = $value;
+            }
+            $post->published = isset($parsed['publish']);
+            return view('back.blog.edit', compact('post'));
+        }
     }
 }
