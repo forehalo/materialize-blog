@@ -22,6 +22,7 @@
                     <li>3. Separate tags with comma(no space)</li>
                     <li>4. 'Publish' or nothing on the Penultimate line to specify whether it accessible immediately</li>
                     <li>5. Finish header with '---'(three minuses) on the last line</li>
+                    <li>6. Updating instead of creating if slug exists</li>
                 </ul>
             </blockquote>
             <h5>1. Upload</h5>
@@ -38,6 +39,14 @@
                     </div>
                 {!! Form::close() !!}
             </div>
+            <h5>2. CLI</h5>
+            <div class="row">
+                <p>Use CLI to post articles, you should put your .md files to the storage path('storage/app/posts/') through FTP or any other way first. </p>
+                <pre>
+    $ php artisan post:one filename //Post one
+    $ php artisan post:all          //Post all .md in storage dir
+                </pre>
+            </div>
         </div>
     </div>
 @stop
@@ -53,6 +62,6 @@
 
         $('input[name="upload-file"]').on('change', function(){
             $('#upload-form').submit();
-        })
+        });
     </script>
 @stop
