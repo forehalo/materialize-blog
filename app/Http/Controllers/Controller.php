@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Page;
 use App\Models\Post;
 use App\Repositories\CaptchaRepository;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -26,9 +27,14 @@ class Controller extends BaseController
 
         if (!$sitemap->isCached()) {
             $posts = Post::select('slug', 'view_count','updated_at')->orderBy('created_at', 'desc')->get();
+            $pages = Page::select('slug', 'updated_at')->get();
 
             foreach ($posts as $post) {
                 $sitemap->add($baseUrl . '/' . $post->slug, $post->updated_at);
+            }
+
+            foreach ($pages as $page){
+                $sitemap->add('/' . $page->slug, $page->updated_at);
             }
         }
         

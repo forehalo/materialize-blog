@@ -276,6 +276,7 @@ class BlogController extends Controller
     /**
      * Upload File with Markdown Form.
      * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function upload(Request $request)
     {
