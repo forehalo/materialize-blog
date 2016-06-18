@@ -23,18 +23,17 @@ class Controller extends BaseController
     public function sitemap()
     {
         $sitemap = App::make('sitemap');
-        $baseUrl = url('/posts');
 
         if (!$sitemap->isCached()) {
             $posts = Post::select('slug', 'view_count','updated_at')->orderBy('created_at', 'desc')->get();
             $pages = Page::select('slug', 'updated_at')->get();
 
             foreach ($posts as $post) {
-                $sitemap->add($baseUrl . '/' . $post->slug, $post->updated_at);
+                $sitemap->add(url('/posts') . '/' . $post->slug, $post->updated_at);
             }
 
             foreach ($pages as $page){
-                $sitemap->add('/' . $page->slug, $page->updated_at);
+                $sitemap->add(url('/') . '/' . $page->slug, $page->updated_at);
             }
         }
         
