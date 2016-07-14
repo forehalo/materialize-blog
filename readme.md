@@ -13,13 +13,7 @@ Demo at [Forehalo' blog](http://forehalo.me).
 * Create with markdown (Javascript parser: [marked](https://github.com/chjj/marked), PHP parser: [parsedown](https://github.com/erusev/parsedown)).
 * Highlight code & code block ([Prism](http://prismjs.com)).
 * Self host comments.
-
-### Next version may include
-
 * Artisan CLI to multi-parse articles with given template.
-* Control tags, categories visibility.
-* Optimize global search.
-* Subscription channels.
 
 ### Install
 
