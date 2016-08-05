@@ -28,7 +28,7 @@ class AuthRequest extends Request
         return [
             'name' => 'required',
             'email' => 'required|email',
-            'password' => 'confirmed',
+            'password' => 'confirmed|alpha_num|min:6|max:25',
         ];
     }
 }

@@ -86,7 +86,7 @@ class AdminRepository
         $admin->name = $inputs['name'];
         $admin->email = $inputs['email'];
 
-        if (!is_null($inputs['password'])) {
+        if (!is_null($inputs['password']) && $inputs['password'] != '') {
             $admin->password = bcrypt($inputs['password']);
 
             $auth->login($admin, true);
