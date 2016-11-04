@@ -80,9 +80,6 @@ ul.nav-items {
         width: 45px;
     }
 
-    nav #nav-mobile .no-padding ul {
-
-    }
 
     .bold > a {
         font-weight: bold;
@@ -136,7 +133,6 @@ ul.nav-items {
 .label .material-icons {
     font-size: 1.5rem;
     line-height: 1.5rem;
-    float: none;
     display: inline;
     margin: 0 1px 0 10px;
     vertical-align: middle;
@@ -232,7 +228,6 @@ ul.nav-items {
 }
 
 .captcha-input {
-    float: left;
     display: inline-block;
     vertical-align: middle;
     width: 50%;
@@ -250,4 +245,12 @@ ul.nav-items {
     position: fixed;
     right: 20px;
     bottom: 20px;
+}
+
+#search-mobile {
+    height: 64px;
+}
+
+#nav-mobile label i.material-icons {
+    top: 0;
 }
