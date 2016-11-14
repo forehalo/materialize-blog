@@ -15,6 +15,11 @@ Demo at [Forehalo' blog](http://forehalo.me).
 * Self host comments.
 * Artisan CLI to multi-parse articles with given template.
 
+
+### .Next
+
+* Vuerify - refactor front end with vue.js
+
 ### Install
 
 Clone this repository to your computer, or download zip file at [here](https://github.com/forehalo/materialize-blog/archive/master.zip).
