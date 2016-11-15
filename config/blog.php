@@ -12,4 +12,6 @@ return [
 
     // Author
     'anthor' => '',
+
+    'logo' => '// Forehalo'
 ];
