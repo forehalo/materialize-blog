@@ -17,5 +17,7 @@ elixir(mix => {
     mix.sass('app.scss')
         .webpack('app.js');
 
+
+    mix.copy('node_modules/materialize-css/fonts/', 'public/build/fonts/');
     mix.version(['js/app.js', 'css/app.css']);
 });
