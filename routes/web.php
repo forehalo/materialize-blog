@@ -11,6 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+// Must be placed below other routes.
+Route::any('/{any}', function (){
+	return view('front.index');
+})->where('any', '.*');
