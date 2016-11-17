@@ -12,6 +12,7 @@ require('./bootstrap');
  * the body of the page. From here, you may begin adding components to
  * the application, or feel free to tweak this setup for your needs.
  */
+import Navigation from './components/navigation.vue';
 import router from './router.js';
 
 
@@ -20,16 +21,10 @@ const header = new Vue({
     router,
     components: {
         Navigation
-    },
-    data: {
-        Laravel
     }
 });
 
 const app = new Vue({
     el: 'main',
-    router,
-    data: {
-        Laravel
-    }
+    router
 });

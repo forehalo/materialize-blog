@@ -1,0 +1,25 @@
+nav {
+  background-color: $primary-color;
+
+  .dropdown-content li {
+  	min-height: $navbar-height;
+
+  	& > a {
+  		padding: 13px 16px;
+  	}
+  }
+
+  a.button-collapse {
+  	
+	width: $navbar-height;
+
+	i{
+		font-size: 2.7rem;
+	}
+  }
+}
+
+nav, .navbar-fixed, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i{
+  height: $navbar-height;
+  line-height: $navbar-height;
+}
