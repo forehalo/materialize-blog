@@ -13,13 +13,14 @@
 </header>
 <main id="app">
     <div class="container">
+        <router-view></router-view>
     </div>
 </main>
 <script>
     window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
             'config' => config('blog'),
-            'currentViewType' => Request::segment(1),
+            'currentViewType' => Request::segment(1) ?: 'default',
     ]);?>
 </script>
 <script src="{{ asset(elixir('js/app.js')) }}"></script>

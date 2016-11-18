@@ -1,5 +1,5 @@
 <template>
-	<ul id="nav-mobile" class="side-nav">
+	<ul id="nav-mobile" class="side-nav" :class="'nav-' + Laravel.currentViewType">
 	    <li class="bold">
 	    <router-link to="/" class="waves-effect waves-teal white-text">
 		    Posts
@@ -43,9 +43,9 @@
 	    <router-link to="/about" class="waves-effect waves-teal white-text">
 	    	About <i class="material-icons left">perm_identity</i>
 	    </router-link>
-	    <li>
+	    <li class="search-item">
 	    	<form action="/search">
-	    		<div class="input-filed">
+	    		<div class="input-field">
 	    			<input  name="key" id="search-mobile" type="search" required>
 	    			<label for="search-mobile"><i class="material-icons">search</i></label>
 		            <i class="material-icons">close</i>
@@ -61,6 +61,12 @@
     		categories: {
     			type: Array,
     			required: true
+    		}
+    	},
+
+    	data() {
+    		return {
+    			Laravel
     		}
     	},
 

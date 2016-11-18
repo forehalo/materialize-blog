@@ -1,6 +1,6 @@
 '<template>
     <div class="navbar-fixed">
-        <nav>
+        <nav :class="'nav-' + Laravel.currentViewType">
             <div class="container">
                 <div class="nav-wrapper">
                     <!-- Toggle side menu -->
@@ -12,6 +12,13 @@
                     <sidebar :categories="categories"></sidebar>
                 </div>
             </div>
+            <form id="topbar-search-form" style="display: none;">
+                <div class="input-field">
+                    <input id="search" type="search" required>
+                    <label for="search"><i class="material-icons">search</i></label>
+                    <i class="material-icons">close</i>
+                </div>
+            </form>
         </nav>
     </div>
 </template>
