@@ -1,11 +1,20 @@
-.post-card {
-    .card-title {
+.post-item {
+
+    .title {
         font-weight: 400;
+        
+        a {
+            color: #4A4A4A;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: #000;
+        }
     }
 
     .label, .label > a {
         color: color('grey', 'base');
-        font-size: 12px;
+        font-size: 0.9rem;
     }
 
     .label i.material-icons {
@@ -18,4 +27,19 @@
     .card-content > .summary {
         margin: 10px 0;
     }
+
+    .chip {
+        transition: background-color 0.3s ease;
+    }
+    .chip:hover {
+        background-color: #F4F4F4;
+    }
+}
+
+.loader-wrapper {
+    margin: 10px 0;
+}
+
+.posts {
+    border: none;
 }
