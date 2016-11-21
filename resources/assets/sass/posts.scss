@@ -1,0 +1,21 @@
+.post-card {
+    .card-title {
+        font-weight: 400;
+    }
+
+    .label, .label > a {
+        color: color('grey', 'base');
+        font-size: 12px;
+    }
+
+    .label i.material-icons {
+        @extend .label;
+        font-size: 1rem;
+        vertical-align: sub;
+        padding: 0 3px 0 10px;
+    }
+
+    .card-content > .summary {
+        margin: 10px 0;
+    }
+}

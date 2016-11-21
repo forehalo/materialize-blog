@@ -42,10 +42,9 @@
         mounted() {
             this.$http.get('/api/categories')
                 .then((response) => {
-                    // console.log(response);
                     this.categories = response.body;
                 }, (response) => {
-                    // error callback
+                    // TODO
                 });
         }
     }

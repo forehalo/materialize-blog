@@ -15,6 +15,8 @@ class Post extends Model
 
     protected $fillable = ['title', 'slug', 'summary', 'origin', 'category', 'tags'];
 
+    protected $hidden = ['origin'];
+
     /**
      * Many to many relation.
      *

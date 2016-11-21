@@ -15,4 +15,7 @@ Route::group(['namespace' => 'Api'], function() {
 
     // Category
     Route::get('/categories', 'CategoryController@all');
+
+    // Post
+    Route::get('/posts', 'PostController@all');
 });
