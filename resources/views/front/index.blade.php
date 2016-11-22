@@ -13,7 +13,12 @@
 </header>
 <main id="app">
     <div class="container">
-        <router-view></router-view>
+        <transition :name="transitionName"
+                    :enter-active-class="'animated ' + enterClass"
+                    :leave-active-class="'animated ' + leaveClass"
+                    mode="out-in">
+            <router-view></router-view>
+        </transition>
     </div>
 </main>
 <footer class="page-footer transparent">

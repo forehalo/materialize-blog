@@ -26,5 +26,26 @@ const header = new Vue({
 
 const app = new Vue({
     el: 'main',
-    router
+    router,
+    data: {
+    	transitionName: 'slide-left',
+    	// enterClass: 'slideInRight',
+    	leaveClass: 'fadeOutLeftBig',
+    },
+    watch: {
+    	'$route' (to, from) {
+    		console.log(1);
+    		let toDepth = to.path.split('/').length;
+	        let fromDepth = from.path.split('/').length;
+	        if (toDepth < fromDepth) {
+	        	this.transitionName = 'slide-right';
+	        	// this.enterClass = 'slideInLeft';
+	        	this.leaveClass = 'fadeOutRightBig';
+	        } else {
+	        	this.transitionName = 'slide-left';
+		    	// this.enterClass = 'slideInRight';
+		    	this.leaveClass = 'fadeOutLeftBig';
+	        }
+    	}
+    }
 });
