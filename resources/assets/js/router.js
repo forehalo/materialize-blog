@@ -4,6 +4,7 @@ import Posts from './components/posts.vue';
 import Category from './components/category.vue';
 import Tag from './components/tag.vue';
 import Date from './components/date.vue';
+import Post from './Components/post.vue';
 
 const routes = [
     {
@@ -26,6 +27,10 @@ const routes = [
         path: '/date',
         component: Date
     },
+    {
+        path: '/posts/:slug?',
+        component: Post
+    }
 ];
 
 var router = new VueRouter({
@@ -39,9 +44,10 @@ router.beforeEach((to, from, next) => {
 });
 
 router.afterEach((to, from) => {
-    if (['default', 'categories', 'tags', 'date'].includes(to.name)) {
-        Laravel.currentViewType = to.name;
-    }
+    Laravel.currentViewType = 
+        ['default', 'categories', 'tags', 'date'].includes(to.name) ? 
+        to.name :
+        'default';
 });
 
 export default router;

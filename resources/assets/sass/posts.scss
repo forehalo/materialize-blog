@@ -1,4 +1,5 @@
 .post-item {
+    
 
     .title {
         font-weight: 400;
@@ -12,23 +13,14 @@
         }
     }
 
-    .label, .label > a {
-        color: color('grey', 'base');
-        font-size: 0.9rem;
-    }
-
-    .label i.material-icons {
-        @extend .label;
-        font-size: 1rem;
-        vertical-align: sub;
-        padding: 0 3px 0 10px;
-    }
-
-    .card-content > .summary {
+    .post > .summary {
         margin: 10px 0;
     }
 
     .chip {
+        a {
+            color: rgba(0, 0, 0, 0.6);
+        }
         transition: background-color 0.3s ease;
     }
     .chip:hover {
@@ -37,9 +29,41 @@
 }
 
 .loader-wrapper {
-    margin: 10px 0;
+    padding: 10px 0;
 }
 
 .posts {
     border: none;
+}
+
+.label.article-info {
+    &, & > a {
+        color: color('grey', 'base');
+        font-size: 0.9rem;
+    }
+
+    i.material-icons {
+        @extend .label;
+        font-size: 1rem;
+        vertical-align: sub;
+        padding: 0 3px 0 10px;
+    }
+}
+
+.article {
+    .title {
+        margin-bottom: 5px;
+    }
+    .markdown-body {
+        padding: 20px 0;
+
+        code {
+            padding: 0;
+            border-bottom: 1px solid #CCC;
+        }
+
+        pre code {
+            border: 0;
+        }
+    }
 }

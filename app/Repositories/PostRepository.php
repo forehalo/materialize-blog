@@ -25,4 +25,18 @@ class PostRepository
 
         return $prepare->paginate((int)$limit, $columns)->toArray();
     }
+
+    /**
+     * Get record(s) by given column.
+     * 
+     * @param  string  $column   
+     * @param  mixed  $value    
+     * @param  boolean $collected
+     * @return Illuminate\Support\Collection|App\Models\Post            
+     */
+    public function getByColumn($column, $value, $collected = false)
+    {
+        $prepare = Post::where($column, $value);
+        return $collected ? $prepare->get() : $prepare->first();
+    }
 }

@@ -5,6 +5,7 @@ window._ = require('lodash');
 window.$ = window.jQuery = require('materialize-css/node_modules/jquery/dist/jquery.js'); 
 require('materialize-css');
 
+require('./prism');
 /**
  * Vue is a modern JavaScript library for building interactive web interfaces
  * using reactive data binding and reusable components. Vue's API is clean

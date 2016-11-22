@@ -4,9 +4,9 @@
             <div class="collection z-depth-1 posts">
                 <div class="collection-item post-item" v-for="post in posts">
                     <h5 class="title">
-                        <router-link to="#">{{ post.title }}</router-link>
+                        <router-link :to="'/posts/' + post.slug">{{ post.title }}</router-link>
                     </h5>
-                    <div class="label">
+                    <div class="label article-info">
                         published at {{ post.created_at.substr(0, 10) }}
                         <i class="material-icons">visibility</i>{{ post.view_count }}
                         <i class="material-icons">comment</i>{{ post.comment_count }}
@@ -18,19 +18,13 @@
                     <p class="summary">{{ post.summary }}</p>
                     <div class="row no-margin">
                         <div class="col s12 m12 l12 no-padding">
-                            <div class="chip" v-for="tag in post.tags">{{ tag.name }}</div>
+                            <div class="chip" v-for="tag in post.tags">
+                                <router-link :to="'/tags/' + tag.id">{{ tag.name }}</router-link>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!--<ul class="collection">
-                
-            </ul>
-            <div class="card post-card" v-for="post in posts">
-                <div class="card-content">
-                    
-                </div>
-            </div>-->
 
             <!-- loader -->
             <div class="loader-wrapper center">
