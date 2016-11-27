@@ -17,35 +17,31 @@ import router from './router.js';
 
 
 const header = new Vue({
-    el: 'header',
-    router,
-    components: {
-        Navigation
-    }
+	el: 'header',
+	router,
+	components: {
+		Navigation
+	}
 });
 
 const app = new Vue({
-    el: 'main',
-    router,
-    data: {
-    	transitionName: 'slide-left',
-    	// enterClass: 'slideInRight',
-    	leaveClass: 'fadeOutLeftBig',
-    },
-    watch: {
-    	'$route' (to, from) {
-    		console.log(1);
-    		let toDepth = to.path.split('/').length;
-	        let fromDepth = from.path.split('/').length;
-	        if (toDepth < fromDepth) {
-	        	this.transitionName = 'slide-right';
-	        	// this.enterClass = 'slideInLeft';
-	        	this.leaveClass = 'fadeOutRightBig';
-	        } else {
-	        	this.transitionName = 'slide-left';
-		    	// this.enterClass = 'slideInRight';
-		    	this.leaveClass = 'fadeOutLeftBig';
-	        }
-    	}
-    }
+	el: 'main',
+	router,
+	data: {
+		transitionName: 'slide-left',
+		leaveClass: 'fadeOutLeftBig',
+	},
+	watch: {
+		'$route'(to, from) {
+			let toDepth = to.path.split('/').length;
+			let fromDepth = from.path.split('/').length;
+			if (toDepth < fromDepth) {
+				this.transitionName = 'slide-right';
+				this.leaveClass = 'fadeOutRightBig';
+			} else {
+				this.transitionName = 'slide-left';
+				this.leaveClass = 'fadeOutLeftBig';
+			}
+		}
+	}
 });

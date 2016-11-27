@@ -14,7 +14,6 @@
 <main id="app">
     <div class="container">
         <transition :name="transitionName"
-                    :enter-active-class="'animated ' + enterClass"
                     :leave-active-class="'animated ' + leaveClass"
                     mode="out-in">
             <router-view></router-view>
