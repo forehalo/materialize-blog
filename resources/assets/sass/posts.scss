@@ -66,4 +66,17 @@
             border: 0;
         }
     }
+
+    .card-action .chip {
+        &:hover {
+            background-color: #F4F4F4;
+        }
+        transition: background-color 0.3s ease;
+        
+        
+        a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating) {
+            color: rgba(0, 0, 0, 0.6);
+            margin-right: 0;
+        }
+    }
 }

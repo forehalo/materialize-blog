@@ -3,7 +3,7 @@
         <div class="col s12">
             <div class="card z-depth-3 article">
                 <div class="loader-wrapper center" v-if="loading">
-                    <circular-loader  size="small"></circular-loader>
+                    <circular-loader size="small"></circular-loader>
                 </div>
                 <div class="card-content" v-else>
                     <h4 class="title">{{ post.title }}</h4>
@@ -18,7 +18,22 @@
                     </div>
                     <div class="article-content markdown-body" v-html="post.body"></div>
                     <div class="card-action">
-
+                        <div class="row">
+                            <div class="col s12 l6">
+                                <h5>category :</h5>
+                                <div class="chip">
+                                    <router-link :to="'/categories/' + post.category.id">{{ post.category.name }}</router-link>
+                                </div>
+                            </div>
+                            <div class="col s12 l6">
+                                <h5>tags :</h5>
+                                <div class="chip" v-for="tag in post.tags">
+                                    <router-link :to="'/tags/' + tag.id">{{ tag.name }}</router-link>
+                                </div>
+                            </div>
+                            <div class="col s12 post-right">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
