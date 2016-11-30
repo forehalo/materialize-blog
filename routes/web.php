@@ -12,7 +12,11 @@
 */
 
 
+Route::get('/captcha', function () {
+    return captcha();
+});
+
 // Must be placed below other routes.
-Route::any('/{any}', function (){
-	return view('front.index');
+Route::any('/{any}', function () {
+    return view('front.index');
 })->where('any', '.*');

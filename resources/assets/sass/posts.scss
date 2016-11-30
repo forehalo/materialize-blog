@@ -79,4 +79,25 @@
             margin-right: 0;
         }
     }
+
+    #comment-form {
+        label i.material-icons {
+            vertical-align: bottom;
+            transition: font-size 0.2s ease;            
+        }
+
+        label.active i.material-icons {
+            font-size: 18px;
+        }
+
+        .captcha-input {
+            width: 50%;
+            display: inline-block;
+            float: left;
+        }
+        img.captcha-img {
+            width: 50%;
+            max-width: 160px;
+        }
+    }
 }

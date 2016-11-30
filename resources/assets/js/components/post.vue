@@ -32,7 +32,44 @@
                                 </div>
                             </div>
                             <div class="col s12 post-right">
+                                <ul>
+                                    <li>作者：<span class="blue-text">Forehalo</span></li>
+                                    <li>本文地址：<span class="blue-text">{{ url }}</span></li>
+                                    <li>保留权利，转载请注明出处。</li>
+                                </ul>
                             </div>
+                        </div>
+                        <div class="row">
+                            <div class="divider"></div>
+                            <h5>Make a comment</h5>
+                            <form class="col s12" id="comment-form">
+                                <input type="hidden" name="parent_id" value="0">
+                                <div class="input-field col s12 l4">
+                                    <input type="text" name="name" id="name" class="validate">
+                                    <label for="name"><i class="material-icons">person</i>Name</label>
+                                </div>
+
+                                <div class="input-field col s12 l4">
+                                    <input type="text" name="email" id="email" class="validate">
+                                    <label for="email"><i class="material-icons">email</i>Email(invisible)</label>
+                                </div>
+
+                                <div class="input-field col s12 l4">
+                                    <input type="text" name="website" id="website" class="validate">
+                                    <label for="website"><i class="material-icons">web</i>Website(http://...)</label>
+                                </div>
+                                <div class="input-field col s12">
+                                    <textarea id="origin" class="materialize-textarea" name="origin" cols="50" rows="10"></textarea>
+                                    <label for="origin"><i class="material-icons">comment</i>content (markdown)</label>
+                                </div>
+                                <div class="input-field captcha-field col s12">
+                                    <div class="captcha-input">
+                                        <input class="captcha validate" id="captcha" name="captcha" type="text">
+                                        <label for="captcha"><i class="material-icons">security</i>captcha</label>
+                                    </div>
+                                    <img src="/captcha" alt="" class="captcha-img">
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -53,7 +90,8 @@
         data() {
             return {
                 loading: true,
-                post: null
+                post: null,
+                url: location.href
             };
         },
         mounted() {
