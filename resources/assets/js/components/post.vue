@@ -67,7 +67,7 @@
                                         <input class="captcha validate" id="captcha" name="captcha" type="text">
                                         <label for="captcha"><i class="material-icons">security</i>captcha</label>
                                     </div>
-                                    <img src="/captcha" alt="" class="captcha-img">
+                                    <img src="/captcha" class="captcha-img" @click="refreshCaptcha">
                                 </div>
                             </form>
                         </div>
@@ -107,6 +107,9 @@
                     }, (response) => {
 
                     });
+            },
+            refreshCaptcha(event) {
+                event.srcElement.src = '/captcha?' + Math.random();
             }
         },
         updated() {
