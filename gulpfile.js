@@ -19,5 +19,7 @@ elixir(mix => {
 
 
     mix.copy('node_modules/materialize-css/fonts/', 'public/build/fonts/');
+    mix.copy('resources/assets/fonts/', 'public/build/fonts/');
+
     mix.version(['js/app.js', 'css/app.css']);
 });
