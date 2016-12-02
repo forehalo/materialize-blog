@@ -10,12 +10,14 @@ class PostController extends Controller
 {
     /**
      * PostRepository.
+     * 
      * @var App\Repositories\PostRepository
      */
     protected $post;
 
     /**
      * PostController constructor.
+     * 
      * @param App\Repositories\PostRepository $post
      */
     public function __construct(PostRepository $post)
@@ -25,6 +27,7 @@ class PostController extends Controller
 
     /**
      * Get all posts.
+     * 
      * @param Illuminate\Http\Request $request
      */
     public function all(Request $request)
@@ -35,13 +38,14 @@ class PostController extends Controller
     
     /**
      * Get post by slug.
+     * 
      * @param string $slug
      */
     public function getBySlug($slug)
     {
         $post = $this->post->getByColumn('slug', $slug);
         if (is_null($post)) {
-            return resposne()->json(['error' => POST_NOT_FOUND, 'message' => tran('post_not_found')]);
+            return response()->json(['error' => POST_NOT_FOUND, 'message' => trans('post_not_found')]);
         } else {
             return response()->json($post);
         }
