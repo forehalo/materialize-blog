@@ -4,7 +4,10 @@ import Posts from './components/posts.vue';
 import Category from './components/category.vue';
 import Tag from './components/tag.vue';
 import Date from './components/date.vue';
-import Post from './Components/post.vue';
+import Post from './components/post.vue';
+
+// 404
+import NotFound from './components/404.vue';
 
 const routes = [
     {
@@ -30,6 +33,11 @@ const routes = [
     {
         path: '/posts/:slug?',
         component: Post
+    },
+    {
+        name: '404',
+        path: '/404',
+        component: NotFound
     }
 ];
 
@@ -44,10 +52,10 @@ router.beforeEach((to, from, next) => {
 });
 
 router.afterEach((to, from) => {
-    Laravel.currentViewType = 
-        ['default', 'categories', 'tags', 'date'].includes(to.name) ? 
-        to.name :
-        'default';
+    Laravel.currentViewType =
+        ['default', 'categories', 'tags', 'date'].includes(to.name) ?
+            to.name :
+            'default';
 });
 
 export default router;
