@@ -42,7 +42,7 @@
                         <div class="row">
                             <div class="divider"></div>
                             <h5>Make a comment</h5>
-                            <form class="col s12" id="comment-form">
+                            <form class="col s12" id="comment-form" @submit.prevent="submitComment">
                                 <input type="hidden" name="parent_id" value="0">
                                 <div class="input-field col s12 l4">
                                     <input type="text" name="name" id="name" class="validate">
@@ -67,7 +67,7 @@
                                         <input class="captcha validate" id="captcha" name="captcha" type="text">
                                         <label for="captcha"><i class="material-icons">security</i>captcha</label>
                                     </div>
-                                    <img src="/captcha" class="captcha-img" @click="refreshCaptcha">
+                                    <img src="/captcha" id="captcha-img" @click="refreshCaptcha">
                                 </div>
                             </form>
                         </div>
@@ -105,11 +105,20 @@
                         this.post = response.body;
                         this.loading = false;
                     }, (response) => {
-
+                        this.$router.replace({ name: '404'});
                     });
             },
             refreshCaptcha(event) {
-                event.srcElement.src = '/captcha?' + Math.random();
+                let newSrc = '/captcha?' + Math.random();
+                if(typeof event != "undefined") {
+                    event.srcElement.src = newSrc;
+                } else {
+                    $('img#captcha-img').attr('src', newSrc); 
+                }
+            },
+            submitComment(event) {
+                // TODO
+                this.refreshCaptcha();
             }
         },
         updated() {

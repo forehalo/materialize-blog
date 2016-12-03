@@ -45,7 +45,7 @@ class PostController extends Controller
     {
         $post = $this->post->getByColumn('slug', $slug);
         if (is_null($post)) {
-            return response()->json(['error' => POST_NOT_FOUND, 'message' => trans('post_not_found')]);
+            return response()->json(['error' => POST_NOT_FOUND, 'message' => trans('post_not_found')], 404);
         } else {
             return response()->json($post);
         }
