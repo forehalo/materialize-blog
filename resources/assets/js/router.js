@@ -48,7 +48,11 @@ var router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
     $('button-collapse').sideNav('hide');
-    next();
+    if (to.matched.length) {
+        next();
+    } else {
+        next({ name: '404' });
+    }
 });
 
 router.afterEach((to, from) => {
