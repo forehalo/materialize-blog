@@ -11,7 +11,7 @@
 |
 */
 
-Route::group(['namespace' => 'Api'], function() {
+Route::group(['namespace' => 'Api'], function () {
 
     // Category
     Route::get('/categories', 'CategoryController@all');
@@ -19,4 +19,7 @@ Route::group(['namespace' => 'Api'], function() {
     // Post
     Route::get('/posts', 'PostController@all');
     Route::get('/posts/{slug}', 'PostController@getBySlug');
+
+    // Comment
+    Route::get('/posts/{id}/comments', 'CommentController@getByPost');
 });

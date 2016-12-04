@@ -74,6 +74,24 @@
                     </div>
                 </div>
             </div>
+            <div class="card z-depth-3" v-show="post">
+                <div class="card-content comment-list" id="comments">
+                    <div class="loader-wrapper center" v-if="loadingComments">
+                        <circular-loader size="small"></circular-loader>
+                    </div>
+                    <div v-for="comment in comments" :id="'comment-' + comment.id" class="comment" v-else>
+                        <a :href="comment.blog" class="comment-title"><i class="material-icons">person</i>{{ comment.name }}</a>
+                        <span>&nbsp;|&nbsp;{{ comment.created_at }}&nbsp;:&nbsp;</span>
+                        <a href="javascript:;" class="reply-btn tooltipped" data-position="right" data-delay="50" data-tooltip="reply">
+                            <i class="material-icons" style="top: 6px;">reply</i>
+                        </a>
+                        <div class="row">
+                            <div class="markdown-body" v-html="comment.content"></div>
+                        </div>
+                    </div>
+                    <!--<h5 v-if="!hasComment" v-else>No Comment</h5>-->
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -91,9 +109,18 @@
             return {
                 loading: true,
                 post: null,
-                url: location.href
+                url: location.href,
+                comments: [],
+                loadingComments : false
             };
         },
+
+        computed: {
+            hasComment () {
+                return this.comments.length != 0;
+            }
+        },
+
         mounted() {
             this.getPost(this.$route.params.slug);
         },
@@ -104,6 +131,12 @@
                     .then((response) => {
                         this.post = response.body;
                         this.loading = false;
+                        // lazy load comments when scrolled to bottom.
+                        Materialize.scrollFire([{
+                            selector: 'footer', 
+                            offset: 0,
+                            callback: this.fetchComments
+                        }]);
                     }, (response) => {
                         this.$router.replace({ name: '404'});
                     });
@@ -119,10 +152,23 @@
             submitComment(event) {
                 // TODO
                 this.refreshCaptcha();
+            },
+            fetchComments() {
+                if (!this.post) {
+                    return;
+                }
+                this.loadingComments = true;
+                let id = this.post.id;
+                this.$http.get(`/api/posts/${id}/comments`)
+                    .then((response) => {
+                        this.comments = response.body;
+                        this.loadingComments = false;
+                    });
             }
         },
         updated() {
             Prism.highlightAll();
+            $('.tooltipped').tooltip();
         }
     }
 </script>

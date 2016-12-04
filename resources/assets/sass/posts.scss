@@ -101,3 +101,19 @@
         }
     }
 }
+
+#comments {
+    .comment {
+        border-bottom: 1px solid #E0E0E0;
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+    .comment-title i.material-icons {
+        vertical-align: bottom;
+    }
+    .markdown-body {
+        padding: 20px;
+    }
+}
