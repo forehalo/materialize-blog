@@ -22,4 +22,9 @@ class Comment extends Model
     {
         return $this->belongsTo('App\Models\Post');
     }
+
+    public function parent()
+    {
+        return $this->hasOne('App\Models\Comment', 'id', 'parent_id');
+    }
 }
