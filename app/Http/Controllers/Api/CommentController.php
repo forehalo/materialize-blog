@@ -24,6 +24,12 @@ class CommentController extends ApiController
         $this->comment = $comment;
     }
 
+    /**
+     * Get comments belong to given post.
+     *
+     * @param $postID
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getByPost($postID)
     {
         $comments = $this->comment->getCommentsByPost($postID);

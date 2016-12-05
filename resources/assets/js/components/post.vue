@@ -81,11 +81,14 @@
                     </div>
                     <div v-for="comment in comments" :id="'comment-' + comment.id" class="comment" v-else>
                         <a :href="comment.blog" class="comment-title"><i class="material-icons">person</i>{{ comment.name }}</a>
-                        <span>&nbsp;|&nbsp;{{ comment.created_at }}&nbsp;:&nbsp;</span>
+                        <span>|&nbsp;{{ comment.created_at }}&nbsp;:&nbsp;</span>
                         <a href="javascript:;" class="reply-btn tooltipped" data-position="right" data-delay="50" data-tooltip="reply">
                             <i class="material-icons" style="top: 6px;">reply</i>
                         </a>
-                        <div class="row">
+                        <div class="row content">
+                            <p class="reply" v-if="comment.parent_id != 0">
+                                reply&nbsp;<a href="javascript:;" @click="goToComment(comment.parent_id)">@{{ comments[comment.parent_id].name }}</a>&nbsp;:
+                            </p>
                             <div class="markdown-body" v-html="comment.content"></div>
                         </div>
                     </div>
@@ -164,6 +167,9 @@
                         this.comments = response.body;
                         this.loadingComments = false;
                     });
+            },
+            goToComment(commentID) {
+                // TODO scroll to comment
             }
         },
         updated() {

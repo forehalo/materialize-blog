@@ -109,11 +109,15 @@
         &:last-child {
             border-bottom: none;
         }
+
+        .content {
+            padding: 10px 20px 0;
+            .reply {
+                padding: 0 0 10px;
+            }
+        }
     }
     .comment-title i.material-icons {
         vertical-align: bottom;
-    }
-    .markdown-body {
-        padding: 20px;
     }
 }
