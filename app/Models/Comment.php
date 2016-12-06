@@ -14,6 +14,20 @@ class Comment extends Model
     protected $table = 'comments';
 
     /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidded = ['origin'];
+
+    /**
+     * The mass assignable attributes.
+     *
+     * @var array
+     */
+    protected $fillable = ['post_id', 'name', 'email', 'blog', 'origin', 'content', 'parent_id'];
+
+    /**
      * One to many relation.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

@@ -22,4 +22,5 @@ Route::group(['namespace' => 'Api'], function () {
 
     // Comment
     Route::get('/posts/{id}/comments', 'CommentController@getByPost');
+    Route::post('/posts/{id}/comments', 'CommentController@store');
 });

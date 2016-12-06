@@ -36,4 +36,30 @@ class CommentController extends ApiController
 
         return response()->json($comments);
     }
+
+    /**
+     * Create new comment.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function store(Request $request, $postID)
+    {
+        $this->validate($request, [
+            'parent_id' => 'required',
+            'name' => 'required|max:255',
+            'email' => 'required|email',
+            'blog' => 'required|url',
+            'origin' => 'required',
+            'captcha' => 'required',
+        ]);
+
+        $inputs = $request->all();
+        if ($inputs['captcha'] != session('captcha')) {
+            return response()->json(['message' => trans('form_params_invalid'), 'errors' => ['captcha' => trans('wrong_captcha')]], 422);
+        }
+
+        $result = $this->comment->create($postID, $inputs);
+        return response()->json($result);
+    }
 }

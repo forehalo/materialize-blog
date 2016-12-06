@@ -81,6 +81,39 @@
     }
 
     #comment-form {
+
+        input:not([type]) + label.active:after, 
+        input[type=text] + label.active:after, 
+        input[type=password] + label.active:after, 
+        input[type=email] + label.active:after, 
+        input[type=url] + label.active:after, 
+        input[type=time] + label.active:after, 
+        input[type=date] + label.active:after, 
+        input[type=datetime] + label.active:after, 
+        input[type=datetime-local] + label.active:after, 
+        input[type=tel] + label.active:after, 
+        input[type=number] + label.active:after, 
+        input[type=search] + label.active:after, 
+        textarea.materialize-textarea + label.active:after {
+            top: 60px;
+        }
+
+        input:not([type]) + label:after, 
+        input[type=text] + label:after, 
+        input[type=password] + label:after, 
+        input[type=email] + label:after, 
+        input[type=url] + label:after, 
+        input[type=time] + label:after, 
+        input[type=date] + label:after, 
+        input[type=datetime] + label:after, 
+        input[type=datetime-local] + label:after, 
+        input[type=tel] + label:after, 
+        input[type=number] + label:after, 
+        input[type=search] + label:after, 
+        textarea.materialize-textarea + label:after {
+            top: 32px;
+        }
+
         label i.material-icons {
             vertical-align: bottom;
             transition: font-size 0.2s ease;            

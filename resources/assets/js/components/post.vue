@@ -1,84 +1,95 @@
 <template>
     <div class="row">
         <div class="col s12">
-            <div class="card z-depth-3 article">
-                <div class="loader-wrapper center" v-if="loading">
+            <div class="loader-wrapper center" v-if="loading">
+                <circular-loader size="small"></circular-loader>
+            </div>
+            <transition name="article" enter-active-class="animated fadeInUp">
+                <div class="card z-depth-3 article" v-if="!loading">
+                    <div class="card-content">
+                        <!--title-->
+                        <h4 class="title">{{ post.title }}</h4>
+                        <!--info-->
+                        <div class="label article-info">
+                            published at {{ post.created_at.substr(0, 10) }}
+                            <i class="material-icons">visibility</i>{{ post.view_count }}
+                            <i class="material-icons">comment</i>{{ post.comment_count }}
+                            <a href="javascript:void(0)" class="favorite-btn">
+                                <i class="material-icons">favorite_border</i>
+                                <span>{{ post.favorite_count }}</span>
+                            </a>
+                        </div>
+                        <!--content-->
+                        <div class="article-content markdown-body" v-html="post.body"></div>
+                        <!--actions-->
+                        <div class="card-action">
+                            <div class="row">
+                                <div class="col s12 l6">
+                                    <h5>category :</h5>
+                                    <div class="chip">
+                                        <router-link :to="'/categories/' + post.category.id">{{ post.category.name }}</router-link>
+                                    </div>
+                                </div>
+                                <div class="col s12 l6">
+                                    <h5>tags :</h5>
+                                    <div class="chip" v-for="tag in post.tags">
+                                        <router-link :to="'/tags/' + tag.id">{{ tag.name }}</router-link>
+                                    </div>
+                                </div>
+                                <div class="col s12 post-right">
+                                    <ul>
+                                        <li>作者：<span class="blue-text">Forehalo</span></li>
+                                        <li>本文地址：<span class="blue-text">{{ url }}</span></li>
+                                        <li>保留权利，转载请注明出处。</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="divider"></div>
+                                <h5>Make a comment</h5>
+                                <form class="col s12" id="comment-form" @submit.prevent="submitComment">
+                                    <input type="hidden" name="parent_id" v-model="parentID">
+                                    <div class="input-field col s12 l4">
+                                        <input type="text" name="name" id="name" class="validate" v-model="name" :class="errors.name ? 'invalid' : ''">
+                                        <label for="name" :data-error="errors.name"><i class="material-icons">person</i>Name</label>
+                                    </div>
+
+                                    <div class="input-field col s12 l4">
+                                        <input type="email" name="email" id="email" class="validate" v-model="email" :class="errors.email ? 'invalid' : ''">
+                                        <label for="email" :data-error="errors.email"><i class="material-icons">email</i>Email(invisible)</label>
+                                    </div>
+                                    <div class="input-field col s12 l4">
+                                        <input type="text" name="website" id="website" class="validate" v-model="website" :class="errors.blog ? 'invalid' : ''">
+                                        <label for="website" :data-error="errors.blog"><i class="material-icons">web</i>Website(http://...)</label>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <textarea id="origin" class="materialize-textarea" name="origin" cols="50" rows="10" v-model="origin"></textarea>
+                                        <label for="origin"><i class="material-icons">comment</i>content (markdown)</label>
+                                    </div>
+                                    <div class="input-field captcha-field col s12">
+                                        <div class="captcha-input">
+                                            <input class="captcha validate" id="captcha" name="captcha" type="text" v-model="captcha" :class="errors.captcha ? 'invalid' : ''">
+                                            <label for="captcha" :data-error="errors.captcha"><i class="material-icons">security</i>captcha</label>
+                                        </div>
+                                        <img src="/captcha" id="captcha-img" @click="refreshCaptcha">
+                                    </div>
+                                    <div class="input-field col s12 m5 l6">
+                                        <button class="btn waves-effect blue" type="submit">submit <i class="material-icons right">send</i></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </transition>
+
+            <div class="card z-depth-3" v-show="post">
+                <div class="loader-wrapper center" v-if="loadingComments">
                     <circular-loader size="small"></circular-loader>
                 </div>
-                <div class="card-content" v-else>
-                    <h4 class="title">{{ post.title }}</h4>
-                    <div class="label article-info">
-                        published at {{ post.created_at.substr(0, 10) }}
-                        <i class="material-icons">visibility</i>{{ post.view_count }}
-                        <i class="material-icons">comment</i>{{ post.comment_count }}
-                        <a href="javascript:void(0)" class="favorite-btn">
-                            <i class="material-icons">favorite_border</i>
-                            <span>{{ post.favorite_count }}</span>
-                        </a>
-                    </div>
-                    <div class="article-content markdown-body" v-html="post.body"></div>
-                    <div class="card-action">
-                        <div class="row">
-                            <div class="col s12 l6">
-                                <h5>category :</h5>
-                                <div class="chip">
-                                    <router-link :to="'/categories/' + post.category.id">{{ post.category.name }}</router-link>
-                                </div>
-                            </div>
-                            <div class="col s12 l6">
-                                <h5>tags :</h5>
-                                <div class="chip" v-for="tag in post.tags">
-                                    <router-link :to="'/tags/' + tag.id">{{ tag.name }}</router-link>
-                                </div>
-                            </div>
-                            <div class="col s12 post-right">
-                                <ul>
-                                    <li>作者：<span class="blue-text">Forehalo</span></li>
-                                    <li>本文地址：<span class="blue-text">{{ url }}</span></li>
-                                    <li>保留权利，转载请注明出处。</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="divider"></div>
-                            <h5>Make a comment</h5>
-                            <form class="col s12" id="comment-form" @submit.prevent="submitComment">
-                                <input type="hidden" name="parent_id" value="0">
-                                <div class="input-field col s12 l4">
-                                    <input type="text" name="name" id="name" class="validate">
-                                    <label for="name"><i class="material-icons">person</i>Name</label>
-                                </div>
-
-                                <div class="input-field col s12 l4">
-                                    <input type="text" name="email" id="email" class="validate">
-                                    <label for="email"><i class="material-icons">email</i>Email(invisible)</label>
-                                </div>
-
-                                <div class="input-field col s12 l4">
-                                    <input type="text" name="website" id="website" class="validate">
-                                    <label for="website"><i class="material-icons">web</i>Website(http://...)</label>
-                                </div>
-                                <div class="input-field col s12">
-                                    <textarea id="origin" class="materialize-textarea" name="origin" cols="50" rows="10"></textarea>
-                                    <label for="origin"><i class="material-icons">comment</i>content (markdown)</label>
-                                </div>
-                                <div class="input-field captcha-field col s12">
-                                    <div class="captcha-input">
-                                        <input class="captcha validate" id="captcha" name="captcha" type="text">
-                                        <label for="captcha"><i class="material-icons">security</i>captcha</label>
-                                    </div>
-                                    <img src="/captcha" id="captcha-img" @click="refreshCaptcha">
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card z-depth-3" v-show="post">
-                <div class="card-content comment-list" id="comments">
-                    <div class="loader-wrapper center" v-if="loadingComments">
-                        <circular-loader size="small"></circular-loader>
-                    </div>
+                <div class="card-content comment-list" id="comments" v-else>
+                    <h5 v-if="!hasComment">No Comment</h5>
                     <div v-for="comment in comments" :id="'comment-' + comment.id" class="comment" v-else>
                         <a :href="comment.blog" class="comment-title"><i class="material-icons">person</i>{{ comment.name }}</a>
                         <span>|&nbsp;{{ comment.created_at }}&nbsp;:&nbsp;</span>
@@ -86,13 +97,12 @@
                             <i class="material-icons" style="top: 6px;">reply</i>
                         </a>
                         <div class="row content">
-                            <p class="reply" v-if="comment.parent_id != 0">
-                                reply&nbsp;<a href="javascript:;" @click="goToComment(comment.parent_id)">@{{ comments[comment.parent_id].name }}</a>&nbsp;:
+                            <p class="reply" v-if="comment.parent != null">
+                                reply&nbsp;<a href="javascript:;" @click="goToComment(comment.parent_id)">@{{ comment.parent.name }}</a>&nbsp;:
                             </p>
                             <div class="markdown-body" v-html="comment.content"></div>
                         </div>
                     </div>
-                    <!--<h5 v-if="!hasComment" v-else>No Comment</h5>-->
                 </div>
             </div>
         </div>
@@ -114,7 +124,19 @@
                 post: null,
                 url: location.href,
                 comments: [],
-                loadingComments : false
+                loadingComments : false,
+
+
+                // v-model bindings
+                parentID: 0,
+                name: '',
+                email: '',
+                website: '',
+                origin: '',
+                captcha: '',
+                
+                // form errors
+                errors: {}
             };
         },
 
@@ -153,7 +175,21 @@
                 }
             },
             submitComment(event) {
-                // TODO
+                console.log(event);
+                this.$http.post(`/api/posts/${this.post.id}/comments`, {
+                    parent_id: this.parentID,
+                    name: this.name,
+                    email: this.email,
+                    blog: this.website,
+                    origin: this.origin,
+                    captcha: this.captcha
+                }).then((response) => {
+                    // Toast
+                    this.comments.unshift(response.body);
+                }, (response) => {
+                    Materialize.toast(response.body.message, 4000);
+                    this.errors = response.body.errors;
+                });
                 this.refreshCaptcha();
             },
             fetchComments() {
@@ -169,7 +205,15 @@
                     });
             },
             goToComment(commentID) {
-                // TODO scroll to comment
+                // scroll to parent comment
+                let comment = document.getElementById('comment-' + commentID);
+                let rect = comment.getBoundingClientRect();
+                $(comment).css({"background-color": '#dcdcdc'});
+                setTimeout(() => { 
+                    $(comment).css({"background-color": '#FFF'});
+                }, 2000);
+                $('html, body').animate({scrollTop:scrollY + rect.top - 100}, 300);
+                
             }
         },
         updated() {
