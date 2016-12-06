@@ -1,8 +1,9 @@
 <template>
     <div class="row">
         <div class="col s12">
-            <div class="collection z-depth-1 posts">
-                <div class="collection-item post-item" v-for="post in posts">
+            <transition-group name="articles" :css="false" @beforeEnter="beforeArticleEnter" @enter="articleEnter" class="collection posts"
+                tag="div">
+                <div class="collection-item post-item" v-for="(post, index) in posts" :key="index" :data-delay="index">
                     <h5 class="title">
                         <router-link :to="'/posts/' + post.slug">{{ post.title }}</router-link>
                     </h5>
@@ -24,17 +25,14 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
+                <!-- No more posts -->
+                <div class="collection-item" v-if="noMore" :key="0">
+                    <p>whoops！No more posts here.</p>
+                </div>
+            </transition-group>
             <!-- loader -->
             <div class="loader-wrapper center">
                 <circular-loader v-show="loading"></circular-loader>
-            </div>
-            <!-- No more posts -->
-            <div class="card" v-if="!hasMore">
-                <div class="card-content">
-                    <div class="card-title">No More Posts</div>
-                </div>
             </div>
         </div>
     </div>
@@ -53,8 +51,15 @@
     			posts: [],
                 hasMore: true,
                 loading: false,
+                velCount: 0
     		}
     	},
+
+        computed: {
+            noMore() {
+                return !this.hasMore && this.velCount == this.posts.length;
+            }
+        },
 
     	mounted() {
             this.loadMorePosts();
@@ -80,6 +85,20 @@
                         this.loading = false;                        
                     });
                 }
+            }, 
+            beforeArticleEnter (el) {
+                el.style.opacity = 0;
+            },
+            articleEnter (el, done) {
+                var delay = (el.dataset.delay - this.velCount) * 150;
+                setTimeout(() => {
+                    $.Velocity(el,{ opacity: 1 },{ complete: () => {
+                        if(!this.noMore) {
+                            this.velCount++;
+                        }
+                        done.call(this);
+                    }});
+                }, delay)
             }
         }
     }
