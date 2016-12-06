@@ -12,9 +12,7 @@
 */
 
 
-Route::get('/captcha', function () {
-    return captcha();
-});
+Route::get('/captcha', 'Controller@captcha');
 
 // Must be placed below other routes.
 Route::any('/{any}', function () {
