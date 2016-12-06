@@ -29,7 +29,7 @@ const app = new Vue({
 	router,
 	data: {
 		transitionName: 'slide-left',
-		leaveClass: 'fadeOutLeftBig',
+		leaveClass: 'fadeOutLeft',
 	},
 	watch: {
 		'$route'(to, from) {
@@ -37,10 +37,10 @@ const app = new Vue({
 			let fromDepth = from.path.split('/').length;
 			if (toDepth < fromDepth) {
 				this.transitionName = 'slide-right';
-				this.leaveClass = 'fadeOutRightBig';
+				this.leaveClass = 'fadeOutRight';
 			} else {
 				this.transitionName = 'slide-left';
-				this.leaveClass = 'fadeOutLeftBig';
+				this.leaveClass = 'fadeOutLeft';
 			}
 		}
 	}
