@@ -64,8 +64,10 @@
                                     </div>
                                     <div class="input-field col s12">
                                         <textarea id="origin" class="materialize-textarea" name="origin" cols="50" rows="10" v-model="form.origin" placeholder="markdown here"
-                                            :class="errors.blog ? 'invalid' : ''"></textarea>
-                                        <label for="origin" class="active"><i class="material-icons">comment</i>content (markdown)</label>
+                                            :class="errors.origin ? 'invalid' : ''"></textarea>
+                                        <label for="origin" class="active">
+                                            <i class="material-icons">comment</i>content
+                                        </label>
                                     </div>
                                     <div class="input-field captcha-field col s12">
                                         <div class="captcha-input">
@@ -74,8 +76,18 @@
                                         </div>
                                         <img src="/captcha" id="captcha-img" @click="refreshCaptcha">
                                     </div>
-                                    <div class="input-field col s12 m5 l6">
-                                        <button class="btn waves-effect blue" type="submit">submit <i class="material-icons right">send</i></button>
+                                    <div class="input-field col s12 m6">
+                                        <a href="javascript:;" class="btn waves-effect wave-light green" @click="previewComment">
+                                            preview <i class="material-icons right">visibility</i>
+                                        </a>
+                                        <button class="btn waves-effect wave-light blue" type="submit">
+                                            submit <i class="material-icons right">send</i>
+                                        </button>
+                                    </div>
+                                    <div id="comment-preview-modal" class="modal">
+                                        <div class="modal-content">
+                                            <div class="markdown-body" v-html="commentPreview"></div>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
@@ -128,6 +140,7 @@
                 comments: [],
                 loadingComments : false,
                 like: false,
+                commentPreview: '',
 
 
                 // v-model bindings
@@ -234,6 +247,10 @@
                             Materialize.toast(response.body.message, 4000);
                         });
                 }
+            },
+            previewComment() {
+                this.commentPreview = marked(this.form.origin);
+                $('#comment-preview-modal').modal({'dismissable': true}).modal('open');
             }
         },
         updated() {

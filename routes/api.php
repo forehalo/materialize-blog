@@ -12,10 +12,6 @@
 */
 
 Route::group(['namespace' => 'Api'], function () {
-    Route::get('/foo', function () {
-        return App\Models\Post::where('id', 65)->increment('favorite_count');
-    });
-
 
     // Category
     Route::get('/categories', 'CategoryController@all');
