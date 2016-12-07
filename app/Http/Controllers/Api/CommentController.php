@@ -56,7 +56,7 @@ class CommentController extends ApiController
 
         $inputs = $request->all();
         if ($inputs['captcha'] != session('captcha')) {
-            return response()->json(['message' => trans('form_params_invalid'), 'errors' => ['captcha' => trans('wrong_captcha')]], 422);
+            return response()->json(['message' => trans('app.form_invalid'), 'errors' => ['captcha' => trans('app.wrong_captcha')]], 422);
         }
 
         $result = $this->comment->create($postID, $inputs);

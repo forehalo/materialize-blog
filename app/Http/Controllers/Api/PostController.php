@@ -45,7 +45,7 @@ class PostController extends Controller
     {
         $post = $this->post->getByColumn('slug', $slug);
         if (is_null($post)) {
-            return response()->json(['error' => POST_NOT_FOUND, 'message' => trans('post_not_found')], 404);
+            return response()->json(['error' => POST_NOT_FOUND, 'message' => trans('post.not_found')], 404);
         } else {
             return response()->json($post);
         }
@@ -55,7 +55,7 @@ class PostController extends Controller
     {
         $result = $this->post->likePost($id);
         return $result ?
-            response()->json(['message' => trans('success_to_like_post')]) :
-            response()->json(['error' => FAIL_TO_LIKE_POST, 'message' => trans('fail_to_like_post')], 400);
+            response()->json(['message' => trans('post.success_like')]) :
+            response()->json(['error' => FAIL_TO_LIKE_POST, 'message' => trans('post.failed_like')], 400);
     }
 }

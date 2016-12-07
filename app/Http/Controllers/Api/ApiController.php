@@ -31,7 +31,7 @@ abstract class ApiController extends Controller
 
             throw new HttpResponseException(
                 response()->json([
-                    'message' => trans('form_params_invalid'),
+                    'message' => trans('app.form_invalid'),
                     'errors' => $unique
                 ], 422)
             );
