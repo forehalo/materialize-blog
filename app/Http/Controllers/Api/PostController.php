@@ -10,14 +10,14 @@ class PostController extends Controller
 {
     /**
      * PostRepository.
-     * 
+     *
      * @var App\Repositories\PostRepository
      */
     protected $post;
 
     /**
      * PostController constructor.
-     * 
+     *
      * @param App\Repositories\PostRepository $post
      */
     public function __construct(PostRepository $post)
@@ -27,7 +27,7 @@ class PostController extends Controller
 
     /**
      * Get all posts.
-     * 
+     *
      * @param Illuminate\Http\Request $request
      */
     public function all(Request $request)
@@ -38,7 +38,7 @@ class PostController extends Controller
     
     /**
      * Get post by slug.
-     * 
+     *
      * @param string $slug
      */
     public function getBySlug($slug)
@@ -49,5 +49,13 @@ class PostController extends Controller
         } else {
             return response()->json($post);
         }
+    }
+
+    public function like($id)
+    {
+        $result = $this->post->likePost($id);
+        return $result ?
+            response()->json(['message' => trans('success_to_like_post')]) :
+            response()->json(['error' => FAIL_TO_LIKE_POST, 'message' => trans('fail_to_like_post')], 400);
     }
 }

@@ -39,4 +39,10 @@ class PostRepository
         $prepare = Post::where($column, $value);
         return $collected ? $prepare->get() : $prepare->with(['tags', 'category'])->first();
     }
+
+    
+    public function likePost($postID)
+    {
+        return Post::where('id', $postID)->increment('favorite_count');
+    }
 }

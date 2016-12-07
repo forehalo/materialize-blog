@@ -16,9 +16,10 @@ class CommentRepository
      */
     public function getCommentsByPost($postID)
     {
-        return Comment::where('post_id', $postID)->with(['parent' => function ($query) {
-            $query->select('id', 'name');
-        }])->orderBy('created_at', 'desc')->get();
+        return Comment::where('post_id', $postID)
+            ->with('parent')
+            ->orderBy('created_at', 'desc')
+            ->get();
     }
 
     /**
@@ -33,6 +34,9 @@ class CommentRepository
         $inputs['post_id'] = $postID;
         $inputs['content'] = $parser->parse($inputs['origin']);
         $comment = Comment::create($inputs);
+        if ($comment->parent_id != 0) {
+            $comment->load('parent');
+        }
 
         // add on comment_count
         Post::where('id', $inputs['post_id'])->increment('comment_count');

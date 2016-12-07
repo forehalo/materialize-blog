@@ -14,8 +14,8 @@
                             published at {{ post.created_at.substr(0, 10) }}
                             <i class="material-icons">visibility</i>{{ post.view_count }}
                             <i class="material-icons">comment</i>{{ post.comment_count }}
-                            <a href="javascript:void(0)" class="favorite-btn">
-                                <i class="material-icons">favorite_border</i>
+                            <a href="javascript:void(0)" class="favorite-btn" @click="likeArticle" :class="like ? 'blue-text' : ''">
+                                <i class="material-icons">{{ like ? 'favorite' : 'favorite_border' }}</i>
                                 <span>{{ post.favorite_count }}</span>
                             </a>
                         </div>
@@ -48,27 +48,28 @@
                                 <div class="divider"></div>
                                 <h5>Make a comment</h5>
                                 <form class="col s12" id="comment-form" @submit.prevent="submitComment">
-                                    <input type="hidden" name="parent_id" v-model="parentID">
+                                    <input type="hidden" name="parent_id" v-model="form.parent_id">
                                     <div class="input-field col s12 l4">
-                                        <input type="text" name="name" id="name" class="validate" v-model="name" :class="errors.name ? 'invalid' : ''">
+                                        <input type="text" name="name" id="name" class="validate" v-model="form.name" :class="errors.name ? 'invalid' : ''">
                                         <label for="name" :data-error="errors.name"><i class="material-icons">person</i>Name</label>
                                     </div>
 
                                     <div class="input-field col s12 l4">
-                                        <input type="email" name="email" id="email" class="validate" v-model="email" :class="errors.email ? 'invalid' : ''">
+                                        <input type="email" name="email" id="email" class="validate" v-model="form.email" :class="errors.email ? 'invalid' : ''">
                                         <label for="email" :data-error="errors.email"><i class="material-icons">email</i>Email(invisible)</label>
                                     </div>
                                     <div class="input-field col s12 l4">
-                                        <input type="text" name="website" id="website" class="validate" v-model="website" :class="errors.blog ? 'invalid' : ''">
+                                        <input type="text" name="website" id="website" class="validate" v-model="form.blog" :class="errors.blog ? 'invalid' : ''">
                                         <label for="website" :data-error="errors.blog"><i class="material-icons">web</i>Website(http://...)</label>
                                     </div>
                                     <div class="input-field col s12">
-                                        <textarea id="origin" class="materialize-textarea" name="origin" cols="50" rows="10" v-model="origin"></textarea>
-                                        <label for="origin"><i class="material-icons">comment</i>content (markdown)</label>
+                                        <textarea id="origin" class="materialize-textarea" name="origin" cols="50" rows="10" v-model="form.origin" placeholder="markdown here"
+                                            :class="errors.blog ? 'invalid' : ''"></textarea>
+                                        <label for="origin" class="active"><i class="material-icons">comment</i>content (markdown)</label>
                                     </div>
                                     <div class="input-field captcha-field col s12">
                                         <div class="captcha-input">
-                                            <input class="captcha validate" id="captcha" name="captcha" type="text" v-model="captcha" :class="errors.captcha ? 'invalid' : ''">
+                                            <input class="captcha validate" id="captcha" name="captcha" type="text" v-model="form.captcha" :class="errors.captcha ? 'invalid' : ''">
                                             <label for="captcha" :data-error="errors.captcha"><i class="material-icons">security</i>captcha</label>
                                         </div>
                                         <img src="/captcha" id="captcha-img" @click="refreshCaptcha">
@@ -84,6 +85,7 @@
                 </div>
             </transition>
 
+            <!--comments-->
             <div class="card z-depth-3" v-show="post">
                 <div class="loader-wrapper center" v-if="loadingComments">
                     <circular-loader size="small"></circular-loader>
@@ -93,7 +95,7 @@
                     <div v-for="comment in comments" :id="'comment-' + comment.id" class="comment" v-else>
                         <a :href="comment.blog" class="comment-title"><i class="material-icons">person</i>{{ comment.name }}</a>
                         <span>|&nbsp;{{ comment.created_at }}&nbsp;:&nbsp;</span>
-                        <a href="javascript:;" class="reply-btn tooltipped" data-position="right" data-delay="50" data-tooltip="reply">
+                        <a href="javascript:;" @click="reply(comment.id)" class="reply-btn tooltipped" data-position="right" data-delay="50" data-tooltip="reply">
                             <i class="material-icons" style="top: 6px;">reply</i>
                         </a>
                         <div class="row content">
@@ -125,15 +127,18 @@
                 url: location.href,
                 comments: [],
                 loadingComments : false,
+                like: false,
 
 
                 // v-model bindings
-                parentID: 0,
-                name: '',
-                email: '',
-                website: '',
-                origin: '',
-                captcha: '',
+                form: {
+                    parent_id: 0,
+                    name: '',
+                    email: '',
+                    blog: '',
+                    origin: '',
+                    captcha: ''
+                },
                 
                 // form errors
                 errors: {}
@@ -175,21 +180,18 @@
                 }
             },
             submitComment(event) {
-                console.log(event);
-                this.$http.post(`/api/posts/${this.post.id}/comments`, {
-                    parent_id: this.parentID,
-                    name: this.name,
-                    email: this.email,
-                    blog: this.website,
-                    origin: this.origin,
-                    captcha: this.captcha
-                }).then((response) => {
-                    // Toast
-                    this.comments.unshift(response.body);
-                }, (response) => {
-                    Materialize.toast(response.body.message, 4000);
-                    this.errors = response.body.errors;
-                });
+                this.$http.post(`/api/posts/${this.post.id}/comments`, this.form)
+                    .then((response) => {
+                        this.comments.unshift(response.body);
+                        // Materialize.toast('Comment successfully!', 4000);                        
+                        $('#comment-form input, textarea').val('');
+                        $('#comment-form label').removeClass('class');
+                        this.goToComment(response.body.id);
+                    }, (response) => {
+                        Materialize.toast(response.body.message, 4000);
+                        this.errors = response.body.errors;
+                    });
+                this.errors = {};
                 this.refreshCaptcha();
             },
             fetchComments() {
@@ -214,6 +216,24 @@
                 }, 2000);
                 $('html, body').animate({scrollTop:scrollY + rect.top - 100}, 300);
                 
+            },
+            reply(commentID) {
+                this.form.parent_id = commentID;
+                $('html, body').animate({
+                    scrollTop:scrollY + document.getElementById('comment-form').getBoundingClientRect().top - 100
+                }, 300);
+            }, 
+            likeArticle() {
+                if(!this.like) {
+                    this.$http.post(`/api/posts/${this.post.id}/likes`)
+                        .then(response => {
+                            Materialize.toast(response.body.message, 4000);
+                            this.post.favorite_count++;
+                            this.like = true;
+                        }, response => {
+                            Materialize.toast(response.body.message, 4000);
+                        });
+                }
             }
         },
         updated() {

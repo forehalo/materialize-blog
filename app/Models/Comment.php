@@ -18,7 +18,7 @@ class Comment extends Model
      *
      * @var array
      */
-    protected $hidded = ['origin'];
+    protected $hidden = ['origin'];
 
     /**
      * The mass assignable attributes.
@@ -39,6 +39,6 @@ class Comment extends Model
 
     public function parent()
     {
-        return $this->hasOne('App\Models\Comment', 'id', 'parent_id');
+        return $this->hasOne('App\Models\Comment', 'id', 'parent_id')->select('id', 'name');
     }
 }

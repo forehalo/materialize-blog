@@ -11,8 +11,8 @@
                         published at {{ post.created_at.substr(0, 10) }}
                         <i class="material-icons">visibility</i>{{ post.view_count }}
                         <i class="material-icons">comment</i>{{ post.comment_count }}
-                        <a href="javascript:void(0)" class="favorite-btn">
-                            <i class="material-icons">favorite_border</i>
+                        <a href="javascript:void(0)" class="favorite-btn" @click="like(post)" :class="post.like ? 'blue-text' : ''">
+                            <i class="material-icons">{{ post.like ? 'favorite' : 'favorite_border'}}</i>
                             <span>{{ post.favorite_count }}</span>
                         </a>
                     </div>
@@ -99,6 +99,18 @@
                         done.call(this);
                     }});
                 }, delay)
+            },
+            like(post) {
+                if(!post.like) {
+                    this.$http.post(`/api/posts/${post.id}/likes`)
+                        .then(response => {
+                            Materialize.toast(response.body.message, 4000);
+                            post.favorite_count++;
+                            post.like = true;
+                        }, response => {
+                            Materialize.toast(response.body.message, 4000);
+                        });
+                }
             }
         }
     }

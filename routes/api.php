@@ -12,6 +12,10 @@
 */
 
 Route::group(['namespace' => 'Api'], function () {
+    Route::get('/foo', function () {
+        return App\Models\Post::where('id', 65)->increment('favorite_count');
+    });
+
 
     // Category
     Route::get('/categories', 'CategoryController@all');
@@ -19,6 +23,7 @@ Route::group(['namespace' => 'Api'], function () {
     // Post
     Route::get('/posts', 'PostController@all');
     Route::get('/posts/{slug}', 'PostController@getBySlug');
+    Route::post('/posts/{id}/likes', 'PostController@like');
 
     // Comment
     Route::get('/posts/{id}/comments', 'CommentController@getByPost');
