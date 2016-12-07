@@ -2,9 +2,12 @@
 window._ = require('lodash');
 
 // fix velocity function not found bug.
-window.$ = window.jQuery = require('materialize-css/node_modules/jquery/dist/jquery.js'); 
+window.$ = window.jQuery = require('materialize-css/node_modules/jquery/dist/jquery.js');
 require('materialize-css');
 
+// markdown parser.
+window.marked = require('marked');
+// code element highlight.
 require('./prism');
 /**
  * Vue is a modern JavaScript library for building interactive web interfaces
