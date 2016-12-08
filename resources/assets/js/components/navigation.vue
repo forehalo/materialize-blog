@@ -1,11 +1,10 @@
-'<template>
+<template>
     <div class="navbar-fixed">
         <nav :class="'nav-' + Laravel.currentViewType">
             <div class="container">
                 <div class="nav-wrapper">
                     <!-- Toggle side menu -->
-                    <a href="#" data-activates="nav-mobile"
-                       class="button-collapse waves-effect btn-flat btn-floating"><i
+                    <a href="#" data-activates="nav-mobile" class="button-collapse waves-effect btn-flat btn-floating"><i
                             class="material-icons">menu</i></a>
                     <router-link to="/" class="brand-logo">{{ Laravel.config.logo }}</router-link>
                     <topbar :categories="categories"></topbar>
@@ -34,15 +33,20 @@
 
         data() {
             return {
-                Laravel,
-                categories: []
+                Laravel
+            }
+        },
+
+        computed: {
+            categories() {
+                return store.getCategories();
             }
         },
 
         mounted() {
             this.$http.get('/api/categories')
                 .then((response) => {
-                    this.categories = response.body;
+                    store.setCategories(response.body);
                 }, (response) => {
                     // TODO
                 });

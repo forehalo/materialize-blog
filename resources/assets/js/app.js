@@ -16,11 +16,27 @@ import Navigation from './components/navigation.vue';
 import router from './router.js';
 
 
+window.store = {
+	categories: [],
+
+	getCategories() {
+		return this.categories;
+	},
+
+	setCategories(newValue) {
+		this.categories = newValue;
+	}
+
+}
+
 const header = new Vue({
 	el: 'header',
 	router,
 	components: {
 		Navigation
+	},
+	data: {
+		store
 	}
 });
 
@@ -30,6 +46,7 @@ const app = new Vue({
 	data: {
 		transitionName: 'slide-left',
 		leaveClass: 'fadeOutLeft',
+		store
 	},
 	watch: {
 		'$route'(to, from) {

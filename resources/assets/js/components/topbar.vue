@@ -10,7 +10,7 @@
                 class="material-icons right">arrow_drop_down</i></a>
             <ul id="cate_drop_top" class="dropdown-content">
                 <li v-for="category in categories">
-                    <router-link :to="'/categories/' + category.id">
+                    <router-link :to="'/categories/' + category.name">
                         {{ category.name }}
                     </router-link>
                 </li>
@@ -22,13 +22,13 @@
                 <li><a href="#" class="black-text disabled">Group By</a></li>
                 <li class="divider"></li>
                 <li>
-                    <router-link to="categories">Categories</router-link>
+                    <router-link to="categories" class="green-text waves-effect waves-teal">Categories</router-link>
                 </li>
                 <li>
-                    <router-link to="tags">Tags</router-link>
+                    <router-link to="tags" class="pink-text waves-effect waves-teal">Tags</router-link>
                 </li>
                 <li>
-                    <router-link to="date">Date</router-link>
+                    <router-link to="date" class="orange-text waves-effect waves-teal">Date</router-link>
                 </li>
             </ul>
         </li>

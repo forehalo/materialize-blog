@@ -17,7 +17,7 @@ const routes = [
     },
     {
         name: 'categories',
-        path: '/categories/:id?',
+        path: '/categories/:name?',
         component: Category
     },
     {
