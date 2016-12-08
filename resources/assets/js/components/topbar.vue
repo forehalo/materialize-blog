@@ -22,13 +22,13 @@
                 <li><a href="#" class="black-text disabled">Group By</a></li>
                 <li class="divider"></li>
                 <li>
-                    <router-link to="categories" class="green-text waves-effect waves-teal">Categories</router-link>
+                    <router-link to="/categories" class="green-text waves-effect waves-teal">Categories</router-link>
                 </li>
                 <li>
-                    <router-link to="tags" class="pink-text waves-effect waves-teal">Tags</router-link>
+                    <router-link to="/tags" class="pink-text waves-effect waves-teal">Tags</router-link>
                 </li>
                 <li>
-                    <router-link to="date" class="orange-text waves-effect waves-teal">Date</router-link>
+                    <router-link to="/date" class="orange-text waves-effect waves-teal">Date</router-link>
                 </li>
             </ul>
         </li>
