@@ -11,14 +11,14 @@ class PostController extends Controller
     /**
      * PostRepository.
      *
-     * @var App\Repositories\PostRepository
+     * @var PostRepository
      */
     protected $post;
 
     /**
      * PostController constructor.
      *
-     * @param App\Repositories\PostRepository $post
+     * @param PostRepository $post
      */
     public function __construct(PostRepository $post)
     {
@@ -28,18 +28,20 @@ class PostController extends Controller
     /**
      * Get all posts.
      *
-     * @param Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function all(Request $request)
     {
         $posts = $this->post->all($request->input('limit', 8));
         return response()->json($posts);
     }
-    
+
     /**
      * Get post by slug.
      *
      * @param string $slug
+     * @return \Illuminate\Http\JsonResponse
      */
     public function getBySlug($slug)
     {
@@ -51,6 +53,12 @@ class PostController extends Controller
         }
     }
 
+    /**
+     * Like the post.
+     *
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function like($id)
     {
         $result = $this->post->likePost($id);

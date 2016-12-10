@@ -1,11 +1,11 @@
 <template>
     <div class="row">
-        <div class="col s12" id="categories">
+        <div class="col s12" id="categories" v-if="categories.length">
             <h5 class="center"><strong>Categories</strong></h5>
             <div class="divider"></div>
             <div class="row">
                 <div class="col s12">
-                    <ul class="tabs tabs-fixed-width" id="category-tabs" v-if="categories.length">
+                    <ul class="tabs tabs-fixed-width" id="category-tabs">
                         <li class="tab" v-for="category in categories">
                             <a @click.prevent="selectTab(category.name)" :href="'#' + category.name" class="green-text">{{ category.name }}</a>
                         </li>
@@ -15,7 +15,7 @@
             <div class="row">
                 <div class="col s12 post-list">
                     <div v-for="category in categories" :id="category.name">
-                        <post-list :title="category.name" color="green"></post-list>
+                        <post-list :origins="orderedPosts[category.name]" :title="category.name" color="green"></post-list>
                     </div>
                 </div>
             </div>
@@ -37,6 +37,7 @@
                 // default active tab if no pre-selected
                 defaultTab: null,
                 firstUpdated: true,
+                orderedPosts: {}
             }
         },
 
@@ -47,7 +48,8 @@
             // Tab to be active throw uri param
             uriTab() {
                 return this.$route.params.name;
-            },
+            }
+            
         },
 
         mounted() {
@@ -63,7 +65,9 @@
                 }
             },
             mountTabs() {
-                this.initTabs().changeActiveTab(this.currentTab || this.uriTab || '');
+                if(this.categories.length) {
+                    this.initTabs().changeActiveTab(this.currentTab || this.uriTab || this.defaultTab || '');
+                }
             },
             initTabs() {
                 $('#category-tabs').tabs();
@@ -71,10 +75,23 @@
             },
             changeActiveTab(tabID) {
                 $('#category-tabs').tabs('select_tab', tabID);
+
+                if(typeof this.orderedPosts[tabID] == 'undefined') {
+                    this.$http.get(`/api/categories/${tabID}/posts`)
+                    .then(response => {
+                        // Set new reactive property.
+                        this.$set(this.orderedPosts, tabID, response.body);
+                    }, response => {
+
+                    });
+                }
                 return this;
             },
             selectTab(tabID) {
                 this.$router.push(`/categories/${tabID}`);
+            },
+            hasloaded(tabID) {
+                return this.loadedTabs[tabID] || this.currentTab == tabID;
             }
         },
         watch: {

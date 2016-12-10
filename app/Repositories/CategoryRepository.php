@@ -17,4 +17,22 @@ class CategoryRepository
     {
         return Category::orderBy('hot', 'desc')->get($columns);
     }
+
+    /**
+     * Get posts with given category.
+     *
+     * @param string $name
+     * @return array|\Illuminate\Support\Collection
+     */
+    public function getPostsByName($name)
+    {
+        $category = Category::where('name', $name)
+            ->with(['posts' => function ($query) {
+                $query->select('id', 'title', 'slug', 'category_id')
+                    ->where('published', true)
+                    ->orderBy('created_at', 'desc');
+            }])
+            ->first();
+        return is_null($category) ? [] : $category->posts;
+    }
 }
