@@ -12,7 +12,7 @@ require('./bootstrap');
  * the body of the page. From here, you may begin adding components to
  * the application, or feel free to tweak this setup for your needs.
  */
-import Navigation from './components/navigation.vue';
+import Navigation from './navigations/navigation.vue';
 import router from './router.js';
 
 

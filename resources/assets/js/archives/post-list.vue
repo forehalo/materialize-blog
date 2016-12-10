@@ -17,7 +17,7 @@
     </ul>
 </template>
 <script>
-    import CircularLoader from './circular-loader.vue';
+    import CircularLoader from '../components/circular-loader.vue';
     export default {
         props: {
             origins:{
