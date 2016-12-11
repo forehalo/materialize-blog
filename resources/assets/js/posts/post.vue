@@ -20,7 +20,7 @@
                             </a>
                         </div>
                         <!--content-->
-                        <div class="article-content markdown-body" v-html="post.body"></div>
+                        <div class="article-content markdown-body" v-html="post.body" v-once></div>
                         <!--actions-->
                         <div class="card-action">
                             <div class="row">
@@ -174,12 +174,15 @@
                     .then((response) => {
                         this.post = response.body;
                         this.loading = false;
-                        // lazy load comments when scrolled to bottom.
-                        Materialize.scrollFire([{
-                            selector: 'footer', 
-                            offset: 0,
-                            callback: this.fetchComments
-                        }]);
+                        this.$nextTick(() => {
+                            Prism.highlightAll();
+                            // lazy load comments when scrolled to bottom.
+                            Materialize.scrollFire([{
+                                selector: 'footer', 
+                                offset: 0,
+                                callback: this.fetchComments
+                            }]);
+                        });
                     }, (response) => {
                         this.$router.replace({ name: '404'});
                     });
@@ -200,6 +203,10 @@
                         $('#comment-form input, textarea').val('');
                         $('#comment-form label').removeClass('class');
                         this.goToComment(response.body.id);
+                        this.$nextTick(() => {
+                            Prism.highlightAll();
+                            $('.tooltipped').tooltip();
+                        });
                     }, (response) => {
                         Materialize.toast(response.body.message, 4000);
                         this.errors = response.body.errors;
@@ -217,6 +224,10 @@
                     .then((response) => {
                         this.comments = response.body;
                         this.loadingComments = false;
+                        this.$nextTick(() => {
+                            Prism.highlightAll();
+                            $('.tooltipped').tooltip();
+                        });
                     });
             },
             goToComment(commentID) {
@@ -252,10 +263,6 @@
                 this.commentPreview = marked(this.form.origin);
                 $('#comment-preview-modal').modal({'dismissable': true}).modal('open');
             }
-        },
-        updated() {
-            Prism.highlightAll();
-            $('.tooltipped').tooltip();
         }
     }
 </script>
