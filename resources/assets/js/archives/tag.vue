@@ -18,7 +18,7 @@
             <div class="row">
                 <div class="col s12 post-list">
                     <div v-for="tag in tags" :id="tag.name" style="display: none;" :key="tag.id">
-                        <post-list :origins="orderedPosts[tag.name]" :title="tag.name" color="pink"></post-list>
+                        <post-list :origins="groupedPosts[tag.name]" :title="tag.name" color="pink"></post-list>
                     </div>
                 </div>
             </div>
@@ -37,7 +37,7 @@
                 currentTag: null,
                 tags: [],
                 sortBy: 'hot',
-                orderedPosts: {}
+                groupedPosts: {}
             }
         },
 
@@ -65,6 +65,11 @@
                 this.$http.get('/api/tags')
                         .then(response => {
                             this.tags = response.body;
+                            this.$nextTick(() => {
+                                if (this.$route.params.name != null) {
+                                    this.switchTag(this.$route.params.name);
+                                }
+                            });
                         }, response => {
 
                         })
@@ -74,11 +79,11 @@
             },
             switchTag(tag) {
                 this.currentTag = tag;
-                if(typeof this.orderedPosts[tag] == 'undefined') {
+                if(typeof this.groupedPosts[tag] == 'undefined') {
                     this.$http.get(`/api/tags/${tag}/posts`)
                             .then(response => {
                                 // Set new reactive property.
-                                this.$set(this.orderedPosts, tag, response.body);
+                                this.$set(this.groupedPosts, tag, response.body);
                             }, response => {
 
                             });

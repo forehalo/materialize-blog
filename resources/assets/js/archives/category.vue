@@ -15,7 +15,7 @@
             <div class="row">
                 <div class="col s12 post-list">
                     <div v-for="category in categories" :id="category.name">
-                        <post-list :origins="orderedPosts[category.name]" :title="category.name" color="green"></post-list>
+                        <post-list :origins="groupedPosts[category.name]" :title="category.name" color="green"></post-list>
                     </div>
                 </div>
             </div>
@@ -37,7 +37,7 @@
                 // default active tab if no pre-selected
                 defaultTab: null,
                 firstUpdated: true,
-                orderedPosts: {}
+                groupedPosts: {}
             }
         },
 
@@ -76,11 +76,11 @@
             changeActiveTab(tabID) {
                 $('#category-tabs').tabs('select_tab', tabID);
 
-                if(typeof this.orderedPosts[tabID] == 'undefined') {
+                if(typeof this.groupedPosts[tabID] == 'undefined') {
                     this.$http.get(`/api/categories/${tabID}/posts`)
                     .then(response => {
                         // Set new reactive property.
-                        this.$set(this.orderedPosts, tabID, response.body);
+                        this.$set(this.groupedPosts, tabID, response.body);
                     }, response => {
 
                     });

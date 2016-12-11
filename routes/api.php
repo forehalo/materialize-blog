@@ -21,6 +21,10 @@ Route::group(['namespace' => 'Api'], function () {
     Route::get('/tags', 'ArchiveController@tags');
     Route::get('/tags/{name}/posts', 'ArchiveController@getPostsByTag');
 
+    // Date
+    Route::get('/dates', 'ArchiveController@getExistDates');
+    Route::get('/dates/{date}', 'ArchiveController@getPostsByDate');
+
     // Post
     Route::get('/posts', 'PostController@all');
     Route::get('/posts/{slug}', 'PostController@getBySlug');
