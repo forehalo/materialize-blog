@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Repositories\CategoryRepository;
+use App\Repositories\PostRepository;
 use App\Repositories\TagRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -11,29 +12,32 @@ class ArchiveController extends Controller
 {
 
     /**
-     * CategoryRepository
-     *
      * @var CategoryRepository
      */
     protected $category;
 
     /**
-     * TagRepository
-     *
      * @var TagRepository
      */
     protected $tag;
+
+    /**
+     * @var PostRepository
+     */
+    protected $post;
 
     /**
      * CategoryController constructor.
      *
      * @param CategoryRepository $category
      * @param TagRepository $tag
+     * @param PostRepository $post
      */
-    public function __construct(CategoryRepository $category, TagRepository $tag)
+    public function __construct(CategoryRepository $category, TagRepository $tag, PostRepository $post)
     {
         $this->category = $category;
         $this->tag = $tag;
+        $this->post = $post;
     }
 
     /**
@@ -76,5 +80,20 @@ class ArchiveController extends Controller
     public function getPostsByTag($name)
     {
         return $this->tag->getPostsByTag($name);
+    }
+
+    /**
+     * Group all dates with posts published, group by year/month.
+     *
+     * @return array
+     */
+    public function getExistDates()
+    {
+        return $this->post->groupDates();
+    }
+
+    public function getPostsByDate($date)
+    {
+        return $this->post->getPostsByYearMonth($date);
     }
 }

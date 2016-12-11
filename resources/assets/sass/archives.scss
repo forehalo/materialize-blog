@@ -11,3 +11,18 @@
         transition: transform 1s;
     }
 }
+
+#date {
+    blockquote {
+        border-left: 5px solid color('orange', 'accent-4');
+        padding-left: 1rem;
+        p {
+            font-size: 30px;
+            color: color('deep-orange', 'lighten-1');
+            margin: 10px 5px;
+        }
+        p.en {
+            font-size: 18px;
+        }
+    }
+}

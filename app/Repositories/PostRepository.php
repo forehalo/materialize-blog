@@ -3,6 +3,8 @@
 namespace App\Repositories;
 
 use App\Models\Post;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 
 class PostRepository
 {
@@ -29,8 +31,8 @@ class PostRepository
     /**
      * Get record(s) by given column.
      *
-     * @param  string  $column
-     * @param  mixed  $value
+     * @param  string $column
+     * @param  mixed $value
      * @param  boolean $collected
      * @return Illuminate\Support\Collection|App\Models\Post
      */
@@ -40,9 +42,41 @@ class PostRepository
         return $collected ? $prepare->get() : $prepare->with(['tags', 'category'])->first();
     }
 
-    
+
     public function likePost($postID)
     {
         return Post::where('id', $postID)->increment('favorite_count');
+    }
+
+    /**
+     * Group all dates with posts published, group by year/month.
+     *
+     * @return array
+     */
+    public function groupDates()
+    {
+        $dates = Post::select('created_at')->where('published', true)->orderBy('created_at', 'desc')->get()->pluck('created_at');
+
+        $group = [];
+        foreach ($dates as $date) {
+            $year = $date->year;
+            $month = $date->month;
+            if (! array_key_exists($date->year, $group)) {
+                $group[$year] = ['year' => $year, 'months' => []];
+            }
+
+            if (array_search($month, $group[$year]['months']) === false) {
+                array_push($group[$year]['months'], $month);
+            }
+        }
+        return array_values($group);
+    }
+
+    public function getPostsByYearMonth($yearMonth)
+    {
+        $date = explode('-', $yearMonth);
+        $from = Carbon::create($date[0], $date[1], 1, 0, 0, 0);
+        $to = Carbon::create($date[0], (int)$date[1] + 1, 0, 23, 59, 59);
+        return Post::select('id', 'title', 'slug')->whereBetween('created_at', [$from, $to])->get();
     }
 }

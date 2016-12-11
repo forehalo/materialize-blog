@@ -23,7 +23,7 @@ Route::group(['namespace' => 'Api'], function () {
 
     // Date
     Route::get('/dates', 'ArchiveController@getExistDates');
-    Route::get('/dates/{date}', 'ArchiveController@getPostsByDate');
+    Route::get('/dates/{date}/posts', 'ArchiveController@getPostsByDate');
 
     // Post
     Route::get('/posts', 'PostController@all');
