@@ -1,3 +1,13 @@
 .post-list .row {
     margin: 0;
 }
+
+#tags {
+    .tag-chip {
+        margin: 5px;
+    }
+
+    .tags-move {
+        transition: transform 1s;
+    }
+}

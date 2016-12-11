@@ -22,7 +22,7 @@ const routes = [
     },
     {
         name: 'tags',
-        path: '/tags/:id?',
+        path: '/tags/:name?',
         component: Tag
     },
     {

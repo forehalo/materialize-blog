@@ -22,4 +22,9 @@ class Tag extends Model
     {
         return $this->belongsToMany('App\Models\Post', 'post_tag', 'tag_id');
     }
+
+    public function postTags()
+    {
+        return $this->hasMany('App\Models\PostTag', 'tag_id');
+    }
 }

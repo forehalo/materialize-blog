@@ -14,8 +14,12 @@
 Route::group(['namespace' => 'Api'], function () {
 
     // Category
-    Route::get('/categories', 'CategoryController@all');
-    Route::get('/categories/{name}/posts', 'CategoryController@getPostsByCategory');
+    Route::get('/categories', 'ArchiveController@categories');
+    Route::get('/categories/{name}/posts', 'ArchiveController@getPostsByCategory');
+
+    // Tag
+    Route::get('/tags', 'ArchiveController@tags');
+    Route::get('/tags/{name}/posts', 'ArchiveController@getPostsByTag');
 
     // Post
     Route::get('/posts', 'PostController@all');
