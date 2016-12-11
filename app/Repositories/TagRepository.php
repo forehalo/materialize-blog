@@ -28,7 +28,7 @@ class TagRepository
     {
         $tag = Tag::where('name', $name)
             ->with(['posts' => function ($query) {
-                $query->select('id', 'title', 'slug', 'category_id')
+                $query->select('id', 'title', 'slug')
                     ->where('published', true)
                     ->orderBy('created_at', 'desc');
             }])
