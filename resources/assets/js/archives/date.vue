@@ -15,8 +15,7 @@
                         </a>
                     </div>
                     <div class="col s12 post-list" v-show="date.year + '-' + month == currentDate" v-for="month in date.months">
-                        <post-list :origins="groupedPosts[date.year + '-' + month]" :title="intToMonth(month)"
-                                   color="pink"></post-list>
+                        <post-list :origins="groupedPosts[date.year + '-' + month]" :title="intToMonth(month)" color="pink"></post-list>
                     </div>
                 </div>
             </div>
@@ -32,7 +31,7 @@
         },
         data() {
             return {
-                dates: {},
+                dates: [],
                 groupedPosts: {},
                 currentDate: null
             }
