@@ -12,7 +12,7 @@
             </div>
             <div class="row">
                 <transition-group name="tags" tag="div" class="col s12">
-                    <a href="javascript:;" class="chip tag-chip pink accent-1" v-for="tag in sortedTags" :key="tag.id" @click="switchTag(tag.name)">{{ tag.name }}</a>
+                    <a href="javascript:;" class="chip tag-chip" v-for="tag in sortedTags" :key="tag.id" @click="switchTag(tag.name)">{{ tag.name }}</a>
                 </transition-group>
             </div>
             <div class="row">

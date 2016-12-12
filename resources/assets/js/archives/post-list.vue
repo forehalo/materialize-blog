@@ -1,5 +1,5 @@
 <template>
-    <ul class="collection with-header">
+    <ul class="collection with-header z-depth-2">
         <li class="collection-header lighten-5" :class="color">
             <h5>{{ title }}</h5>
         </li>

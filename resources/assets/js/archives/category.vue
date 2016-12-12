@@ -5,7 +5,7 @@
             <div class="divider"></div>
             <div class="row">
                 <div class="col s12">
-                    <ul class="tabs tabs-fixed-width" id="category-tabs">
+                    <ul class="tabs tabs-fixed-width z-depth-1" id="category-tabs">
                         <li class="tab" v-for="category in categories">
                             <a @click.prevent="selectTab(category.name)" :href="'#' + category.name" class="green-text">{{ category.name }}</a>
                         </li>
