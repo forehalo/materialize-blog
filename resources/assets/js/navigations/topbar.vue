@@ -28,7 +28,7 @@
                     <router-link to="/tags" class="pink-text waves-effect waves-teal">Tags</router-link>
                 </li>
                 <li>
-                    <router-link to="/date" class="orange-text waves-effect waves-teal">Date</router-link>
+                    <router-link to="/dates" class="orange-text waves-effect waves-teal">Dates</router-link>
                 </li>
             </ul>
         </li>

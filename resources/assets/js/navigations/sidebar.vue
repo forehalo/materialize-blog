@@ -32,7 +32,7 @@
 								<li>
 									<router-link to="/categories" class="green-text waves-effect waves-teal">Categories</router-link>
 									<router-link to="/tags" class="pink-text waves-effect waves-teal">Tags</router-link>
-									<router-link to="/date" class="orange-text waves-effect waves-teal">date</router-link>
+									<router-link to="/dates" class="orange-text waves-effect waves-teal">Dates</router-link>
 								</li>
 							</ul>
 						</div>

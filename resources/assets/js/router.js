@@ -26,8 +26,8 @@ const routes = [
         component: Tag
     },
     {
-        name: 'date',
-        path: '/date',
+        name: 'dates',
+        path: '/dates',
         component: Date
     },
     {
@@ -57,7 +57,7 @@ router.beforeEach((to, from, next) => {
 
 router.afterEach((to, from) => {
     Laravel.currentViewType =
-        ['default', 'categories', 'tags', 'date'].includes(to.name) ?
+        ['default', 'categories', 'tags', 'dates'].includes(to.name) ?
             to.name :
             'default';
 });
