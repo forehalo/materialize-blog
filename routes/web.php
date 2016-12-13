@@ -11,10 +11,14 @@
 |
 */
 
+// index
+Route::get('/', 'Controller@index');
 
+// dashboard
+Route::get('/dashboard', 'Controller@dashboard');
+
+// captcha
 Route::get('/captcha', 'Controller@captcha');
 
 // Must be placed below other routes.
-Route::any('/{any}', function () {
-    return view('front.index');
-})->where('any', '.*');
+Route::any('/{any}', 'Controller@index')->where('any', '.*');

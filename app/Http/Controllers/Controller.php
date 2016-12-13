@@ -11,6 +11,29 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    /**
+     * Blog index
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function index()
+    {
+        return view('blog.index');
+    }
+
+    /**
+     * Dashboard
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function dashboard()
+    {
+        return view('dashboard.index');
+    }
+
+    /**
+     * captcha
+     */
     public function captcha()
     {
         return captcha();
