@@ -176,6 +176,7 @@
                         this.loading = false;
                         this.$nextTick(() => {
                             Prism.highlightAll();
+                            $('.markdown-body img').materialbox();
                             // lazy load comments when scrolled to bottom.
                             Materialize.scrollFire([{
                                 selector: 'footer', 
