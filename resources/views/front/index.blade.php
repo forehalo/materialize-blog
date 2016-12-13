@@ -25,7 +25,7 @@
     <div class="footer-copyright">
         <div class="container black-text text-lighten-5">
             Copyright © 2015-2016 forehalo
-            <span class="right black-text text-lighten-5" to="/">// Forehalo</router-link>
+            <span class="right black-text text-lighten-5" to="/">// Forehalo</span>
         </div>
     </div>
 </footer>
