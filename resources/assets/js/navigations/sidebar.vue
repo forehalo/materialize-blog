@@ -11,7 +11,7 @@
 						<a class="collapsible-header waves-effect waves-teal white-text">Categories<i
 	                            class="material-icons left">class</i><i
 	                            class="material-icons right">arrow_drop_down</i>
-	                </a>
+	                	</a>
 						<div class="collapsible-body">
 							<ul>
 								<li v-for="category in categories">
