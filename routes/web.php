@@ -20,5 +20,7 @@ Route::get('/dashboard', 'Controller@dashboard');
 // captcha
 Route::get('/captcha', 'Controller@captcha');
 
+
+Route::any('/dashboard/{any}', 'Controller@dashboard')->where('any', '.*');
 // Must be placed below other routes.
 Route::any('/{any}', 'Controller@index')->where('any', '.*');
