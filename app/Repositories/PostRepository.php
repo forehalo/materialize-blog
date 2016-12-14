@@ -79,4 +79,9 @@ class PostRepository
         $to = Carbon::create($date[0], (int)$date[1] + 1, 0, 23, 59, 59);
         return Post::select('id', 'title', 'slug')->whereBetween('created_at', [$from, $to])->get();
     }
+
+    public function getPostCount()
+    {
+        return Post::count();
+    }
 }

@@ -22,18 +22,5 @@ var router = new VueRouter({
     mode: 'history'
 });
 
-router.beforeEach((to, from, next) => {
-    $('button-collapse').sideNav('hide');
-    if (to.matched.length) {
-        next();
-    } else {
-        next({ name: '404' });
-    }
-});
-
-router.afterEach((to, from) => {
-
-});
-
 export default router;
 

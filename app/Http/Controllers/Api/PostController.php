@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\PostRepository;
 
-class PostController extends Controller
+class PostController extends ApiController
 {
     /**
      * PostRepository.

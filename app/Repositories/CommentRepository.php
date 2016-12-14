@@ -43,4 +43,9 @@ class CommentRepository
 
         return $comment;
     }
+
+    public function getUnreadCommentCount()
+    {
+        return Comment::whereSeen(0)->count();
+    }
 }

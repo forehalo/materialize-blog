@@ -8,7 +8,7 @@ use App\Repositories\TagRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class ArchiveController extends Controller
+class ArchiveController extends ApiController
 {
 
     /**
