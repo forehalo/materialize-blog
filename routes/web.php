@@ -13,14 +13,18 @@
 
 // index
 Route::get('/', 'Controller@index');
-
-// dashboard
-Route::get('/dashboard', 'Controller@dashboard');
-
 // captcha
 Route::get('/captcha', 'Controller@captcha');
 
+Route::get('/login', 'Auth\LoginController@showLoginForm');
+Route::post('/login', 'Auth\LoginController@login');
+Route::get('/logout', 'Auth\LoginController@logout');
 
-Route::any('/dashboard/{any}', 'Controller@dashboard')->where('any', '.*');
+Route::group(['middleware' => 'auth'], function () {
+    // dashboard
+    Route::get('/dashboard', 'Controller@dashboard');
+    Route::any('/dashboard/{any}', 'Controller@dashboard')->where('any', '.*');
+});
+
 // Must be placed below other routes.
 Route::any('/{any}', 'Controller@index')->where('any', '.*');
