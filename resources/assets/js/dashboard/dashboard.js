@@ -12,8 +12,9 @@ require('../bootstrap');
  * the body of the page. From here, you may begin adding components to
  * the application, or feel free to tweak this setup for your needs.
  */
-import Navigation from './components/navigation.vue';
-import router from './router.js';
+import Navigation from './navigation.vue';
+import CircularLoader from '../components/circular-loader.vue'
+import router from './router';
 
 const header = new Vue({
     el: 'header',
@@ -23,7 +24,17 @@ const header = new Vue({
     }
 });
 
+window.store = {
+    loading: false
+};
+
 const app = new Vue({
     el: 'main',
-    router
+    router,
+    components: {
+        CircularLoader
+    },
+    data: {
+        store
+    }
 });

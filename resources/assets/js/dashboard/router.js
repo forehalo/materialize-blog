@@ -1,13 +1,14 @@
 import VueRouter from 'vue-router';
 // Components
-
+import Index from './index.vue';
 // 404
 import NotFound from '../components/404.vue';
 
 const routes = [
     {
         name: 'index',
-        path: '/dashboard'
+        path: '/dashboard',
+        component: Index
     },
     {
         name: '404',

@@ -14,12 +14,14 @@ require('laravel-elixir-vue-2');
  */
 
 elixir(mix => {
-    mix.sass('app.scss')
-        .webpack('app.js');
+    mix.sass('blog/app.scss')
+    mix.sass('dashboard/dashboard.scss')
+    mix.webpack('blog/app.js')
+    mix.webpack('dashboard/dashboard.js', 'public/js/dashboard.js');
 
 
     mix.copy('node_modules/materialize-css/fonts/', 'public/build/fonts/');
     mix.copy('resources/assets/fonts/', 'public/build/fonts/');
 
-    mix.version(['js/app.js', 'css/app.css']);
+    mix.version(['js/app.js', 'js/dashboard.js', 'css/app.css', 'css/dashboard.css']);
 });

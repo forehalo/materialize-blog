@@ -1,9 +1,9 @@
 @import "node_modules/materialize-css/sass/materialize";
 
 // Material Icons.
-@import "icons";
+@import "../icons";
 // Variables
-@import "variables";
+@import "../variables";
 
 @import "global";
 @import "navigation";
@@ -11,6 +11,6 @@
 @import "archives";
 
 // Dependencies
-@import "markdown.min";
-@import "prism";
-@import "animate";
+@import "../markdown.min";
+@import "../prism";
+@import "../animate";

@@ -1,0 +1,17 @@
+.dashboard {
+  .number {
+    font-size: 30px;
+    text-align: right;
+    line-height: 30px;
+  }
+
+  a {
+    font-size: 15px;
+    color: #FFF;
+
+    .card-action {
+      padding: 3px 3px 0 3px;
+      height: 24px;
+    }
+  }
+}

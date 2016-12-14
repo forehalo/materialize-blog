@@ -5,7 +5,7 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+require('../bootstrap');
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -13,7 +13,7 @@ require('./bootstrap');
  * the application, or feel free to tweak this setup for your needs.
  */
 import Navigation from './navigations/navigation.vue';
-import router from './router.js';
+import router from './router';
 
 
 window.store = {

@@ -7,7 +7,7 @@ import Tag from './archives/tag.vue';
 import Date from './archives/date.vue';
 
 // 404
-import NotFound from './components/404.vue';
+import NotFound from '../components/404.vue';
 
 const routes = [
     {

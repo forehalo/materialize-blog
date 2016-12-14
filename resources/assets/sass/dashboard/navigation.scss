@@ -9,6 +9,7 @@ nav {
       display: block;
     }
     .brand-logo {
+      font-weight: bold;
       padding-left: 250px;
     }
   }
@@ -26,8 +27,11 @@ nav {
       padding: 0 30px;
     }
     .collapsible-body li a {
-      padding: 0 1rem 0 2rem;
+      padding: 0 1rem 0 3rem;
     }
+  }
+  a.router-link-active {
+    background-color: #DDD;
   }
 }
 

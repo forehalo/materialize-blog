@@ -1,5 +1,5 @@
 <template>
-    <div class="preloader-wrapper active" :class="size">
+    <div class="preloader-wrapper" :class="size + ' ' + active">
         <div class="spinner-layer spinner-blue">
             <div class="circle-clipper left">
                 <div class="circle"></div>
@@ -56,6 +56,15 @@
             size: {
                 type: String,
                 default: ''
+            },
+            loading: {
+                type: Boolean,
+                default: true
+            }
+        },
+        computed: {
+            active() {
+                return this.loading ? 'active': '';
             }
         }
     }

@@ -38,7 +38,7 @@
     </div>
 </template>
 <script>
-    import CircularLoader from '../components/circular-loader.vue';
+    import CircularLoader from '../../components/circular-loader.vue';
     export default {
 
         components: {
