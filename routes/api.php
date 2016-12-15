@@ -39,8 +39,8 @@ Route::group(['namespace' => 'Api'], function () {
     | Dashboard API Routes
     |--------------------------------------------------------------------------
     */
-    Route::group(['middleware' => ['auth']], function () {
+    Route::group(['middleware' => ['auth'], 'prefix' => 'dashboard'], function () {
         Route::get('/statistics', 'AdminController@statistics');
+        Route::get('/posts', 'PostController@manage');
     });
-
 });

@@ -1,0 +1,12 @@
+.btn {
+    &.btn-success {
+        background-color: $success-color;
+    }
+    &.btn-warning {
+        background-color: $warning-color;
+    }
+    &.btn-danger {
+        background-color: $danger-color;
+    }
+}
+

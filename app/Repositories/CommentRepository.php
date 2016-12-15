@@ -44,6 +44,10 @@ class CommentRepository
         return $comment;
     }
 
+    /**
+     * Get unread comment count.
+     *
+     */
     public function getUnreadCommentCount()
     {
         return Comment::whereSeen(0)->count();

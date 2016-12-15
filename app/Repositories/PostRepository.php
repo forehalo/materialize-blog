@@ -13,19 +13,20 @@ class PostRepository
      * Get all posts order by publish date.
      *
      * @param int $limit
-     * @param array $columns
-     * @param boolean $onlyPublished
+     * @param boolean $manage
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function all($limit = 8, $columns = ['*'], $onlyPublished = true)
+    public function all($limit = 8, $manage = false)
     {
         $prepare = Post::orderBy('created_at', 'desc');
 
-        if ($onlyPublished) {
-            $prepare = $prepare->where('published', true)->with('tags');
+        if ($manage) {
+            $prepare->manage();
+        } else {
+            $prepare->show()->with('tags');
         }
 
-        return $prepare->paginate((int)$limit, $columns)->toArray();
+        return $prepare->paginate((int)$limit)->toArray();
     }
 
     /**
@@ -43,6 +44,11 @@ class PostRepository
     }
 
 
+    /**
+     * Like the post.
+     *
+     * @param int $postID
+     */
     public function likePost($postID)
     {
         return Post::where('id', $postID)->increment('favorite_count');
@@ -72,6 +78,11 @@ class PostRepository
         return array_values($group);
     }
 
+    /**
+     * Get articles posted in year-month.
+     *
+     * @param string $yearMonth
+     */
     public function getPostsByYearMonth($yearMonth)
     {
         $date = explode('-', $yearMonth);
@@ -80,6 +91,10 @@ class PostRepository
         return Post::select('id', 'title', 'slug')->whereBetween('created_at', [$from, $to])->get();
     }
 
+    /**
+     * Get post count.
+     *
+     */
     public function getPostCount()
     {
         return Post::count();

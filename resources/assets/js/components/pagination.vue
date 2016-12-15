@@ -55,7 +55,6 @@
         },
         methods: {
             jumpTo(page) {
-                console.log(page);
                 if (Number.isInteger(page)) {
                     this.$emit('jump', Number(page));
                 }

@@ -46,4 +46,26 @@ class Post extends Model
     {
         return $this->hasMany('App\Models\Comment');
     }
+
+    /**
+     * Guest scope.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeShow($query)
+    {
+        return $query->wherePublished(1);
+    }
+
+    /**
+     * Manager scope.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeManage($query)
+    {
+        return $query->select('id', 'slug', 'title', 'published', 'created_at');
+    }
 }

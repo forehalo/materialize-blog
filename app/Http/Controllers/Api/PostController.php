@@ -66,4 +66,15 @@ class PostController extends ApiController
             response()->json(['message' => trans('post.success_like')]) :
             response()->json(['error' => FAIL_TO_LIKE_POST, 'message' => trans('post.failed_like')], 400);
     }
+
+    /**
+     * Get posts for management.
+     *
+     * @param \Illuminate\Http\Request $request
+     */
+    public function manage(Request $request)
+    {
+        $posts = $this->post->all($request->input('limit', 8), true);
+        return response()->json($posts);
+    }
 }
