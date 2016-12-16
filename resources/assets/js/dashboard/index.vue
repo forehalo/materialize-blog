@@ -54,7 +54,7 @@
         },
         methods: {
             getStatistics() {
-                this.$http.get('/api/statistics')
+                this.$http.get('/api/dashboard/statistics')
                     .then(response => {
                         this.statistics = response.body;
                         store.loading = false;
