@@ -23,7 +23,7 @@ class PostRepository
         if ($manage) {
             $prepare->manage();
         } else {
-            $prepare->show()->with('tags');
+            $prepare->list()->with('tags');
         }
 
         return $prepare->paginate((int)$limit)->toArray();
@@ -35,11 +35,11 @@ class PostRepository
      * @param  string $column
      * @param  mixed $value
      * @param  boolean $collected
-     * @return Illuminate\Support\Collection|App\Models\Post
+     * @return \Illuminate\Support\Collection|\App\Models\Post
      */
     public function getByColumn($column, $value, $collected = false)
     {
-        $prepare = Post::where($column, $value);
+        $prepare = Post::where($column, $value)->show();
         return $collected ? $prepare->get() : $prepare->with(['tags', 'category'])->first();
     }
 

@@ -28,7 +28,7 @@ class Post extends Model
      *
      * @var array
      */
-    protected $hidden = ['origin'];
+    protected $hidden = ['deleted_at'];
 
     /**
      * Many to many relation.
@@ -68,7 +68,24 @@ class Post extends Model
      */
     public function scopeShow($query)
     {
-        return $query->wherePublished(1);
+        return $query->select([
+            'id', 'slug', 'title', 'body', 'category_id',
+            'comment_count', 'view_count', 'favorite_count', 'created_at'
+        ])->wherePublished(1);
+    }
+
+    /**
+     * Guest list scope.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeList($query)
+    {
+        return $query->select([
+            'id', 'slug', 'title', 'summary',
+            'comment_count', 'view_count', 'favorite_count', 'created_at'
+        ])->wherePublished(1);
     }
 
     /**
