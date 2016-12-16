@@ -55,8 +55,8 @@
     </div>
 </template>
 <script>
-    import CircularLoader from '../components/circular-loader.vue';
-    import Pagination from '../components/pagination.vue';
+    import CircularLoader from '../../components/circular-loader.vue';
+    import Pagination from '../../components/pagination.vue';
     export default {
         components: {
             Pagination,
