@@ -2,6 +2,7 @@ import VueRouter from 'vue-router';
 // Components
 import Index from './index.vue';
 import Posts from './posts/posts.vue';
+import Post from './posts/post.vue';
 // 404
 import NotFound from '../components/404.vue';
 
@@ -20,6 +21,16 @@ const routes = [
         name: 'posts',
         path: '/dashboard/posts',
         component: Posts
+    },
+    {
+        name: 'create-post',
+        path: '/dashboard/posts/create',
+        component: Post
+    },
+    {
+        name: 'edit-post',
+        path: '/dashboard/posts/:id/edit',
+        component: Post
     }
 ];
 

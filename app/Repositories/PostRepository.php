@@ -123,4 +123,15 @@ class PostRepository
     {
         return Post::destroy($id);
     }
+
+    public function origin($id)
+    {
+        $post = Post::where('id', $id)
+            ->with('category', 'tags')
+            ->first(['id', 'title', 'slug', 'summary', 'category_id', 'origin', 'published'])
+            ->toArray();
+        $post['category'] = $post['category']['name'];
+        $post['tags'] = array_column($post['tags'], 'name');
+        return $post;
+    }
 }

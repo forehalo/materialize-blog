@@ -106,4 +106,9 @@ class PostController extends ApiController
                 'message' => trans('post.failed_delete')
             ], REST_BAD_REQUEST);
     }
+
+    public function getOrigin($id)
+    {
+        return $this->post->origin($id);
+    }
 }

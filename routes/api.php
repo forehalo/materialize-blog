@@ -42,6 +42,7 @@ Route::group(['namespace' => 'Api'], function () {
     Route::group(['middleware' => ['auth'], 'prefix' => 'dashboard'], function () {
         Route::get('/statistics', 'AdminController@statistics');
         Route::get('/posts', 'PostController@manage');
+        Route::get('/posts/{id}', 'PostController@getOrigin');
         Route::delete('/posts/{id}', 'PostController@destroy');
         Route::put('/posts/{id}/publish', 'PostController@publish');
     });
