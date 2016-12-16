@@ -127,7 +127,7 @@
     import CircularLoader from '../../components/circular-loader.vue';
 
     export default {
-        
+
         components: {
             CircularLoader
         },
@@ -138,7 +138,7 @@
                 post: null,
                 url: location.href,
                 comments: [],
-                loadingComments : false,
+                loadingComments: false,
                 like: false,
                 commentPreview: '',
 
@@ -152,14 +152,14 @@
                     origin: '',
                     captcha: ''
                 },
-                
+
                 // form errors
                 errors: {}
             };
         },
 
         computed: {
-            hasComment () {
+            hasComment() {
                 return this.comments.length != 0;
             }
         },
@@ -180,21 +180,21 @@
                             $('#comment-preview-modal').modal();
                             // lazy load comments when scrolled to bottom.
                             Materialize.scrollFire([{
-                                selector: 'footer', 
+                                selector: 'footer',
                                 offset: 0,
                                 callback: this.fetchComments
                             }]);
                         });
                     }, (response) => {
-                        this.$router.replace({ name: '404'});
+                        this.$router.replace({ name: '404' });
                     });
             },
             refreshCaptcha(event) {
                 let newSrc = '/captcha?' + Math.random();
-                if(typeof event != "undefined") {
+                if (typeof event != "undefined") {
                     event.srcElement.src = newSrc;
                 } else {
-                    $('img#captcha-img').attr('src', newSrc); 
+                    $('img#captcha-img').attr('src', newSrc);
                 }
             },
             submitComment(event) {
@@ -221,8 +221,7 @@
                     return;
                 }
                 this.loadingComments = true;
-                let id = this.post.id;
-                this.$http.get(`/api/posts/${id}/comments`)
+                this.$http.get(`/api/posts/${this.post.id}/comments`)
                     .then((response) => {
                         this.comments = response.body;
                         this.loadingComments = false;
@@ -236,21 +235,21 @@
                 // scroll to parent comment
                 let comment = document.getElementById('comment-' + commentID);
                 let rect = comment.getBoundingClientRect();
-                $(comment).css({"background-color": '#dcdcdc'});
-                setTimeout(() => { 
-                    $(comment).css({"background-color": '#FFF'});
+                $(comment).css({ "background-color": '#dcdcdc' });
+                setTimeout(() => {
+                    $(comment).css({ "background-color": '#FFF' });
                 }, 2000);
-                $('html, body').animate({scrollTop:scrollY + rect.top - 100}, 300);
-                
+                $('html, body').animate({ scrollTop: scrollY + rect.top - 100 }, 300);
+
             },
             reply(commentID) {
                 this.form.parent_id = commentID;
                 $('html, body').animate({
-                    scrollTop:scrollY + document.getElementById('comment-form').getBoundingClientRect().top - 100
+                    scrollTop: scrollY + document.getElementById('comment-form').getBoundingClientRect().top - 100
                 }, 300);
-            }, 
+            },
             likeArticle() {
-                if(!this.like) {
+                if (!this.like) {
                     this.$http.post(`/api/posts/${this.post.id}/likes`)
                         .then(response => {
                             Materialize.toast(response.body.message, 4000);
