@@ -177,6 +177,7 @@
                         this.$nextTick(() => {
                             Prism.highlightAll();
                             $('.markdown-body img').materialbox();
+                            $('#comment-preview-modal').modal();
                             // lazy load comments when scrolled to bottom.
                             Materialize.scrollFire([{
                                 selector: 'footer', 
@@ -262,7 +263,7 @@
             },
             previewComment() {
                 this.commentPreview = marked(this.form.origin);
-                $('#comment-preview-modal').modal({'dismissable': true}).modal('open');
+                $('#comment-preview-modal').modal('open');
             }
         }
     }
