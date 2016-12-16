@@ -94,9 +94,33 @@ class PostRepository
     /**
      * Get post count.
      *
+     * @return int
      */
     public function getPostCount()
     {
         return Post::count();
+    }
+
+    /**
+     * Toggle post published state.
+     *
+     * @param $id
+     * @return boolean
+     */
+    public function togglePublish($id)
+    {
+        $post = Post::where('id', $id)->first();
+        return $post->update(['published' => !$post->published]);
+    }
+
+    /**
+     * Soft delete post.
+     *
+     * @param $id
+     * @return int
+     */
+    public function delete($id)
+    {
+        return Post::destroy($id);
     }
 }

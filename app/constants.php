@@ -15,3 +15,5 @@ define('REST_REQUEST_LIMIT', 429);
 // Post
 define('POST_NOT_FOUND', 1001);
 define('FAIL_TO_LIKE_POST', 1002);
+define('FAIL_TO_TOGGLE_PUBLISH', 1003);
+define('FAIL_TO_DELETE_POST', 1004);

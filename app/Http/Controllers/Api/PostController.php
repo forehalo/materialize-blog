@@ -71,10 +71,39 @@ class PostController extends ApiController
      * Get posts for management.
      *
      * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function manage(Request $request)
     {
         $posts = $this->post->all($request->input('limit', 8), true);
         return response()->json($posts);
+    }
+
+    public function publish($id)
+    {
+        $result = $this->post->togglePublish($id);
+        return $result ?
+            response()->json([], REST_UPDATE_SUCCESS) :
+            response()->json([
+                'error' => FAIL_TO_TOGGLE_PUBLISH,
+                'message' => trans('post.failed_publish')
+            ], REST_BAD_REQUEST);
+    }
+
+    /**
+     * Soft delete post.
+     *
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function destroy($id)
+    {
+        $result = $this->post->delete($id);
+        return $result ?
+            response()->json([], REST_DELETE_SUCCESS) :
+            response()->json([
+                'error' => FAIL_TO_DELETE_POST,
+                'message' => trans('post.failed_delete')
+            ], REST_BAD_REQUEST);
     }
 }

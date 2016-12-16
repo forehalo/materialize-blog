@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
+    use SoftDeletes;
+
     /**
      * Table name
      *
@@ -13,8 +16,18 @@ class Post extends Model
      */
     protected $table = 'posts';
 
-    protected $fillable = ['title', 'slug', 'summary', 'origin', 'category', 'tags'];
+    /**
+     * The mass assignable attributes.
+     *
+     * @var array
+     */
+    protected $fillable = ['title', 'slug', 'summary', 'origin', 'body', 'category_id', 'published'];
 
+    /**
+     * The attributes should be hidden for arrays.
+     *
+     * @var array
+     */
     protected $hidden = ['origin'];
 
     /**
