@@ -35,13 +35,23 @@
                         </router-link>
                     </td>
                     <td>
-                        <a href="javascript:;" @click="destroyPost(post.id, index)" class="btn btn-danger">Destroy</a>
+                        <a href="javascript:;" @click="wantDestroy(post, index)" class="btn btn-danger">Destroy</a>
                     </td>
                 </tr>
                 </tbody>
             </table>
         </div>
         <pagination :total="totalPage" :current='currentPage' @jump="selectPage"></pagination>
+        <div id="destroy-post-modal" class="modal bottom-sheet">
+            <div class="modal-content">
+                <h4>Warning</h4>
+                <p>Really want to destroy the post? You can't recover it after done!</p>
+            </div>
+            <div class="modal-footer">
+                <a href="javascript:;" class="left modal-action waves-effect waves-red btn-flat" @click="destroyPost">Confirm</a>
+                <a href="javascript:;" class="left modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+            </div>
+        </div>
     </div>
 </template>
 <script>
@@ -58,7 +68,8 @@
                 currentPage: 1,
                 perPage: 8,
                 totalPage: 0,
-                processItem: 0
+                processItem: 0,
+                willDestroyed: null
             }
         },
         computed: {
@@ -68,6 +79,7 @@
         },
         mounted() {
             this.fetchPosts(this.currentPage);
+            $('#destroy-post-modal').modal();
             store.loading = false;
         },
         methods: {
@@ -81,12 +93,22 @@
 
                         });
             },
-            destroyPost(id, index) {
-                this.$http.delete(`/api/dashboard/posts/${id}`)
+            wantDestroy(post, index) {
+                this.willDestroyed = {post, index};
+                this.$nextTick(() => {
+                    $('#destroy-post-modal').modal('open');
+                });
+            },
+            destroyPost() {
+                store.loading = true;
+                $('#destroy-post-modal').modal('close');
+                this.$http.delete(`/api/dashboard/posts/${this.willDestroyed.post.id}`)
                         .then(response => {
-                            this.posts[this.currentPage].splice(index, 1);
+                            this.posts[this.currentPage].splice(this.willDestroyed.index, 1);
+                            store.loading = false;
                             Materialize.toast('Delete post successfully.', 4000);
                         }, response => {
+                            store.loading = false;
                             Materialize.toast('Delete post failed.', 4000);
                         });
             },
