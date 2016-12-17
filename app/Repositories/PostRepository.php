@@ -177,41 +177,38 @@ class PostRepository
         $post->origin = $inputs['origin'];
         $post->body = $parser->parse($inputs['origin']);
         // Begin transaction
-        DB::transaction(function () use ($post, $inputs) {
+        return DB::transaction(function () use ($post, $inputs) {
             $categorySync = $this->syncCategory($post, $inputs['category']);
             $tagsSync = $this->syncTags($post, $inputs['tags']);
             $postSaved = $post->save();
 
-            if (! ($post->saved && $categorySync && $tagsSync)) {
-                throw new \Exception();
-            }
+            return $postSaved && $categorySync && $tagsSync;
         });
-
-        return true;
     }
 
     public function syncCategory(Post $post, $categoryName)
     {
-        $category = Category::where('name', $categoryName);
+        $category = Category::where('name', $categoryName)->first();
         if (is_null($category)) {
             $category = Category::create(['name' => $categoryName]);
         }
         return $post->category()->associate($category);
     }
     
-    public function synctags(Post $post, $tags)
+    public function syncTags(Post $post, $tags)
     {
         $tagCollection = Tag::whereIn('name', $tags)->get(['name']);
         // Insert non-existent tags.
         $uncreatedTags = array_diff($tags, array_values($tagCollection->pluck('name')->toArray()));
+        $now = time();
         Tag::insert(
-            array_map(function ($item) {
-                return ['name' => $item];
+            array_map(function ($item) use ($now){
+                return ['name' => $item, 'created_at' => $now, 'updated_at' => $now];
             }, $uncreatedTags)
         );
 
-        $ids = Tag::whereIn('name', $tags)->get(['id'])->toArray();
+        $ids = Tag::whereIn('name', $tags)->get(['id'])->pluck('id')->toArray();
 
-        $post->tags()->sync($ids);
+        return $post->tags()->sync($ids);
     }
 }
