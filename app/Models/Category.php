@@ -14,6 +14,13 @@ class Category extends Model
     protected $table = 'categories';
 
     /**
+     * The mass assignable attributes.
+     * 
+     * @var array
+     */
+    protected $fillable = ['name'];
+
+    /**
      * One to many relation.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

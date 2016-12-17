@@ -119,7 +119,7 @@
                 this.form.tags.splice(index, 1);
             },
             create() {
-                this.$http.post('/api/dashboard/posts')
+                this.$http.post('/api/dashboard/posts', this.form)
                     .then(response => {
                         this.$router.push('/dashboard/posts');
                         Materialize.toast('Create new post successfully.', 4000);
@@ -128,7 +128,7 @@
                     });
             },
             update() {
-                this.$http.put(`/api/dashboard/posts/${this.$route.params.id}`)
+                this.$http.put(`/api/dashboard/posts/${this.$route.params.id}`, this.form)
                     .then(response => {
                         this.$router.push('/dashboard/posts');
                         Materialize.toast('Update post successfully.', 4000);

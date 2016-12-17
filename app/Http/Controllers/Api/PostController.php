@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\PostRepository;
+use Illuminate\Http\Request;
 
 class PostController extends ApiController
 {
@@ -47,7 +47,7 @@ class PostController extends ApiController
     {
         $post = $this->post->getByColumn('slug', $slug);
         if (is_null($post)) {
-            return response()->json(['error' => POST_NOT_FOUND, 'message' => trans('post.not_found')], 404);
+            return response()->json(['error' => POST_NOT_FOUND, 'message' => trans('post.not_found')], REST_RESOURCE_NOT_FOUND);
         } else {
             return response()->json($post);
         }
@@ -63,8 +63,8 @@ class PostController extends ApiController
     {
         $result = $this->post->likePost($id);
         return $result ?
-            response()->json(['message' => trans('post.success_like')]) :
-            response()->json(['error' => FAIL_TO_LIKE_POST, 'message' => trans('post.failed_like')], 400);
+        response()->json(['message' => trans('post.like_success')]) :
+        response()->json(['error' => FAIL_TO_LIKE_POST, 'message' => trans('post.like_fail')], REST_BAD_REQUEST);
     }
 
     /**
@@ -83,11 +83,11 @@ class PostController extends ApiController
     {
         $result = $this->post->togglePublish($id);
         return $result ?
-            response()->json([], REST_UPDATE_SUCCESS) :
-            response()->json([
-                'error' => FAIL_TO_TOGGLE_PUBLISH,
-                'message' => trans('post.failed_publish')
-            ], REST_BAD_REQUEST);
+        response()->json(['message' => trans('post.publish_success')], REST_UPDATE_SUCCESS) :
+        response()->json([
+            'error'   => FAIL_TO_TOGGLE_PUBLISH,
+            'message' => trans('post.publish_fail'),
+        ], REST_BAD_REQUEST);
     }
 
     /**
@@ -100,15 +100,58 @@ class PostController extends ApiController
     {
         $result = $this->post->delete($id);
         return $result ?
-            response()->json([], REST_DELETE_SUCCESS) :
-            response()->json([
-                'error' => FAIL_TO_DELETE_POST,
-                'message' => trans('post.failed_delete')
-            ], REST_BAD_REQUEST);
+        response()->json(['message' => trans('post.delete_success')], REST_DELETE_SUCCESS) :
+        response()->json([
+            'error'   => FAIL_TO_DELETE_POST,
+            'message' => trans('post.delete_fail'),
+        ], REST_BAD_REQUEST);
     }
 
+    /**
+     * Get origin data for editing.
+     * 
+     * @param  int $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getOrigin($id)
     {
-        return $this->post->origin($id);
+        $post = $this->post->origin($id);
+        return !$post ? 
+            response()->json(['error' => POST_NOT_FOUND, 'message' => trans('post.not_found')], REST_RESOURCE_NOT_FOUND) :
+            response()->json($post);
+    }
+
+    public function store(Request $reqeust)
+    {
+        $this->validate($request, [
+            'title' => 'required|string|between:1,255',
+            'slug' => 'required|string|unique:posts,slug|between:1,255',
+            'summary' => 'required',
+            'origin' => 'required',
+            'category' => 'required|string|between:1,16',
+            'tags' => 'required|array',
+            'published' => 'required|boolean'
+        ]);
+        $result = $this->post->store($request->all());
+        return $result ? 
+            response()->json([], REST_CREATE_SUCCESS) : 
+            response()->json(['error' => FAIL_TO_CREATE_POST, 'message' => trans('post.create_fail')]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $this->validate($request, [
+            'title' => 'required|string|between:1,255',
+            'slug' => 'required|string|between:1,255',
+            'summary' => 'required',
+            'origin' => 'required',
+            'category' => 'required|string|between:1,16',
+            'tags' => 'required|array',
+            'published' => 'required|boolean'
+        ]);
+        $result = $this->post->update($id, $request->all());
+        return $result ? 
+            response()->json([], REST_UPDATE_SUCCESS) : 
+            response()->json(['error' => FAIL_TO_UPDATE_POST, 'message' => trans('post.update_fail')]);
     }
 }

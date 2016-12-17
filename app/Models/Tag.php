@@ -14,6 +14,13 @@ class Tag extends Model
     protected $table = 'tags';
 
     /**
+     * The mass assignable attributes.
+     * 
+     * @var array
+     */
+    protected $fillable = ['name'];
+
+    /**
      * Many to many relation.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany

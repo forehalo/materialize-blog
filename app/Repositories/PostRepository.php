@@ -2,7 +2,11 @@
 
 namespace App\Repositories;
 
+use DB;
+use Parsedown;
 use App\Models\Post;
+use App\Models\Category;
+use App\Models\Tag;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -124,14 +128,90 @@ class PostRepository
         return Post::destroy($id);
     }
 
+    /**
+     * Get original post data.
+     * @param  int $id
+     * @return array|boolean
+     */
     public function origin($id)
     {
         $post = Post::where('id', $id)
             ->with('category', 'tags')
-            ->first(['id', 'title', 'slug', 'summary', 'category_id', 'origin', 'published'])
-            ->toArray();
+            ->first(['id', 'title', 'slug', 'summary', 'category_id', 'origin', 'published']);
+
+        if (is_null($post)) {
+            return false;
+        }
+
+        $post = $post->toArray();
         $post['category'] = $post['category']['name'];
         $post['tags'] = array_column($post['tags'], 'name');
         return $post;
+    }
+
+
+    public function store($inputs)
+    {
+        $post = new Post();
+
+        return $this->save($post, $inputs);
+    }
+
+    public function update($id, $inputs)
+    {
+        $post = Post::where('id', $id)->first();
+        if (is_null($post)) {
+            return false;
+        }
+
+        return $this->save($post, $inputs);
+    }
+
+    public function save(Post $post, $inputs)
+    {
+        $parser = new Parsedown();
+
+        $post->title = $inputs['title'];
+        $post->slug = $inputs['slug'];
+        $post->summary = $inputs['summary'];
+        $post->origin = $inputs['origin'];
+        $post->body = $parser->parse($inputs['origin']);
+        // Begin transaction
+        DB::transaction(function () use ($post, $inputs) {
+            $categorySync = $this->syncCategory($post, $inputs['category']);
+            $tagsSync = $this->syncTags($post, $inputs['tags']);
+            $postSaved = $post->save();
+
+            if (! ($post->saved && $categorySync && $tagsSync)) {
+                throw new \Exception();
+            }
+        });
+
+        return true;
+    }
+
+    public function syncCategory(Post $post, $categoryName)
+    {
+        $category = Category::where('name', $categoryName);
+        if (is_null($category)) {
+            $category = Category::create(['name' => $categoryName]);
+        }
+        return $post->category()->associate($category);
+    }
+    
+    public function synctags(Post $post, $tags)
+    {
+        $tagCollection = Tag::whereIn('name', $tags)->get(['name']);
+        // Insert non-existent tags.
+        $uncreatedTags = array_diff($tags, array_values($tagCollection->pluck('name')->toArray()));
+        Tag::insert(
+            array_map(function ($item) {
+                return ['name' => $item];
+            }, $uncreatedTags)
+        );
+
+        $ids = Tag::whereIn('name', $tags)->get(['id'])->toArray();
+
+        $post->tags()->sync($ids);
     }
 }

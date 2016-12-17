@@ -33,7 +33,7 @@ abstract class ApiController extends Controller
                 response()->json([
                     'message' => trans('app.form_invalid'),
                     'errors' => $unique
-                ], 422)
+                ], REST_INVALID_FIELDS)
             );
         }
     }
