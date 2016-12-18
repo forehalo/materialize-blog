@@ -74,7 +74,6 @@
         mounted() {
             this.preloadIfEdit();
             $('#preview-modal').modal();
-            store.loading = false;
         },
         methods: {
             submit() {
@@ -100,11 +99,12 @@
                                 $('textarea').trigger('autoresize');
                                 Materialize.updateTextFields();
                             });
+                            store.loading = false;
                         }, response => {
-
+                            store.loading = false;
                         });
-                    store.loading = true;
                 } else {
+                    store.loading = false;
                     $('.chips').material_chip();
                 }
                 $('.chips').on('chip.add', this.addTag).on('chip.delete', this.deleteTag);

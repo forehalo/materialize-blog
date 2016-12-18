@@ -200,7 +200,7 @@ class PostRepository
         $tagCollection = Tag::whereIn('name', $tags)->get(['name']);
         // Insert non-existent tags.
         $uncreatedTags = array_diff($tags, array_values($tagCollection->pluck('name')->toArray()));
-        $now = time();
+        $now = Carbon::now();
         Tag::insert(
             array_map(function ($item) use ($now){
                 return ['name' => $item, 'created_at' => $now, 'updated_at' => $now];
