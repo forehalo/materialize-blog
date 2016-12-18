@@ -176,11 +176,12 @@ class PostRepository
         $post->summary = $inputs['summary'];
         $post->origin = $inputs['origin'];
         $post->body = $parser->parse($inputs['origin']);
+        $post->published = $inputs['published'];
         // Begin transaction
         return DB::transaction(function () use ($post, $inputs) {
             $categorySync = $this->syncCategory($post, $inputs['category']);
-            $tagsSync = $this->syncTags($post, $inputs['tags']);
             $postSaved = $post->save();
+            $tagsSync = $this->syncTags($post, $inputs['tags']);
 
             return $postSaved && $categorySync && $tagsSync;
         });

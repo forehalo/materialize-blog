@@ -121,7 +121,7 @@ class PostController extends ApiController
             response()->json($post);
     }
 
-    public function store(Request $reqeust)
+    public function store(Request $request)
     {
         $this->validate($request, [
             'title' => 'required|string|between:1,255',

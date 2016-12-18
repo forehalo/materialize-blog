@@ -26,7 +26,7 @@
                         <label for="origin">Content</label>
                     </div>
                     <div id="preview-modal" class="modal">
-                        <div class="modal-content markdown-body"></div>
+                        <div class="modal-content markdown-body" v-html="contentPreview"></div>
                     </div>
                 </div>
                 <div class="row">
@@ -43,7 +43,7 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <a href="javascript:;" class="btn waves-effect green">preview <i class="material-icons right">visibility</i></a>
+                        <a href="javascript:;" class="btn waves-effect green" @click="preview">preview <i class="material-icons right">visibility</i></a>
                         <a href="javascript:;" class="btn waves-effect btn-success" @click="submit">submit <i class="material-icons right">send</i></a>
                         <input type="checkbox" id="publish" name="publish" class="filled-in" v-model="form.published" />
                         <label for="publish">Publish</label>
@@ -67,7 +67,8 @@
                     category: '',
                     tags: [],
                     published: false
-                }
+                },
+                contentPreview: '',
             }
         },
 
@@ -84,6 +85,7 @@
                 }
             },
             preview() {
+                this.contentPreview = marked(this.form.origin);
                 $('#preview-modal').modal('open');
             },
             preloadIfEdit() {
