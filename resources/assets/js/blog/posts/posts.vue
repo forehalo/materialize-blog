@@ -20,7 +20,7 @@
                     <div class="row no-margin">
                         <div class="col s12 m12 l12 no-padding">
                             <div class="chip" v-for="tag in post.tags">
-                                <router-link :to="'/tags/' + tag.id">{{ tag.name }}</router-link>
+                                <router-link :to="'/tags/' + tag.name">{{ tag.name }}</router-link>
                             </div>
                         </div>
                     </div>
