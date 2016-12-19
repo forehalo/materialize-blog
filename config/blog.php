@@ -11,7 +11,7 @@ return [
     'keywords' => '',
 
     // Author
-    'anthor' => '',
+    'author' => '',
 
     'logo' => '// Forehalo'
 ];
