@@ -72,8 +72,8 @@ class PostController extends ApiController
     {
         $result = $this->post->likePost($id);
         return $result ?
-        response()->json(['message' => trans('post.like_success')]) :
-        response()->json(['error' => FAIL_TO_LIKE_POST, 'message' => trans('post.like_fail')], REST_BAD_REQUEST);
+            response()->json(['message' => trans('post.like_success')]) :
+            response()->json(['error' => FAIL_TO_LIKE_POST, 'message' => trans('post.like_fail')], REST_BAD_REQUEST);
     }
 
     /**
@@ -92,11 +92,11 @@ class PostController extends ApiController
     {
         $result = $this->post->togglePublish($id);
         return $result ?
-        response()->json(['message' => trans('post.publish_success')], REST_UPDATE_SUCCESS) :
-        response()->json([
-            'error'   => FAIL_TO_TOGGLE_PUBLISH,
-            'message' => trans('post.publish_fail'),
-        ], REST_BAD_REQUEST);
+            response()->json(['message' => trans('post.publish_success')], REST_UPDATE_SUCCESS) :
+            response()->json([
+                'error' => FAIL_TO_TOGGLE_PUBLISH,
+                'message' => trans('post.publish_fail'),
+            ], REST_BAD_REQUEST);
     }
 
     /**
@@ -109,23 +109,23 @@ class PostController extends ApiController
     {
         $result = $this->post->delete($id);
         return $result ?
-        response()->json(['message' => trans('post.delete_success')], REST_DELETE_SUCCESS) :
-        response()->json([
-            'error'   => FAIL_TO_DELETE_POST,
-            'message' => trans('post.delete_fail'),
-        ], REST_BAD_REQUEST);
+            response()->json(['message' => trans('post.delete_success')], REST_DELETE_SUCCESS) :
+            response()->json([
+                'error' => FAIL_TO_DELETE_POST,
+                'message' => trans('post.delete_fail'),
+            ], REST_BAD_REQUEST);
     }
 
     /**
      * Get origin data for editing.
-     * 
+     *
      * @param  int $id
      * @return \Illuminate\Http\JsonResponse
      */
     public function getOrigin($id)
     {
         $post = $this->post->origin($id);
-        return !$post ? 
+        return ! $post ?
             response()->json(['error' => POST_NOT_FOUND, 'message' => trans('post.not_found')], REST_RESOURCE_NOT_FOUND) :
             response()->json($post);
     }
@@ -148,8 +148,8 @@ class PostController extends ApiController
             'published' => 'required|boolean'
         ]);
         $result = $this->post->store($request->all());
-        return $result ? 
-            response()->json([], REST_CREATE_SUCCESS) : 
+        return $result ?
+            response()->json([], REST_CREATE_SUCCESS) :
             response()->json(['error' => FAIL_TO_CREATE_POST, 'message' => trans('post.create_fail')]);
     }
 
@@ -172,11 +172,17 @@ class PostController extends ApiController
             'published' => 'required|boolean'
         ]);
         $result = $this->post->update($id, $request->all());
-        return $result ? 
-            response()->json([], REST_UPDATE_SUCCESS) : 
+        return $result ?
+            response()->json([], REST_UPDATE_SUCCESS) :
             response()->json(['error' => FAIL_TO_UPDATE_POST, 'message' => trans('post.update_fail')]);
     }
 
+    /**
+     * Export post to local disk and return download response.
+     *
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     */
     public function export($id)
     {
         $post = $this->post->origin($id);
@@ -184,20 +190,35 @@ class PostController extends ApiController
         return response()->download($fullPath, $post['slug'].'.md');
     }
 
+    /**
+     * Store post in markdown file.
+     *
+     * @param array $post
+     * @return string
+     */
     private function saveAsMarkdown(array $post)
     {
-        $updatedTimestamp = Carbon::createFromFormat(Carbon::DEFAULT_TO_STRING_FORMAT, $post['updated_at'])->timestamp;
-        $filename = $post['slug'].'-'.$updatedTimestamp.'.md';
-        $relativeFilename = $this->relativePath.$filename;
+        $lastExportTime = $post['exported_at'];
+        $lastUpdateTime = Carbon::createFromFormat(Carbon::DEFAULT_TO_STRING_FORMAT, $post['updated_at'])->timestamp;
+        $filename = "$this->relativePath{$post['slug']}-$lastExportTime.md";
 
-        if (!Storage::exists($relativeFilename)) {
+        if (! $lastExportTime || $lastExportTime < $lastUpdateTime || ! Storage::exists($filename)) {
+            $now = time();
+            $filename = "$this->relativePath{$post['slug']}-$now.md";
             $content = $this->generateMarkdownContent($post);
-            Storage::put($relativeFilename, $content);
+            Storage::put($filename, $content);
+            $this->post->updateExportedAt($post['id'], $now);
         }
 
-        return storage_path('app/'.$relativeFilename);
+        return storage_path('app/'.$filename);
     }
 
+    /**
+     * Post to markdown format.
+     *
+     * @param array $post
+     * @return string
+     */
     private function generateMarkdownContent(array $post)
     {
         $tags = implode("/", $post['tags']);

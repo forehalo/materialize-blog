@@ -137,7 +137,10 @@ class PostRepository
     {
         $post = Post::where('id', $id)
             ->with('category', 'tags')
-            ->first(['id', 'title', 'slug', 'summary', 'category_id', 'origin', 'published', 'created_at', 'updated_at']);
+            ->first([
+                'id', 'title', 'slug', 'summary', 'category_id',
+                'origin', 'published', 'created_at', 'updated_at', 'exported_at'
+            ]);
 
         if (is_null($post)) {
             return false;
@@ -247,5 +250,16 @@ class PostRepository
         return $post->tags()->sync($ids);
     }
 
-
+    /**
+     * Update export timestamp without mutate updated_at column.
+     *
+     * @param $id
+     * @param $now
+     * @return int
+     */
+    public function updateExportedAt($id, $now)
+    {
+        return Post::where('id', $id)->getQuery()->update(['exported_at' => $now]);
+    }
+    
 }
