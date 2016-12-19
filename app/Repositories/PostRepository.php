@@ -137,7 +137,7 @@ class PostRepository
     {
         $post = Post::where('id', $id)
             ->with('category', 'tags')
-            ->first(['id', 'title', 'slug', 'summary', 'category_id', 'origin', 'published']);
+            ->first(['id', 'title', 'slug', 'summary', 'category_id', 'origin', 'published', 'created_at', 'updated_at']);
 
         if (is_null($post)) {
             return false;
@@ -150,6 +150,12 @@ class PostRepository
     }
 
 
+    /**
+     * Store post.
+     *
+     * @param $inputs
+     * @return boolean
+     */
     public function store($inputs)
     {
         $post = new Post();
@@ -157,6 +163,13 @@ class PostRepository
         return $this->save($post, $inputs);
     }
 
+    /**
+     * Update post.
+     *
+     * @param $id
+     * @param $inputs
+     * @return bool
+     */
     public function update($id, $inputs)
     {
         $post = Post::where('id', $id)->first();
@@ -167,6 +180,13 @@ class PostRepository
         return $this->save($post, $inputs);
     }
 
+    /**
+     * Save post with given inputs.
+     *
+     * @param Post $post
+     * @param $inputs
+     * @return mixed
+     */
     public function save(Post $post, $inputs)
     {
         $parser = new Parsedown();
@@ -187,6 +207,13 @@ class PostRepository
         });
     }
 
+    /**
+     * Associate post with category.
+     *
+     * @param Post $post
+     * @param $categoryName
+     * @return \Illuminate\Database\Eloquent\Model
+     */
     public function syncCategory(Post $post, $categoryName)
     {
         $category = Category::where('name', $categoryName)->first();
@@ -195,7 +222,14 @@ class PostRepository
         }
         return $post->category()->associate($category);
     }
-    
+
+    /**
+     * Synchronize post tags relation.
+     *
+     * @param Post $post
+     * @param $tags
+     * @return array
+     */
     public function syncTags(Post $post, $tags)
     {
         $tagCollection = Tag::whereIn('name', $tags)->get(['name']);
@@ -212,4 +246,6 @@ class PostRepository
 
         return $post->tags()->sync($ids);
     }
+
+
 }

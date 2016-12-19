@@ -17,7 +17,7 @@
                 </thead>
                 <tbody>
                 <tr v-for="(post, index) in currentPagePosts">
-                    <td>{{ post.title }}</td>
+                    <td><a target="view-window" :href="'/posts/' + post.slug">{{ post.title }}</a></td>
                     <td>{{ post.created_at.substr(0, 10) }}</td>
                     <td>
                         <circular-loader size="tiny" v-if="processItem == post.id"></circular-loader>
@@ -28,11 +28,11 @@
                         </template>
                     </td>
                     <td>
-                        <a target="view-window" :href="'/posts/' + post.slug" class="btn btn-success">See</a>
+                        <router-link :to="'/dashboard/posts/' + post.id + '/edit'" class="btn btn-success">Edit
+                        </router-link>
                     </td>
                     <td>
-                        <router-link :to="'/dashboard/posts/' + post.id + '/edit'" class="btn btn-warning">Edit
-                        </router-link>
+                        <a :href="'/dashboard/posts/' + post.id + '/export'" class="btn btn-warning">Export</a>
                     </td>
                     <td>
                         <a href="javascript:;" @click="wantDestroy(post, index)" class="btn btn-danger">Destroy</a>

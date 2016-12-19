@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
 use App\Repositories\PostRepository;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends ApiController
 {
@@ -16,6 +17,13 @@ class PostController extends ApiController
     protected $post;
 
     /**
+     * Path of stored posts' markdown files.
+     *
+     * @var string
+     */
+    protected $relativePath;
+
+    /**
      * PostController constructor.
      *
      * @param PostRepository $post
@@ -23,6 +31,7 @@ class PostController extends ApiController
     public function __construct(PostRepository $post)
     {
         $this->post = $post;
+        $this->relativePath = 'posts/';
     }
 
     /**
@@ -121,6 +130,12 @@ class PostController extends ApiController
             response()->json($post);
     }
 
+    /**
+     * Store a new post.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -138,6 +153,13 @@ class PostController extends ApiController
             response()->json(['error' => FAIL_TO_CREATE_POST, 'message' => trans('post.create_fail')]);
     }
 
+    /**
+     * Update an existing post.
+     *
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function update(Request $request, $id)
     {
         $this->validate($request, [
@@ -153,5 +175,42 @@ class PostController extends ApiController
         return $result ? 
             response()->json([], REST_UPDATE_SUCCESS) : 
             response()->json(['error' => FAIL_TO_UPDATE_POST, 'message' => trans('post.update_fail')]);
+    }
+
+    public function export($id)
+    {
+        $post = $this->post->origin($id);
+        $fullPath = $this->saveAsMarkdown($post);
+        return response()->download($fullPath, $post['slug'].'.md');
+    }
+
+    private function saveAsMarkdown(array $post)
+    {
+        $updatedTimestamp = Carbon::createFromFormat(Carbon::DEFAULT_TO_STRING_FORMAT, $post['updated_at'])->timestamp;
+        $filename = $post['slug'].'-'.$updatedTimestamp.'.md';
+        $relativeFilename = $this->relativePath.$filename;
+
+        if (!Storage::exists($relativeFilename)) {
+            $content = $this->generateMarkdownContent($post);
+            Storage::put($relativeFilename, $content);
+        }
+
+        return storage_path('app/'.$relativeFilename);
+    }
+
+    private function generateMarkdownContent(array $post)
+    {
+        $tags = implode("/", $post['tags']);
+        $content = <<<Content
+---
+title: {$post['title']}
+slug: {$post['slug']}
+summary: {$post['summary']}
+category: {$post['category']}
+tags: {$tags}
+---
+{$post['origin']}
+Content;
+        return $content;
     }
 }

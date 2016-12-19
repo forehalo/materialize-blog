@@ -30,6 +30,10 @@ class Post extends Model
      */
     protected $hidden = ['deleted_at'];
 
+    protected $casts = [
+        'published' => 'boolean'
+    ];
+
     /**
      * Many to many relation.
      *

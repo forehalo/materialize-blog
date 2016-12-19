@@ -23,6 +23,7 @@ Route::get('/logout', 'Auth\LoginController@logout');
 Route::group(['middleware' => 'auth'], function () {
     // dashboard
     Route::get('/dashboard', 'Controller@dashboard');
+    Route::get('/dashboard/posts/{id}/export', 'Api\PostController@export');
     Route::any('/dashboard/{any}', 'Controller@dashboard')->where('any', '.*');
 });
 
