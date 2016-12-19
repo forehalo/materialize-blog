@@ -84,7 +84,7 @@
         },
         methods: {
             fetchPosts(page) {
-                this.$http.get(`/api/dashboard/posts?page=${page}`)
+                this.$http.get(`/api/dashboard/posts?page=${page}&limit=${this.perPage}`)
                         .then(response => {
                             let body = response.body;
                             this.$set(this.posts, page, body.data);
@@ -128,7 +128,7 @@
                             post.published = !post.published;
                             this.processItem = 0;
                             Materialize.toast('Toggle publish failed.', 4000);
-                        })
+                        });
             }
         }
     }
