@@ -108,6 +108,7 @@
                 } else {
                     store.loading = false;
                     $('.chips').material_chip();
+                    Materialize.updateTextFields();
                 }
                 $('.chips').on('chip.add', this.addTag).on('chip.delete', this.deleteTag);
             },

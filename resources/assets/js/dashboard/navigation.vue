@@ -27,9 +27,6 @@
                                         <li>
                                             <router-link to="/dashboard/posts/create" class="waves-effect">New</router-link>
                                         </li>
-                                        <li>
-                                            <router-link to="/dashboard/posts/file" class="waves-effect">From Files</router-link>
-                                        </li>
                                     </ul>
                                 </div>
                             </li>
