@@ -7,23 +7,23 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <input type="text" class="validate" name="title" id="title" v-model="form.title" />
-                        <label for="title">Title</label>
+                        <label for="title" class="active">Title</label>
                     </div>
                     <div class="input-field col s12">
                         <input type="text" class="validate" placeholder="slug" name="slug" id="slug" v-model="form.slug" />
-                        <label for="title">link: http://example.com/posts/{{ form.slug }}</label>
+                        <label for="title" class="active">link: http://example.com/posts/{{ form.slug }}</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
                         <textarea name="summary" id="summary" class="materialize-textarea" v-model="form.summary"></textarea>
-                        <label for="summary">Summary</label>
+                        <label for="summary" class="active">Summary</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
                         <textarea name="origin" id="origin" class="materialize-textarea" placeholder="markdown syntax" v-model="form.origin"></textarea>
-                        <label for="origin">Content</label>
+                        <label for="origin" class="active">Content</label>
                     </div>
                     <div id="preview-modal" class="modal">
                         <div class="modal-content markdown-body" v-html="contentPreview"></div>
@@ -32,13 +32,13 @@
                 <div class="row">
                     <div class="input-field col s12 l3">
                         <input type="text" class="validate" name="category" id="category" v-model="form.category" />
-                        <label for="category">Category</label>
+                        <label for="category" class="active">Category</label>
                     </div>
                     <div class="input-field col s12 l9">
                         <div class="chips">
                             <input type="text" class="validate" name="tags" id="tags" />
                         </div>
-                        <label for="tags">Tags(Enter to input)</label>
+                        <label for="tags" class="active">Tags(Enter to input)</label>
                     </div>
                 </div>
                 <div class="row">
@@ -108,7 +108,6 @@
                 } else {
                     store.loading = false;
                     $('.chips').material_chip();
-                    Materialize.updateTextFields();
                 }
                 $('.chips').on('chip.add', this.addTag).on('chip.delete', this.deleteTag);
             },

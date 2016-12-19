@@ -48,6 +48,13 @@ const app = new Vue({
         CircularLoader
     },
     data: {
-        store
+        store,
+        showActionButton: true
+    },
+    watch: {
+        '$route.name'(val) {
+            console.log(val);
+            this.showActionButton = val != 'edit-post' && val != 'create-post';
+        }
     }
 });

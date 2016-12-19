@@ -51,19 +51,12 @@
                 </router-link>
             </li>
         </ul>
-
-        <router-link v-if="$route.fullPath != '/dashboard/posts/create'" to="/dashboard/posts/create"
-                     class="fixed-action-btn btn-floating btn-large waves-effect waves-light blue tooltipped"
-                     data-position="left" data-delay="50" data-tooltip="Create">
-            <i class="material-icons">mode_edit</i>
-        </router-link>
     </div>
 </template>
 
 <script>
     export default {
         mounted() {
-            let rect = document.body.getBoundingClientRect();
             $(".button-collapse").sideNav();
         }
     }
