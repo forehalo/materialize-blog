@@ -109,7 +109,7 @@ class PostController extends ApiController
     {
         $result = $this->post->delete($id);
         return $result ?
-            response()->json(['message' => trans('post.delete_success')], REST_DELETE_SUCCESS) :
+            response()->json([], REST_DELETE_SUCCESS) :
             response()->json([
                 'error' => FAIL_TO_DELETE_POST,
                 'message' => trans('post.delete_fail'),
