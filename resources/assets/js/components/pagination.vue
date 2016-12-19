@@ -1,5 +1,5 @@
 <template>
-    <ul class="pagination">
+    <ul class="pagination" v-show="total != 0">
         <li :class="disablePrev">
             <a href="javascript:;" @click="prev"><i class="material-icons">chevron_left</i></a>
         </li>
@@ -32,7 +32,8 @@
                         page >= this.current - 2 &&
                         page <= this.current + 2 ||
                         page == this.total) {
-                        pages.push(page);
+                        pages.push(page++);
+                        continue;
                     }
                     if (page < this.current - 2 && !frontDots) {
                         pages.push("...");
