@@ -18,6 +18,8 @@ import router from './router';
 
 window.store = {
 	categories: [],
+	title: Laravel.config.title,
+    titleAppendix: Laravel.config.title,
 
 	getCategories() {
 		return this.categories;
@@ -25,9 +27,20 @@ window.store = {
 
 	setCategories(newValue) {
 		this.categories = newValue;
-	}
+	},
+
+    setTitle(title) {
+        this.title = title + ' - ' + this.titleAppendix;
+    }
 
 }
+
+const meta = new Vue({
+    el: 'head',
+    data: {
+        store
+    }
+});
 
 const header = new Vue({
 	el: 'header',

@@ -175,6 +175,7 @@
                         this.post = response.body;
                         this.loading = false;
                         this.$nextTick(() => {
+                            store.setTitle(this.post.title);
                             Prism.highlightAll();
                             $('.markdown-body img').materialbox();
                             $('#comment-preview-modal').modal();

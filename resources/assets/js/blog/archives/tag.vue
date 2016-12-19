@@ -58,6 +58,7 @@
                 this.orderTags();
             });
             this.fetchTags();
+            store.setTitle('Tags');
         },
 
         methods: {

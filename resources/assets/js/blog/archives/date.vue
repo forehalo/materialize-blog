@@ -39,6 +39,7 @@
 
         mounted() {
             this.fetchDates();
+            store.setTitle('Date');
         },
 
         methods: {

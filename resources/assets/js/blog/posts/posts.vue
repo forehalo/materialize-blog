@@ -63,6 +63,7 @@
 
     	mounted() {
             this.loadMorePosts();
+            store.setTitle('Index');
     	},
 
         methods: {
