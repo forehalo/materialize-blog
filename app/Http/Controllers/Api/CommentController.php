@@ -41,6 +41,7 @@ class CommentController extends ApiController
      * Create new comment.
      *
      * @param Request $request
+     * @param $postID
      * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request, $postID)
@@ -61,5 +62,50 @@ class CommentController extends ApiController
 
         $result = $this->comment->create($postID, $inputs);
         return response()->json($result);
+    }
+
+    /**
+     * Get all comments for dashboard.
+     *
+     * @param Request $request
+     * @return \Illuminate\Support\Collection
+     */
+    public function manage(Request $request)
+    {
+        $comments = $this->comment->all($request->input('limit', 8));
+        return $comments;
+    }
+
+    public function valid($id)
+    {
+        $result = $this->comment->toggle($id, 'valid');
+        return $result ?
+            response()->json(['message' => trans('comment.toggle_valid_success')], REST_UPDATE_SUCCESS) :
+            response()->json([
+                'error' => FAIL_TO_TOGGLE_VALID,
+                'message' => trans('comment.toggle_valid_fail'),
+            ], REST_BAD_REQUEST);
+    }
+
+    public function seen($id)
+    {
+        $result = $this->comment->toggle($id, 'seen');
+        return $result ?
+            response()->json(['message' => trans('comment.toggle_seen_success')], REST_UPDATE_SUCCESS) :
+            response()->json([
+                'error' => FAIL_TO_TOGGLE_SEEN,
+                'message' => trans('comment.toggle_seen_fail'),
+            ], REST_BAD_REQUEST);
+    }
+
+    public function destroy($id)
+    {
+        $result = $this->comment->destroy($id);
+        return $result ?
+            response()->json([], REST_DELETE_SUCCESS) :
+            response()->json([
+                'error' => FAIL_TO_DELETE_COMMENT,
+                'message' => trans('comment.delete_fail'),
+            ], REST_BAD_REQUEST);
     }
 }

@@ -25,7 +25,7 @@ class Comment extends Model
      *
      * @var array
      */
-    protected $fillable = ['post_id', 'name', 'email', 'blog', 'origin', 'content', 'parent_id'];
+    protected $fillable = ['post_id', 'name', 'email', 'blog', 'origin', 'content', 'parent_id', 'valid', 'seen'];
 
     /**
      * One to many relation.

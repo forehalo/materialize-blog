@@ -27,6 +27,7 @@ class CommentRepository
      *
      * @param int $postID
      * @param array $inputs
+     * @return Comment
      */
     public function create($postID, $inputs)
     {
@@ -51,5 +52,42 @@ class CommentRepository
     public function getUnreadCommentCount()
     {
         return Comment::whereSeen(0)->count();
+    }
+
+    /**
+     * Get all comment.
+     *
+     * @param int $limit
+     * @return mixed
+     */
+    public function all($limit = 8)
+    {
+        return Comment::with(['post' => function ($query) {
+            $query->select('id', 'slug', 'title');
+        }])->orderBy('created_at', 'desc')->paginate($limit);
+    }
+
+    /**
+     * Toggle boolean column
+     *
+     * @param $id
+     * @param $column
+     * @return boolean
+     */
+    public function toggle($id, $column)
+    {
+        $comment = Comment::where('id', $id)->first();
+        return $comment->update([$column => ! $comment->{$column}]);
+    }
+
+    /**
+     * Destroy comment.
+     *
+     * @param $id
+     * @return int
+     */
+    public function destroy($id)
+    {
+        return Comment::destroy($id);
     }
 }

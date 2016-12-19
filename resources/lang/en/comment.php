@@ -8,4 +8,4 @@ return [
     */
     'success' => 'Comment successfully.',
     'fail' => 'Whoops, fail to comment. fix it soon.',
-]
+];

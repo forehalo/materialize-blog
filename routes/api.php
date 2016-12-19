@@ -41,11 +41,19 @@ Route::group(['namespace' => 'Api'], function () {
     */
     Route::group(['middleware' => ['auth'], 'prefix' => 'dashboard'], function () {
         Route::get('/statistics', 'AdminController@statistics');
+
+        // Post
         Route::get('/posts', 'PostController@manage');
         Route::post('/posts', 'PostController@store');
         Route::get('/posts/{id}', 'PostController@getOrigin');
-        Route::put('/posts/{id}', 'PostController@update');        
+        Route::put('/posts/{id}', 'PostController@update');
         Route::put('/posts/{id}/publish', 'PostController@publish');
         Route::delete('/posts/{id}', 'PostController@destroy');
+
+        // Comment
+        Route::get('/comments', 'CommentController@manage');
+        Route::put('/comments/{id}/valid', 'CommentController@valid');
+        Route::put('/comments/{id}/seen', 'CommentController@seen');
+        Route::delete('/comments/{id}', 'CommentController@destroy');
     });
 });
