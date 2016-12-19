@@ -67,7 +67,14 @@
             },
             mountTabs() {
                 if(this.categories.length) {
-                    this.initTabs().changeActiveTab(this.currentTab || this.uriTab || this.defaultTab || '');
+                    let found = this.categories.find((category) => {
+                        return category.name == this.uriTab;
+                    });
+                    if (found) {
+                        this.initTabs().changeActiveTab(this.currentTab || this.uriTab || this.defaultTab || '');
+                    } else {
+                        this.initTabs().changeActiveTab(this.currentTab || this.defaultTab || '');
+                    }
                 }
             },
             initTabs() {
@@ -90,9 +97,6 @@
             },
             selectTab(tabID) {
                 this.$router.push(`/categories/${tabID}`);
-            },
-            hasloaded(tabID) {
-                return this.loadedTabs[tabID] || this.currentTab == tabID;
             }
         },
         watch: {

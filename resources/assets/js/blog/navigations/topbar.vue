@@ -33,7 +33,7 @@
             </ul>
         </li>
         <li>
-            <router-link to="about" class="waves-effect waves-block">
+            <router-link to="/about" class="waves-effect waves-block">
                 About
                 <i class="material-icons left">perm_identity</i>
             </router-link>
