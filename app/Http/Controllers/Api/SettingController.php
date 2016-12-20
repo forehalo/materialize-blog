@@ -32,6 +32,16 @@ class SettingController extends ApiController
     }
 
     /**
+     * Get logged in user information.
+     *
+     * @return \App\Models\Admin
+     */
+    public function auth()
+    {
+        return $this->setting->getAuthInfo();
+    }
+
+    /**
      * Store new friend link.
      *
      * @param Request $request
@@ -98,6 +108,29 @@ class SettingController extends ApiController
             response()->json([
                 'error' => FAIL_TO_UPDATE_LINK,
                 'message' => trans('post.update_link_fail')
+            ], REST_BAD_REQUEST);
+    }
+
+    /**
+     * Update logged user information.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function updateAuth(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required|string|max:20',
+            'email' => 'required|email',
+            'password' => 'confirmed|alpha_dash|between:6,25',
+        ]);
+
+        $result = $this->setting->updateAuth($request->all());
+        return $result ?
+            response()->json([], REST_UPDATE_SUCCESS):
+            response()->json([
+                'error' => FAIL_TO_UPDATE_AUTH,
+                'message' => trans('post.update_auth_fail')
             ], REST_BAD_REQUEST);
     }
 }

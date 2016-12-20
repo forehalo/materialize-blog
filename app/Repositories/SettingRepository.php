@@ -16,6 +16,16 @@ class SettingRepository
     }
 
     /**
+     * Get logged in user.
+     *
+     * @return \App\Models\Admin
+     */
+    public function getAuthInfo()
+    {
+        return auth()->user();
+    }
+
+    /**
      * Create a new link.
      *
      * @param $inputs
@@ -49,4 +59,15 @@ class SettingRepository
         return Link::destroy($id);
     }
 
+    /**
+     * Update user information.
+     *
+     * @param $inputs
+     * @return boolean
+     */
+    public function updateAuth($inputs)
+    {
+        $user = auth()->user();
+        return $user->update($inputs);
+    }
 }
