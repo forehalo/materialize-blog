@@ -80,7 +80,7 @@ class CommentController extends ApiController
     {
         $result = $this->comment->toggle($id, 'valid');
         return $result ?
-            response()->json(['message' => trans('comment.toggle_valid_success')], REST_UPDATE_SUCCESS) :
+            response()->json([], REST_UPDATE_SUCCESS) :
             response()->json([
                 'error' => FAIL_TO_TOGGLE_VALID,
                 'message' => trans('comment.toggle_valid_fail'),
@@ -91,7 +91,7 @@ class CommentController extends ApiController
     {
         $result = $this->comment->toggle($id, 'seen');
         return $result ?
-            response()->json(['message' => trans('comment.toggle_seen_success')], REST_UPDATE_SUCCESS) :
+            response()->json([], REST_UPDATE_SUCCESS) :
             response()->json([
                 'error' => FAIL_TO_TOGGLE_SEEN,
                 'message' => trans('comment.toggle_seen_fail'),

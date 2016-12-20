@@ -72,7 +72,7 @@ class PostController extends ApiController
     {
         $result = $this->post->likePost($id);
         return $result ?
-            response()->json(['message' => trans('post.like_success')]) :
+            response()->json([], REST_CREATE_SUCCESS) :
             response()->json(['error' => FAIL_TO_LIKE_POST, 'message' => trans('post.like_fail')], REST_BAD_REQUEST);
     }
 
@@ -92,7 +92,7 @@ class PostController extends ApiController
     {
         $result = $this->post->togglePublish($id);
         return $result ?
-            response()->json(['message' => trans('post.publish_success')], REST_UPDATE_SUCCESS) :
+            response()->json([], REST_UPDATE_SUCCESS) :
             response()->json([
                 'error' => FAIL_TO_TOGGLE_PUBLISH,
                 'message' => trans('post.publish_fail'),

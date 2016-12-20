@@ -107,7 +107,7 @@ class SettingController extends ApiController
             response()->json([], REST_DELETE_SUCCESS):
             response()->json([
                 'error' => FAIL_TO_UPDATE_LINK,
-                'message' => trans('post.update_link_fail')
+                'message' => trans('post.delete_link_fail')
             ], REST_BAD_REQUEST);
     }
 
