@@ -53,7 +53,6 @@ const app = new Vue({
     },
     watch: {
         '$route.name'(val) {
-            console.log(val);
             this.showActionButton = val != 'edit-post' && val != 'create-post';
         }
     }

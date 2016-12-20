@@ -149,7 +149,7 @@ class PostController extends ApiController
         ]);
         $result = $this->post->store($request->all());
         return $result ?
-            response()->json([], REST_CREATE_SUCCESS) :
+            response()->json($result, REST_CREATE_SUCCESS) :
             response()->json(['error' => FAIL_TO_CREATE_POST, 'message' => trans('post.create_fail')]);
     }
 

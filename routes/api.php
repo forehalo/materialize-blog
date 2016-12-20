@@ -55,5 +55,11 @@ Route::group(['namespace' => 'Api'], function () {
         Route::put('/comments/{id}/valid', 'CommentController@valid');
         Route::put('/comments/{id}/seen', 'CommentController@seen');
         Route::delete('/comments/{id}', 'CommentController@destroy');
+
+        // Setting
+        Route::get('/settings/links', 'SettingController@links');
+        Route::post('/settings/links', 'SettingController@storeLink');
+        Route::put('/settings/links/{id}', 'SettingController@updateLink');
+        Route::delete('/settings/links/{id}', 'SettingController@destroyLink');
     });
 });

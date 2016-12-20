@@ -4,6 +4,7 @@ import Index from './index.vue';
 import Posts from './posts/posts.vue';
 import Post from './posts/post.vue';
 import Comments from './comments.vue';
+import Setting from './settings/setting.vue';
 // 404
 import NotFound from '../components/404.vue';
 
@@ -37,6 +38,11 @@ const routes = [
         name: 'comments',
         path: '/dashboard/comments',
         component: Comments
+    },
+    {
+        name: 'settings',
+        path: '/dashboard/settings',
+        component: Setting
     }
 ];
 

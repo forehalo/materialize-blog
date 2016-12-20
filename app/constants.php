@@ -24,3 +24,7 @@ define('FAIL_TO_TOGGLE_PUBLISH', 1006);
 define('FAIL_TO_TOGGLE_VALID', 2001);
 define('FAIL_TO_TOGGLE_SEEN', 2002);
 define('FAIL_TO_DELETE_COMMENT', 2003);
+
+// Setting
+define('FAIL_TO_ADD_LINK', 3001);
+define('FAIL_TO_UPDATE_LINK', 3002);
