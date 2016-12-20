@@ -27,13 +27,13 @@
                                 <div class="col s12 l6">
                                     <h5>category :</h5>
                                     <div class="chip">
-                                        <router-link :to="'/categories/' + post.category.id">{{ post.category.name }}</router-link>
+                                        <router-link :to="'/categories/' + post.category.name">{{ post.category.name }}</router-link>
                                     </div>
                                 </div>
                                 <div class="col s12 l6">
                                     <h5>tags :</h5>
                                     <div class="chip" v-for="tag in post.tags">
-                                        <router-link :to="'/tags/' + tag.id">{{ tag.name }}</router-link>
+                                        <router-link :to="'/tags/' + tag.name">{{ tag.name }}</router-link>
                                     </div>
                                 </div>
                                 <div class="col s12 post-right">
