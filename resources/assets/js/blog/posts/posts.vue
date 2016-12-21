@@ -70,7 +70,7 @@
             loadMorePosts() {
                 if(this.hasMore && !this.loading) {
                     this.loading = true;
-                    this.$http.get(`api/posts?page=${this.page + 1}`).then((response) => {
+                    this.$http.get(`/api/posts?page=${this.page + 1}`).then((response) => {
                         let body = response.body;
                         this.posts = this.posts.concat(body.data);
                         this.page = body.current_page;
