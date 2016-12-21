@@ -27,7 +27,7 @@
                 </div>
                 <!-- No more posts -->
                 <div class="collection-item" v-if="noMore" :key="0">
-                    <p>whoops！No more posts here.</p>
+                    <p>{{ $trans('no_more_post') }}</p>
                 </div>
             </transition-group>
             <!-- loader -->
@@ -82,7 +82,7 @@
                         }]);
                         this.loading = false;                      
                     }, (response) => {
-                        // TODO
+                        Materialize.toast(this.$trans('get_posts_fail'), 4000);
                         this.loading = false;                        
                     });
                 }
@@ -105,7 +105,7 @@
                 if(!post.like) {
                     this.$http.post(`/api/posts/${post.id}/likes`)
                         .then(response => {
-                            Materialize.toast(response.body.message, 4000);
+                            Materialize.toast(this.$trans('like_post_success'), 4000);
                             post.favorite_count++;
                             post.like = true;
                         }, response => {

@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <div class="col s12" id="date">
-            <h5 class="center"><strong>Date</strong></h5>
+            <h5 class="center"><strong>{{ $trans('dates') }}</strong></h5>
             <div class="divider"></div>
             <div class="row date-group">
                 <div class="col s12" v-for="date in dates">

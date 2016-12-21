@@ -48,7 +48,7 @@
                 .then((response) => {
                     store.setCategories(response.body);
                 }, (response) => {
-                    // TODO
+                    Materialize.toast(this.$trans('get_categories_fail'), 4000);
                 });
         }
     }

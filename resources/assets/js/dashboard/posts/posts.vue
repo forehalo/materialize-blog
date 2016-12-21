@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <h4>Posts</h4>
+        <h4>{{ $trans('posts') }}</h4>
         <div class="divider"></div>
         <div class="card-panel">
             <div class="loader-wrapper center" v-if="!currentPagePosts">
@@ -9,10 +9,10 @@
             <table class="bordered striped responsive-table" v-else>
                 <thead>
                 <tr>
-                    <th>Title</th>
-                    <th>Date</th>
-                    <th>Publish</th>
-                    <th>Operation</th>
+                    <th>{{ $trans('title') }}</th>
+                    <th>{{ $trans('date') }}</th>
+                    <th>{{ $trans('publish') }}</th>
+                    <th>{{ $trans('operation') }}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -28,14 +28,14 @@
                         </template>
                     </td>
                     <td>
-                        <router-link :to="'/dashboard/posts/' + post.id + '/edit'" class="btn btn-success">Edit
+                        <router-link :to="'/dashboard/posts/' + post.id + '/edit'" class="btn btn-success">{{ $trans('edit') }}
                         </router-link>
                     </td>
                     <td>
-                        <a :href="'/dashboard/posts/' + post.id + '/export'" class="btn btn-warning">Export</a>
+                        <a :href="'/dashboard/posts/' + post.id + '/export'" class="btn btn-warning">{{ $trans('export') }}</a>
                     </td>
                     <td>
-                        <a href="javascript:;" @click="wantDestroy(post, index)" class="btn btn-danger">Destroy</a>
+                        <a href="javascript:;" @click="wantDestroy(post, index)" class="btn btn-danger">{{ $trans('destroy') }}</a>
                     </td>
                 </tr>
                 </tbody>
@@ -44,12 +44,12 @@
         <pagination :total="totalPage" :current='currentPage' @jump="selectPage"></pagination>
         <div id="destroy-post-modal" class="modal bottom-sheet">
             <div class="modal-content">
-                <h4>Warning</h4>
-                <p>Really want to destroy the post? You can't recover it after done!</p>
+                <h4>{{ $trans('warning') }}</h4>
+                <p>{{ $trans('warning_info') }}</p>
             </div>
             <div class="modal-footer">
-                <a href="javascript:;" class="left modal-action waves-effect waves-red btn-flat" @click="destroyPost">Confirm</a>
-                <a href="javascript:;" class="left modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+                <a href="javascript:;" class="left modal-action waves-effect waves-red btn-flat" @click="destroyPost">{{ $trans('confirm') }}</a>
+                <a href="javascript:;" class="left modal-action modal-close waves-effect waves-green btn-flat">{{ $trans('cancel') }}</a>
             </div>
         </div>
     </div>
@@ -90,7 +90,7 @@
                             this.$set(this.posts, page, body.data);
                             this.totalPage = Math.ceil(body.total / this.perPage);
                         }, response => {
-
+                            Materialize.toast(this.$trans('get_posts_fail'), 4000);
                         });
             },
             wantDestroy(post, index) {
@@ -106,10 +106,10 @@
                         .then(response => {
                             this.posts[this.currentPage].splice(this.willDestroyed.index, 1);
                             store.loading = false;
-                            Materialize.toast('Delete post successfully.', 4000);
+                            Materialize.toast(this.$trans('delete_post_success'), 4000);
                         }, response => {
                             store.loading = false;
-                            Materialize.toast('Delete post failed.', 4000);
+                            Materialize.toast(response.body.message, 4000);
                         });
             },
             selectPage(to) {
@@ -123,11 +123,11 @@
                 this.$http.put(`/api/dashboard/posts/${post.id}/publish`)
                         .then(response => {
                             this.processItem = 0;
-                            Materialize.toast('Toggle publish successfully.', 4000);
+                            Materialize.toast(this.$trans('toggle_post_publish_success'), 4000);
                         }, response => {
                             post.published = !post.published;
                             this.processItem = 0;
-                            Materialize.toast('Toggle publish failed.', 4000);
+                            Materialize.toast(response.body.message, 4000);
                         });
             }
         }

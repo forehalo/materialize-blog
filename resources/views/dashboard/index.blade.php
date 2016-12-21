@@ -25,10 +25,11 @@
     </div>
 </main>
 <script>
-    window.Laravel = <?php echo json_encode([
+    window.Laravel = {!! json_encode([
             'csrfToken' => csrf_token(),
             'config' => config('blog'),
-    ]);?>
+    ]) !!};
+    window.dictionary = {!! json_encode(trans('app')) !!};
 </script>
 <script src="{{ asset(elixir('js/dashboard.js')) }}"></script>
 </body>

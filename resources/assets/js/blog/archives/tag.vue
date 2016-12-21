@@ -1,13 +1,13 @@
 <template>
     <div class="row">
         <div class="col s12" id="tags">
-            <h5 class="center"><strong>Tags</strong></h5>
+            <h5 class="center"><strong>{{ $trans('tags') }}</strong></h5>
             <div class="divider"></div>
             <div class="input-field right">
                 <select id="tag-order">
-                    <option value="" disabled selected>Select Order</option>
-                    <option value="hot">Hot</option>
-                    <option value="created_at">Date</option>
+                    <option value="" disabled selected>{{ $trans('tags_order') }}</option>
+                    <option value="hot">{{ $trans('hot') }}</option>
+                    <option value="created_at">{{ $trans('date') }}</option>
                 </select>
             </div>
             <div class="row">

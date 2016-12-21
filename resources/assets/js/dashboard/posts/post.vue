@@ -7,23 +7,23 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <input type="text" class="validate" name="title" id="title" v-model="form.title" />
-                        <label for="title" class="active">Title</label>
+                        <label for="title" class="active">{{ $trans('title') }}</label>
                     </div>
                     <div class="input-field col s12">
                         <input type="text" class="validate" placeholder="slug" name="slug" id="slug" v-model="form.slug" />
-                        <label for="title" class="active">link: http://example.com/posts/{{ form.slug }}</label>
+                        <label for="title" class="active">{{ $trans('slug') }}: http://example.com/posts/{{ form.slug }}</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
                         <textarea name="summary" id="summary" class="materialize-textarea" v-model="form.summary"></textarea>
-                        <label for="summary" class="active">Summary</label>
+                        <label for="summary" class="active">{{ $trans('summary') }}</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <textarea name="origin" id="origin" class="materialize-textarea" placeholder="markdown syntax" v-model="form.origin"></textarea>
-                        <label for="origin" class="active">Content</label>
+                        <textarea name="origin" id="origin" class="materialize-textarea" :placeholder="$trans('markdown_syntax')" v-model="form.origin"></textarea>
+                        <label for="origin" class="active">{{ $trans('content') }}</label>
                     </div>
                     <div id="preview-modal" class="modal">
                         <div class="modal-content markdown-body" v-html="contentPreview"></div>
@@ -32,21 +32,21 @@
                 <div class="row">
                     <div class="input-field col s12 l3">
                         <input type="text" class="validate" name="category" id="category" v-model="form.category" />
-                        <label for="category" class="active">Category</label>
+                        <label for="category" class="active">{{ $trans('category') }}</label>
                     </div>
                     <div class="input-field col s12 l9">
                         <div class="chips">
                             <input type="text" class="validate" name="tags" id="tags" />
                         </div>
-                        <label for="tags" class="active">Tags(Enter to input)</label>
+                        <label for="tags" class="active">{{ $trans('tags') }}</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <a href="javascript:;" class="btn waves-effect green" @click="preview">preview <i class="material-icons right">visibility</i></a>
-                        <a href="javascript:;" class="btn waves-effect btn-success" @click="submit">submit <i class="material-icons right">send</i></a>
+                        <a href="javascript:;" class="btn waves-effect green" @click="preview">{{ $trans('preview') }} <i class="material-icons right">visibility</i></a>
+                        <a href="javascript:;" class="btn waves-effect btn-success" @click="submit">{{ $trans('submit') }} <i class="material-icons right">send</i></a>
                         <input type="checkbox" id="publish" name="publish" class="filled-in" v-model="form.published" />
-                        <label for="publish">Publish</label>
+                        <label for="publish">{{ $trans('publish') }}</label>
                     </div>
                 </div>
             </form>
@@ -104,10 +104,11 @@
                             store.loading = false;
                         }, response => {
                             store.loading = false;
+                            Materialize.toast(response.body.message, 4000);
                         });
                 } else {
                     store.loading = false;
-                    $('.chips').material_chip();
+                    $('.chips').material_chip({data: [{tag: 'tag'}]});
                 }
                 $('.chips').on('chip.add', this.addTag).on('chip.delete', this.deleteTag);
             },
@@ -124,18 +125,18 @@
                 this.$http.post('/api/dashboard/posts', this.form)
                     .then(response => {
                         this.$router.push('/dashboard/posts');
-                        Materialize.toast('Create new post successfully.', 4000);
+                        Materialize.toast(this.$trans('create_post_success'), 4000);
                     }, response => {
-                        Materialize.toast('Create new post failed.', 4000);
+                        Materialize.toast(response.body.message, 4000);
                     });
             },
             update() {
                 this.$http.put(`/api/dashboard/posts/${this.$route.params.id}`, this.form)
                     .then(response => {
                         this.$router.push('/dashboard/posts');
-                        Materialize.toast('Update post successfully.', 4000);
+                        Materialize.toast(this.$trans('update_post_success'), 4000);
                     }, response => {
-                        Materialize.toast('Update post failed.', 4000);
+                        Materialize.toast(response.body.message, 4000);
                     });
             }
         }

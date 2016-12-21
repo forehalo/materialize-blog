@@ -4,11 +4,11 @@
             <div class="modal-content">
                 <img src="/images/logo-trans.png" class="responsive-img" width="400">
                 <h4> 404 </h4>
-                <p>The page you are looking for has gone somewhere.</p>
+                <p>{{ $trans('404') }}</p>
             </div>
             <div class="modal-footer">
-                <a class="modal-action modal-close waves-effect waves-green btn-flat" @click="goBack">Back</a>
-                <router-link to="/" class=" modal-action modal-close waves-effect waves-green btn-flat">Home</router-link>
+                <a class="modal-action modal-close waves-effect waves-green btn-flat" @click="goBack">{{ $trans('back') }}</a>
+                <router-link to="/" class=" modal-action modal-close waves-effect waves-green btn-flat">{{ $trans('home') }}</router-link>
             </div>
         </div>
     </div>

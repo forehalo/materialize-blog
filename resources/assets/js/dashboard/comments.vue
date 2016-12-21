@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <h4>Comments</h4>
+        <h4>{{ $trans('comments') }}</h4>
         <div class="divider"></div>
         <div class="card-panel">
             <div class="loader-wrapper center" v-if="!currentPageComments">
@@ -9,12 +9,12 @@
             <table class="bordered striped" v-else>
                 <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Time</th>
-                    <th>Post</th>
-                    <th>Valid</th>
-                    <th>Seen</th>
-                    <th>Operation</th>
+                    <th>{{ $trans('name') }}</th>
+                    <th>{{ $trans('time') }}</th>
+                    <th>{{ $trans('post') }}</th>
+                    <th>{{ $trans('valid') }}</th>
+                    <th>{{ $trans('seen') }}</th>
+                    <th>{{ $trans('operation') }}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -40,7 +40,7 @@
                             </template>
                         </td>
                         <td>
-                            <a href="javascript:;" @click="wantDestroy(comment, index)" class="btn btn-danger">Destroy</a>
+                            <a href="javascript:;" @click="wantDestroy(comment, index)" class="btn btn-danger">{{ $trans('destroy') }}</a>
                         </td>
                     </tr>
                     <tr>
@@ -53,14 +53,14 @@
         <pagination :total="totalPage" :current='currentPage' @jump="selectPage"></pagination>
         <div id="destroy-comment-modal" class="modal bottom-sheet">
             <div class="modal-content">
-                <h4>Warning</h4>
-                <p>Really want to destroy the comment? You can't recover it after done!</p>
+                <h4>{{ $trans('warning') }}</h4>
+                <p>{{ $trans('warning_info') }}</p>
             </div>
             <div class="modal-footer">
                 <a href="javascript:;" class="left modal-action waves-effect waves-red btn-flat"
-                   @click="destroyComment">Confirm</a>
+                   @click="destroyComment">{{ $trans('confirm') }}</a>
                 <a href="javascript:;"
-                   class="left modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+                    class="left modal-action modal-close waves-effect waves-green btn-flat">{{ $trans('cancel') }}</a>
             </div>
         </div>
     </div>
@@ -102,7 +102,7 @@
                             this.$set(this.comments, page, body.data);
                             this.totalPage = Math.ceil(body.total / this.perPage);
                         }, response => {
-
+                            Materialize.toast(this.$trans('get_comment_fail'), 4000);
                         });
             },
             toggleValid(comment) {
@@ -110,11 +110,11 @@
                 this.$http.put(`/api/dashboard/comments/${comment.id}/valid`)
                         .then(response => {
                             this.processValidItem = 0;
-                            Materialize.toast('Toggle valid successfully.', 4000);
+                            Materialize.toast(this.$trans('toggle_comment_valid_success'), 4000);
                         }, response => {
                             comment.valid = !comment.valid;
                             this.processValidItem = 0;
-                            Materialize.toast('Toggle valid failed.', 4000);
+                            Materialize.toast(response.body.message, 4000);
                         })
             },
             toggleSeen(comment) {
@@ -122,11 +122,11 @@
                 this.$http.put(`/api/dashboard/comments/${comment.id}/seen`)
                         .then(response => {
                             this.processSeenItem = 0;
-                            Materialize.toast('Toggle seen successfully.', 4000);
+                            Materialize.toast(this.$trans('toggle_comment_seen_success'), 4000);
                         }, response => {
                             comment.seen = !comment.seen;
                             this.processSeenItem = 0;
-                            Materialize.toast('Toggle seen failed.', 4000);
+                            Materialize.toast(response.body.message, 4000);
                         })
             },
             selectPage(to) {
@@ -143,15 +143,16 @@
             },
             destroyComment() {
                 store.loading = true;
-                $('#destroy-post-modal').modal('close');
+                $('#destroy-comment-modal').modal('close');
                 this.$http.delete(`/api/dashboard/comments/${this.willDestroyed.comment.id}`)
                         .then(response => {
                             this.comments[this.currentPage].splice(this.willDestroyed.index, 1);
                             store.loading = false;
-                            Materialize.toast('Delete comment successfully.', 4000);
+                            Materialize.toast(this.$trans('delete_comment_success'), 4000);
+                            
                         }, response => {
                             store.loading = false;
-                            Materialize.toast('Delete comment failed.', 4000);
+                            Materialize.toast(response.body.message, 4000);
                         });
             }
         }

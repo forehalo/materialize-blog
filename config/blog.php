@@ -5,13 +5,13 @@ return [
     'title' => 'Forehalo 的博客',
 
     // Website description
-    'desc' => '',
+    'desc' => 'Description of your website.',
 
     // Website keywords
-    'keywords' => '',
+    'keywords' => 'keywords of you website',
 
     // Author
-    'author' => '',
+    'author' => 'Forehalo',
 
     'logo' => '// Forehalo'
 ];

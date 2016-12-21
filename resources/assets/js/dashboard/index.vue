@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <h4>Items</h4>
+        <h4>{{ $trans('items') }}</h4>
         <div class="divider"></div>
         <div class="row white-text dashboard">
             <div class="col s12 m6 l4">
@@ -9,13 +9,13 @@
                         <i class="material-icons medium">create</i>
                         <div class="right">
                             <div class="number">{{ statistics.post_count }}</div>
-                            <div>Total Posts</div>
+                            <div>{{ $trans('total_posts') }}</div>
                         </div>
                     </div>
                     <div class="divider"></div>
                     <router-link to="/dashboard/posts">
                         <div class="card-action">
-                            <div class="left">View</div>
+                            <div class="left">{{ $trans('view') }}</div>
                             <i class="material-icons right">arrow forward</i>
                         </div>
                     </router-link>
@@ -27,13 +27,13 @@
                         <i class="material-icons medium">comment</i>
                         <div class="right">
                             <div class="number">{{ statistics.unread_comment_count }}</div>
-                            <div>New Comments</div>
+                            <div>{{ $trans('new_comments') }}</div>
                         </div>
                     </div>
                     <div class="divider"></div>
                     <router-link to="/dashboard/comments">
                         <div class="card-action">
-                            <div class="left">View</div>
+                            <div class="left">{{ $trans('view') }}</div>
                             <i class="material-icons right">arrow forward</i>
                         </div>
                     </router-link>
@@ -57,12 +57,11 @@
                 this.$http.get('/api/dashboard/statistics')
                     .then(response => {
                         this.statistics = response.body;
-                        store.loading = false;
                         this.$nextTick(() => {
-                            
+                            store.loading = false;                            
                         });
                     }, response => {
-
+                        Materialize.toast(this.$trans('load_items_fail'), 4000);
                     });
             }
         }

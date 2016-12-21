@@ -9,6 +9,6 @@ export default {
             return this.$dictionary[key];
         }
 
-        return _.upperFirst(_.replace(key, '_', ' '));
+        return _.capitalize(_.startCase(key));
     }
 }

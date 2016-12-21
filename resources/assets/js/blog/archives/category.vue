@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <div class="col s12" id="categories" v-if="categories.length">
-            <h5 class="center"><strong>Categories</strong></h5>
+            <h5 class="center"><strong>{{ $trans('categories') }}</strong></h5>
             <div class="divider"></div>
             <div class="row">
                 <div class="col s12">
