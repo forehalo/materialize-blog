@@ -24,6 +24,7 @@ return [
     'delete_link_success' => '删除友链成功。',
     'update_link_success' => '修改友链成功。',
     'update_auth_success' => '修改用户登录信息成功。',
+    'get_categories_fail' => '获取文章分类失败。',
 
     'author' => '作者',
     'post_url' => '本文地址',

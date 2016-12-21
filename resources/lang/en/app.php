@@ -23,6 +23,7 @@ return [
     'add_link_success' => 'Create new link successfully.',
     'delete_link_success' => 'Delete link successfully.',
     'update_link_success' => 'Update linke successfully.',
+    'get_categories_fail' => 'Fail to get categories.',
 
     'declaration' => 'Reserve the right，if reproduced please indicate the source.',
     'add_comment' => 'Leave a comment',
