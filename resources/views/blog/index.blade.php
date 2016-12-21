@@ -33,11 +33,12 @@
     </div>
 </footer>
 <script>
-    window.Laravel = <?php echo json_encode([
+    window.Laravel = {!! json_encode([
             'csrfToken' => csrf_token(),
             'config' => config('blog'),
             'currentViewType' => Request::segment(1) ?: 'default',
-    ]);?>
+    ]) !!};
+    window.dictionary = {!! json_encode(trans('app')) !!};
 </script>
 <script src="{{ asset(elixir('js/app.js')) }}"></script>
 </body>
