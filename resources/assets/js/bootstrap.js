@@ -16,9 +16,12 @@ require('./prism');
  */
 
 window.Vue = require('vue');
-require('vue-resource');
-VueRouter = require('vue-router');
-Vue.use(VueRouter);
+Vue.use(require('vue-resource'));
+Vue.use(require('vue-router'));
+
+import translate from './translate';
+Vue.use(translate, dictionary);
+
 /**
  * We'll register a HTTP interceptor to attach the "CSRF" header to each of
  * the outgoing requests issued by this application. The CSRF middleware
