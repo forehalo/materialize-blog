@@ -33,6 +33,7 @@ class TagRepository
                     ->orderBy('created_at', 'desc');
             }])
             ->first();
+        $tag->increment('hot');
         return is_null($tag) ? [] : $tag->posts;
     }
 }

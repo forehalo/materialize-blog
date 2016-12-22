@@ -44,7 +44,14 @@ class PostRepository
     public function getByColumn($column, $value, $collected = false)
     {
         $prepare = Post::where($column, $value)->show();
-        return $collected ? $prepare->get() : $prepare->with(['tags', 'category'])->first();
+
+        if($collected) {
+            return $prepare->get();
+        } else {
+            $post = $prepare->with(['tags', 'category'])->first();
+            $post->increment('view_count');
+            return $post;
+        }
     }
 
 

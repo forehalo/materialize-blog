@@ -33,6 +33,7 @@ class CategoryRepository
                     ->orderBy('created_at', 'desc');
             }])
             ->first();
+        $category->increment('hot');
         return is_null($category) ? [] : $category->posts;
     }
 }
