@@ -28,7 +28,7 @@ return [
     'declaration' => 'Reserve the right，if reproduced please indicate the source.',
     'add_comment' => 'Leave a comment',
     'no_more_post' => 'whoops！No more posts here.',
-    'all_posts' => 'all',
+    'all_posts' => 'All',
     'warning_info' => 'Really want to destroy this? You cannot recover it after done!',
     '404' => 'The page you are looking for has gone somewhere.',
     'no_friend' => 'You must have some friends, right? Click the plus button to add your first friend!',

@@ -56,7 +56,7 @@
             this.mountDefaultTab();
             // Init tabs after navigated to category page.
             this.mountTabs();
-            store.setTitle('Categories');
+            store.setTitle(this.$trans('categories'));
         },
 
         methods: {

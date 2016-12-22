@@ -26,6 +26,7 @@ return [
     'update_auth_success' => '修改用户登录信息成功。',
     'get_categories_fail' => '获取文章分类失败。',
 
+    'index' => '首页',
     'author' => '作者',
     'post_url' => '本文地址',
     'declaration' => '保留权利，转载请注明出处。',

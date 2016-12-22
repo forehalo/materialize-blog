@@ -39,7 +39,7 @@
 
         mounted() {
             this.fetchDates();
-            store.setTitle('Date');
+            store.setTitle(this.$trans('dates'));
         },
 
         methods: {

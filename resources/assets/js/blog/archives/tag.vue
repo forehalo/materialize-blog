@@ -58,7 +58,7 @@
                 this.orderTags();
             });
             this.fetchTags();
-            store.setTitle('Tags');
+            store.setTitle(this.$trans('tags'));
         },
 
         methods: {
