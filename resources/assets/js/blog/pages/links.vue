@@ -1,6 +1,9 @@
 <template>
-    <div class="card-action" v-show="this.links.length">
-        <a class="btn btn-flat waves-effect truncate" target="_blank" v-for="link in links" :href="link.link" >{{ link.name }}</a>
+    <div class="card" v-show="links.length">
+        <div class="card-content">
+            <div class="card-title">{{ $trans('friend_links') }}</div>
+            <a class="btn btn-flat waves-effect" target="_blank" v-for="link in links" :href="link.link" >{{ link.name }}</a>
+        </div>
     </div>
 </template>
 <script>

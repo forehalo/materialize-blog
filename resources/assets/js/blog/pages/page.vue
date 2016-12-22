@@ -9,8 +9,8 @@
                 <div class="card-content">
                     <div class="article-content markdown-body" v-html="content" v-once></div>
                 </div>
-                <links v-if="name == 'about'"></links>
             </div>
+            <links v-if="name == 'about'"></links>
         </div>
     </div>
 </template>
