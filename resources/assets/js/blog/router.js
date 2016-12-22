@@ -5,6 +5,7 @@ import Post from './posts/post.vue';
 import Category from './archives/category.vue';
 import Tag from './archives/tag.vue';
 import Date from './archives/date.vue';
+import Page from './pages/page.vue';
 
 // 404
 import NotFound from '../components/404.vue';
@@ -33,6 +34,10 @@ const routes = [
     {
         path: '/posts/:slug?',
         component: Post
+    },
+    {
+        path: '/pages/:name',
+        component: Page,
     },
     {
         name: '404',

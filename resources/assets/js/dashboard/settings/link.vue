@@ -89,7 +89,7 @@
         },
         methods: {
             fetchLinks() {
-                this.$http.get('/api/dashboard/settings/links')
+                this.$http.get('/api/links')
                         .then(response => {
                             this.links = response.body;
                             this.$nextTick(() => {

@@ -25,6 +25,7 @@ return [
     'update_link_success' => '修改友链成功。',
     'update_auth_success' => '修改用户登录信息成功。',
     'get_categories_fail' => '获取文章分类失败。',
+    'file_not_exists' => '页面不存在。',
 
     'index' => '首页',
     'author' => '作者',

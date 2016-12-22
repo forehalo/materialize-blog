@@ -29,3 +29,6 @@ define('FAIL_TO_DELETE_COMMENT', 2003);
 define('FAIL_TO_ADD_LINK', 3001);
 define('FAIL_TO_UPDATE_LINK', 3002);
 define('FAIL_TO_UPDATE_AUTH', 3003);
+
+// Page
+define('PAGE_NOT_FOUND', 4001);

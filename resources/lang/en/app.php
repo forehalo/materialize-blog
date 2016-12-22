@@ -24,6 +24,7 @@ return [
     'delete_link_success' => 'Delete link successfully.',
     'update_link_success' => 'Update linke successfully.',
     'get_categories_fail' => 'Fail to get categories.',
+    'file_not_exists' => 'The page you are looking for is not available now.',
 
     'declaration' => 'Reserve the right，if reproduced please indicate the source.',
     'add_comment' => 'Leave a comment',

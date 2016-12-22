@@ -34,6 +34,10 @@ Route::group(['namespace' => 'Api'], function () {
     Route::get('/posts/{id}/comments', 'CommentController@getByPost');
     Route::post('/posts/{id}/comments', 'CommentController@store');
 
+    // Others
+    Route::get('/links', 'SettingController@links');
+    Route::get('/pages/{name}', 'PageController@page');
+
     /*
     |--------------------------------------------------------------------------
     | Dashboard API Routes
@@ -57,7 +61,6 @@ Route::group(['namespace' => 'Api'], function () {
         Route::delete('/comments/{id}', 'CommentController@destroy');
 
         // Setting
-        Route::get('/settings/links', 'SettingController@links');
         Route::post('/settings/links', 'SettingController@storeLink');
         Route::put('/settings/links/{id}', 'SettingController@updateLink');
         Route::delete('/settings/links/{id}', 'SettingController@destroyLink');
