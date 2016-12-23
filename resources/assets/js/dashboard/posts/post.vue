@@ -3,26 +3,26 @@
         <h4 class="capitalize">{{ type }}</h4>
         <div class="divider"></div>
         <div class="card-panel">
-            <form class="col s12">
+            <form class="col s12 form">
                 <div class="row">
                     <div class="input-field col s12">
-                        <input type="text" class="validate" name="title" id="title" v-model="form.title" />
-                        <label for="title" class="active">{{ $trans('title') }}</label>
+                        <input type="text" class="validate" name="title" id="title" v-model="form.title" :class="errors.title ? 'invalid' : ''"/>
+                        <label for="title" class="active" :data-error="errors.title">{{ $trans('title') }}</label>
                     </div>
                     <div class="input-field col s12">
-                        <input type="text" class="validate" placeholder="slug" name="slug" id="slug" v-model="form.slug" />
-                        <label for="title" class="active">{{ $trans('slug') }}: http://example.com/posts/{{ form.slug }}</label>
+                        <input type="text" class="validate" placeholder="slug" name="slug" id="slug" v-model="form.slug" :class="errors.slug ? 'invalid' : ''"/>
+                        <label for="title" class="active" :data-error="errors.slug">{{ $trans('slug') }}: http://example.com/posts/{{ form.slug }}</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <textarea name="summary" id="summary" class="materialize-textarea" v-model="form.summary"></textarea>
+                        <textarea name="summary" id="summary" class="materialize-textarea" v-model="form.summary" :class="errors.summary ? 'invalid' : ''"></textarea>
                         <label for="summary" class="active">{{ $trans('summary') }}</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <textarea name="origin" id="origin" class="materialize-textarea" :placeholder="$trans('markdown_syntax')" v-model="form.origin"></textarea>
+                        <textarea name="origin" id="origin" class="materialize-textarea" :placeholder="$trans('markdown_syntax')" v-model="form.origin" :class="errors.origin ? 'invalid' : ''"></textarea>
                         <label for="origin" class="active">{{ $trans('content') }}</label>
                     </div>
                     <div id="preview-modal" class="modal">
@@ -31,12 +31,12 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12 l3">
-                        <input type="text" class="validate" name="category" id="category" v-model="form.category" />
-                        <label for="category" class="active">{{ $trans('category') }}</label>
+                        <input type="text" class="validate" name="category" id="category" v-model="form.category" :class="errors.category ? 'invalid' : ''" />
+                        <label for="category" class="active" :data-error="errors.category">{{ $trans('category') }}</label>
                     </div>
                     <div class="input-field col s12 l9">
                         <div class="chips">
-                            <input type="text" class="validate" name="tags" id="tags" />
+                            <input type="text" class="validate" name="tags" id="tags"/>
                         </div>
                         <label for="tags" class="active">{{ $trans('tags') }}</label>
                     </div>
@@ -68,6 +68,8 @@
                     tags: [],
                     published: false
                 },
+                // form errors
+                errors: {},
                 contentPreview: '',
             }
         },
@@ -78,6 +80,7 @@
         },
         methods: {
             submit() {
+                this.errors = {};
                 if (this.type === 'create') {
                     this.create();
                 } else if (this.type === 'edit') {
@@ -128,6 +131,7 @@
                         Materialize.toast(this.$trans('create_post_success'), 4000);
                     }, response => {
                         Materialize.toast(response.body.message, 4000);
+                        this.errors = response.body.errors;
                     });
             },
             update() {
@@ -137,6 +141,7 @@
                         Materialize.toast(this.$trans('update_post_success'), 4000);
                     }, response => {
                         Materialize.toast(response.body.message, 4000);
+                        this.errors = response.body.errors;
                     });
             }
         }

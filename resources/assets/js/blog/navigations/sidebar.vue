@@ -40,18 +40,10 @@
 				</ul>
 			</li>
 			<li class="bold">
-				<router-link to="/about" class="waves-effect waves-teal white-text">
+				<router-link to="/pages/about" class="waves-effect waves-teal white-text">
 					{{ $trans('about') }} <i class="material-icons left">perm_identity</i>
 				</router-link>
-				<li class="search-item">
-					<form action="/search">
-						<div class="input-field">
-							<input name="key" id="search-mobile" type="search" required>
-							<label for="search-mobile"><i class="material-icons">search</i></label>
-							<i class="material-icons">close</i>
-						</div>
-					</form>
-				</li>
+			</li>
 	</ul>
 </template>
 

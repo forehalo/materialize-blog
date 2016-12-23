@@ -7,21 +7,21 @@
                     <circular-loader></circular-loader>
                 </div>
                 <div class="row" v-else>
-                    <form @submit.prevent="submit">
+                    <form class="form" @submit.prevent="submit">
                         <div class="input-field col s12">
                             <i class="material-icons prefix">person</i>
-                            <input type="text" name="name" id="name" class="validate" v-model="auth.name">
-                            <label for="name">{{ $trans('name') }}</label>
+                            <input type="text" name="name" id="name" class="validate" v-model="auth.name" :class="errors.name ? 'invalid' : ''">
+                            <label for="name" :data-error="errors.name">{{ $trans('name') }}</label>
                         </div>
                         <div class="input-field col s12">
                             <i class="material-icons prefix">email</i>
-                            <input type="text" name="email" id="email" class="validate" v-model="auth.email">
-                            <label for="email">{{ $trans('email') }}</label>
+                            <input type="text" name="email" id="email" class="validate" v-model="auth.email" :class="errors.email ? 'invalid' : ''">
+                            <label for="email" :data-error="errors.email">{{ $trans('email') }}</label>
                         </div>
                         <div class="input-field col s12">
                             <i class="material-icons prefix">lock</i>
-                            <input type="password" name="password" id="password" class="validate" v-model="auth.password">
-                            <label for="password">{{ $trans('password') }}</label>
+                            <input type="password" name="password" id="password" class="validate" v-model="auth.password" :class="errors.password ? 'invalid' : ''">
+                            <label for="password" :data-error="errors.password">{{ $trans('password') }}</label>
                         </div>
                         <div class="input-field col s12">
                             <i class="material-icons prefix">lock</i>
@@ -50,7 +50,8 @@
                     email: '',
                     password: '',
                     password_confirmation: ''
-                }
+                },
+                errors: {}
             }
         },
         mounted() {
@@ -69,6 +70,7 @@
             },
             submit() {
                 let form = {};
+                this.errors = {};
                 if (this.auth.password.length) {
                     form = this.auth;
                 } else {
@@ -81,6 +83,7 @@
                             Materialize.toast(this.$trans('update_auth_success'), 4000);
                         }, response => {
                             Materialize.toast(response.body.message, 4000);
+                            this.errors = response.body.errors;
                         });
             }
         }

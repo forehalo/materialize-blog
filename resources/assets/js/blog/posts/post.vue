@@ -47,7 +47,7 @@
                             <div class="row">
                                 <div class="divider"></div>
                                 <h5>{{ $trans('add_comment') }}</h5>
-                                <form class="col s12" id="comment-form" @submit.prevent="submitComment">
+                                <form class="col s12 form" id="comment-form" @submit.prevent="submitComment">
                                     <input type="hidden" name="parent_id" v-model="form.parent_id">
                                     <div class="input-field col s12 l4">
                                         <input type="text" name="name" id="name" class="validate" v-model="form.name" :class="errors.name ? 'invalid' : ''">

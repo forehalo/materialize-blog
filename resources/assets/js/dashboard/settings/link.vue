@@ -27,16 +27,16 @@
             <div class="modal" id="new-link-modal">
                 <div class="modal-content">
                     <h4 class="capitalize">{{ $trans(modalType + '_link') }}</h4>
-                    <form @submit.prevent="updateOrCreate">
+                    <form class="form" @submit.prevent="updateOrCreate">
                         <div class="input-field col s12">
                             <i class="material-icons prefix">face</i>
-                            <input type="text" name="name" id="name" class="validate" v-model="form.name">
-                            <label for="name">{{ $trans('name') }}</label>
+                            <input type="text" name="name" id="name" class="validate" v-model="form.name" :class="errors.name ? 'invalid' : ''">
+                            <label for="name" :data-error="errors.name">{{ $trans('name') }}</label>
                         </div>
                         <div class="input-field col s12">
                             <i class="material-icons prefix">web</i>
-                            <input type="text" name="website" id="website" class="validate" v-model="form.link">
-                            <label for="website">{{ $trans('website') }}</label>
+                            <input type="text" name="website" id="website" class="validate" v-model="form.link" :class="errors.link ? 'invalid' : ''">
+                            <label for="website" :data-error="errors.link">{{ $trans('website') }}</label>
                         </div>
                         <button type="submit" class="btn waves-effect btn-success">{{ $trans(modalType + '_link') }}</button>
                         <a href="javascript:;" class="btn btn-danger waves-effect" v-show="modalType === 'update'" @click="wantDestroy">{{ $trans('destroy') }}</a>
@@ -75,6 +75,7 @@
                     name: '',
                     link: ''
                 },
+                errors: {},
                 willDestroyed: null
             }
         },
@@ -111,6 +112,7 @@
                 this.modal.modal('open');
             },
             updateOrCreate() {
+                this.errors = {};
                 if (this.modalType === 'update') {
                     this.updateLink();
                 } else if(this.modalType === 'create') {
@@ -118,37 +120,41 @@
                 }
             },
             createLink() {
-                this.modal.modal('close');
                 store.loading = true;
                 this.$http.post('/api/dashboard/settings/links', this.form)
                         .then(response => {
-                            store.loading = false;
                             this.links.push(response.body);
                             this.$nextTick(() => {
                                 Materialize.toast(this.$trans('add_link_success'), 4000);
-                            })
+                            });
+                            store.loading = false;
+                            this.modal.modal('close');
                         }, response => {
+                            this.errors = response.body.errors;
                             Materialize.toast(response.body.message, 4000);
                             store.loading = false;
                         });
             },
             updateLink() {
-                this.modal.modal('close');
                 store.loading = true;
                 this.$http.put(`/api/dashboard/settings/links/${this.form.id}`, this.form)
                         .then(response => {
-                            store.loading = false;
                             this.links[this.editIndex] = this.form;
                             Materialize.toast(this.$trans('update_link_success'), 4000);
+                            store.loading = false;
+                            this.modal.modal('close');
                         }, response => {
-                            Materialize.toast(response.body.message, 4000);                            
+                            this.errors = response.body.errors;                            
+                            Materialize.toast(response.body.message, 4000);
                             store.loading = false;
                         });
             },
             wantDestroy() {
                 this.modal.modal('close');
                 this.willDestroyed = {link: this.form, index: this.editIndex};
-                $('#destroy-modal').modal('open');
+                this.$nextTick(() => {
+                    $('#destroy-modal').modal('open');
+                });
             },
             destroy() {
                 store.loading = true;
