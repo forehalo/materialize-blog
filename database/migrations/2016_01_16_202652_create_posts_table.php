@@ -25,12 +25,6 @@ class CreatePostsTable extends Migration
             $table->integer('favorite_count')->default(0);
             $table->boolean('published');
             $table->nullableTimestamps();
-
-
-            $table->foreign('category_id')
-                ->references('id')
-                ->on('categories')
-                ->onDelete('restrict');
         });
     }
 
@@ -41,10 +35,6 @@ class CreatePostsTable extends Migration
      */
     public function down()
     {
-        Schema::table('posts', function (Blueprint $table) {
-            $table->dropForeign('posts_category_id_foreign');
-        });
-
         Schema::drop('posts');
     }
 }
