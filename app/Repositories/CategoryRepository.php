@@ -1,58 +1,39 @@
-<?php namespace App\Repositories;
+<?php
+
+namespace App\Repositories;
+
 use App\Models\Category;
 
-/**
- * Class CategoryRepository.php
- * @package     App\Repositories
- * @version     1.0.0
- * @copyright   Copyright (c) 2015-2016 forehalo <http://www.forehalo.top>
- * @author      forehalo <forehalo@gmail.com>
- * @license     http://www.gnu.org/licenses/lgpl.html   LGPL
- */
 class CategoryRepository
 {
 
     /**
-     * Category Model object.
+     * Get all categories order by hot.
      *
-     * @var Category $model
+     * @param array $columns
+     * @return \Illuminate\Database\Eloquent\Collection
      */
-    protected $model;
-
-    /**
-     * CategoryRepository constructor.
-     *
-     * @param Category $category
-     */
-    public function __construct(Category $category)
+    public function all($columns = ['*'])
     {
-        $this->model = $category;
+        return Category::orderBy('hot', 'desc')->get($columns);
     }
 
     /**
-     * Get all Categories.
+     * Get posts with given category.
      *
-     * @return mixed
+     * @param string $name
+     * @return array|\Illuminate\Support\Collection
      */
-    public function all()
+    public function getPostsByName($name)
     {
-        return $this->model->orderBy('hot', 'desc')->get();
-    }
-
-    /**
-     * Get by category id.
-     *
-     * @param $id
-     */
-    public function getById($id)
-    {
-        $category = $this->model->find($id);
-
-        if(!is_null($category)){
-            $category->hot++;
-            $category->update();
-        }
-
-        return $category;
+        $category = Category::where('name', $name)
+            ->with(['posts' => function ($query) {
+                $query->select('id', 'title', 'slug', 'category_id')
+                    ->where('published', true)
+                    ->orderBy('created_at', 'desc');
+            }])
+            ->first();
+        $category->increment('hot');
+        return is_null($category) ? [] : $category->posts;
     }
 }

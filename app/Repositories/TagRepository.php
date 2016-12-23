@@ -1,57 +1,39 @@
-<?php namespace App\Repositories;
-use App\Models\Tag;
+<?php
 
-/**
- * Class TagRepository.php
- * @package     App\Repositories
- * @version     1.0.0
- * @copyright   Copyright (c) 2015-2016 forehalo <http://www.forehalo.top>
- * @author      forehalo <forehalo@gmail.com>
- * @license     http://www.gnu.org/licenses/lgpl.html   LGPL
- */
+namespace App\Repositories;
+
+use App\Models\Tag;
+use Illuminate\Support\Facades\DB;
+
 class TagRepository
 {
     /**
-     * Tag Model object.
+     * Get all tags.
      *
-     * @var Tag $model
+     * @param array $columns
+     * @return \Illuminate\Support\Collection
      */
-    protected $model;
-
-    /**
-     * TagRepository constructor.
-     *
-     * @param Tag $tag
-     */
-    public function __construct(Tag $tag)
+    public function all($columns = ['*'])
     {
-        $this->model = $tag;
+        return Tag::orderBy('hot', 'desc')->get($columns);
     }
 
     /**
-     * Get all tags
+     * Get posts by given tag.
      *
-     * @return mixed
+     * @param $name
+     * @return array|\Illuminate\Support\Collection
      */
-    public function all()
+    public function getPostsByTag($name)
     {
-        return $this->model->orderBy('hot', 'desc')->get();
-    }
-
-    /**
-     * Get tag by id.
-     *
-     * @param $id
-     * @return mixed
-     */
-    public function getById($id)
-    {
-        $tag = $this->model->find($id);
-
-        if(!is_null($tag)){
-            $tag->hot++;
-            $tag->update();
-        }
-        return $tag;
+        $tag = Tag::where('name', $name)
+            ->with(['posts' => function ($query) {
+                $query->select('id', 'title', 'slug')
+                    ->where('published', true)
+                    ->orderBy('created_at', 'desc');
+            }])
+            ->first();
+        $tag->increment('hot');
+        return is_null($tag) ? [] : $tag->posts;
     }
 }

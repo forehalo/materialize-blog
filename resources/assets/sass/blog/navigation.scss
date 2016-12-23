@@ -1,0 +1,71 @@
+.nav-default {
+  background-color: $primary-color;
+}
+
+.nav-categories {
+  background-color: $category-color;
+}
+
+.nav-tags {
+  background-color: $tag-color;
+}
+
+.nav-dates {
+  background-color: $date-color;
+}
+
+nav {
+  background-color: $primary-color;
+  .dropdown-content li {
+    min-height: $navbar-height;
+
+    & > a {
+      padding: 13px 16px;
+    }
+  }
+
+  a.button-collapse {
+
+    width: $navbar-height;
+
+    i {
+      font-size: 2.7rem;
+    }
+  }
+}
+
+nav, .navbar-fixed, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
+  height: $navbar-height;
+  line-height: $navbar-height;
+}
+
+.side-nav {
+  li {
+    line-height: $side-nav-item-height;
+    a {
+      height: $side-nav-item-height;
+      min-height: $side-nav-item-height;
+      line-height: $side-nav-item-height;
+    }
+
+    & > a > i.material-icons {
+      height: $side-nav-item-height;
+      min-height: $side-nav-item-height;
+      line-height: $side-nav-item-height;
+      color: #FFF;
+    }
+  }
+
+  .search-item {
+    height: $side-nav-item-height;
+
+    i.material-icons {
+      line-height: $side-nav-item-height;
+      height: $side-nav-item-height;
+    }
+  }
+}
+
+.navbar-fixed {
+  z-index: 998;
+}

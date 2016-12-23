@@ -1,0 +1,127 @@
+.post-item {
+    
+
+    .title {
+        font-weight: 400;
+        
+        a {
+            color: #4A4A4A;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: #000;
+        }
+    }
+
+    .post > .summary {
+        margin: 10px 0;
+    }
+
+    .chip {
+        a {
+            color: rgba(0, 0, 0, 0.6);
+        }
+        transition: background-color 0.3s ease;
+    }
+    .chip:hover {
+        background-color: #F4F4F4;
+    }
+}
+
+.loader-wrapper {
+    padding: 10px 0;
+}
+
+.posts {
+    border: none;
+}
+
+.label.article-info {
+    &, & > a {
+        color: color('grey', 'base');
+        font-size: 0.9rem;
+    }
+
+    i.material-icons {
+        @extend .label;
+        font-size: 1rem;
+        vertical-align: sub;
+        padding: 0 3px 0 10px;
+    }
+}
+
+.article {
+    .title {
+        margin-bottom: 5px;
+    }
+    .markdown-body {
+        padding: 20px 0;
+
+        code {
+            padding: 0;
+            border-bottom: 1px solid #CCC;
+        }
+
+        pre code {
+            border: 0;
+        }
+    }
+
+    .card-action .chip {
+        &:hover {
+            background-color: #F4F4F4;
+        }
+        transition: background-color 0.3s ease;
+        
+        
+        a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating) {
+            color: rgba(0, 0, 0, 0.6);
+            margin-right: 0;
+        }
+    }
+
+    #comment-form {
+        .captcha-input {
+            width: 50%;
+            display: inline-block;
+            float: left;
+        }
+        img#captcha-img {
+            width: 50%;
+            max-width: 160px;
+        }
+    }
+
+    #comment-preview-modal .markdown-body {
+        padding: 24px;
+    }
+}
+
+#comments {
+    .comment {
+        border-bottom: 1px solid #E0E0E0;
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        .content {
+            padding: 10px 20px 0;
+            .reply {
+                padding: 0 0 10px;
+            }
+        }
+
+        code {
+            padding: 0;
+            border-bottom: 1px solid #CCC;
+        }
+
+        pre code {
+            border: 0;
+        }
+    }
+    .comment-title i.material-icons {
+        vertical-align: bottom;
+    }
+}

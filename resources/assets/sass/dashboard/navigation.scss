@@ -1,0 +1,40 @@
+.navbar-fixed {
+  z-index: 998;
+}
+
+nav {
+  background: #333;
+  @media #{$large-and-up} {
+    a.button-collapse {
+      display: block;
+    }
+    .brand-logo {
+      font-weight: bold;
+      padding-left: 250px;
+    }
+  }
+}
+
+#nav-mobile {
+  background-color: #333;
+  a, a > i {
+    color: #777;
+    height: 64px;
+    line-height: 64px;
+  }
+  @media #{$large-and-up} {
+    ul.collapsible-accordion a.collapsible-header {
+      padding: 0 30px;
+    }
+    .collapsible-body li a {
+      padding: 0 1rem 0 3rem;
+    }
+  }
+}
+
+.fixed-action-btn {
+  padding: 0px;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+}

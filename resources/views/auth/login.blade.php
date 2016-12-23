@@ -2,12 +2,11 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-    {!! Html::style('assets/css/material-icon.css') !!}
-    {!! Html::style('assets/css/materialize.min.css', ['media' => 'screen,projection']) !!}
-    {!! Html::favicon('assets/image/favicon.ico') !!}
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="csrf-token" content="{!! csrf_token() !!}"/>
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/favicon.ico') }}">
+    <link rel="stylesheet" href="{{ elixir('css/app.css') }}">
     <title>Login</title>
     <style>
         html,
@@ -38,61 +37,63 @@
         }
     </style>
 </head>
-<body class="blue">
-<div class="login-form col s12 z-depth-4 card-panel">
-    <form id="login-form">
-        <div class="row">
-            <div class="input-field col s12 center">
-                <h5 class="center login-form-text">Dashboard</h5>
+<body>
+<header></header>
+<main>
+    <div class="login-form col s12 z-depth-4 card-panel">
+        <form id="login-form">
+            <div class="row">
+                <div class="input-field col s12 center">
+                    <h5 class="center login-form-text">Dashboard</h5>
+                </div>
             </div>
-        </div>
-        <div class="row margin">
-            <div class="input-field col s12">
-                <i class="material-icons prefix">account_box</i>
-                <input id="log" type="text" name="log">
-                <label for="log" class="center-align">Username/email</label>
+            <div class="row margin">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">account_box</i>
+                    <input id="log" type="text" name="log">
+                    <label for="log">Username/email</label>
+                </div>
             </div>
-        </div>
-        <div class="row margin">
-            <div class="input-field col s12">
-                <i class="material-icons prefix">lock</i>
-                <input id="password" type="password" name="password">
-                <label for="password">Password</label>
+            <div class="row margin">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">lock</i>
+                    <input id="password" type="password" name="password">
+                    <label for="password">Password</label>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12 m12 l12" style="margin-left: -6px !important; margin-top: -6px">
-                <input type="checkbox" id="remember-me" class="filled-in" name="remember"/>
-                <label for="remember-me">Remember me</label>
+            <div class="row">
+                <div class="input-field col s12 m12 l12" style="margin-left: -6px !important; margin-top: -6px">
+                    <input type="checkbox" id="remember-me" class="filled-in" name="remember"/>
+                    <label for="remember-me">Remember me</label>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <button type="submit" class="btn waves-effect waves-light col s12">Login
-                    <div class="preloader-wrapper right">
-                        <div class="spinner-layer spinner-red-only">
-                            <div class="circle-clipper left">
-                                <div class="circle"></div>
-                            </div>
-                            <div class="gap-patch">
-                                <div class="circle"></div>
-                            </div>
-                            <div class="circle-clipper right">
-                                <div class="circle"></div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <button type="submit" class="btn waves-effect waves-light col s12">Login
+                        <div class="preloader-wrapper right">
+                            <div class="spinner-layer spinner-red-only">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="gap-patch">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </button>
+                    </button>
+                </div>
             </div>
-        </div>
-    </form>
-</div>
-
-{!! Html::script('assets/js/jquery-2.1.4.min.js') !!}
-{!! Html::script('assets/js/materialize.min.js') !!}
-<script>
+        </form>
+    </div>
+</main>
+<script src="https://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/materialize/0.97.8/js/materialize.min.js"></script><script>
     $(function () {
-        $('#login-form').on('submit', function () {
+        $('#login-form').on('submit', function (e) {
+            e.preventDefault();
             $('.preloader-wrapper').addClass('active');
 
             var token = $('meta[name="csrf-token"]').attr('content');
@@ -103,13 +104,13 @@
             $.ajax({
                 url: 'login',
                 type: 'post',
-                data: 'log=' + log + "&password=" + pwd + '&_token=' + token + "&remember=" + remember
+                data: `log=${log}&password=${pwd}&_token=${token}&remember=${remember}`
             }).done(function (data) {
                 $('.preloader-wrapper').removeClass('active');
-                if (data.return) {
-                    location.assign(data.value);
+                if (data.status == 1) {
+                    location.assign(data.redirect);
                 } else {
-                    Materialize.toast(data.value, 3000);
+                    Materialize.toast(data.message, 3000);
                 }
             }).fail(function () {
                 $('.preloader-wrapper').removeClass('active');

@@ -14,8 +14,8 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'admin',
-        'passwords' => 'admin',
+        'guard' => 'api',
+        'passwords' => 'users',
     ],
 
     /*
@@ -36,23 +36,11 @@ return [
     */
 
     'guards' => [
-        'admin' => [
+        'api' => [
             'driver' => 'session',
-            'provider' => 'admin',
+            'provider' => 'admins',
         ]
     ],
-
-//    'guards' => [
-//        'web' => [
-//            'driver' => 'session',
-//            'provider' => 'users',
-//        ],
-//
-//        'api' => [
-//            'driver' => 'token',
-//            'provider' => 'users',
-//        ],
-//    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -72,25 +60,16 @@ return [
     */
 
     'providers' => [
-        'admin' => [
+        'admins' => [
             'driver' => 'eloquent',
             'model' => App\Models\Admin::class,
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
     ],
 
     /*
     |--------------------------------------------------------------------------
     | Resetting Passwords
     |--------------------------------------------------------------------------
-    |
-    | Here you may set the options for resetting passwords including the view
-    | that is your password reset e-mail. You may also set the name of the
-    | table that maintains all of the reset tokens for your application.
     |
     | You may specify multiple password reset configurations if you have more
     | than one user table or model in the application and you want to have
@@ -103,9 +82,8 @@ return [
     */
 
     'passwords' => [
-        'admin' => [
-            'provider' => 'admin',
-            'email' => 'auth.emails.password',
+        'users' => [
+            'provider' => 'users',
             'table' => 'password_resets',
             'expire' => 60,
         ],

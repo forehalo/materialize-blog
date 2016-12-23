@@ -1,4 +1,6 @@
-var elixir = require('laravel-elixir');
+const elixir = require('laravel-elixir');
+
+require('laravel-elixir-vue-2');
 
 /*
  |--------------------------------------------------------------------------
@@ -11,6 +13,15 @@ var elixir = require('laravel-elixir');
  |
  */
 
-elixir(function(mix) {
-    mix.sass('app.scss');
+elixir(mix => {
+    mix.sass('blog/app.scss')
+        .webpack('blog/app.js')
+        .sass('dashboard/dashboard.scss')
+        .webpack('dashboard/dashboard.js');
+
+
+    mix.copy('node_modules/materialize-css/fonts/', 'public/build/fonts/');
+    mix.copy('resources/assets/fonts/', 'public/build/fonts/');
+
+    mix.version(['js/app.js', 'js/dashboard.js', 'css/app.css', 'css/dashboard.css']);
 });

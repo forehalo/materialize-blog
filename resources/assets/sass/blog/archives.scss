@@ -1,0 +1,38 @@
+.post-list  {
+    .row{
+        margin: 0;
+    }
+    .collection {
+        border: none;
+    }
+}
+
+#tags {
+    .tag-chip {
+        margin: 5px;
+        background-color: color('pink', 'accent-1');
+        transition: background-color .2s ease;
+        &:hover {
+            background-color: color('pink', 'accent-2');
+        }
+    }
+
+    .tags-move {
+        transition: transform 1s;
+    }
+}
+
+#date {
+    blockquote {
+        border-left: 5px solid color('orange', 'accent-4');
+        padding-left: 1rem;
+        p {
+            font-size: 30px;
+            color: color('deep-orange', 'lighten-1');
+            margin: 10px 5px;
+        }
+        p.en {
+            font-size: 18px;
+        }
+    }
+}

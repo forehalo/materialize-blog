@@ -1,54 +1,114 @@
-## Materialize Blog
+# Materialize Blog
 
-A new blog manage system disigned according to Google [Material Design Spec](https://www.google.com/design/spec/material-design/introduction.html).
+A new blog management system disigned according to Google [Material Design](https://www.google.com/design/spec/material-design/introduction.html).
 
-Backend based on [Laravel 5.2](https://laravel.com), a web application framework with expressive, elegant syntax.
+Back-end base on [Laravel 5.3](https://laravel.com), a PHP application framework with expressive, elegant syntax.
+
+Front-end built with [Vue](https://vuejs.org), a Progressive
+JavaScript Framework bring data binding to js.
 
 Demo at [Forehalo' blog](http://forehalo.me).
 
-### Feature
+## Feature
 
-* Collapsible posts list, url: `/`
-* Also normal posts view at `/posts`
+* Single page (Vue)
 * Create with markdown (Javascript parser: [marked](https://github.com/chjj/marked), PHP parser: [parsedown](https://github.com/erusev/parsedown)).
-* Highlight code & code block ([Prism](http://prismjs.com)).
+* Code highlight ([Prism](http://prismjs.com)).
 * Self host comments.
-* Artisan CLI to multi-parse articles with given template.
+* Easy localization
 
+## Install
 
-### .Next
+Clone this repository to local, or download zip file at [here](https://github.com/forehalo/materialize-blog/archive/master.zip).
 
-* Vuerify - refactor front end with vue.js
+```
+$git clone https://github.com/forehalo/materialize-blog.git blog
+```
 
-### Install
+Then, install Laravel and other php dependencies, run
 
-Clone this repository to your computer, or download zip file at [here](https://github.com/forehalo/materialize-blog/archive/master.zip).
-
-    $git clone https://github.com/forehalo/materialize-blog.git blog
-
-Then, same as installing Laravel, run
-
-    composer install
+```
+composer install
+chmod 777 -R storage/
+chmod 777 -R bootstrap/cache/
+```
 
 at the root directory. Almost right here.
 
 Configure your `.env` file at the root directory to ensure that you have put right configurations used to connect database.
 
-Next step, run
+Next step, migrate tables and seed fakers
 
-    php artisan migrate --seed
+```
+php artisan migrate
+php artisan db:seed
+```
 
-to migrate the tables. You'd better not miss the `--seed` option, because it will generate some faker in tables, which include the default `username` and `password` to log in dashboard.
+> The `db:seed` command will seed all tables. If you just want to pre-generate an admin account, run with option `--class=AdminTableSeeder`
 
-###Login
+Now you can login dashboard at `/dashboard` with name `admin` or email `admin@example.com`, password `admin`.
 
-login dashboard at `/login`, default name `admin` or email `admin@example.com` , passowrd `admin`
+## Custom
 
-### License
+All front-end assets has been compiled so you could directly use them without compiling manually.
 
-![](http://i.imgur.com/8ZtPnc7.png)
+But if you don't like the default theme, hm... OK, install front-end environment and DIY.
 
-http://www.gnu.org/licenses/lgpl.txt
+```
+yarn install    // or "npm install"
+```
 
+`yarn` is another package manager like `npm`, [read more](https://yarnpkg.com/en/docs/). 
 
-## CREATE NICE ARTICLES.
+Resources are putted in `/resources` folder.
+```
+├─assets
+│  ├─fonts
+│  │  └─material-design-icons        ------ icon files
+│  ├─js                              ------ js workspace
+│  │  ├─blog                           ------ user entery
+│  │  │  ├─archives
+│  │  │  ├─navigations
+│  │  │  ├─pages
+│  │  │  └─posts
+│  │  ├─components                     ------ global components
+│  │  └─dashboard                      ------ dashboard entery
+│  │      ├─posts
+│  │      └─settings
+│  └─sass                            ------ sass workspace
+│      ├─blog
+│      └─dashboard
+├─lang                               ------ language dictionary
+│  ├─en
+│  └─zh-CN
+└─views
+    ├─auth
+    ├─blog
+    └─dashboard
+```
+
+### Style & Script
+
+run the following command after install all dependencies. This will watch all assets files, and auto-compile when change saved.
+
+Before working, ensure you know well about [Vue](https://vuejs.org) and [Sass](http://sass-lang.com).
+
+```
+yarn run dev
+```
+
+### Language
+
+You can esaily add another language support by adding a subfolder in `resources/lang`. Every file returns a php array. Copy and translate all the files.
+
+> Dictionary used by Vue should be putted in `resources/lang/your_lang/app.php`
+
+Modify the `locale` item value to your default language folder name in `config/app.php`. Done!
+
+Then, use `trans()` global helper function in PHP, and `this.$trans()` in Vue components.
+
+## License
+
+[MIT](http://opensource.org/licenses/MIT)
+
+Copyright (c) 2015-2016 Forehalo

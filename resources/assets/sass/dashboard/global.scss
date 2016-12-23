@@ -1,0 +1,31 @@
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  background: url("../../images/bg.jpg") #F2F2F2;
+}
+
+main {
+  flex: 1 0 auto;
+  overflow: hidden;
+
+  @media #{$large-and-up} {
+    padding-left: $dashboard-navbar-width;
+    & .container {
+      width: 95%;
+    }
+  }
+}
+
+.preloader-wrapper.tiny {
+  width: 20px;
+  height: 20px;
+}
+
+#main-preloader {
+  margin-right: 20px;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
