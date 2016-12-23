@@ -61,7 +61,7 @@ $factory->define(App\Models\Comment::class, function (Faker\Generator $faker) {
 });
 
 // Link
-$factory->define(App\Models\Comment::class, function (Faker\Generator $faker) {
+$factory->define(App\Models\Link::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'link' => $faker->url,
