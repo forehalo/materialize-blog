@@ -14,7 +14,7 @@
 // Category
 $factory->define(App\Models\Category::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->name,
+        'name' => $faker->word,
         'hot' => $faker->randomDigitNotNull,
     ];
 });
@@ -22,7 +22,7 @@ $factory->define(App\Models\Category::class, function (Faker\Generator $faker) {
 // Tag
 $factory->define(App\Models\Tag::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->name,
+        'name' => $faker->word,
         'hot' => $faker->randomDigitNotNull,
     ];
 });
