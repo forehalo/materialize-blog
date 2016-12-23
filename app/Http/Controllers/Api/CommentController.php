@@ -52,14 +52,10 @@ class CommentController extends ApiController
             'email' => 'required|email',
             'blog' => 'required|url',
             'origin' => 'required',
-            'captcha' => 'required',
         ]);
 
         $inputs = $request->all();
-        if ($inputs['captcha'] != session('captcha')) {
-            return response()->json(['message' => trans('app.form_invalid'), 'errors' => ['captcha' => trans('app.wrong_captcha')]], REST_INVALID_FIELDS);
-        }
-
+        
         $result = $this->comment->create($postID, $inputs);
         return response()->json($result);
     }

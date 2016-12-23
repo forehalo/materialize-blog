@@ -69,13 +69,6 @@
                                             <i class="material-icons">comment</i>{{ $trans('comment') }}
                                         </label>
                                     </div>
-                                    <div class="input-field captcha-field col s12">
-                                        <div class="captcha-input">
-                                            <input class="captcha validate" id="captcha" name="captcha" type="text" v-model="form.captcha" :class="errors.captcha ? 'invalid' : ''">
-                                            <label for="captcha" :data-error="errors.captcha"><i class="material-icons">security</i>{{ $trans('captcha') }}</label>
-                                        </div>
-                                        <img src="/captcha" id="captcha-img" @click="refreshCaptcha">
-                                    </div>
                                     <div class="input-field col s12 m6">
                                         <a href="javascript:;" class="btn waves-effect wave-light green" @click="previewComment">
                                             {{ $trans('preview') }} <i class="material-icons right">visibility</i>
@@ -151,7 +144,6 @@
                     email: '',
                     blog: '',
                     origin: '',
-                    captcha: ''
                 },
 
                 // form errors
@@ -191,19 +183,11 @@
                         this.$router.replace({ name: '404' });
                     });
             },
-            refreshCaptcha(event) {
-                let newSrc = '/captcha?' + Math.random();
-                if (typeof event != "undefined") {
-                    event.srcElement.src = newSrc;
-                } else {
-                    $('img#captcha-img').attr('src', newSrc);
-                }
-            },
             submitComment(event) {
                 this.$http.post(`/api/posts/${this.post.id}/comments`, this.form)
                     .then((response) => {
                         this.comments.unshift(response.body);
-                        // Materialize.toast('Comment successfully!', 4000);                        
+                        Materialize.toast(this.$trans('comment_success'), 4000);                        
                         $('#comment-form input, textarea').val('');
                         $('#comment-form label').removeClass('class');
                         this.goToComment(response.body.id);
@@ -216,7 +200,6 @@
                         this.errors = response.body.errors;
                     });
                 this.errors = {};
-                this.refreshCaptcha();
             },
             fetchComments() {
                 if (!this.post) {
