@@ -132,7 +132,9 @@ class PostRepository
      */
     public function delete($id)
     {
-        return Post::destroy($id);
+        $post = Post::where('id', $id)->first();
+        $post->tags()->sync([]);
+        return $post->delete();
     }
 
     /**
