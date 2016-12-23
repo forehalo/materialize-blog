@@ -1,7 +1,9 @@
 {
-    "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
+    "name": "forehalo/materialize-blog",
+    "description": "A new blog management system disigned according to Google Material Design.",
     "keywords": [
+        "material Design",
+        "blog",
         "framework",
         "laravel"
     ],
@@ -29,7 +31,6 @@
             "App\\": "app/"
         },
         "files": [
-            "app/helpers.php",
             "app/constants.php"
         ]
     },
