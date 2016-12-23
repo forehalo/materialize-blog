@@ -19,21 +19,22 @@ Demo at [Forehalo' blog](http://forehalo.me).
 
 ## Install
 
-Clone this repository to local, or download zip file at [here](https://github.com/forehalo/materialize-blog/archive/master.zip).
+The php package manager `composer` is required for installing.
 
 ```
-$git clone https://github.com/forehalo/materialize-blog.git blog
+composer create-project forehalo/materialize-blog blog
 ```
 
-Then, install Laravel and other php dependencies, run
+It will automatically install laravel and other dependencies for you. 
+
+Then
 
 ```
-composer install
 chmod 777 -R storage/
 chmod 777 -R bootstrap/cache/
 ```
 
-at the root directory. Almost right here.
+to ensure these two folder are writable. Almost right here.
 
 Configure your `.env` file at the root directory to ensure that you have put right configurations used to connect database.
 
