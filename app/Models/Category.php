@@ -29,4 +29,14 @@ class Category extends Model
     {
         return $this->hasMany('App\Models\Post');
     }
+
+    /**
+     * Mutate space to hyphen('-') in name column.
+     *
+     * @param $value
+     */
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = str_replace(' ', '-', $value);
+    }
 }

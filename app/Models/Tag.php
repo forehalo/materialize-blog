@@ -30,8 +30,25 @@ class Tag extends Model
         return $this->belongsToMany('App\Models\Post', 'post_tag', 'tag_id');
     }
 
+    /**
+     * Pivot table.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function postTags()
     {
         return $this->hasMany('App\Models\PostTag', 'tag_id');
     }
+
+    /**
+     * Mutate space to hyphen('-') in name column.
+     *
+     * @param $value
+     */
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = str_replace(' ', '-', $value);
+    }
+
+
 }
