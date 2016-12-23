@@ -50,16 +50,16 @@ class LoginController extends Controller
         // Filter login with email or name.
         $logAccess = filter_var($input['log'], FILTER_VALIDATE_EMAIL) ? 'email' : 'name';
 
-//        if ($this->hasTooManyLoginAttempts($request)) {
-//            $this->fireLockoutEvent($request);
-//            $seconds = $this->limiter()->availableIn(
-//                $this->throttleKey($request)
-//            );
-//            return response()->json([
-//                'status' => 0,
-//                'message' => "Too many attempts. Try after $seconds seconds."
-//            ]);
-//        }
+       if ($this->hasTooManyLoginAttempts($request)) {
+           $this->fireLockoutEvent($request);
+           $seconds = $this->limiter()->availableIn(
+               $this->throttleKey($request)
+           );
+           return response()->json([
+               'status' => 0,
+               'message' => "Too many attempts. Try after $seconds seconds."
+           ]);
+       }
 
         $credentials = [
             $logAccess => $input['log'],
