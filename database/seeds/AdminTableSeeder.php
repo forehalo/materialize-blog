@@ -13,7 +13,7 @@ class AdminTableSeeder extends Seeder
     {
         App\Models\Admin::create([
             'name' => 'admin',
-            'email' => 'admin@example',
+            'email' => 'admin@example.com',
             'password' => bcrypt('admin'),
         ]);
     }
