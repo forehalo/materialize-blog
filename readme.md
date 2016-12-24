@@ -7,7 +7,7 @@ Back-end base on [Laravel 5.3](https://laravel.com), a PHP application framework
 Front-end built with [Vue](https://vuejs.org), a Progressive
 JavaScript Framework bring data binding to js.
 
-Demo at [Forehalo' blog](http://forehalo.me).
+Demo at [Forehalo' blog](https://forehalo.me).
 
 ## Feature
 
@@ -26,6 +26,14 @@ composer create-project forehalo/materialize-blog blog
 ```
 
 It will automatically install laravel and other dependencies for you. 
+
+> Or you can install from this git repository manually
+> ```
+> git clone https://github.com/forehalo/materialize-blog.git blog
+> cd blog && composer install
+> cp .env.example .env
+> php artisan key:generate
+> ```
 
 Then
 
@@ -48,6 +56,10 @@ php artisan db:seed
 > The `db:seed` command will seed all tables. If you just want to pre-generate an admin account, run with option `--class=AdminTableSeeder`
 
 Now you can login dashboard at `/dashboard` with name `admin` or email `admin@example.com`, password `admin`.
+
+## Pages
+
+Materialize-blog also provide a way to publish pages. What you need to do is just writing a markdown file and store it under `storage/pages` folder. Then, you can access it by url `https://example.com/pages/{name}`, `name` is the markdown file name without extension `.md`. There is an existent page named `about`. Try it out.
 
 ## Custom
 
