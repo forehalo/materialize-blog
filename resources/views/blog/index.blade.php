@@ -9,7 +9,7 @@
     <meta name="keywords" content="{{ config('blog.keywords') }}">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/favicon.ico') }}">
     <link rel="stylesheet" href="{{ asset(elixir('css/app.css')) }}">
-    <title>@{{ store.title }}</title>
+    <title>{{ config('blog.title') }}</title>
 </head>
 <body>
 <header>
