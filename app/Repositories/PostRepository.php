@@ -271,4 +271,13 @@ class PostRepository
         return Post::where('id', $id)->getQuery()->update(['exported_at' => $now]);
     }
     
+    /**
+     * Get all post for sitemaps.
+     *
+     */
+    public function sitemaps()
+    {
+        return Post::wherePublished(1)->get(['slug', 'updated_at']);
+    }
+
 }

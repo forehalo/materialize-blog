@@ -14,7 +14,8 @@
         "laravel/framework": "5.3.*",
         "erusev/parsedown": "^1.6",
         "recca0120/laravel-tracy": "^1.7",
-        "doctrine/dbal": "^2.5"
+        "doctrine/dbal": "^2.5",
+        "roumen/sitemap": "^2.6"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

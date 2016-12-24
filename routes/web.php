@@ -13,8 +13,9 @@
 
 // index
 Route::get('/', 'Controller@index');
-// captcha
-Route::get('/captcha', 'Controller@captcha');
+
+// Sitemap
+Route::get('/sitemap', 'Controller@sitemap');
 
 Route::get('/login', 'Auth\LoginController@showLoginForm');
 Route::post('/login', 'Auth\LoginController@login');
