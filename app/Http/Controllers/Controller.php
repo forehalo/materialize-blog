@@ -88,7 +88,7 @@ class Controller extends BaseController
         $posts = $this->post->sitemaps();
 
         foreach ($posts as $post) {
-            $sitemap->add('posts/'.$post->slug, $post->updated_at);
+            $sitemap->add(url('posts/'.$post->slug), $post->updated_at);
         }
     }
 
@@ -103,7 +103,7 @@ class Controller extends BaseController
 
         foreach ($files as $file) {
             if (substr($file, -3) === '.md') {
-                $sitemap->add($file);
+                $sitemap->add(url($file));
             }
         }
     }
@@ -118,7 +118,7 @@ class Controller extends BaseController
         $categories = $this->category->all();
         
         foreach ($categories as $category) {
-            $sitemap->add('categories/'.$category->name, $category->updated_at);
+            $sitemap->add(url('categories/'.$category->name), $category->updated_at);
         }
     }
 
@@ -132,7 +132,7 @@ class Controller extends BaseController
         $tags = $this->tag->all();
         
         foreach ($tags as $tag) {
-            $sitemap->add('tags/'.$tag->name, $tag->updated_at);
+            $sitemap->add(url('tags/'.$tag->name), $tag->updated_at);
         }
     }
 }
