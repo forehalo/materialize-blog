@@ -49,6 +49,7 @@
     		return {
                 page: 0,
     			posts: [],
+                scrollFire: null,
                 hasMore: true,
                 loading: false,
                 velCount: 0
@@ -63,11 +64,18 @@
 
         created() {
             this.loadMorePosts();
+            this.scrollFire = { selector: 'footer', offset: -100, callback: this.loadMorePosts, done: true};
+            Materialize.scrollFire([this.scrollFire]);
         },
 
     	mounted() {
             store.setTitle(this.$trans('index'));
     	},
+
+        beforeRouteLeave(to, from, next) {
+            this.scrollFire.done = true;
+            next();
+        },
 
         methods: {
             loadMorePosts() {
@@ -78,12 +86,10 @@
                         this.posts = this.posts.concat(body.data);
                         this.page = body.current_page;
                         this.hasMore = body.next_page_url != null;
-                        Materialize.scrollFire([{
-                            selector: 'footer', 
-                            offset: -100,
-                            callback: this.loadMorePosts
-                        }]);
-                        this.loading = false;                      
+                        this.$nextTick(() => {
+                            this.scrollFire.done = !this.hasMore;
+                            this.loading = false;
+                        });
                     }, (response) => {
                         Materialize.toast(this.$trans('get_posts_fail'), 4000);
                         this.loading = false;                        
