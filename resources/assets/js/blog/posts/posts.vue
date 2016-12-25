@@ -61,8 +61,11 @@
             }
         },
 
-    	mounted() {
+        created() {
             this.loadMorePosts();
+        },
+
+    	mounted() {
             store.setTitle(this.$trans('index'));
     	},
 

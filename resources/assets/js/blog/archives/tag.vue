@@ -52,12 +52,14 @@
                 });
             }
         },
+        created() {
+            this.fetchTags();
+        },
         mounted() {
             $('select').material_select();
             $('#tag-order').on('change', () => {
                 this.orderTags();
             });
-            this.fetchTags();
             store.setTitle(this.$trans('tags'));
         },
 

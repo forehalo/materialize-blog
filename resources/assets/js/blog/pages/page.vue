@@ -32,7 +32,7 @@
                 return this.$route.params.name;
             }
         },
-        mounted() {
+        created() {
             this.fetchContent();
         },
         methods: {

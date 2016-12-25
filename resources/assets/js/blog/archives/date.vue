@@ -37,8 +37,11 @@
             }
         },
 
-        mounted() {
+        created() {
             this.fetchDates();
+        },
+
+        mounted() {
             store.setTitle(this.$trans('dates'));
         },
 
@@ -48,7 +51,7 @@
                         .then(response => {
                             this.dates = response.body;
                         }, response => {
-                            // TODO
+                            Materialize.toast(response.body.message, 4000);
                         });
             },
             fetchPostsByDate(date) {
@@ -56,7 +59,7 @@
                         .then(response => {
                             this.$set(this.groupedPosts, date, response.body)
                         }, response => {
-                            // TODO
+                            Materialize.toast(response.body.message, 4000);
                         });
             },
             intToMonth(i) {
@@ -71,7 +74,7 @@
                     8: "August",
                     9: "September",
                     10: "October",
-                    11: "Novermber",
+                    11: "November",
                     12: "December"
                 };
 

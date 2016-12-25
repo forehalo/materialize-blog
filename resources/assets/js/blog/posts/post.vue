@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col s12">
             <div class="loader-wrapper center" v-if="loading">
-                <circular-loader size="small"></circular-loader>
+                <circular-loader></circular-loader>
             </div>
             <transition name="article" enter-active-class="animated fadeInUp">
                 <div class="card z-depth-3 article" v-if="!loading">
@@ -156,11 +156,9 @@
                 return this.comments.length != 0;
             }
         },
-
-        mounted() {
+        created() {
             this.getPost(this.$route.params.slug);
         },
-
         methods: {
             getPost(slug) {
                 this.$http.get(`/api/posts/${slug}`)
@@ -237,7 +235,7 @@
                 if (!this.like) {
                     this.$http.post(`/api/posts/${this.post.id}/likes`)
                         .then(response => {
-                            Materialize.toast(response.body.message, 4000);
+                            Materialize.toast(this.$trans('like_post_success'), 4000);
                             this.post.favorite_count++;
                             this.like = true;
                         }, response => {
