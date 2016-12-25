@@ -17,11 +17,7 @@
 </header>
 <main id="app">
     <div class="container">
-        <transition :name="transitionName"
-                    :leave-active-class="'animated ' + leaveClass"
-                    mode="out-in">
-            <router-view></router-view>
-        </transition>
+        <router-view></router-view>
     </div>
 </main>
 <footer class="page-footer transparent">

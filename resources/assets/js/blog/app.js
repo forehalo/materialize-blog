@@ -49,21 +49,6 @@ const app = new Vue({
 	el: 'main',
 	router,
 	data: {
-		transitionName: 'slide-left',
-		leaveClass: 'fadeOutLeft',
 		store
-	},
-	watch: {
-		'$route'(to, from) {
-			let toDepth = to.path.split('/').length;
-			let fromDepth = from.path.split('/').length;
-			if (toDepth < fromDepth) {
-				this.transitionName = 'slide-right';
-				this.leaveClass = 'fadeOutRight';
-			} else {
-				this.transitionName = 'slide-left';
-				this.leaveClass = 'fadeOutLeft';
-			}
-		}
 	}
 });
