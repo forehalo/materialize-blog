@@ -32,7 +32,7 @@ Route::group(['namespace' => 'Api'], function () {
 
     // Comment
     Route::get('/posts/{id}/comments', 'CommentController@getByPost');
-    Route::post('/posts/{id}/comments', 'CommentController@store');
+    Route::post('/posts/{id}/comments', 'CommentController@store')->middleware('throttle:5,1');
 
     // Others
     Route::get('/links', 'SettingController@links');
