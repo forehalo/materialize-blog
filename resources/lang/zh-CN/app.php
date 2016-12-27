@@ -26,9 +26,12 @@ return [
     'update_auth_success' => '修改用户登录信息成功。',
     'get_categories_fail' => '获取文章分类失败。',
     'file_not_exists' => '页面不存在。',
-    'reply_subject' => '你收到了新的回复',
+    'notification_subject' => '你收到了新的回复',
+    'notification_title' => ':user 在 :post 一文中回复了你：',
     'notification_reason' => '会收到此邮件是因为你在评论时勾选了回复提醒选项。',
     'unsubscribe' => '取消提醒',
+    'unsubscribe_success' => '取消提醒成功。',
+    'unsubscribe_fail' => '取消提醒失败。',
 
     'index' => '首页',
     'author' => '作者',

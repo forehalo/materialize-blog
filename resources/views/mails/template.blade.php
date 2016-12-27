@@ -6,15 +6,24 @@
         <title>Document</title>
     </head>
     <body>
-        <h4>你收到了新的回复</h4>
-        <p>{{ $data->name }} 在 <a href="{{ url('posts/'.$data->post->slug) }}">《{{ $data->post->title }}》</a> 一文中回复了你：</p>
+        <h3>{{ trans('app.notification_subject') }}</h3>
+        <p>{!!
+            trans('app.notification_title', [
+                'user' => $data->name,
+                'post' => '<a href="'.url('posts/'.$data->post->slug).'"> '.$data->post->title.' </a>'
+            ])
+        !!}
         <div style="margin: 20px;">
             {!! $data->content !!}
         </div>
         @if($data->parent)
             <p>---------------------------------</p>
-            <p>会收到此邮件是因为你在评论时勾选了回复提醒选项。</p>
-            <p>拒绝接受请点击 <a href="{{ url('unsubscribe?c='.base64_encode("{$data->parent->name}-{$data->parent->id}")) }}">取消提醒</a></p>
+            <p>{{ trans('app.notification_reason') }}</p>
+            <p>
+                <a href="{{ url('unsubscribe?c='.base64_encode("{$data->parent->name}-{$data->parent->id}")) }}">
+                    {{ trans('unsubscribe') }}
+                </a>
+            </p>
         @endif
     </body>
 </html>

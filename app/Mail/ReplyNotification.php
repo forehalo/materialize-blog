@@ -31,6 +31,6 @@ class ReplyNotification extends Mailable
      */
     public function build()
     {
-        return $this->subject(trans('app.reply_subject'))->view('mails.template');
+        return $this->subject(trans('app.notification_subject'))->view('mails.template');
     }
 }

@@ -140,7 +140,7 @@ class CommentController extends ApiController
 
         $pair = explode('-', base64_decode($token));
         return $this->comment->unsubscribe($pair) ?
-            'unsubscribe successfully' :
-            'fail to unsubscribe';
+            trans('unsubscribe_success') :
+            trans('unsubscribe_fail');
     }
 }
