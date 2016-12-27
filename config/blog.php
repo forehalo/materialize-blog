@@ -13,5 +13,9 @@ return [
     // Author
     'author' => 'Forehalo',
 
-    'logo' => '// Forehalo'
+    // Logo shown in top bar
+    'logo' => '// Forehalo',
+
+    // The email to receive comment notification
+    'mail' => env('MAIL_RECEIVER'),
 ];

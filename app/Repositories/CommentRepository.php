@@ -90,4 +90,20 @@ class CommentRepository
     {
         return Comment::destroy($id);
     }
+
+    /**
+     * Unsubscribe comment reply notification
+     *
+     * @param $pair
+     * @return bool
+     */
+    public function unsubscribe($pair)
+    {
+        $comment = Comment::where('name', $pair[0])->where('id', $pair[1])->first();
+        if ($comment) {
+            return $comment->update(['subscription' => 0]);
+        } else {
+            return false;
+        }
+    }
 }

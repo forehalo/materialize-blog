@@ -17,6 +17,9 @@ Route::get('/', 'Controller@index');
 // Sitemap
 Route::get('/sitemap', 'Controller@sitemap');
 
+// Unsubscribe comment notifications
+Route::get('/unsubscribe', 'Api\CommentController@unsubscribe');
+
 Route::get('/login', 'Auth\LoginController@showLoginForm');
 Route::post('/login', 'Auth\LoginController@login');
 Route::get('/logout', 'Auth\LoginController@logout');

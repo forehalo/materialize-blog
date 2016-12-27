@@ -22,9 +22,11 @@ return [
     'load_items_fail' => 'Fail to get items.',
     'add_link_success' => 'Create new link successfully.',
     'delete_link_success' => 'Delete link successfully.',
-    'update_link_success' => 'Update linke successfully.',
+    'update_link_success' => 'Update link successfully.',
     'get_categories_fail' => 'Fail to get categories.',
     'file_not_exists' => 'The page you are looking for is not available now.',
+    'reply_subject' => 'You have received a new reply',
+    'notification_reason' => 'The reason why you receive this email is that you check the notification option when you submit your comment',
 
     'declaration' => 'Reserve the right，if reproduced please indicate the source.',
     'add_comment' => 'Leave a comment',

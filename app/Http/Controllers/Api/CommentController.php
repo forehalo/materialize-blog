@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Jobs\SendMailNotification;
 use App\Repositories\CommentRepository;
 use Illuminate\Http\Request;
 
@@ -57,6 +58,7 @@ class CommentController extends ApiController
         $inputs = $request->all();
         
         $result = $this->comment->create($postID, $inputs);
+        dispatch(new SendMailNotification($result));
         return response()->json($result);
     }
 
@@ -72,6 +74,12 @@ class CommentController extends ApiController
         return $comments;
     }
 
+    /**
+     * Toggle comment valid status.
+     *
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function valid($id)
     {
         $result = $this->comment->toggle($id, 'valid');
@@ -83,6 +91,12 @@ class CommentController extends ApiController
             ], REST_BAD_REQUEST);
     }
 
+    /**
+     * Toggle comment seen status.
+     *
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function seen($id)
     {
         $result = $this->comment->toggle($id, 'seen');
@@ -94,6 +108,12 @@ class CommentController extends ApiController
             ], REST_BAD_REQUEST);
     }
 
+    /**
+     * Destroy comment.
+     *
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function destroy($id)
     {
         $result = $this->comment->destroy($id);
@@ -103,5 +123,24 @@ class CommentController extends ApiController
                 'error' => FAIL_TO_DELETE_COMMENT,
                 'message' => trans('comment.delete_fail'),
             ], REST_BAD_REQUEST);
+    }
+
+    /**
+     * Unsubscribe comment reply notification
+     *
+     * @param Request $request
+     * @return string
+     */
+    public function unsubscribe(Request $request)
+    {
+        $token = $request->input('c');
+        if (!$token) {
+            return 'Invalid token';
+        }
+
+        $pair = explode('-', base64_decode($token));
+        return $this->comment->unsubscribe($pair) ?
+            'unsubscribe successfully' :
+            'fail to unsubscribe';
     }
 }
