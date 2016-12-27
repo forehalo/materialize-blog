@@ -206,12 +206,11 @@
                         .then((response) => {
                             this.comments.unshift(response.body);
                             Materialize.toast(this.$trans('comment_success'), 4000);
-                            $('#comment-form input, textarea').val('');
-                            $('#comment-form label').removeClass('class');
-                            this.goToComment(response.body.id);
+                            this.form = {};
                             this.$nextTick(() => {
                                 Prism.highlightAll();
                                 $('.tooltipped').tooltip();
+                                this.goToComment(response.body.id);
                             });
                         }, (response) => {
                             Materialize.toast(response.body.message, 4000);
