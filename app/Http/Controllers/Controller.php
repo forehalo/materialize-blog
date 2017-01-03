@@ -66,14 +66,10 @@ class Controller extends BaseController
     {
         $sitemap = app('sitemap');
 
-        $sitemap->setCache('laravel.sitemap', 60);
-
-        if (!$sitemap->isCached()) {
-            $this->mapPosts($sitemap);
-            $this->mapPages($sitemap);
-            $this->mapCategories($sitemap);
-            $this->mapTags($sitemap);
-        }
+        $this->mapPosts($sitemap);
+        $this->mapPages($sitemap);
+        $this->mapCategories($sitemap);
+        $this->mapTags($sitemap);
         
         return $sitemap->render('xml');
     }
