@@ -13,3 +13,9 @@ main {
 .no-margin {
     margin: 0 !important;
 }
+
+.card-content {
+    .markdown-body img:not(.emoji), .markdown-reply img:not(.emoji) {
+        max-width: none;
+    }
+}
