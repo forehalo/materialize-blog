@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Mail\ReplyNotification;
+use Setting;
 use App\Models\Comment;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
@@ -39,8 +40,10 @@ class SendMailNotification implements ShouldQueue
         }
 
         if ($this->data->parent == 0) {
-            $address = config('blog.mail');
-            $name = config('blog.author');
+            $mail = Setting::get('mail');
+            if (!$mail->value) return;
+            $address = $mail;
+            $name = Setting::get('author');
         } else {
             $this->data->load('parent');
             if (! $this->data->parent->subscription) return;

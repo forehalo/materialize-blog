@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/favicon.ico') }}">
     <link rel="stylesheet" href="{{ asset(elixir('css/dashboard.css')) }}">
-    <title>{{ config('blog.title') }}</title>
+    <title>{{ Setting::get('title') }}</title>
 </head>
 <body>
 <header>
@@ -27,7 +27,7 @@
 <script>
     window.Laravel = {!! json_encode([
             'csrfToken' => csrf_token(),
-            'config' => config('blog'),
+            'config' => Setting::all(),
     ]) !!};
     window.dictionary = {!! json_encode(trans('app')) !!};
 </script>

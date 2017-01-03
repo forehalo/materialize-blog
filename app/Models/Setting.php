@@ -12,4 +12,9 @@ class Setting extends Model
      * @var array
      */
     protected $fillable = ['key', 'value'];
+
+    /**
+     * Disable timestamps record.
+     */
+    public $timestamps = false;
 }

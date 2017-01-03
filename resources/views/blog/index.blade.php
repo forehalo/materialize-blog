@@ -4,12 +4,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="{{ config('blog.author') }}">
-    <meta name="description" content="{{ config('blog.desc') }}">
-    <meta name="keywords" content="{{ config('blog.keywords') }}">
+    <meta name="author" content="{{ Setting::get('author') }}">
+    <meta name="description" content="{{ Setting::get('desc') }}">
+    <meta name="keywords" content="{{ Setting::get('keywords') }}">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/favicon.ico') }}">
     <link rel="stylesheet" href="{{ asset(elixir('css/app.css')) }}">
-    <title>{{ config('blog.title') }}</title>
 </head>
 <body>
 <header>
@@ -24,14 +23,14 @@
     <div class="footer-copyright">
         <div class="container black-text text-lighten-5">
             Copyright © 2015-2016 forehalo
-            <span class="right black-text text-lighten-5" to="/">{{ config('blog.title') }}</span>
+            <span class="right black-text text-lighten-5" to="/">{{ Setting::get('title') }}</span>
         </div>
     </div>
 </footer>
 <script>
     window.Laravel = {!! json_encode([
             'csrfToken' => csrf_token(),
-            'config' => config('blog'),
+            'config' => Setting::all(),
             'currentViewType' => Request::segment(1) ?: 'default',
             'isProduction' => env('APP_ENV') === 'prod' || env('APP_ENV') === 'production'
     ]) !!};
