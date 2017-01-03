@@ -33,6 +33,7 @@
             'csrfToken' => csrf_token(),
             'config' => config('blog'),
             'currentViewType' => Request::segment(1) ?: 'default',
+            'isProduction' => env('APP_ENV') === 'prod' || env('APP_ENV') === 'production'
     ]) !!};
     window.dictionary = {!! json_encode(trans('app')) !!};
 </script>

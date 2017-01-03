@@ -16,7 +16,7 @@ require('./prism');
  */
 
 window.Vue = require('vue');
-// Vue.config.devtools = false;
+Vue.config.devtools = !Laravel.isProduction;
 Vue.use(require('vue-resource'));
 Vue.use(require('vue-router'));
 
