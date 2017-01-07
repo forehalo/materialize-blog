@@ -17,7 +17,7 @@ class SettingTableSeeder extends Seeder
         Setting::create(['key' => 'keywords', 'value' => 'Material,PHP']);
         Setting::create(['key' => 'author', 'value' => 'Forehalo']);
         Setting::create(['key' => 'logo', 'value' => '// Forehalo']);
-        Setting::create(['key' => 'mail', 'value' => '']);
+        Setting::create(['key' => 'email', 'value' => '']);
         Setting::create(['key' => 'post_per_page', 'value' => '8']);
         Setting::create(['key' => 'dashboard_post_per_page', 'value' => '8']);
         Setting::create(['key' => 'dashboard_comment_per_page', 'value' => '10']);
