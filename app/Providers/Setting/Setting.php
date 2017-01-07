@@ -1,6 +1,7 @@
 <?php 
 namespace App\Providers\Setting;
 
+use Cache;
 use App\Models\Setting as Model;
 
 class Setting
@@ -24,7 +25,11 @@ class Setting
      */
     public function __construct()
     {
-        $settings = Model::all();
+        $settings = Cache::get('app.config', function () {
+            $stored = Model::all();
+            Cache::put('app.config', $stored);
+            return $stored;            
+        });
 
         foreach ($settings as $item) {
             $this->items[$item->key] = $item->value;
@@ -82,6 +87,7 @@ class Setting
                 $this->changed[$key] = $value;
             }
         }
+        return $this;
     }
 
     /**
@@ -92,7 +98,10 @@ class Setting
         foreach ($this->changed as $key => $value) {
             Model::where('key', $key)->update(['value' => $value]);
         }
+        
         array_replace($this->items, $this->changed);
+        Cache::put('app.config', $this->items);
+        return true;
     }
 
     /**
