@@ -21,6 +21,7 @@ return [
     'like_post_success' => '文章点赞成功。',
     'load_items_fail' => '获取汇总失败。',
     'add_link_success' => '添加友链成功。',
+    'update_settings_success' => '修改基础信息成功。',    
     'delete_link_success' => '删除友链成功。',
     'update_link_success' => '修改友链成功。',
     'update_auth_success' => '修改用户登录信息成功。',
@@ -98,4 +99,6 @@ return [
     'no_friend' => '=。=你也一定有朋友吧？赶快点击右侧的按钮添加一个小伙伴吧。',
     'create_link' => '创建友链',
     'update_link' => '修改友链',
+    'dashboard_post_per_page' => '管理界面每页文章数',
+    'dashboard_comment_per_page' => '管理界面每页评论数',
 ];

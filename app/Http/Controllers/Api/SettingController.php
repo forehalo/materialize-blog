@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use Setting;
 use App\Repositories\SettingRepository;
 use Illuminate\Http\Request;
 
@@ -56,7 +57,7 @@ class SettingController extends ApiController
             response()->json($result, REST_CREATE_SUCCESS):
             response()->json([
                 'error' => FAIL_TO_ADD_LINK,
-                'message' => trans('post.add_link_fail')
+                'message' => trans('setting.add_link_fail')
             ], REST_BAD_REQUEST);
     }
 
@@ -76,7 +77,7 @@ class SettingController extends ApiController
             response()->json([], REST_UPDATE_SUCCESS):
             response()->json([
                 'error' => FAIL_TO_UPDATE_LINK,
-                'message' => trans('post.update_link_fail')
+                'message' => trans('setting.update_link_fail')
             ], REST_BAD_REQUEST);
     }
 
@@ -107,7 +108,7 @@ class SettingController extends ApiController
             response()->json([], REST_DELETE_SUCCESS):
             response()->json([
                 'error' => FAIL_TO_UPDATE_LINK,
-                'message' => trans('post.delete_link_fail')
+                'message' => trans('setting.delete_link_fail')
             ], REST_BAD_REQUEST);
     }
 
@@ -130,7 +131,27 @@ class SettingController extends ApiController
             response()->json([], REST_UPDATE_SUCCESS):
             response()->json([
                 'error' => FAIL_TO_UPDATE_AUTH,
-                'message' => trans('post.update_auth_fail')
+                'message' => trans('setting.update_auth_fail')
+            ], REST_BAD_REQUEST);
+    }
+
+    public function updateBasic(Request $request)
+    {
+        $this->validate($request, [
+            'author' => 'required',
+            'email' => 'required|email',
+            'desc' => 'string|max:255',
+            'keywords' => 'string|max:255',
+            'logo' => 'string|max:20',
+        ]);
+
+        $result = Setting::set($request->all())->update();
+
+        return $result ?
+            response()->json([], REST_UPDATE_SUCCESS):
+            response()->json([
+                'error' => FAIL_TO_UPDATE_AUTH,
+                'message' => trans('setting.update_settings_fail')
             ], REST_BAD_REQUEST);
     }
 }

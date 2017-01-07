@@ -21,6 +21,7 @@ return [
     'like_post_success' => 'Like post successfully. Thanks for your encouragement!',
     'load_items_fail' => 'Fail to get items.',
     'add_link_success' => 'Create new link successfully.',
+    'update_settings_success' => 'Update basic settings successfully.',
     'delete_link_success' => 'Delete link successfully.',
     'update_link_success' => 'Update link successfully.',
     'get_categories_fail' => 'Fail to get categories.',
@@ -38,4 +39,7 @@ return [
     'warning_info' => 'Really want to destroy this? You cannot recover it after done!',
     '404' => 'The page you are looking for has gone somewhere.',
     'no_friend' => 'You must have some friends, right? Click the plus button to add your first friend!',
+    'dashboard_post_per_page' => 'Post per page at dashboard',
+    'dashboard_comment_per_page' => 'Comment per page at dashboard',
+
 ];

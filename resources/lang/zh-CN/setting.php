@@ -10,5 +10,6 @@ return [
     'update_link_fail' => '修改友链失败。',
     'delete_link_fail' => '删除友链失败。',
     'update_auth_fail' => '更新登录信息失败。',
+    'update_settings_fail' => '更新基础信息失败。',
     
 ];

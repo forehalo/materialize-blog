@@ -61,6 +61,7 @@ Route::group(['namespace' => 'Api'], function () {
         Route::delete('/comments/{id}', 'CommentController@destroy');
 
         // Setting
+        Route::put('/settings/basic', 'SettingController@updateBasic');
         Route::post('/settings/links', 'SettingController@storeLink');
         Route::put('/settings/links/{id}', 'SettingController@updateLink');
         Route::delete('/settings/links/{id}', 'SettingController@destroyLink');
