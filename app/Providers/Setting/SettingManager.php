@@ -4,7 +4,7 @@ namespace App\Providers\Setting;
 use Cache;
 use App\Models\Setting as Model;
 
-class Setting
+class SettingManager
 {
     /**
      * Blog config array.

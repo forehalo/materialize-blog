@@ -28,7 +28,7 @@ class SettingServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton('setting', function () {
-            return new Setting();
+            return new SettingManager();
         });
     }
 
@@ -37,6 +37,6 @@ class SettingServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return [Setting::class];
+        return ['setting', SettingManager::class];
     }
 }
