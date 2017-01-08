@@ -40,7 +40,7 @@ class SendMailNotification implements ShouldQueue
         }
 
         if ($this->data->parent == 0) {
-            $mail = Setting::get('mail');
+            $mail = Setting::get('email');
             if (!$mail->value) return;
             $address = $mail;
             $name = Setting::get('author');
