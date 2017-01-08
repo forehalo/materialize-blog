@@ -206,7 +206,7 @@
                         .then((response) => {
                             this.comments.unshift(response.body);
                             Materialize.toast(this.$trans('comment_success'), 4000);
-                            this.form = {};
+                            this.form = {parent_id: 0};
                             this.$nextTick(() => {
                                 Prism.highlightAll();
                                 $('.tooltipped').tooltip();
