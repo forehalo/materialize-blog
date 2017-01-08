@@ -99,7 +99,7 @@ class Controller extends BaseController
 
         foreach ($files as $file) {
             if (substr($file, -3) === '.md') {
-                $sitemap->add(url($file));
+                $sitemap->add(url(substr($file, 0, -3)));
             }
         }
     }
