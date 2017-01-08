@@ -18,6 +18,7 @@ class CommentRepository
     {
         return Comment::where('post_id', $postID)
             ->with('parent')
+            ->whereValid('true')
             ->orderBy('created_at', 'desc')
             ->get();
     }
