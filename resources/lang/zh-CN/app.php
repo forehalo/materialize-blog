@@ -99,6 +99,11 @@ return [
     'no_friend' => '=。=你也一定有朋友吧？赶快点击右侧的按钮添加一个小伙伴吧。',
     'create_link' => '创建友链',
     'update_link' => '修改友链',
+    'basic' => '基础设置',
     'dashboard_post_per_page' => '管理界面每页文章数',
     'dashboard_comment_per_page' => '管理界面每页评论数',
+    'desc' => '描述',
+    'keywords' => '关键字',
+    'post_per_page' => '每页展示文章数'
+
 ];
