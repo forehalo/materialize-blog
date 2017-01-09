@@ -35,9 +35,6 @@ class SendMailNotification implements ShouldQueue
      */
     public function handle()
     {
-        if (! env('APP_ENABLE_MAIL')) {
-            return;
-        }
         // parent comment
         $parent = $this->data->parent;
         if (is_null($parent)) {

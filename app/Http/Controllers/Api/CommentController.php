@@ -58,7 +58,9 @@ class CommentController extends ApiController
         $inputs = $request->all();
         
         $result = $this->comment->create($postID, $inputs);
-        dispatch(new SendMailNotification($result));
+        if (env('APP_ENABLE_MAIL')) {
+            dispatch(new SendMailNotification($result));
+        }
         return response()->json($result);
     }
 
