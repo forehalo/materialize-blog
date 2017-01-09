@@ -34,6 +34,7 @@
         },
         created() {
             this.fetchContent();
+            store.setTitle(this.name);
         },
         methods: {
             fetchContent() {
