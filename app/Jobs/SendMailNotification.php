@@ -38,20 +38,21 @@ class SendMailNotification implements ShouldQueue
         if (! env('APP_ENABLE_MAIL')) {
             return;
         }
-
-        if ($this->data->parent == 0) {
+        // parent comment
+        $parent = $this->data->parent;
+        if (is_null($parent)) {
             $mail = Setting::get('email');
+            // Ensure receiver email configured.
             if (!$mail) return;
             $address = $mail;
             $name = Setting::get('author');
         } else {
-            $this->data->load('parent');
-            if (! $this->data->parent->subscription) return;
+            // Ensure parent comment subscript reply notification.
+            if (! $parent->subscription) return;
 
-            $address = $this->data->parent->email;
-            $name = $this->data->parent->name;
+            $address = $parent->email;
+            $name = $parent->name;
         }
-        $this->data->load('post');
 
         Mail::to($address, $name)->send(new ReplyNotification($this->data));
     }

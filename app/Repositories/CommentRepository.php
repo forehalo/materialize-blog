@@ -18,7 +18,7 @@ class CommentRepository
     {
         return Comment::where('post_id', $postID)
             ->with('parent')
-            ->whereValid('true')
+            ->whereValid(true)
             ->orderBy('created_at', 'desc')
             ->get();
     }
@@ -39,9 +39,8 @@ class CommentRepository
         if ($comment->parent_id != 0) {
             $comment->load('parent');
         }
-
-        // add on comment_count
-        Post::where('id', $inputs['post_id'])->increment('comment_count');
+        $comment->load('post');
+        $comment->post->increment('comment_count');
 
         return $comment;
     }
