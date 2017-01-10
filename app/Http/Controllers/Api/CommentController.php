@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Jobs\SendMailNotification;
 use App\Repositories\CommentRepository;
 use Illuminate\Http\Request;
+use Setting;
 
 class CommentController extends ApiController
 {
@@ -72,7 +73,7 @@ class CommentController extends ApiController
      */
     public function manage(Request $request)
     {
-        $comments = $this->comment->all($request->input('limit', 8));
+        $comments = $this->comment->all($request->input('limit', Setting::get('dashboard_comment_per_page')));
         return $comments;
     }
 

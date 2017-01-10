@@ -66,7 +66,6 @@
             return {
                 posts: {},
                 currentPage: 1,
-                perPage: 8,
                 totalPage: 0,
                 processItem: 0,
                 willDestroyed: null
@@ -84,11 +83,11 @@
         },
         methods: {
             fetchPosts(page) {
-                this.$http.get(`/api/dashboard/posts?page=${page}&limit=${this.perPage}`)
+                this.$http.get(`/api/dashboard/posts?page=${page}`)
                         .then(response => {
                             let body = response.body;
                             this.$set(this.posts, page, body.data);
-                            this.totalPage = Math.ceil(body.total / this.perPage);
+                            this.totalPage = Math.ceil(body.total / body.per_page);
                         }, response => {
                             Materialize.toast(this.$trans('get_posts_fail'), 4000);
                         });

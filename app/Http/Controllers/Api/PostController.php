@@ -6,6 +6,7 @@ use App\Repositories\PostRepository;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Setting;
 
 class PostController extends ApiController
 {
@@ -42,7 +43,7 @@ class PostController extends ApiController
      */
     public function all(Request $request)
     {
-        $posts = $this->post->all($request->input('limit', 8));
+        $posts = $this->post->all($request->input('limit', Setting::get('post_per_page')));
         return response()->json($posts);
     }
 
@@ -84,7 +85,7 @@ class PostController extends ApiController
      */
     public function manage(Request $request)
     {
-        $posts = $this->post->all($request->input('limit', 8), true);
+        $posts = $this->post->all($request->input('limit', Setting::get('dashboard_post_per_page')), true);
         return response()->json($posts);
     }
 

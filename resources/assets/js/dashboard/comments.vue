@@ -96,11 +96,11 @@
         },
         methods: {
             fetchComments(page) {
-                this.$http.get(`/api/dashboard/comments?page=${page}&limit=${this.perPage}`)
+                this.$http.get(`/api/dashboard/comments?page=${page}`)
                         .then(response => {
                             let body = response.body;
                             this.$set(this.comments, page, body.data);
-                            this.totalPage = Math.ceil(body.total / this.perPage);
+                            this.totalPage = Math.ceil(body.total / body.per_age);
                         }, response => {
                             Materialize.toast(this.$trans('get_comment_fail'), 4000);
                         });
