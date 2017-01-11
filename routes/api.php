@@ -67,5 +67,8 @@ Route::group(['namespace' => 'Api'], function () {
         Route::delete('/settings/links/{id}', 'SettingController@destroyLink');
         Route::get('/settings/auth', 'SettingController@auth');
         Route::put('/settings/auth', 'SettingController@updateAuth');
+
+        // Assets
+        Route::post('/assets/images', 'AssetController@upload');        
     });
 });

@@ -1,0 +1,46 @@
+.uploader {
+    .row {
+        margin: 0;
+    }
+    .btn.uploader__btn {
+        float: none;
+    }
+    .uploader__item {
+        .copy {
+            padding: 0 5px;
+            border: 0;
+            background: transparent;
+            opacity: 0;
+            transition: opacity .2s ease;
+        }
+
+        &:hover {
+            .copy {
+                opacity: 1;
+            }
+        }
+        .copied {
+            position: relative;
+            z-index: 999;
+            transition: opacity 1s ease;
+        }
+    }
+    
+    .success {
+        background-color: color('green', 'lighten-5');
+    }
+
+    .failed {
+        background-color: color('red', 'lighten-5');        
+    }
+}
+
+.rotate {
+    animation: rotate 1s linear infinite;
+}
+
+@keyframes rotate {
+    to {
+        transform: rotate(360deg);
+    }
+}

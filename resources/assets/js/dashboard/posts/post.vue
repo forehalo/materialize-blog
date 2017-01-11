@@ -51,11 +51,15 @@
                 </div>
             </form>
         </div>
+        <Uploader></Uploader>
     </div>
 </template>
 <script>
+    import Uploader from '../uploader.vue';
     export default {
-
+        components: {
+            Uploader
+        },
         data() {
             return {
                 type: 'create',

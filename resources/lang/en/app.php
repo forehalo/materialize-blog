@@ -31,6 +31,8 @@ return [
     'notification_reason' => 'The reason why you receive this email is that you check the notification option when you submit your comment.',
     'unsubscribe_success' => 'Unsubscribe successfully.',
     'unsubscribe_fail' => 'Fail to unsubscribe.',
+    'upload_image_fail' => 'Fail to upload image.',
+    'invalid_image' => 'The image uploaded is invalid.',
 
     'declaration' => 'Reserve the right，if reproduced please indicate the source.',
     'add_comment' => 'Leave a comment',
