@@ -28,6 +28,7 @@
     window.Laravel = {!! json_encode([
             'csrfToken' => csrf_token(),
             'config' => Setting::all(),
+            'isProduction' => env('APP_ENV') === 'prod' || env('APP_ENV') === 'production'
     ]) !!};
     window.dictionary = {!! json_encode(trans('app')) !!};
 </script>
