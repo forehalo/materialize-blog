@@ -87,7 +87,7 @@
                         .then(response => {
                             let body = response.body;
                             this.$set(this.posts, page, body.data);
-                            this.totalPage = Math.ceil(body.total / body.per_page);
+                            this.totalPage = body.last_page;
                         }, response => {
                             Materialize.toast(this.$trans('get_posts_fail'), 4000);
                         });

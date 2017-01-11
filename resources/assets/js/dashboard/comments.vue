@@ -77,7 +77,6 @@
             return {
                 comments: {},
                 currentPage: 1,
-                perPage: 8,
                 totalPage: 0,
                 processValidItem: 0,
                 processSeenItem: 0,
@@ -100,7 +99,7 @@
                         .then(response => {
                             let body = response.body;
                             this.$set(this.comments, page, body.data);
-                            this.totalPage = Math.ceil(body.total / body.per_age);
+                            this.totalPage = body.last_page;
                         }, response => {
                             Materialize.toast(this.$trans('get_comment_fail'), 4000);
                         });
