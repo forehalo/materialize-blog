@@ -33,6 +33,7 @@ return [
     'unsubscribe_fail' => 'Fail to unsubscribe.',
     'upload_image_fail' => 'Fail to upload image.',
     'invalid_image' => 'The image uploaded is invalid.',
+    'existent_image' => 'This image already exists in current storage.',
 
     'declaration' => 'Reserve the right，if reproduced please indicate the source.',
     'add_comment' => 'Leave a comment',

@@ -35,6 +35,7 @@ return [
     'unsubscribe_fail' => '取消提醒失败。',
     'upload_image_fail' => '上传图片失败。',
     'invalid_image' => '图片无效。',
+    'existent_image' => '改图片已存在。',
 
     'index' => '首页',
     'author' => '作者',
