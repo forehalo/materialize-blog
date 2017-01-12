@@ -1,25 +1,26 @@
 # Materialize Blog
 
-A new blog management system disigned according to Google [Material Design](https://www.google.com/design/spec/material-design/introduction.html).
+A new blog management system designed according to Google [Material Design](https://www.google.com/design/spec/material-design/introduction.html).
 
 Back-end base on [Laravel 5.3](https://laravel.com), a PHP application framework with expressive, elegant syntax.
 
-Front-end built with [Vue](https://vuejs.org), a Progressive
-JavaScript Framework bring data binding to js.
+Front-end built with [Vue](https://vuejs.org), a Progressive JavaScript Framework bring data binding to js.
 
 Demo at [Forehalo' blog](https://forehalo.me).
 
 ## Feature
 
-* Single page (Vue)
-* Create with markdown (Javascript parser: [marked](https://github.com/chjj/marked), PHP parser: [parsedown](https://github.com/erusev/parsedown)).
-* Code highlight ([Prism](http://prismjs.com)).
-* Self host comments.
+* Single page
+* Create with markdown (Javascript parser: [marked](https://github.com/chjj/marked), PHP parser: [parsedown](https://github.com/erusev/parsedown))
+* Code highlight ([Prism](http://prismjs.com))
+* Self host comments
 * Easy localization
 
 ## Install
 
-The php package manager `composer` is required for installing.
+### Project
+
+The php package manager [`composer`](https://getcomposer.org/) is required for installing.
 
 ```
 composer create-project forehalo/materialize-blog blog
@@ -35,14 +36,14 @@ It will automatically install laravel and other dependencies for you.
 > php artisan key:generate
 > ```
 
-Then
+### Configure accessibility
 
 ```
 chmod 777 -R storage/
 chmod 777 -R bootstrap/cache/
 ```
 
-to ensure these two folder are writable. Almost right here.
+to ensure these two folder are writable.
 
 Configure your `.env` file at the root directory to ensure that you have put right configurations used to connect database.
 
@@ -56,6 +57,18 @@ php artisan db:seed
 > The `db:seed` command will seed all tables. If you just want to pre-generate an admin account, run with option `--class=AdminTableSeeder`
 
 Now you can login dashboard at `/dashboard` with name `admin` or email `admin@example.com`, password `admin`.
+
+### Images
+
+Maybe you want to store all images to local, it gives you an simple way.
+
+Create an symbolic link `public/storage` target `storage/app/public`folder.
+
+```
+ln -s /path/to/storage/app/public/ public/storage
+```
+
+So now, you can upload images and get it with url `example.com/storage/images/image.jpg`. All images stored in `storage/app/public/images` folder.
 
 ## Pages
 

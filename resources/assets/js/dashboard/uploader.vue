@@ -9,6 +9,17 @@
         </a>
         <div id="upload-modal" class="modal">
             <div class="modal-content">
+                <blockquote>
+                    <p>Make sure you have already created the symbolic link 
+                        <code>public/storage</code> 
+                        target 
+                        <code>storage/app/public</code> 
+                        before uploading any images.Otherwise no image will be accessible.
+                    </p>
+                    <p>Not yet? run</p>
+                    <pre>ln -s /path/to/storage/app/public/ public/storage</pre>
+                </blockquote>
+
                 <div class="collection" v-if="images.length">
                     <div class="collection-item" :class="image.status" v-for="image in images">
                         <div class="row valign-wrapper">
