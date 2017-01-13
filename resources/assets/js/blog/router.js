@@ -62,9 +62,8 @@ router.beforeEach((to, from, next) => {
 
 router.afterEach((to, from) => {
     Laravel.currentViewType =
-        ['default', 'categories', 'tags', 'dates'].includes(to.name) ?
-            to.name :
-            'default';
+        ['default', 'categories', 'tags', 'dates']
+            .indexOf(to.name) === -1 ? to.name : 'default';
 });
 
 export default router;
