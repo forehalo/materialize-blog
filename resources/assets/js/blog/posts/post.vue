@@ -51,7 +51,7 @@
                             <div class="row">
                                 <div class="divider"></div>
                                 <h5>{{ $trans('add_comment') }}</h5>
-                                <form class="col s12 form" id="comment-form" @submit.prevent="submitComment">
+                                <form class="col s12 form" id="comment-form">
                                     <input type="hidden" name="parent_id" v-model="form.parent_id">
                                     <div class="input-field col s12 l4">
                                         <input type="text" name="name" id="name" class="validate" v-model="form.name"
@@ -86,9 +86,10 @@
                                            @click="previewComment">
                                             {{ $trans('preview') }} <i class="material-icons right">visibility</i>
                                         </a>
-                                        <button class="btn waves-effect wave-light blue" type="submit">
+                                        <a class="btn waves-effect wave-light blue" :class="submittingComment ? 'disabled' : ''" @click="submitComment">
                                             {{ $trans('submit') }} <i class="material-icons right">send</i>
-                                        </button>
+                                        </a>
+                                        <circular-loader size="tiny" class="align-bottom" v-show="submittingComment"></circular-loader>
                                     </div>
                                     <div id="comment-preview-modal" class="modal">
                                         <div class="modal-content">
@@ -105,7 +106,7 @@
 
             <!--comments-->
             <div class="card z-depth-3" v-show="post">
-                <div class="loader-wrapper center" v-if="loadingComments">
+                <div class="loader-wrapper center vertical-padding-20" v-if="loadingComments">
                     <circular-loader size="small"></circular-loader>
                 </div>
                 <div class="card-content comment-list" id="comments" v-else>
@@ -162,7 +163,7 @@
                     blog: '',
                     origin: '',
                 },
-
+                submittingComment: false,
                 // form errors
                 errors: {},
 
@@ -201,27 +202,29 @@
                             this.$router.replace({name: '404'});
                         });
             },
-            submitComment(event) {
+            submitComment() {
+                this.submittingComment = true;
                 this.$http.post(`/api/posts/${this.post.id}/comments`, this.form)
                         .then((response) => {
                             this.comments.unshift(response.body);
                             Materialize.toast(this.$trans('comment_success'), 4000);
                             this.form = {parent_id: 0};
                             this.$nextTick(() => {
+                                this.submittingComment = false;
+                                this.errors = {};
                                 Prism.highlightAll();
                                 $('.tooltipped').tooltip();
-                                this.goToComment(response.body.id);
+                                
+                                // Scroll to submitted comment.
+                                this.goToComment(response.body.id);                                
                             });
                         }, (response) => {
                             Materialize.toast(response.body.message, 4000);
+                            this.submittingComment = false;
                             this.errors = response.body.errors;
                         });
-                this.errors = {};
             },
             fetchComments() {
-                if (!this.post) {
-                    return;
-                }
                 this.loadingComments = true;
                 this.$http.get(`/api/posts/${this.post.id}/comments`)
                         .then((response) => {

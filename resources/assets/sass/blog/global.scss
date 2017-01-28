@@ -19,3 +19,14 @@ main {
         max-width: none;
     }
 }
+
+.preloader-wrapper {
+  &.tiny {
+      width: 20px;
+      height: 20px;
+  }
+}
+
+.align-bottom {
+    vertical-align: bottom;
+}
