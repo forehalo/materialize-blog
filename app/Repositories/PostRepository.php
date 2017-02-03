@@ -72,21 +72,21 @@ class PostRepository
      */
     public function groupDates()
     {
-        $dates = Post::select('created_at')->where('published', true)->orderBy('created_at', 'desc')->get()->pluck('created_at');
+        $dates = Post::selectRaw('year(created_at) year, month(created_at) month')
+            ->groupBy('year', 'month')
+            ->orderBy('year', 'desc')
+            ->orderBy('month', 'desc')
+            ->get();
 
-        $group = [];
-        foreach ($dates as $date) {
-            $year = $date->year;
-            $month = $date->month;
-            if (! array_key_exists($date->year, $group)) {
-                $group[$year] = ['year' => $year, 'months' => []];
-            }
+        $years = $dates->groupBy('year')
+            ->map(function ($year, $index) {
+                return [
+                    'year' => $index, 
+                    'months' => $year->groupBy('month')->keys()
+                ];
+            });
 
-            if (array_search($month, $group[$year]['months']) === false) {
-                array_push($group[$year]['months'], $month);
-            }
-        }
-        return array_values($group);
+        return $years->values();
     }
 
     /**
