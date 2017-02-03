@@ -96,9 +96,10 @@ class PostRepository
     public function getPostsByYearMonth($yearMonth)
     {
         $date = explode('-', $yearMonth);
-        $from = Carbon::create($date[0], $date[1], 1, 0, 0, 0);
-        $to = Carbon::create($date[0], (int)$date[1] + 1, 0, 23, 59, 59);
-        return Post::select('id', 'title', 'slug')->whereBetween('created_at', [$from, $to])->get();
+        return Post::select('id', 'title', 'slug')
+            ->whereYear('created_at', $date[0])
+            ->whereMonth('created_at', $date[1])
+            ->get();
     }
 
     /**
