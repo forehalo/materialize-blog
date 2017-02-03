@@ -74,8 +74,7 @@ class PostRepository
     {
         $dates = Post::selectRaw('year(created_at) year, month(created_at) month')
             ->groupBy('year', 'month')
-            ->orderBy('year', 'desc')
-            ->orderBy('month', 'desc')
+            ->orderByRaw('min(created_at) desc')
             ->get();
 
         $years = $dates->groupBy('year')
