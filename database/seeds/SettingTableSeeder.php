@@ -16,6 +16,7 @@ class SettingTableSeeder extends Seeder
         Setting::create(['key' => 'desc', 'value' => 'The description of your website']);
         Setting::create(['key' => 'keywords', 'value' => 'Material,PHP']);
         Setting::create(['key' => 'author', 'value' => 'Forehalo']);
+        Setting::create(['key' => 'email', 'value' => 'materialize@example.com']);
         Setting::create(['key' => 'logo', 'value' => '// Forehalo']);
         Setting::create(['key' => 'email', 'value' => '']);
         Setting::create(['key' => 'post_per_page', 'value' => '8']);
