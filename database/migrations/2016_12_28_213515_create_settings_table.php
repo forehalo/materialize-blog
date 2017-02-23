@@ -26,6 +26,6 @@ class CreateSettingsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('setting');
+        Schema::drop('settings');
     }
 }
