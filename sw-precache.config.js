@@ -1,5 +1,5 @@
 module.exports = {
-    root: 'public/js',
+    root: 'public',
     staticFileGlobs: [
         'public/build/**/**.*',
         'public/images/**.*',

@@ -41,7 +41,7 @@
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', function() {
             navigator.serviceWorker
-                .register('/js/service-worker.js')
+                .register('/service-worker.js')
                 .then(function(reg) {
                     reg.onupdatefound = function() {
                         var installingWorker = reg.installing;
