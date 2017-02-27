@@ -46,7 +46,7 @@ php artisan migrate
 php artisan db:seed
 ```
 
-> The `db:seed` command will seed `admin` and `settings` table. If you just want to pre-generate some mock data, run again with option `--class=BlogSeeder`
+> The `db:seed` command will seed `admin` and `settings` table. If you want to pre-generate some mock data, run again with option `--class=BlogSeeder`
 
 Now you can login dashboard at `/dashboard` with name `admin` or email `admin@example.com`, password `admin`.
 
