@@ -15,6 +15,7 @@ Demo at [Forehalo' blog](https://forehalo.me).
 * Code highlight ([Prism](http://prismjs.com))
 * Self host comments
 * Easy localization
+* Use [sw-precache](https://github.com/GoogleChrome/sw-precache) to cache static assets.
 
 ## Install
 
@@ -36,16 +37,7 @@ It will automatically install laravel and other dependencies for you.
 > php artisan key:generate
 > ```
 
-### Configure accessibility
-
-```
-chmod 777 -R storage/
-chmod 777 -R bootstrap/cache/
-```
-
-to ensure these two folder are writable.
-
-Configure your `.env` file at the root directory to ensure that you have put right configurations used to connect database.
+Ensure you have finish all the steps mentioned in [`laravel docs`](https://laravel.com/docs/5.3/installation).
 
 Next step, migrate tables and seed fakers
 
@@ -54,7 +46,7 @@ php artisan migrate
 php artisan db:seed
 ```
 
-> The `db:seed` command will seed all tables. If you just want to pre-generate an admin account, run with option `--class=AdminTableSeeder`
+> The `db:seed` command will seed `admin` and `settings` table. If you just want to pre-generate some mock data, run again with option `--class=BlogSeeder`
 
 Now you can login dashboard at `/dashboard` with name `admin` or email `admin@example.com`, password `admin`.
 
@@ -137,4 +129,4 @@ Then, use `trans()` global helper function in PHP, and `this.$trans()` in Vue co
 
 [MIT](http://opensource.org/licenses/MIT)
 
-Copyright (c) 2015-2016 Forehalo
+Copyright (c) 2015-2017 Forehalo
