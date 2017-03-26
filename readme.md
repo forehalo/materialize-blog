@@ -11,7 +11,7 @@ Demo at [Forehalo' blog](https://forehalo.me).
 ## Feature
 
 * Single page
-* Create with markdown (Javascript parser: [marked](https://github.com/chjj/marked), PHP parser: [parsedown](https://github.com/erusev/parsedown))
+* Creating with markdown (Javascript parser: [marked](https://github.com/chjj/marked), PHP parser: [parsedown](https://github.com/erusev/parsedown))
 * Code highlight ([Prism](http://prismjs.com))
 * Self host comments
 * Easy localization
