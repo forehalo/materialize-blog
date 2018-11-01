@@ -167,7 +167,6 @@ return [
          * Package Service Providers...
          */
         Recca0120\LaravelTracy\LaravelTracyServiceProvider::class,
-        Roumen\Sitemap\SitemapServiceProvider::class,
 
         /*
          * Application Service Providers...

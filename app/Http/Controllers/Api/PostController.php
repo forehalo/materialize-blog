@@ -200,7 +200,7 @@ class PostController extends ApiController
     private function saveAsMarkdown(array $post)
     {
         $lastExportTime = $post['exported_at'];
-        $lastUpdateTime = Carbon::createFromFormat(Carbon::DEFAULT_TO_STRING_FORMAT, $post['updated_at'])->timestamp;
+        $lastUpdateTime = Carbon::parse($post['updated_at'])->timestamp;
         $filename = "$this->relativePath{$post['slug']}-$lastExportTime.md";
 
         if (! $lastExportTime || $lastExportTime < $lastUpdateTime || ! Storage::exists($filename)) {

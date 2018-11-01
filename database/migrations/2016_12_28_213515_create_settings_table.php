@@ -12,7 +12,7 @@ class CreateSettingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('settings', function (Blueprint $table) {
+        Schema::create('blog_settings', function (Blueprint $table) {
             $table->increments('id');
             $table->string('key');
             $table->string('value')->nullable();
@@ -26,6 +26,6 @@ class CreateSettingsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('settings');
+        Schema::drop('blog_settings');
     }
 }
