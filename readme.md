@@ -6,7 +6,7 @@ Back-end base on [Laravel 5.3](https://laravel.com), a PHP application framework
 
 Front-end built with [Vue](https://vuejs.org), a Progressive JavaScript Framework bring data binding to js.
 
-Demo at [Forehalo' blog](https://forehalo.me).
+Demo at [Forehalo' blog](https://blog-demo.forehalo.com/).
 
 ## Feature
 
